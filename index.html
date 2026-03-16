@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Oh</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 4rem 1.5rem;
+    }
+
+    main {
+      max-width: 480px;
+      width: 100%;
+    }
+
+    /* Avatar */
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: #999;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .bio {
+      color: #555;
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* Sections */
+    h2 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #999;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Projects */
+    .projects {
+      margin-bottom: 2.5rem;
+    }
+
+    .project {
+      display: block;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #eee;
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.15s;
+    }
+
+    .project:first-of-type {
+      border-top: 1px solid #eee;
+    }
+
+    .project:hover {
+      color: #0066ff;
+    }
+
+    .project-name {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .project-desc {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.15rem;
+    }
+
+    .project:hover .project-desc {
+      color: #0066ff;
+    }
+
+    /* Contact form */
+    .contact {
+      margin-bottom: 2.5rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    input, textarea {
+      font-family: inherit;
+      font-size: 0.9rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      color: #1a1a1a;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #0066ff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 1.25rem;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.15s;
+    }
+
+    button:hover {
+      background: #333;
+    }
+
+    .form-status {
+      font-size: 0.85rem;
+      color: #0066ff;
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eee;
+      font-size: 0.8rem;
+      color: #bbb;
+    }
+
+    /* Dark mode toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+      padding: 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .theme-toggle:hover {
+      background: #eee;
+    }
+
+    /* Dark mode */
+    body.dark {
+      background: #111;
+      color: #e0e0e0;
+    }
+
+    body.dark .avatar {
+      background: #2a2a2a;
+      color: #666;
+    }
+
+    body.dark .bio {
+      color: #999;
+    }
+
+    body.dark h2 {
+      color: #666;
+    }
+
+    body.dark .project {
+      border-color: #222;
+    }
+
+    body.dark .project:first-of-type {
+      border-color: #222;
+    }
+
+    body.dark .project-desc {
+      color: #666;
+    }
+
+    body.dark input, body.dark textarea {
+      background: #1a1a1a;
+      border-color: #333;
+      color: #e0e0e0;
+    }
+
+    body.dark button {
+      background: #e0e0e0;
+      color: #111;
+    }
+
+    body.dark button:hover {
+      background: #ccc;
+    }
+
+    body.dark footer {
+      border-color: #222;
+      color: #444;
+    }
+
+    body.dark .theme-toggle {
+      border-color: #333;
+    }
+
+    body.dark .theme-toggle:hover {
+      background: #222;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">&#9790;</button>
+  <main>
+    <!-- Avatar: replace the span with an <img src="avatar.jpg" alt="John Oh"> -->
+    <div class="avatar">
+      <span>J</span>
+    </div>
+
+    <h1>John Oh</h1>
+    <p class="bio">Developer and builder. I like making things that are useful, simple, and well-crafted.</p>
+
+    <section class="projects">
+      <h2>Projects</h2>
+      <a class="project" href="#" target="_blank" rel="noopener">
+        <div class="project-name">Project Alpha</div>
+        <div class="project-desc">A tool for managing daily workflows</div>
+      </a>
+      <a class="project" href="#" target="_blank" rel="noopener">
+        <div class="project-name">Project Beta</div>
+        <div class="project-desc">Open-source library for data visualization</div>
+      </a>
+      <a class="project" href="#" target="_blank" rel="noopener">
+        <div class="project-name">Project Gamma</div>
+        <div class="project-desc">A minimal note-taking app</div>
+      </a>
+    </section>
+
+    <section class="contact">
+      <h2>Get in touch</h2>
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Message" required></textarea>
+        <button type="submit">Send</button>
+        <p class="form-status" id="form-status"></p>
+      </form>
+    </section>
+
+    <footer>&copy; 2026 John Oh</footer>
+  </main>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const status = document.getElementById('form-status');
+      status.style.display = 'block';
+      status.textContent = 'Thanks! Message sent.';
+      this.reset();
+      setTimeout(() => { status.style.display = 'none'; }, 3000);
+    });
+
+    const toggle = document.getElementById('theme-toggle');
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.body.classList.add('dark');
+    }
+    toggle.textContent = document.body.classList.contains('dark') ? '\u2600' : '\u263E';
+
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      toggle.textContent = isDark ? '\u2600' : '\u263E';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
