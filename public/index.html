@@ -261,7 +261,7 @@
        4. FEATURES GRID
     ═══════════════════════════════════════════════════════ */
     .features-section {
-      background: #f1f1ea; padding: 64px 100px 80px;
+      background: #f1f1ea; padding: 64px clamp(80px, 9.2vw, 176px) 80px;
       border-radius: 0 0 50px 50px;
     }
     .features-intro { margin-bottom: 48px; }
@@ -269,7 +269,7 @@
       font-family: var(--serif);
       font-size: clamp(18px, 1.7vw, 30px);
       font-weight: 400; line-height: 1.25; letter-spacing: -1px;
-      color: var(--green); max-width: 480px;
+      color: var(--green); max-width: clamp(360px, 46vw, 660px);
     }
 
     /* Grid: left col + right area (center + right cols) */
