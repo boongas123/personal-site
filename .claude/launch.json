@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "Static File Server (Python)",
-      "runtimeExecutable": "/opt/homebrew/bin/python3",
-      "runtimeArgs": ["serve.py"],
-      "port": 8000
+      "name": "day-guard",
+      "runtimeExecutable": "/opt/homebrew/bin/node",
+      "runtimeArgs": ["--watch", "server.js"],
+      "port": 3000
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "name": "personal-site",
+  "version": "1.0.0",
+  "description": "Minimal personal website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boongas123/personal-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/boongas123/personal-site/issues"
+  },
+  "homepage": "https://github.com/boongas123/personal-site#readme",
+  "dependencies": {
+    "axios": "^1.13.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  }
+}
