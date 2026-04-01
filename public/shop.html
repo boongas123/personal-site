@@ -40,28 +40,51 @@
        NAV
     ═══════════════════════════════════════════════════════ */
     .nav {
-      position: sticky; top: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 56px; height: 68px;
-      background: rgba(244,241,236,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: flex-start;
+      padding: 0 56px; height: 90px;
+      background: rgba(244,241,236,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(2,7,6,0.06);
+      transition: box-shadow 0.4s ease;
     }
-    .nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-    .nav-logo img { height: 22px; width: auto; }
-    .nav-logo-fallback { font-family: var(--sans); font-size: 17px; font-weight: 700; letter-spacing: -0.8px; }
-    .nav-links { display: flex; align-items: center; gap: 34px; }
-    .nav-links a { font-size: 15px; letter-spacing: -0.3px; color: var(--black); opacity: 0.55; transition: opacity var(--ease); }
-    .nav-links a:hover, .nav-links a.active { opacity: 1; }
-    .nav-links a.active { font-weight: 500; }
-    .nav-cta {
-      font-family: var(--label); font-size: 14px; font-weight: 600;
-      text-transform: lowercase; background: var(--mango); color: var(--white);
-      padding: 9px 22px; border-radius: 6px; opacity: 0.55;
-      transition: opacity var(--ease), transform var(--ease);
+    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.06); }
+    .nav-logo img { height: 28px; width: auto; }
+    .nav-logo-fallback {
+      font-family: var(--label); font-size: 20px; font-weight: 700;
+      letter-spacing: -0.8px; color: var(--black);
     }
-    .nav-cta:hover { opacity: 1; transform: translateY(-1px); }
+    .nav-links { display: flex; align-items: center; gap: 44px; margin-left: auto; margin-right: 44px; }
+    .nav-links a {
+      font-family: var(--label); font-size: 20px; font-weight: 400;
+      letter-spacing: -0.8px; color: var(--black);
+      transition: opacity var(--ease);
+      position: relative;
+    }
+    .nav-links a:hover { opacity: 0.7; }
+    .nav-links a::after {
+      content: '';
+      position: absolute; left: 0; bottom: -3px;
+      width: 100%; height: 1.5px;
+      background: currentColor;
+      transform: scaleX(0); transform-origin: left center;
+      transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cart {
+      display: flex; align-items: center; position: relative;
+      color: var(--black); transition: color 0.4s ease;
+    }
+    .nav-cart svg { display: block; }
+    .nav-cart-count {
+      position: absolute; top: -4px; right: -4px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--black); color: var(--white);
+      font-family: var(--sans); font-size: 10px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--black); border-radius: 2px; }
 
@@ -81,7 +104,7 @@
     .pdp-hero {
       max-width: 1320px; margin: 0 auto;
       display: grid; grid-template-columns: 58% 42%;
-      gap: 56px; padding: 48px 56px 72px;
+      gap: 56px; padding: 138px 56px 72px;
       align-items: start;
     }
 
@@ -880,7 +903,7 @@
       .stat-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
     }
     @media (max-width: 900px) {
-      .pdp-hero { grid-template-columns: 1fr; gap: 40px; padding: 32px 24px 56px; }
+      .pdp-hero { grid-template-columns: 1fr; gap: 40px; padding: 110px 24px 56px; }
       .gallery { position: static; grid-template-rows: 280px 180px; }
       .benefits-header { grid-template-columns: 1fr; }
       .doctor-inner { grid-template-columns: 1fr; }
@@ -910,18 +933,25 @@
 
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <a href="/" class="nav-logo">
+    <a href="/" class="nav-logo" aria-label="day–guard home">
       <img src="https://www.figma.com/api/mcp/asset/bf338aff-a962-423b-8ebb-6042ee6ff20b" alt="day–guard"
            onerror="this.style.display='none'; this.parentElement.querySelector('.nav-logo-fallback').style.display='block'">
       <span class="nav-logo-fallback" style="display:none">day–guard</span>
     </a>
     <ul class="nav-links">
-      <li><a href="/shop.html" class="active">shop</a></li>
-      <li><a href="/#ingredients">how it works</a></li>
-      <li><a href="/#reviews">reviews</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="/shop.html" class="nav-cta">shop now</a></li>
+      <li><a href="/shop.html">shop</a></li>
+      <li><a href="/#ingredients">science</a></li>
+      <li><a href="/#reviews">learn</a></li>
+      <li><a href="#faq">help</a></li>
     </ul>
+    <div class="nav-cart">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="nav-cart-count">0</span>
+    </div>
     <button class="nav-hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
