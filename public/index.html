@@ -258,31 +258,55 @@
 
 
     /* ═══════════════════════════════════════════════════════
-       4. FEATURES GRID
+       4. PRODUCT SHOWCASE
     ═══════════════════════════════════════════════════════ */
     .features-section {
-      background: #f1f1ea; padding: 64px clamp(100px, 13vw, 240px) 80px;
+      background: #f1f1ea; padding: 80px clamp(80px, 13vw, 240px) 80px;
       border-radius: 0 0 50px 50px;
     }
-    .features-intro { margin-bottom: 48px; }
-    .features-heading {
-      font-family: var(--serif);
-      font-size: clamp(18px, 2.35vw, 45px);
-      font-weight: 400; line-height: 1.1; letter-spacing: -2px;
-      color: var(--green); max-width: clamp(320px, 41vw, 594px);
-    }
 
-    /* Stats row */
-    /* Stats row — columns align with product card + feature cards above */
+    /* Two-column product showcase */
+    .product-showcase {
+      display: flex; gap: clamp(40px, 5vw, 80px);
+      align-items: center; margin-bottom: 64px;
+    }
+    .pshow-photo-wrap {
+      width: clamp(260px, 34vw, 651px); flex-shrink: 0;
+      border-radius: 30px; overflow: hidden; background: #c8b89a;
+    }
+    .pshow-photo {
+      width: 100%; height: auto; display: block;
+      object-fit: cover; aspect-ratio: 651 / 920;
+    }
+    .pshow-info { flex: 1; min-width: 0; }
+    .pshow-title {
+      font-family: var(--sans);
+      font-size: clamp(24px, 3.1vw, 60px);
+      font-weight: 400; letter-spacing: -2.4px; line-height: 1.0;
+      color: var(--green); margin-bottom: 28px;
+    }
+    .pshow-desc {
+      font-family: var(--serif);
+      font-size: clamp(16px, 1.8vw, 35px);
+      font-weight: 400; letter-spacing: -1.4px; line-height: 1.3;
+      color: var(--green); margin-bottom: 36px; max-width: 620px;
+    }
+    .pshow-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--label); font-size: 16px; font-weight: 500;
+      text-transform: lowercase; letter-spacing: -0.5px;
+      color: var(--white); background: var(--mango);
+      padding: 14px 28px; border-radius: 6px;
+      transition: background 0.28s ease;
+    }
+    .pshow-btn:hover { background: #e8880e; }
+
+    /* Stats row — equal thirds */
     .features-stats {
       display: flex; gap: 14px;
-      margin-top: 64px;
+      margin-top: 0;
     }
-    .fstat:first-child {
-      width: clamp(198px, 25.2vw, 462px); flex-shrink: 0;
-      padding-right: 20px;
-    }
-    .fstat:not(:first-child) { flex: 1; }
+    .fstat { flex: 1; }
     .fstat-num {
       font-family: var(--serif); font-size: clamp(36px, 4.5vw, 72px);
       font-weight: 400; letter-spacing: -3px; line-height: 1;
@@ -304,115 +328,6 @@
     .fstat-desc {
       font-family: var(--sans); font-size: clamp(11px, 0.8vw, 13px);
       font-weight: 400; color: #757575; letter-spacing: -0.1px; line-height: 1.5;
-    }
-
-    /* Grid: left col + right area (center + right cols) */
-    .features-grid {
-      display: flex; gap: 14px; align-items: stretch;
-      height: clamp(468px, 37.8vw, 696px);
-    }
-
-    /* Left: Product card — full bleed */
-    .fcard-product {
-      width: clamp(198px, 25.2vw, 462px); flex-shrink: 0;
-      border-radius: 30px; overflow: hidden;
-      position: relative; background: #c8b89a;
-    }
-    .fcard-product-default,
-    .fcard-product-hover {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: center 15%;
-      transition: opacity 0.38s ease;
-    }
-    .fcard-product-default { object-position: center 0%; }
-    .fcard-product-hover { opacity: 0; }
-    .fcard-product:hover .fcard-product-default { opacity: 0; }
-    .fcard-product:hover .fcard-product-hover   { opacity: 1; }
-    /* Gradient overlay so text is readable */
-    .fcard-product-overlay {
-      position: absolute; inset: 0; z-index: 2;
-      display: flex; flex-direction: column;
-      justify-content: space-between;
-      padding: 20px;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.08) 0%,
-        transparent 35%,
-        transparent 55%,
-        rgba(0,0,0,0.45) 100%
-      );
-    }
-    .fcard-badge {
-      font-family: var(--label); font-size: 12px; font-weight: 600;
-      text-transform: lowercase; letter-spacing: -0.3px;
-      background: var(--green); color: var(--white);
-      padding: 5px 14px; border-radius: 6px;
-      align-self: flex-start;
-    }
-    .fcard-product-info { display: flex; flex-direction: column; gap: 10px; align-items: center; }
-    .fcard-product-name {
-      font-family: var(--sans); font-size: clamp(11px, 1vw, 20px); font-weight: 400;
-      letter-spacing: -0.8px; color: #d4d4d4; line-height: 1.4;
-      text-align: center; max-width: 180px;
-    }
-    .fcard-product-btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0;
-      font-family: var(--label); font-size: 14px; font-weight: 500;
-      text-transform: lowercase; letter-spacing: -0.5px;
-      color: var(--white); background: var(--mango);
-      padding: 11px 24px; border-radius: 6px;
-      transition: background 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
-    }
-    .fcard-product:hover .fcard-product-btn {
-      background: var(--white); color: var(--green);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-    }
-    .fcard-btn-arrow {
-      display: inline-block; overflow: hidden; max-width: 0; opacity: 0;
-      margin-left: 0;
-      transition: max-width 0.28s ease, opacity 0.28s ease, margin-left 0.28s ease;
-    }
-    .fcard-product:hover .fcard-btn-arrow {
-      max-width: 20px; opacity: 1; margin-left: 5px;
-    }
-
-    /* Right side: two flex columns */
-    .features-right { flex: 1; display: flex; gap: 14px; min-width: 0; }
-    .features-col   { flex: 1; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-
-    /* Feature image cards */
-    .fcard-feature {
-      border-radius: 30px; overflow: hidden; position: relative;
-      cursor: pointer; flex-shrink: 0;
-      transition: transform 0.35s cubic-bezier(.4,0,.2,1);
-    }
-    .fcard-feature:hover { transform: scale(1.025); z-index: 2; }
-    .fcard-feature::before {
-      content: ''; position: absolute; inset: 0; z-index: 1;
-      background: rgba(0,0,0,0); pointer-events: none;
-      transition: background 0.35s ease;
-    }
-    .fcard-feature:hover::before { background: rgba(0,0,0,0.18); }
-    .fcard-img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
-    }
-    .fcard-feature:hover .fcard-img { transform: scale(1.04); }
-    .fcard-overlay {
-      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-      padding: 16px 22px 20px;
-      background: linear-gradient(to top, rgba(0,0,0,0.52) 0%, transparent 100%);
-    }
-    .fcard-overlay-headline {
-      font-family: var(--serif);
-      font-size: clamp(20px, 2.6vw, 50px);
-      font-weight: 400; letter-spacing: -2px;
-      color: var(--white); line-height: 1.1; margin-bottom: 4px;
-    }
-    .fcard-overlay-sub {
-      font-family: var(--sans); font-size: clamp(11px, 1vw, 20px);
-      letter-spacing: -0.8px; color: #d4d4d4; line-height: 1.4;
     }
 
     /* Sticky CTA */
@@ -450,7 +365,55 @@
 
 
     /* ═══════════════════════════════════════════════════════
-       5. INGREDIENTS
+       5. HOW-TO
+    ═══════════════════════════════════════════════════════ */
+    .howto-section {
+      background: #f1f1ea;
+      padding: 80px clamp(100px, 13vw, 240px) 80px;
+      border-radius: 0 0 50px 50px;
+    }
+    .howto-intro { margin-bottom: 48px; }
+    .howto-heading {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4vw, 72px);
+      font-weight: 400; line-height: 1.1; letter-spacing: -3px;
+      color: var(--green); margin-bottom: 12px;
+    }
+    .howto-sub {
+      font-family: var(--sans);
+      font-size: clamp(13px, 1.1vw, 18px);
+      font-weight: 400; color: var(--black); letter-spacing: -0.3px;
+    }
+    .howto-grid { display: flex; gap: 14px; }
+    .howto-card {
+      flex: 1;
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+    .howto-card:hover { transform: scale(1.03); z-index: 2; }
+    .howto-card-img-wrap {
+      position: relative; border-radius: 24px; overflow: hidden;
+      aspect-ratio: 3/4; margin-bottom: 16px;
+    }
+    .howto-card-img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .howto-step-badge {
+      position: absolute; top: 14px; left: 14px;
+      width: 32px; height: 32px;
+      background: rgba(2,7,6,0.80); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--sans); font-size: 14px; font-weight: 500;
+      color: var(--white); letter-spacing: -0.3px;
+    }
+    .howto-card-label {
+      font-family: var(--sans);
+      font-size: clamp(13px, 1.1vw, 18px);
+      font-weight: 400; color: var(--black); letter-spacing: -0.3px;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       6. INGREDIENTS
     ═══════════════════════════════════════════════════════ */
     .ingredients { padding: var(--pad-section) 80px; background: var(--white); }
     .ing-header {
@@ -490,213 +453,265 @@
 
 
     /* ═══════════════════════════════════════════════════════
-       6. CREDIBILITY
+       6. TRUSTED BY EXPERTS
     ═══════════════════════════════════════════════════════ */
-    .credibility {
-      padding: var(--pad-section) 80px;
-      background: var(--green);
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-      align-items: center; position: relative; overflow: hidden;
+    .trusted-section {
+      background: var(--white);
+      padding: 80px clamp(100px, 13vw, 240px);
+      border-radius: 0 0 50px 50px;
+      display: grid; grid-template-columns: 3fr 2fr;
+      gap: clamp(40px, 5vw, 100px); align-items: center;
     }
-    .credibility::before {
-      content: ''; position: absolute; top: -25%; right: -8%;
-      width: 460px; height: 460px; border-radius: 50%;
-      background: rgba(255,255,255,0.035); pointer-events: none;
+    .trusted-heading {
+      font-family: var(--sans);
+      font-size: clamp(44px, 4.2vw, 80px);
+      font-weight: 400; line-height: 1.1; letter-spacing: -3.2px;
+      color: var(--green); margin-bottom: 32px;
     }
-    .cred-content { position: relative; z-index: 1; }
-    .cred-eyebrow {
-      font-family: var(--label); font-size: 12px; font-weight: 700;
-      letter-spacing: 2.2px; text-transform: uppercase;
-      color: var(--soft-green); margin-bottom: 22px;
-    }
-    .cred-heading {
+    .trusted-quote {
       font-family: var(--serif);
-      font-size: clamp(42px, 4.2vw, 66px);
-      font-weight: 400; line-height: 1.0; letter-spacing: -2.8px;
-      color: var(--white); margin-bottom: 26px;
+      font-size: clamp(22px, 2.6vw, 50px);
+      font-weight: 400; line-height: 1.25; letter-spacing: -2px;
+      color: var(--green); margin-bottom: 28px;
     }
-    .cred-body {
-      font-family: var(--sans); font-size: 16px; font-weight: 400;
-      line-height: 1.7; letter-spacing: -0.2px;
-      color: rgba(255,255,255,0.6); max-width: 440px; margin-bottom: 44px;
+    .trusted-doctor-name {
+      font-family: var(--sans); font-size: clamp(16px, 1.3vw, 25px);
+      font-weight: 700; color: var(--black); letter-spacing: -1px; margin-bottom: 4px;
     }
-    .cred-badges { display: flex; flex-wrap: wrap; gap: 10px; }
-    .cred-badge {
-      display: flex; align-items: center; gap: 7px;
-      font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: -0.1px;
-      color: rgba(255,255,255,0.82);
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.11);
-      padding: 9px 16px; border-radius: var(--radius-pill);
+    .trusted-doctor-title {
+      font-family: var(--sans); font-size: clamp(14px, 1.3vw, 25px);
+      font-weight: 400; color: #757575; letter-spacing: -1px; margin-bottom: 28px;
     }
-    .cred-badge svg { width: 13px; height: 13px; color: var(--soft-green); flex-shrink: 0; }
-    .cred-stats {
-      display: flex; gap: 44px; margin-top: 48px; padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.09);
+    .trusted-learn-more {
+      font-family: var(--sans); font-size: clamp(18px, 1.6vw, 30px);
+      font-weight: 400; color: var(--green); letter-spacing: -1.2px;
+      text-decoration: underline; text-underline-offset: 3px;
+      transition: opacity 0.2s ease;
     }
-    .cred-stat-num {
-      font-family: var(--serif); font-size: 44px; font-weight: 400;
-      letter-spacing: -2px; color: var(--white); line-height: 1; margin-bottom: 5px;
+    .trusted-learn-more:hover { opacity: 0.65; }
+    .trusted-photo {
+      width: 100%; aspect-ratio: 1/1; border-radius: 33px;
+      object-fit: cover; display: block;
     }
-    .cred-stat-label {
-      font-family: var(--sans); font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: -0.1px;
+
+    /* ═══════════════════════════════════════════════════════
+       7. PRESS
+    ═══════════════════════════════════════════════════════ */
+    .press-section {
+      position: relative; overflow: hidden;
+      padding: 100px clamp(100px, 13vw, 240px) 100px;
+      background: #2d1a0a;
     }
-    .cred-img-block {
-      position: relative; z-index: 1; height: 500px;
-      border-radius: var(--radius-card); overflow: hidden;
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.09);
+    .press-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center; opacity: 0.5; pointer-events: none;
+    }
+    .press-inner { position: relative; z-index: 2; text-align: center; }
+    .press-label {
+      font-family: var(--label); font-size: clamp(13px, 1.2vw, 20px);
+      font-weight: 400; color: var(--white); letter-spacing: -0.5px;
+      text-transform: lowercase; margin-bottom: 40px; opacity: 0.7;
+    }
+    .press-quote {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.8vw, 55px);
+      font-weight: 400; line-height: 1.2; letter-spacing: -2px;
+      color: var(--white); max-width: clamp(500px, 60vw, 900px); margin-bottom: 64px;
+      margin-left: auto; margin-right: auto;
+      transition: opacity 0.25s ease;
+    }
+    .press-quote.switching { opacity: 0; }
+    .press-logos {
       display: flex; align-items: center; justify-content: center;
+      gap: clamp(32px, 4vw, 64px); flex-wrap: wrap;
     }
-    .cred-placeholder { text-align: center; }
-    .cred-placeholder svg { width: 60px; height: 60px; color: rgba(255,255,255,0.18); margin: 0 auto 14px; }
-    .cred-placeholder p { font-family: var(--sans); font-size: 13px; color: rgba(255,255,255,0.28); letter-spacing: -0.1px; }
+    .press-logo-btn {
+      background: none; border: none; cursor: pointer; padding: 8px;
+      border-radius: 8px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0.55;
+    }
+    .press-logo-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    .press-logo-btn.active { opacity: 1; }
+    .press-logo {
+      height: clamp(20px, 2vw, 32px); width: auto; object-fit: contain;
+      filter: brightness(0) invert(1); display: block;
+    }
 
 
     /* ═══════════════════════════════════════════════════════
-       7. REVIEWS
+       8. REVIEWS
     ═══════════════════════════════════════════════════════ */
-    .reviews { padding: var(--pad-section) 80px; background: var(--beige); }
-    .reviews-head { text-align: center; margin-bottom: 60px; }
-    .reviews-agg {
-      display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 12px;
+    .reviews { background: #204c3e; padding: 80px 0 80px; }
+    .reviews-head { text-align: center; margin-bottom: 48px; padding: 0 clamp(60px, 8vw, 160px); }
+    .rev-community-heading {
+      font-family: var(--label); font-size: clamp(26px, 1.82vw, 35px);
+      font-weight: 400; color: var(--white); letter-spacing: -1.4px; text-transform: lowercase;
     }
-    .rev-stars-lg { font-size: 26px; color: var(--gold); letter-spacing: 3px; }
-    .rev-score {
-      font-family: var(--serif); font-size: 52px; font-weight: 400;
-      letter-spacing: -2.2px; color: var(--black); line-height: 1;
-    }
-    .rev-heading {
-      font-family: var(--serif);
-      font-size: clamp(34px, 3.2vw, 50px);
-      font-weight: 400; letter-spacing: -2.2px; margin-bottom: 8px;
-    }
-    .rev-count {
-      font-family: var(--sans); font-size: 15px; letter-spacing: -0.2px; opacity: 0.42;
-    }
-    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-    .rev-card {
-      background: var(--white); border-radius: var(--radius-sm, 22px);
-      padding: 30px; display: flex; flex-direction: column; gap: 14px;
-      border-radius: 22px;
-      transition: transform var(--ease), box-shadow var(--ease);
-    }
-    .rev-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.07); }
-    .rev-top { display: flex; align-items: center; justify-content: space-between; }
-    .rev-stars { font-size: 14px; color: var(--gold); letter-spacing: 2px; }
-    .rev-tag {
-      font-family: var(--label); font-size: 10px; font-weight: 700;
-      letter-spacing: 0.8px; text-transform: uppercase;
-      padding: 4px 10px; border-radius: var(--radius-pill);
-    }
-    .tag-m { background: rgba(251,153,24,.12); color: #b86e00; }
-    .tag-p { background: rgba(252,103,49,.12); color: #b53a18; }
-    .tag-a { background: rgba(68,197,85,.12);  color: #1a7d2c; }
-    .rev-text {
-      font-family: var(--sans); font-size: 14px; line-height: 1.68; letter-spacing: -0.15px;
-      opacity: 0.75; flex: 1;
-    }
-    .rev-author {
-      display: flex; align-items: center; gap: 11px;
-      padding-top: 14px; border-top: 1px solid rgba(2,7,6,0.06);
-    }
-    .rev-avatar {
-      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+    /* Arrow nav wrapper */
+    .reviews-nav { position: relative; }
+    .rev-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.35);
+      color: white; font-size: 20px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--white);
+      transition: background 0.2s ease; z-index: 10;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
     }
-    .av-gr { background: var(--green); }
-    .av-mg { background: var(--mango); }
-    .av-pc { background: var(--peach); }
-    .av-tl { background: #2a7a64; }
-    .av-sf { background: var(--soft-green); }
-    .av-dk { background: #3d2b1f; }
-    .rev-name { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: -0.2px; }
-    .rev-verified {
-      font-family: var(--sans); font-size: 11px; color: var(--green); opacity: 0.65;
-      display: flex; align-items: center; gap: 3px; margin-top: 1px;
+    .rev-arrow:hover { background: rgba(255,255,255,0.28); }
+    .rev-arrow:active { background: rgba(255,255,255,0.4); }
+    .rev-arrow-prev { left: clamp(12px, 3vw, 60px); }
+    .rev-arrow-next { right: clamp(12px, 3vw, 60px); }
+    /* Scrollable track */
+    .reviews-carousel {
+      display: flex; gap: clamp(12px, 1.7vw, 32px);
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 0 clamp(60px, 8vw, 160px) 4px;
+      scrollbar-width: none; -ms-overflow-style: none;
+      cursor: grab;
     }
+    .reviews-carousel:active { cursor: grabbing; }
+    .reviews-carousel::-webkit-scrollbar { display: none; }
+    /* Slides */
+    .rev-slide {
+      flex-shrink: 0; scroll-snap-align: center;
+      width: clamp(240px, 21vw, 407px); height: clamp(360px, 42vw, 582px);
+      border-radius: 30px; overflow: hidden; background: #f1f1ea;
+      transition: transform 0.4s cubic-bezier(.4,0,.2,1); transform-origin: center;
+    }
+    .rev-slide.rev-active { transform: scale(1.07); z-index: 2; }
+    .rev-slide.wide {
+      width: clamp(270px, 24vw, 470px);
+    }
+    .rev-slide.photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .rev-slide-inner {
+      padding: clamp(28px, 3vw, 48px) clamp(24px, 2.5vw, 40px);
+      height: 100%; box-sizing: border-box;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .rev-slide-stars {
+      font-size: clamp(18px, 1.5vw, 26px); color: #204c3e; letter-spacing: 2px; margin-bottom: 20px;
+    }
+    .rev-slide-quote {
+      font-family: var(--serif); font-size: clamp(18px, 1.8vw, 32px);
+      font-weight: 400; line-height: 1.3; letter-spacing: -1.2px;
+      color: #204c3e; flex: 1; margin-bottom: 24px;
+    }
+    .rev-slide-name {
+      font-family: var(--label); font-size: clamp(14px, 1.1vw, 20px);
+      font-weight: 600; color: #204c3e; letter-spacing: -0.5px; margin-bottom: 5px;
+    }
+    .rev-slide-verified {
+      font-family: var(--label); font-size: 12px;
+      color: #204c3e; opacity: 0.6; letter-spacing: -0.2px;
+    }
+    .reviews-cta { text-align: center; margin-top: 48px; }
+    .rev-cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--mango); color: var(--white);
+      font-family: var(--label); font-size: 14px; font-weight: 500;
+      letter-spacing: -0.5px; text-transform: lowercase;
+      padding: 14px 32px; border-radius: 6px;
+      transition: background var(--ease), transform 0.2s ease;
+    }
+    .rev-cta-btn:hover { background: #e07e00; transform: translateY(-1px); }
+
 
 
     /* ═══════════════════════════════════════════════════════
        8. FOOTER
     ═══════════════════════════════════════════════════════ */
     .footer {
-      position: relative; background: #160e07; overflow: hidden;
-      padding: 72px 80px 0;
+      position: relative; overflow: hidden; background: #1a0e05;
+      padding: 0;
     }
-    .jelly-svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
     .footer-bg {
       position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: center; opacity: 0.3; pointer-events: none;
-      will-change: filter;
-      transition: opacity 0.4s ease;
+      object-fit: cover; object-position: center 60%; opacity: 0.65; pointer-events: none;
     }
-    .footer:hover .footer-bg { opacity: 0.45; }
-    .footer-inner { position: relative; z-index: 1; }
+    .jelly-svg-defs { display: none; }
+    .footer-inner {
+      position: relative; z-index: 2;
+      padding: 64px clamp(80px, 6vw, 115px) 48px;
+    }
     .footer-top {
-      display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 64px;
-      padding-bottom: 56px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: grid; grid-template-columns: 1fr auto;
+      gap: clamp(40px, 6vw, 120px); align-items: start; margin-bottom: 56px;
+    }
+    .footer-logo-img {
+      display: block; width: clamp(180px, 35vw, 560px); height: auto; margin-bottom: 40px;
     }
     .footer-signup-h {
-      font-family: var(--sans); font-size: 22px; font-weight: 700;
-      letter-spacing: -0.7px; color: var(--white); line-height: 1.28;
-      margin-bottom: 22px; max-width: 260px;
+      font-family: var(--sans); font-size: clamp(22px, 2.1vw, 40px);
+      font-weight: 700; color: var(--white); letter-spacing: -1.6px; margin-bottom: 20px;
+      line-height: 1.1;
     }
-    .footer-toggles { display: flex; gap: 9px; margin-bottom: 14px; }
+    .footer-toggles { display: flex; gap: 10px; margin-bottom: 16px; }
     .ft-btn {
-      font-family: var(--sans); font-size: 14px; letter-spacing: -0.3px;
-      color: var(--white); border: 1.5px solid rgba(255,255,255,0.3);
-      padding: 7px 18px; border-radius: var(--radius-btn);
-      transition: background var(--ease), border-color var(--ease);
+      font-family: var(--sans); font-size: 13px; font-weight: 400;
+      color: var(--white); letter-spacing: -0.4px;
+      padding: 7px 18px; border-radius: 6px;
+      border: 2px solid rgba(255,255,255,0.7);
+      background: transparent; cursor: pointer; transition: background 0.2s;
     }
-    .ft-btn.active, .ft-btn:hover { background: var(--soft-green); border-color: var(--soft-green); }
-    .footer-form { display: flex; margin-bottom: 14px; }
+    .ft-btn.active { background: rgba(154,172,160,0.85); border-color: rgba(255,255,255,0.9); }
+    .footer-form { display: flex; margin-bottom: 16px; }
     .footer-input {
-      flex: 1; font-family: var(--sans); font-size: 14px; letter-spacing: -0.3px;
-      color: var(--white); background: transparent;
-      border: 1.5px solid rgba(255,255,255,0.28); border-right: none;
-      padding: 11px 16px; border-radius: 6px 0 0 6px; outline: none;
-      transition: border-color var(--ease);
+      width: clamp(260px, 36vw, 706px); background: transparent;
+      border: 2.5px solid rgba(255,255,255,0.7); border-radius: 5px;
+      padding: 14px 22px;
+      font-family: var(--sans); font-size: 15px; color: var(--white); letter-spacing: -0.5px;
+      outline: none;
     }
-    .footer-input::placeholder { color: rgba(255,255,255,0.28); }
-    .footer-input:focus { border-color: rgba(255,255,255,0.6); }
-    .footer-submit {
-      font-family: var(--label); font-size: 13px; font-weight: 600;
-      text-transform: lowercase; color: var(--white); background: var(--mango);
-      padding: 11px 20px; border-radius: 0 6px 6px 0;
-      transition: opacity var(--ease);
-    }
-    .footer-submit:hover { opacity: 0.85; }
+    .footer-input::placeholder { color: rgba(255,255,255,0.55); }
+    .footer-submit { display: none; }
     .footer-disclaimer {
-      font-family: var(--sans); font-size: 10px; font-weight: 300;
-      line-height: 1.65; color: rgba(255,255,255,0.25); max-width: 300px;
+      font-family: var(--label); font-size: 12px;
+      color: rgba(255,255,255,0.55); letter-spacing: -0.2px; line-height: 1.5;
+      max-width: clamp(280px, 36vw, 706px);
     }
+    .footer-nav-grid { display: flex; gap: clamp(20px, 3.5vw, 56px); }
+    .footer-nav-col { display: flex; flex-direction: column; }
     .footer-nav-h {
-      font-family: var(--sans); font-size: 15px; font-weight: 700;
-      letter-spacing: -0.3px; color: var(--white); margin-bottom: 18px;
+      font-family: var(--sans); font-size: clamp(14px, 1.15vw, 22px);
+      font-weight: 700; color: var(--white); letter-spacing: -0.8px; margin-bottom: 18px;
     }
-    .footer-nav-links { display: flex; flex-direction: column; gap: 13px; }
+    .footer-nav-links { list-style: none; display: flex; flex-direction: column; gap: 14px; }
     .footer-nav-links a {
-      font-family: var(--sans); font-size: 14px; letter-spacing: -0.2px;
-      color: rgba(255,255,255,0.45);
-      transition: color var(--ease);
+      font-family: var(--sans); font-size: clamp(12px, 1.05vw, 20px);
+      font-weight: 400; color: rgba(255,255,255,0.75); letter-spacing: -0.5px;
+      transition: color 0.2s;
     }
-    .footer-nav-links a:hover { color: rgba(255,255,255,0.88); }
-    .footer-wordmark {
-      position: relative; z-index: 1;
-      padding: 10px 0 0; overflow: hidden;
+    .footer-nav-links a:hover { color: var(--white); }
+    .footer-bottom {
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1);
     }
-    .footer-wordmark img { width: 100%; height: auto; display: block; opacity: 0.9; }
-    .footer-wordmark-fallback {
-      display: none;
-      font-family: var(--sans);
-      font-size: clamp(56px, 10vw, 160px);
-      font-weight: 700; letter-spacing: -5px;
-      color: rgba(255,255,255,0.82);
-      padding: 24px 0 32px;
+    .footer-fda {
+      font-family: var(--label); font-size: 11px;
+      color: rgba(255,255,255,0.38); letter-spacing: -0.1px; line-height: 1.5;
+      max-width: clamp(400px, 54vw, 1037px); margin-bottom: 20px;
     }
+    .footer-bottom-row {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copyright {
+      font-family: var(--label); font-size: 12px;
+      color: rgba(255,255,255,0.45); letter-spacing: -0.2px; line-height: 1.6;
+    }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center; color: var(--white);
+      transition: background 0.2s;
+    }
+    .social-icon:hover { background: rgba(255,255,255,0.18); }
+    .social-icon svg { width: 17px; height: 17px; fill: currentColor; }
+    .footer-wordmark { display: none; }
+    .footer-wordmark-fallback { display: none; }
 
 
     /* ═══════════════════════════════════════════════════════
@@ -716,25 +731,23 @@
       .hero-h1 { font-size: 44px; letter-spacing: -2.2px; }
       .hero-badge { right: 24px; bottom: 24px; }
       .features-section { padding: 48px 24px; }
-      .features-grid { flex-direction: column; height: auto; }
-      .features-right { flex-direction: column; }
-      .features-col { flex-direction: row; }
-      .fcard-product { width: 100%; min-height: 360px; }
-      .fcard-feature { flex: 1 0 220px !important; min-height: 220px; }
-      .ingredients, .credibility, .reviews, .footer { padding-left: 24px; padding-right: 24px; }
+      .product-showcase { flex-direction: column; gap: 32px; }
+      .pshow-photo-wrap { width: 100%; max-width: 420px; }
+      .features-stats { flex-direction: column; }
+      .fstat:first-child { width: 100%; }
+      .ingredients, .credibility { padding-left: 24px; padding-right: 24px; }
       .ing-header { flex-direction: column; align-items: flex-start; }
       .ing-note { text-align: left; max-width: 100%; }
-      .reviews-grid { grid-template-columns: 1fr 1fr; }
       .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-nav-grid { flex-wrap: wrap; gap: 24px; }
+      .howto-grid { flex-direction: column; }
     }
     @media (max-width: 600px) {
       .hero-h1 { font-size: 36px; letter-spacing: -1.8px; }
       .hero-badge { display: none; }
-      .features-col { flex-direction: column; }
-      .fcard-product { width: 100%; min-height: 420px; }
       .ing-grid { grid-template-columns: 1fr 1fr; }
-      .reviews-grid { grid-template-columns: 1fr; }
       .cred-stats { flex-direction: column; gap: 28px; }
+      .trusted-section { grid-template-columns: 1fr; }
     }
     @media (max-width: 400px) {
       .ing-grid { grid-template-columns: 1fr; }
@@ -866,86 +879,23 @@
 
 
   <!-- ════════════════════════════
-       4. FEATURES GRID
+       4. PRODUCT SHOWCASE
   ════════════════════════════ -->
   <section class="features-section" id="features">
-    <div class="features-intro fade-up">
-      <h2 class="features-heading">doctor formulated ingredients that prepare your liver and gut before the first sip.</h2>
-    </div>
-    <div class="features-grid">
-
-      <!-- Left: Product card — full bleed -->
-      <div class="fcard-product" id="fcard-product">
-        <img class="fcard-product-default"
-             src="/images/product-default.png"
+    <div class="product-showcase fade-up">
+      <!-- Left: large product photo -->
+      <div class="pshow-photo-wrap">
+        <img class="pshow-photo"
+             src="https://www.figma.com/api/mcp/asset/feffd8f6-1860-4dec-9d20-c79139f4cdc8"
              alt="day–guard mango jelly sticks 10-pack">
-        <img class="fcard-product-hover"
-             src="/images/product-hover.png"
-             alt="day–guard lifestyle">
-        <div class="fcard-product-overlay">
-          <span class="fcard-badge">best seller</span>
-          <div class="fcard-product-info">
-            <p class="fcard-product-name">pre-alcohol vitamin jelly sticks (10-pack)</p>
-            <a href="/shop.html" class="fcard-product-btn">
-              buy now<span class="fcard-btn-arrow"> →</span>
-            </a>
-          </div>
-        </div>
       </div>
 
-      <!-- Right area: two columns -->
-      <div class="features-right">
-
-        <!-- Center column -->
-        <div class="features-col">
-          <!-- Center top (large) -->
-          <div class="fcard-feature" style="flex: 469 0 0">
-            <img class="fcard-img"
-                 src="https://www.figma.com/api/mcp/asset/d910654b-edfc-4acf-9d5a-3341eec6ae79"
-                 alt="pocket-sized">
-            <div class="fcard-overlay">
-              <p class="fcard-overlay-headline">pocket-sized</p>
-              <p class="fcard-overlay-sub">take it anywhere: no powder, no mixing</p>
-            </div>
-          </div>
-          <!-- Center bottom (small) -->
-          <div class="fcard-feature" style="flex: 279 0 0">
-            <img class="fcard-img"
-                 src="https://www.figma.com/api/mcp/asset/f2f472bf-1251-4c23-b874-ff6faf18bd03"
-                 alt="clinical ingredients">
-            <div class="fcard-overlay">
-              <p class="fcard-overlay-headline">clinical ingredients</p>
-              <p class="fcard-overlay-sub">comprehensive support</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right column -->
-        <div class="features-col">
-          <!-- Right top (small) -->
-          <div class="fcard-feature" style="flex: 302 0 0">
-            <img class="fcard-img"
-                 src="https://www.figma.com/api/mcp/asset/eb839f17-7cb6-489c-828a-89ceca0677e1"
-                 alt="delicious mango">
-            <div class="fcard-overlay">
-              <p class="fcard-overlay-headline">delicious mango</p>
-              <p class="fcard-overlay-sub">candy level good</p>
-            </div>
-          </div>
-          <!-- Right bottom (large) -->
-          <div class="fcard-feature" style="flex: 443 0 0">
-            <img class="fcard-img"
-                 src="https://www.figma.com/api/mcp/asset/88beb320-88cc-4aa4-86c1-7b9681439e91"
-                 alt="cheers before cheers">
-            <div class="fcard-overlay">
-              <p class="fcard-overlay-headline">cheers before cheers</p>
-              <p class="fcard-overlay-sub">taking care of your body should be fun</p>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /features-right -->
-
+      <!-- Right: product info -->
+      <div class="pshow-info">
+        <h2 class="pshow-title">pre-alcohol vitamin jelly sticks (10-pack)</h2>
+        <p class="pshow-desc">doctor formulated ingredients that prepare your liver and gut before the first sip.</p>
+        <a href="/shop.html" class="pshow-btn">buy now →</a>
+      </div>
     </div>
 
     <!-- Stats row -->
@@ -1045,236 +995,233 @@
 
 
   <!-- ════════════════════════════
-       6. CREDIBILITY
+       6. HOW-TO
   ════════════════════════════ -->
-  <section class="credibility" id="credibility">
-    <div class="cred-content fade-up">
-      <p class="cred-eyebrow">formulation</p>
-      <h2 class="cred-heading">built with<br>doctors.</h2>
-      <p class="cred-body">
-        Day-Guard was developed in collaboration with board-certified physicians specializing in gastroenterology and hepatology. Every ingredient is clinically studied, precisely dosed, and independently reviewed — because your body deserves more than marketing claims.
-      </p>
-      <div class="cred-badges">
-        <span class="cred-badge">
-          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Doctor-Formulated
-        </span>
-        <span class="cred-badge">
-          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Clinically Studied
-        </span>
-        <span class="cred-badge">
-          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          30-Day Money Back
-        </span>
-      </div>
-      <div class="cred-stats">
-        <div>
-          <p class="cred-stat-num">20k+</p>
-          <p class="cred-stat-label">happy customers</p>
-        </div>
-        <div>
-          <p class="cred-stat-num">4.9★</p>
-          <p class="cred-stat-label">average rating</p>
-        </div>
-        <div>
-          <p class="cred-stat-num">5</p>
-          <p class="cred-stat-label">key ingredients</p>
-        </div>
-      </div>
+  <section class="howto-section" id="how-to">
+    <div class="howto-intro fade-up">
+      <h2 class="howto-heading">how—to.</h2>
+      <p class="howto-sub">built for post — work, pre — drinks</p>
     </div>
-
-    <div class="cred-img-block fade-up" style="transition-delay:.15s">
-      <div class="cred-placeholder">
-        <svg viewBox="0 0 64 64" fill="none">
-          <circle cx="32" cy="24" r="10" stroke="currentColor" stroke-width="2"/>
-          <path d="M12 52c0-11.05 8.95-20 20-20s20 8.95 20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <p>Add doctor / team photo here</p>
+    <div class="howto-grid">
+      <div class="howto-card fade-up">
+        <div class="howto-card-img-wrap">
+          <img class="howto-card-img"
+               src="https://www.dayguard.com/cdn/shop/files/1.jpg?v=1763022676"
+               alt="take before you drink">
+          <span class="howto-step-badge">1</span>
+        </div>
+        <p class="howto-card-label">take before you drink</p>
+      </div>
+      <div class="howto-card fade-up">
+        <div class="howto-card-img-wrap">
+          <img class="howto-card-img"
+               src="https://www.dayguard.com/cdn/shop/files/2_1.png?v=1763022671"
+               alt="take another every 3-5 drinks">
+          <span class="howto-step-badge">2</span>
+        </div>
+        <p class="howto-card-label">take another every 3–5 drinks</p>
+      </div>
+      <div class="howto-card fade-up">
+        <div class="howto-card-img-wrap">
+          <img class="howto-card-img"
+               src="https://www.dayguard.com/cdn/shop/files/3_1.png?v=1763022671"
+               alt="enjoy your night">
+          <span class="howto-step-badge">3</span>
+        </div>
+        <p class="howto-card-label">enjoy your night</p>
       </div>
     </div>
   </section>
 
 
   <!-- ════════════════════════════
-       7. REVIEWS
+       7. TRUSTED BY EXPERTS
+  ════════════════════════════ -->
+  <section class="trusted-section" id="credibility">
+    <div class="trusted-left fade-up">
+      <h2 class="trusted-heading">trusted by experts</h2>
+      <blockquote class="trusted-quote">"What makes day–guard different is the comprehensiveness. The formulation targets the full cascade of what alcohol does to your body."</blockquote>
+      <p class="trusted-doctor-name">Dr. Steven Oh</p>
+      <p class="trusted-doctor-title">MD, Medical Advisor</p>
+      <a href="/science" class="trusted-learn-more">learn more</a>
+    </div>
+    <div class="trusted-right fade-up" style="transition-delay:.12s">
+      <img class="trusted-photo"
+           src="https://www.figma.com/api/mcp/asset/cae94d42-d11a-4abf-bb26-f6e9b5ff9199"
+           alt="Dr. Steven Oh, Medical Advisor">
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       8. PRESS
+  ════════════════════════════ -->
+  <section class="press-section" id="press">
+    <img class="press-bg"
+         src="https://www.figma.com/api/mcp/asset/6623c733-4e3c-4dd3-ae01-cc4200402162"
+         alt="" aria-hidden="true">
+    <div class="press-inner">
+      <p class="press-label fade-up">day–guard in the press</p>
+      <blockquote class="press-quote fade-up" id="press-quote">"day–guard brings Korean wellness culture to American consumers through a reimagined approach to social drinking."</blockquote>
+      <div class="press-logos fade-up">
+        <button class="press-logo-btn active" data-publication="Forbes"
+                data-quote="&ldquo;day&ndash;guard brings Korean wellness culture to American consumers through a reimagined approach to social drinking.&rdquo;">
+          <img class="press-logo" src="/images/Forbes_logo.svg" alt="Forbes">
+        </button>
+        <button class="press-logo-btn" data-publication="SFGate"
+                data-quote="&ldquo;The latest pre-drinking supplement making waves among health-conscious millennials — and it actually tastes good.&rdquo;">
+          <img class="press-logo" src="/images/Logo_of_SFGate.svg" alt="SF Gate">
+        </button>
+        <button class="press-logo-btn" data-publication="The Korea Herald"
+                data-quote="&ldquo;Korean pharmaceutical expertise meets modern wellness — day&ndash;guard is redefining how the world drinks.&rdquo;">
+          <img class="press-logo" src="/images/The_Korea_Herald__idup90auts_1_1.svg" alt="The Korea Herald">
+        </button>
+        <button class="press-logo-btn" data-publication="The Boston Globe"
+                data-quote="&ldquo;An innovative approach to next-day recovery that has young professionals rethinking their relationship with alcohol.&rdquo;">
+          <img class="press-logo" src="/images/The_Boston_Globe (1).svg" alt="The Boston Globe">
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       9. REVIEWS
   ════════════════════════════ -->
   <section class="reviews" id="reviews">
     <div class="reviews-head fade-up">
-      <div class="reviews-agg">
-        <span class="rev-stars-lg">★★★★★</span>
-        <span class="rev-score">4.9</span>
-      </div>
-      <h2 class="rev-heading">20,000+ happy customers.</h2>
-      <p class="rev-count">Verified purchases &middot; Updated weekly</p>
+      <p class="rev-community-heading">★★★★★ loved by our community</p>
     </div>
-
-    <div class="reviews-grid">
-
-      <div class="rev-card fade-up">
-        <div class="rev-top">
-          <span class="rev-stars">★★★★★</span>
-          <span class="rev-tag tag-m">Mango</span>
+    <div class="reviews-nav">
+      <button class="rev-arrow rev-arrow-prev" id="rev-prev" aria-label="Previous review">&#8592;</button>
+      <div class="reviews-carousel" id="reviews-carousel">
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"I take one before going out and wake up completely like myself. mango flavor is genuinely delicious."</p>
+            <p class="rev-slide-name">Sarah M.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
         </div>
-        <p class="rev-text">"Finally something that actually works. I take one before going out and wake up completely like myself. The mango flavor is genuinely delicious."</p>
-        <div class="rev-author">
-          <div class="rev-avatar av-mg">S</div>
-          <div>
-            <p class="rev-name">Sarah M.</p>
-            <p class="rev-verified"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified Purchase</p>
+        <div class="rev-slide photo">
+          <img src="https://www.figma.com/api/mcp/asset/5cdb804d-ba3a-4c9b-92e0-17c019343bb7" alt="day-guard lifestyle — friends out together">
+        </div>
+        <div class="rev-slide wide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"day-guard is my going out essential for me! need to stay on top of my health"</p>
+            <p class="rev-slide-name">Carol B.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="https://www.figma.com/api/mcp/asset/2c0883f7-bb62-4728-9250-eafdba5e4917" alt="day-guard lifestyle — night out">
+        </div>
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"Subscribed after my second box. My whole friend group is on it now. I'd give it 6 stars if I could."</p>
+            <p class="rev-slide-name">Jake T.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
           </div>
         </div>
       </div>
-
-      <div class="rev-card fade-up" style="transition-delay:.07s">
-        <div class="rev-top">
-          <span class="rev-stars">★★★★★</span>
-          <span class="rev-tag tag-p">Peach</span>
-        </div>
-        <p class="rev-text">"I was skeptical but this has changed my weekends completely. No more wasted Sundays. My coworkers keep asking how I look so good on Mondays."</p>
-        <div class="rev-author">
-          <div class="rev-avatar av-tl">J</div>
-          <div>
-            <p class="rev-name">Jake T.</p>
-            <p class="rev-verified"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified Purchase</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rev-card fade-up" style="transition-delay:.14s">
-        <div class="rev-top">
-          <span class="rev-stars">★★★★★</span>
-          <span class="rev-tag tag-a">Apple</span>
-        </div>
-        <p class="rev-text">"I travel for work and attend a lot of client dinners. This fits right in my bag and has been an absolute game-changer. Simple format, no pills."</p>
-        <div class="rev-author">
-          <div class="rev-avatar av-sf">E</div>
-          <div>
-            <p class="rev-name">Emily R.</p>
-            <p class="rev-verified"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified Purchase</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rev-card fade-up" style="transition-delay:.04s">
-        <div class="rev-top">
-          <span class="rev-stars">★★★★★</span>
-          <span class="rev-tag tag-m">Mango</span>
-        </div>
-        <p class="rev-text">"The science is legit. I looked up DHM and was genuinely impressed. The jelly stick format is genius — tastes good, no massive pills to choke down."</p>
-        <div class="rev-author">
-          <div class="rev-avatar av-gr">M</div>
-          <div>
-            <p class="rev-name">Michael C.</p>
-            <p class="rev-verified"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified Purchase</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rev-card fade-up" style="transition-delay:.11s">
-        <div class="rev-top">
-          <span class="rev-stars">★★★★★</span>
-          <span class="rev-tag tag-p">Peach</span>
-        </div>
-        <p class="rev-text">"Subscribed after my second box. Monthly delivery makes it easy to stay consistent. I'd give it 6 stars if I could — my whole friend group is on it now."</p>
-        <div class="rev-author">
-          <div class="rev-avatar av-pc">P</div>
-          <div>
-            <p class="rev-name">Priya S.</p>
-            <p class="rev-verified"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified Purchase</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rev-card fade-up" style="transition-delay:.18s">
-        <div class="rev-top">
-          <span class="rev-stars">★★★★★</span>
-          <span class="rev-tag tag-a">Apple</span>
-        </div>
-        <p class="rev-text">"Tear, squeeze, done. The simplest routine addition I've made all year. Worth every penny and the apple flavor is surprisingly refreshing."</p>
-        <div class="rev-author">
-          <div class="rev-avatar av-dk">R</div>
-          <div>
-            <p class="rev-name">Ryan B.</p>
-            <p class="rev-verified"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified Purchase</p>
-          </div>
-        </div>
-      </div>
-
+      <button class="rev-arrow rev-arrow-next" id="rev-next" aria-label="Next review">&#8594;</button>
+    </div>
+    <div class="reviews-cta fade-up">
+      <a href="/shop.html" class="rev-cta-btn">read all reviews</a>
     </div>
   </section>
 
 
+  <!-- Press spotlight overlay (fixed, behind press section) -->
+
   <!-- ════════════════════════════
-       8. FOOTER
+       10. FOOTER
   ════════════════════════════ -->
   <footer class="footer" id="footer">
-    <svg class="jelly-svg-defs" aria-hidden="true">
-      <defs>
-        <filter id="jelly-filter" x="-12%" y="-12%" width="124%" height="124%"
-                color-interpolation-filters="sRGB">
-          <!-- Organic turbulence as the jelly surface height map -->
-          <feTurbulence id="jelly-turb" type="turbulence"
-            baseFrequency="0.038 0.026" numOctaves="3" seed="3" result="jnoise"/>
-          <!-- Point light creates natural radial falloff — only pixels near the
-               cursor receive significant lighting, which drives localized displacement -->
-          <feDiffuseLighting in="jnoise" lighting-color="white"
-            surfaceScale="7" diffuseConstant="1.4" result="jlit">
-            <fePointLight id="jelly-light" x="-9999" y="-9999" z="85"/>
-          </feDiffuseLighting>
-          <!-- Displace source pixels using the locally-lit noise map -->
-          <feDisplacementMap id="jelly-disp" in="SourceGraphic" in2="jlit"
-            scale="0" xChannelSelector="R" yChannelSelector="G"/>
-        </filter>
-      </defs>
-    </svg>
     <img class="footer-bg"
-         src="https://www.figma.com/api/mcp/asset/6b9a0ed2-bd53-4388-b3c1-2a35cff001f6"
-         alt="" aria-hidden="true" style="filter: url(#jelly-filter);">
+         src="https://www.figma.com/api/mcp/asset/866d6d52-ed55-432b-9d0c-20ee54778cdf"
+         alt="" aria-hidden="true">
 
     <div class="footer-inner">
       <div class="footer-top">
-
+        <!-- Left: logo + email signup -->
         <div>
-          <p class="footer-signup-h">Don't miss out on day–guard updates.</p>
+          <img class="footer-logo-img"
+               src="https://www.figma.com/api/mcp/asset/f6e7e649-fe19-468e-be58-afecb2c9c968"
+               alt="day–guard">
+          <p class="footer-signup-h">Join our movement.</p>
           <div class="footer-toggles">
             <button class="ft-btn active" id="ft-email">email</button>
             <button class="ft-btn" id="ft-sms">sms</button>
           </div>
           <div class="footer-form">
             <input class="footer-input" id="ft-input" type="email" placeholder="enter your email.">
-            <button class="footer-submit" onclick="footerSignup()">subscribe</button>
           </div>
-          <p class="footer-disclaimer">*By completing this form you are signing up to receive our marketing and can unsubscribe at any time.</p>
+          <p class="footer-disclaimer">*by completing this form you are signing up to receive our marketing and can unsubscribe at any time.</p>
         </div>
 
-        <div>
-          <p class="footer-nav-h">Support</p>
-          <ul class="footer-nav-links">
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Returns</a></li>
-            <li><a href="#">International</a></li>
-          </ul>
+        <!-- Right: nav columns -->
+        <div class="footer-nav-grid">
+          <div class="footer-nav-col">
+            <p class="footer-nav-h">Shop</p>
+            <ul class="footer-nav-links">
+              <li><a href="#">Pre-Alcohol</a></li>
+              <li><a href="#">Subscribe</a></li>
+              <li><a href="#">Wholesale</a></li>
+              <li><a href="#">Merch</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-h">Learn</p>
+            <ul class="footer-nav-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Science</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-h">Legal</p>
+            <ul class="footer-nav-links">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">Accessibility</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-h">Support</p>
+            <ul class="footer-nav-links">
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
         </div>
-
-        <div>
-          <p class="footer-nav-h">About</p>
-          <ul class="footer-nav-links">
-            <li><a href="#">Our Story</a></li>
-            <li><a href="#">Retailers</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">@dayguard.store</a></li>
-          </ul>
-        </div>
-
       </div>
 
-      <div class="footer-wordmark">
-        <img src="https://www.figma.com/api/mcp/asset/937b4ef5-969f-4feb-a1fc-ed0bec4e1ea4"
-             alt="day–guard"
-             onerror="this.style.display='none'; document.querySelector('.footer-wordmark-fallback').style.display='block'">
-        <div class="footer-wordmark-fallback">day–guard</div>
+      <div class="footer-bottom">
+        <div>
+          <p class="footer-fda">FDA DISCLAIMER: The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease. All information presented here is not meant as a substitute for or alternate to information from health care practitioners. Please consult your health care professional about potential interactions or other possible complications before using any product. The Federal Food, Drug, and Cosmetic Act requires this notice.</p>
+          <div class="footer-bottom-row">
+            <p class="footer-copyright">© 2025 LioLabs, Inc. &nbsp;·&nbsp; 8 THE GRN STE A Dover, DE 19901 &nbsp;·&nbsp; info@dayguard.com</p>
+            <div class="footer-socials">
+              <a href="#" class="social-icon" aria-label="Facebook">
+                <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="X / Twitter">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="TikTok">
+                <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
@@ -1358,17 +1305,33 @@
       statsObserver.observe(statsEl);
     })();
 
-    /* ── Sticky CTA (appears after scrolling past testimonials ticker) ── */
-    const stickyCta = document.getElementById('sticky-cta');
-    const tickerEl  = document.getElementById('testimonials-ticker');
-    if (stickyCta && tickerEl) {
-      const ctaObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          stickyCta.classList.toggle('visible', !e.isIntersecting);
-        });
-      }, { threshold: 0 });
-      ctaObserver.observe(tickerEl);
-    }
+    /* ── Sticky CTA — show after stats section, hide in/after reviews ── */
+    (function() {
+      const stickyCta  = document.getElementById('sticky-cta');
+      const statsEl    = document.getElementById('features-stats');
+      const reviewsEl  = document.getElementById('reviews');
+      if (!stickyCta) return;
+
+      let statsGone      = false;
+      let reviewsVisible = false;
+
+      function syncCta() {
+        stickyCta.classList.toggle('visible', statsGone && !reviewsVisible);
+      }
+
+      if (statsEl) {
+        new IntersectionObserver(entries => {
+          statsGone = !entries[0].isIntersecting;
+          syncCta();
+        }, { threshold: 0 }).observe(statsEl);
+      }
+      if (reviewsEl) {
+        new IntersectionObserver(entries => {
+          reviewsVisible = entries[0].isIntersecting;
+          syncCta();
+        }, { threshold: 0.05 }).observe(reviewsEl);
+      }
+    })();
 
     /* ── Footer email/SMS toggle ── */
     const ftEmail = document.getElementById('ft-email');
@@ -1394,6 +1357,29 @@
       }, 3000);
     }
 
+    /* ── Press logo switcher ── */
+    (function() {
+      const pressQuoteEl = document.getElementById('press-quote');
+      const logoBtns = document.querySelectorAll('.press-logo-btn');
+      if (!pressQuoteEl || !logoBtns.length) return;
+
+      logoBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Fade out quote
+          pressQuoteEl.classList.add('switching');
+          setTimeout(() => {
+            // Swap quote content
+            pressQuoteEl.innerHTML = btn.dataset.quote;
+            // Fade in
+            pressQuoteEl.classList.remove('switching');
+          }, 220);
+          // Update active logo
+          logoBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+    })();
+
     /* ── Smooth scroll ── */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
@@ -1402,73 +1388,25 @@
       });
     });
 
-    /* ── Footer jelly physics (localized) ── */
+    /* ── Reviews carousel drag-to-scroll ── */
     (function() {
-      const footer = document.querySelector('.footer');
-      const light  = document.getElementById('jelly-light');
-      const disp   = document.getElementById('jelly-disp');
-      const turb   = document.getElementById('jelly-turb');
-      if (!footer || !light || !disp) return;
-
-      // Spring position — light trails the cursor with jelly lag
-      let tx = 0, ty = 0;   // mouse target
-      let px = -9999, py = -9999; // spring position (off-screen until first move)
-      let vx = 0, vy = 0;
-
-      // Scale spring — controls displacement intensity
-      let scale = 0, scaleV = 0, scaleTarget = 0;
-
-      // Slow organic seed drift while hovering
-      let seed = 3;
-      let active = false, rafId = null;
-
-      function tick() {
-        // Spring: position follows cursor with viscous lag
-        vx += (tx - px) * 0.10; vx *= 0.60; px += vx;
-        vy += (ty - py) * 0.10; vy *= 0.60; py += vy;
-
-        // Spring: scale
-        scaleV += (scaleTarget - scale) * 0.07;
-        scaleV *= 0.72;
-        scale  += scaleV;
-
-        // Seed drift gives the jelly surface a living, breathing texture
-        if (active) seed += 0.018;
-
-        light.setAttribute('x', px.toFixed(1));
-        light.setAttribute('y', py.toFixed(1));
-        disp.setAttribute('scale', scale.toFixed(2));
-        turb.setAttribute('seed', seed.toFixed(2));
-
-        const moving = Math.abs(vx) > 0.08 || Math.abs(vy) > 0.08 || Math.abs(scaleV) > 0.02;
-        if (active || moving || scale > 0.05) { rafId = requestAnimationFrame(tick); }
-        else { rafId = null; }
-      }
-
-      function startTick() { if (!rafId) rafId = requestAnimationFrame(tick); }
-
-      footer.addEventListener('mousemove', (e) => {
-        const r = footer.getBoundingClientRect();
-        tx = e.clientX - r.left;
-        ty = e.clientY - r.top;
-        if (!active) {
-          // Teleport spring to cursor on first entry so it doesn't drag in from off-screen
-          if (px < 0) { px = tx; py = ty; }
-          active = true;
-          scaleTarget = 48;
-        }
-        startTick();
+      const carousel = document.getElementById('reviews-carousel');
+      if (!carousel) return;
+      let isDown = false, startX, scrollLeft;
+      carousel.addEventListener('mousedown', e => {
+        isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft;
+        carousel.style.cursor = 'grabbing';
       });
-
-      footer.addEventListener('mouseleave', () => {
-        active = false;
-        scaleTarget = 0;
-        startTick();
+      carousel.addEventListener('mouseleave', () => { isDown = false; carousel.style.cursor = 'grab'; });
+      carousel.addEventListener('mouseup', () => { isDown = false; carousel.style.cursor = 'grab'; });
+      carousel.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        carousel.scrollLeft = scrollLeft - (x - startX);
       });
-
-      // Click sends a jelly pulse
-      footer.addEventListener('click', () => { scaleV += 22; startTick(); });
     })();
+
   </script>
 
 </body>

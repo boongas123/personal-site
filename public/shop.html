@@ -779,83 +779,92 @@
        FOOTER
     ═══════════════════════════════════════════════════════ */
     .footer {
-      position: relative; overflow: hidden;
-      background: #2a1a0e; padding: 72px 56px 40px;
+      position: relative; overflow: hidden; background: #1a0e05;
+      padding: 0;
     }
-    .jelly-svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
     .footer-bg {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover; opacity: 0.35;
-      will-change: filter;
-      transition: opacity 0.4s ease;
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 60%; opacity: 0.65; pointer-events: none;
     }
-    .footer:hover .footer-bg { opacity: 0.52; }
-    .footer-top {
+    .jelly-svg-defs { display: none; }
+    .footer-inner {
       position: relative; z-index: 2;
-      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;
-      margin-bottom: 56px;
+      padding: 64px clamp(80px, 6vw, 115px) 48px;
     }
-    .footer-signup h3 {
-      font-family: var(--sans); font-size: 20px; font-weight: 700;
-      letter-spacing: -0.8px; color: var(--white); line-height: 1.3; margin-bottom: 20px;
+    .footer-top {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: clamp(40px, 6vw, 120px); align-items: start; margin-bottom: 56px;
     }
-    .footer-toggle { display: flex; gap: 8px; margin-bottom: 16px; }
-    .footer-toggle-btn {
-      font-family: var(--label); font-size: 13px; font-weight: 600;
-      padding: 7px 18px; border-radius: 100px;
-      border: 1.5px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.55);
-      background: transparent; transition: border-color var(--ease), color var(--ease), background var(--ease);
+    .footer-logo-img {
+      display: block; width: clamp(180px, 35vw, 560px); height: auto; margin-bottom: 40px;
     }
-    .footer-toggle-btn.active { border-color: var(--soft-green); color: var(--white); background: rgba(154,172,160,0.15); }
-    .footer-email-row { display: flex; gap: 8px; }
-    .footer-email-input {
-      flex: 1; height: 44px; border-radius: 6px;
-      border: 1.5px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.07);
-      color: var(--white); padding: 0 16px;
-      font-family: var(--sans); font-size: 14px;
+    .footer-signup-h {
+      font-family: var(--sans); font-size: clamp(22px, 2.1vw, 40px);
+      font-weight: 700; color: var(--white); letter-spacing: -1.6px; margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .footer-toggles { display: flex; gap: 10px; margin-bottom: 16px; }
+    .ft-btn {
+      font-family: var(--sans); font-size: 13px; font-weight: 400;
+      color: var(--white); letter-spacing: -0.4px;
+      padding: 7px 18px; border-radius: 6px;
+      border: 2px solid rgba(255,255,255,0.7);
+      background: transparent; cursor: pointer; transition: background 0.2s;
+    }
+    .ft-btn.active { background: rgba(154,172,160,0.85); border-color: rgba(255,255,255,0.9); }
+    .footer-form { display: flex; margin-bottom: 16px; }
+    .footer-input {
+      width: clamp(260px, 36vw, 706px); background: transparent;
+      border: 2.5px solid rgba(255,255,255,0.7); border-radius: 5px;
+      padding: 14px 22px;
+      font-family: var(--sans); font-size: 15px; color: var(--white); letter-spacing: -0.5px;
       outline: none;
     }
-    .footer-email-input::placeholder { color: rgba(255,255,255,0.3); }
-    .footer-submit {
-      height: 44px; padding: 0 20px; border-radius: 6px;
-      font-family: var(--label); font-size: 14px; font-weight: 600;
-      background: var(--mango); color: var(--white);
-      transition: opacity var(--ease);
-    }
-    .footer-submit:hover { opacity: 0.85; }
+    .footer-input::placeholder { color: rgba(255,255,255,0.55); }
+    .footer-submit { display: none; }
     .footer-disclaimer {
-      font-size: 11px; letter-spacing: -0.1px;
-      color: rgba(255,255,255,0.25); margin-top: 12px; line-height: 1.55;
+      font-family: var(--label); font-size: 12px;
+      color: rgba(255,255,255,0.55); letter-spacing: -0.2px; line-height: 1.5;
+      max-width: clamp(280px, 36vw, 706px);
     }
-    .footer-nav-col { padding-top: 4px; }
-    .footer-nav-label {
-      font-family: var(--label); font-size: 11px; font-weight: 700;
-      letter-spacing: 1.4px; text-transform: uppercase;
-      color: rgba(255,255,255,0.35); margin-bottom: 16px;
+    .footer-nav-grid { display: flex; gap: clamp(20px, 3.5vw, 56px); }
+    .footer-nav-col { display: flex; flex-direction: column; }
+    .footer-nav-h {
+      font-family: var(--sans); font-size: clamp(14px, 1.15vw, 22px);
+      font-weight: 700; color: var(--white); letter-spacing: -0.8px; margin-bottom: 18px;
     }
-    .footer-nav-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-nav-links { list-style: none; display: flex; flex-direction: column; gap: 14px; }
     .footer-nav-links a {
-      font-size: 14px; letter-spacing: -0.2px;
-      color: rgba(255,255,255,0.55);
-      transition: color var(--ease);
+      font-family: var(--sans); font-size: clamp(12px, 1.05vw, 20px);
+      font-weight: 400; color: rgba(255,255,255,0.75); letter-spacing: -0.5px;
+      transition: color 0.2s;
     }
     .footer-nav-links a:hover { color: var(--white); }
-    .footer-wordmark {
-      position: relative; z-index: 2;
-      font-family: var(--sans); font-size: clamp(64px, 10vw, 130px);
-      font-weight: 800; letter-spacing: -5px;
-      color: rgba(255,255,255,0.07);
-      text-align: left; line-height: 1; margin-bottom: 28px;
-      user-select: none;
-    }
     .footer-bottom {
-      position: relative; z-index: 2;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding-top: 20px; display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1);
     }
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: -0.1px; }
-    .footer-legal { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: -0.1px; line-height: 1.55; max-width: 700px; }
+    .footer-fda {
+      font-family: var(--label); font-size: 11px;
+      color: rgba(255,255,255,0.38); letter-spacing: -0.1px; line-height: 1.5;
+      max-width: clamp(400px, 54vw, 1037px); margin-bottom: 20px;
+    }
+    .footer-bottom-row {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copyright {
+      font-family: var(--label); font-size: 12px;
+      color: rgba(255,255,255,0.45); letter-spacing: -0.2px; line-height: 1.6;
+    }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center; color: var(--white);
+      transition: background 0.2s;
+    }
+    .social-icon:hover { background: rgba(255,255,255,0.18); }
+    .social-icon svg { width: 17px; height: 17px; fill: currentColor; }
+    .footer-wordmark { display: none; }
 
     /* ═══════════════════════════════════════════════════════
        STICKY ATC BAR
@@ -920,8 +929,8 @@
       .nav-hamburger { display: flex; }
       .benefits-section, .doctor-section, .certs-section, .reviews-section { padding: 64px 24px; }
       .timeline-section, .howto-section, .faq-section, .ingredients-section { padding: 64px 24px; }
-      .footer { padding: 56px 24px 32px; }
       .footer-top { grid-template-columns: 1fr; }
+      .footer-nav-grid { flex-wrap: wrap; gap: 24px; }
       .sticky-atc { padding: 14px 24px; }
     }
   </style>
@@ -1561,59 +1570,89 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <svg class="jelly-svg-defs" aria-hidden="true">
-      <defs>
-        <filter id="jelly-filter" x="-12%" y="-12%" width="124%" height="124%"
-                color-interpolation-filters="sRGB">
-          <feTurbulence id="jelly-turb" type="turbulence"
-            baseFrequency="0.038 0.026" numOctaves="3" seed="3" result="jnoise"/>
-          <feDiffuseLighting in="jnoise" lighting-color="white"
-            surfaceScale="7" diffuseConstant="1.4" result="jlit">
-            <fePointLight id="jelly-light" x="-9999" y="-9999" z="85"/>
-          </feDiffuseLighting>
-          <feDisplacementMap id="jelly-disp" in="SourceGraphic" in2="jlit"
-            scale="0" xChannelSelector="R" yChannelSelector="G"/>
-        </filter>
-      </defs>
-    </svg>
-    <img class="footer-bg" src="https://www.figma.com/api/mcp/asset/6b9a0ed2-bd53-4388-b3c1-2a35cff001f6" alt=""
-         onerror="this.style.display='none'" style="filter: url(#jelly-filter);">
-    <div class="footer-top">
-      <div class="footer-signup">
-        <h3>Don't miss out on day–guard updates.</h3>
-        <div class="footer-toggle">
-          <button class="footer-toggle-btn active" id="ft-email">email</button>
-          <button class="footer-toggle-btn" id="ft-sms">sms</button>
+    <img class="footer-bg"
+         src="https://www.figma.com/api/mcp/asset/866d6d52-ed55-432b-9d0c-20ee54778cdf"
+         alt="" aria-hidden="true">
+
+    <div class="footer-inner">
+      <div class="footer-top">
+        <!-- Left: logo + email signup -->
+        <div>
+          <img class="footer-logo-img"
+               src="https://www.figma.com/api/mcp/asset/f6e7e649-fe19-468e-be58-afecb2c9c968"
+               alt="day–guard">
+          <p class="footer-signup-h">Join our movement.</p>
+          <div class="footer-toggles">
+            <button class="ft-btn active" id="ft-email">email</button>
+            <button class="ft-btn" id="ft-sms">sms</button>
+          </div>
+          <div class="footer-form">
+            <input class="footer-input" id="ft-input" type="email" placeholder="enter your email.">
+          </div>
+          <p class="footer-disclaimer">*by completing this form you are signing up to receive our marketing and can unsubscribe at any time.</p>
         </div>
-        <div class="footer-email-row">
-          <input class="footer-email-input" type="email" placeholder="enter your email...">
-          <button class="footer-submit">subscribe</button>
+
+        <!-- Right: nav columns -->
+        <div class="footer-nav-grid">
+          <div class="footer-nav-col">
+            <p class="footer-nav-h">Shop</p>
+            <ul class="footer-nav-links">
+              <li><a href="#">Pre-Alcohol</a></li>
+              <li><a href="#">Subscribe</a></li>
+              <li><a href="#">Wholesale</a></li>
+              <li><a href="#">Merch</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-h">Learn</p>
+            <ul class="footer-nav-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Science</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-h">Legal</p>
+            <ul class="footer-nav-links">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">Accessibility</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-h">Support</p>
+            <ul class="footer-nav-links">
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#faq">FAQs</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
         </div>
-        <p class="footer-disclaimer">*By completing this form you are signing up to receive our marketing emails and can unsubscribe at any time.</p>
       </div>
-      <div class="footer-nav-col">
-        <p class="footer-nav-label">Support</p>
-        <ul class="footer-nav-links">
-          <li><a href="#faq">FAQs</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Returns</a></li>
-          <li><a href="#">International</a></li>
-        </ul>
+
+      <div class="footer-bottom">
+        <div>
+          <p class="footer-fda">FDA DISCLAIMER: The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease. All information presented here is not meant as a substitute for or alternate to information from health care practitioners. Please consult your health care professional about potential interactions or other possible complications before using any product. The Federal Food, Drug, and Cosmetic Act requires this notice.</p>
+          <div class="footer-bottom-row">
+            <p class="footer-copyright">© 2025 LioLabs, Inc. &nbsp;·&nbsp; 8 THE GRN STE A Dover, DE 19901 &nbsp;·&nbsp; info@dayguard.com</p>
+            <div class="footer-socials">
+              <a href="#" class="social-icon" aria-label="Facebook">
+                <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="X / Twitter">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="TikTok">
+                <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="footer-nav-col">
-        <p class="footer-nav-label">About</p>
-        <ul class="footer-nav-links">
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Retailers</a></li>
-          <li><a href="#">Press</a></li>
-          <li><a href="#">@dayguard.store</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-wordmark">day–guard</div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2025 LioLabs, Inc.</p>
-      <p class="footer-legal">*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
     </div>
   </footer>
 
@@ -1716,11 +1755,21 @@
     }, { threshold: 0 });
     if (pdpCtaBtn) atcObserver.observe(pdpCtaBtn);
 
-    /* ── Footer toggle ── */
-    const ftEmail = document.getElementById('ft-email');
-    const ftSms   = document.getElementById('ft-sms');
-    ftEmail.addEventListener('click', () => { ftEmail.classList.add('active'); ftSms.classList.remove('active'); });
-    ftSms.addEventListener('click', () => { ftSms.classList.add('active'); ftEmail.classList.remove('active'); });
+    /* ── Footer toggle (email/sms) ── */
+    (function() {
+      const ftEmail = document.getElementById('ft-email');
+      const ftSms   = document.getElementById('ft-sms');
+      const ftInput = document.getElementById('ft-input');
+      if (!ftEmail || !ftSms) return;
+      ftEmail.addEventListener('click', () => {
+        ftEmail.classList.add('active'); ftSms.classList.remove('active');
+        if (ftInput) { ftInput.type = 'email'; ftInput.placeholder = 'enter your email.'; }
+      });
+      ftSms.addEventListener('click', () => {
+        ftSms.classList.add('active'); ftEmail.classList.remove('active');
+        if (ftInput) { ftInput.type = 'tel'; ftInput.placeholder = 'enter your phone number.'; }
+      });
+    })();
 
     /* ── Scroll fade-in ── */
     const fadeEls = document.querySelectorAll('.fade-up');
@@ -1766,46 +1815,6 @@
     const statsBar = document.getElementById('stats-bar');
     if (statsBar) statsObserver.observe(statsBar);
 
-    /* ── Footer jelly physics (localized) ── */
-    (function() {
-      const footer = document.querySelector('.footer');
-      const light  = document.getElementById('jelly-light');
-      const disp   = document.getElementById('jelly-disp');
-      const turb   = document.getElementById('jelly-turb');
-      if (!footer || !light || !disp) return;
-
-      let tx = 0, ty = 0;
-      let px = -9999, py = -9999;
-      let vx = 0, vy = 0;
-      let scale = 0, scaleV = 0, scaleTarget = 0;
-      let seed = 3;
-      let active = false, rafId = null;
-
-      function tick() {
-        vx += (tx - px) * 0.10; vx *= 0.60; px += vx;
-        vy += (ty - py) * 0.10; vy *= 0.60; py += vy;
-        scaleV += (scaleTarget - scale) * 0.07; scaleV *= 0.72; scale += scaleV;
-        if (active) seed += 0.018;
-        light.setAttribute('x', px.toFixed(1));
-        light.setAttribute('y', py.toFixed(1));
-        disp.setAttribute('scale', scale.toFixed(2));
-        turb.setAttribute('seed', seed.toFixed(2));
-        const moving = Math.abs(vx) > 0.08 || Math.abs(vy) > 0.08 || Math.abs(scaleV) > 0.02;
-        if (active || moving || scale > 0.05) { rafId = requestAnimationFrame(tick); }
-        else { rafId = null; }
-      }
-
-      function startTick() { if (!rafId) rafId = requestAnimationFrame(tick); }
-
-      footer.addEventListener('mousemove', (e) => {
-        const r = footer.getBoundingClientRect();
-        tx = e.clientX - r.left; ty = e.clientY - r.top;
-        if (!active) { if (px < 0) { px = tx; py = ty; } active = true; scaleTarget = 48; }
-        startTick();
-      });
-      footer.addEventListener('mouseleave', () => { active = false; scaleTarget = 0; startTick(); });
-      footer.addEventListener('click', () => { scaleV += 22; startTick(); });
-    })();
   </script>
 
 </body>
