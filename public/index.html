@@ -563,24 +563,33 @@
     .rev-arrow:active { background: rgba(255,255,255,0.4); }
     .rev-arrow-prev { left: clamp(12px, 3vw, 60px); }
     .rev-arrow-next { right: clamp(12px, 3vw, 60px); }
-    /* Scrollable track */
-    .reviews-carousel {
-      display: flex; gap: clamp(12px, 1.7vw, 32px);
-      overflow-x: auto; scroll-snap-type: x mandatory;
-      padding: 0 clamp(60px, 8vw, 160px) 4px;
-      scrollbar-width: none; -ms-overflow-style: none;
-      cursor: grab;
+    /* Click-only viewport + slide track */
+    .reviews-viewport {
+      overflow: hidden;
+      padding: 52px 0;   /* vertical room so scaled card isn't clipped */
+      margin: -52px 0;   /* cancel the space visually */
     }
-    .reviews-carousel:active { cursor: grabbing; }
-    .reviews-carousel::-webkit-scrollbar { display: none; }
+    .reviews-track {
+      display: flex;
+      gap: clamp(12px, 1.7vw, 32px);
+      transition: transform 0.55s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
     /* Slides */
     .rev-slide {
-      flex-shrink: 0; scroll-snap-align: center;
+      flex-shrink: 0;
       width: clamp(240px, 21vw, 407px); height: clamp(360px, 42vw, 582px);
       border-radius: 30px; overflow: hidden; background: #f1f1ea;
-      transition: transform 0.4s cubic-bezier(.4,0,.2,1); transform-origin: center;
+      transition: transform 0.55s cubic-bezier(.4,0,.2,1), opacity 0.55s ease;
+      transform: scale(0.84);
+      opacity: 0.6;
+      cursor: default;
     }
-    .rev-slide.rev-active { transform: scale(1.07); z-index: 2; }
+    .rev-slide.rev-active {
+      transform: scale(1.0);
+      opacity: 1;
+      z-index: 2;
+    }
     .rev-slide.wide {
       width: clamp(270px, 24vw, 470px);
     }
@@ -1094,35 +1103,37 @@
     </div>
     <div class="reviews-nav">
       <button class="rev-arrow rev-arrow-prev" id="rev-prev" aria-label="Previous review">&#8592;</button>
-      <div class="reviews-carousel" id="reviews-carousel">
-        <div class="rev-slide">
-          <div class="rev-slide-inner">
-            <p class="rev-slide-stars">★★★★★</p>
-            <p class="rev-slide-quote">"I take one before going out and wake up completely like myself. mango flavor is genuinely delicious."</p>
-            <p class="rev-slide-name">Sarah M.</p>
-            <p class="rev-slide-verified">Verified Buyer ✓</p>
+      <div class="reviews-viewport">
+        <div class="reviews-track" id="reviews-track">
+          <div class="rev-slide">
+            <div class="rev-slide-inner">
+              <p class="rev-slide-stars">★★★★★</p>
+              <p class="rev-slide-quote">"I take one before going out and wake up completely like myself. mango flavor is genuinely delicious."</p>
+              <p class="rev-slide-name">Sarah M.</p>
+              <p class="rev-slide-verified">Verified Buyer ✓</p>
+            </div>
           </div>
-        </div>
-        <div class="rev-slide photo">
-          <img src="https://www.figma.com/api/mcp/asset/5cdb804d-ba3a-4c9b-92e0-17c019343bb7" alt="day-guard lifestyle — friends out together">
-        </div>
-        <div class="rev-slide wide">
-          <div class="rev-slide-inner">
-            <p class="rev-slide-stars">★★★★★</p>
-            <p class="rev-slide-quote">"day-guard is my going out essential for me! need to stay on top of my health"</p>
-            <p class="rev-slide-name">Carol B.</p>
-            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          <div class="rev-slide photo">
+            <img src="https://www.figma.com/api/mcp/asset/5cdb804d-ba3a-4c9b-92e0-17c019343bb7" alt="day-guard lifestyle — friends out together">
           </div>
-        </div>
-        <div class="rev-slide photo">
-          <img src="https://www.figma.com/api/mcp/asset/2c0883f7-bb62-4728-9250-eafdba5e4917" alt="day-guard lifestyle — night out">
-        </div>
-        <div class="rev-slide">
-          <div class="rev-slide-inner">
-            <p class="rev-slide-stars">★★★★★</p>
-            <p class="rev-slide-quote">"Subscribed after my second box. My whole friend group is on it now. I'd give it 6 stars if I could."</p>
-            <p class="rev-slide-name">Jake T.</p>
-            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          <div class="rev-slide wide">
+            <div class="rev-slide-inner">
+              <p class="rev-slide-stars">★★★★★</p>
+              <p class="rev-slide-quote">"day-guard is my going out essential for me! need to stay on top of my health"</p>
+              <p class="rev-slide-name">Carol B.</p>
+              <p class="rev-slide-verified">Verified Buyer ✓</p>
+            </div>
+          </div>
+          <div class="rev-slide photo">
+            <img src="https://www.figma.com/api/mcp/asset/2c0883f7-bb62-4728-9250-eafdba5e4917" alt="day-guard lifestyle — night out">
+          </div>
+          <div class="rev-slide">
+            <div class="rev-slide-inner">
+              <p class="rev-slide-stars">★★★★★</p>
+              <p class="rev-slide-quote">"Subscribed after my second box. My whole friend group is on it now. I'd give it 6 stars if I could."</p>
+              <p class="rev-slide-name">Jake T.</p>
+              <p class="rev-slide-verified">Verified Buyer ✓</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1305,18 +1316,18 @@
       statsObserver.observe(statsEl);
     })();
 
-    /* ── Sticky CTA — show after stats section, hide in/after reviews ── */
+    /* ── Sticky CTA — show after stats section, hide at press section ── */
     (function() {
       const stickyCta  = document.getElementById('sticky-cta');
       const statsEl    = document.getElementById('features-stats');
-      const reviewsEl  = document.getElementById('reviews');
+      const pressEl    = document.getElementById('press');
       if (!stickyCta) return;
 
-      let statsGone      = false;
-      let reviewsVisible = false;
+      let statsGone    = false;
+      let pressVisible = false;
 
       function syncCta() {
-        stickyCta.classList.toggle('visible', statsGone && !reviewsVisible);
+        stickyCta.classList.toggle('visible', statsGone && !pressVisible);
       }
 
       if (statsEl) {
@@ -1325,11 +1336,11 @@
           syncCta();
         }, { threshold: 0 }).observe(statsEl);
       }
-      if (reviewsEl) {
+      if (pressEl) {
         new IntersectionObserver(entries => {
-          reviewsVisible = entries[0].isIntersecting;
+          pressVisible = entries[0].isIntersecting;
           syncCta();
-        }, { threshold: 0.05 }).observe(reviewsEl);
+        }, { threshold: 0.05 }).observe(pressEl);
       }
     })();
 
@@ -1388,23 +1399,50 @@
       });
     });
 
-    /* ── Reviews carousel drag-to-scroll ── */
+    /* ── Reviews: click-only navigation, translateX centering, active scale ── */
     (function() {
-      const carousel = document.getElementById('reviews-carousel');
-      if (!carousel) return;
-      let isDown = false, startX, scrollLeft;
-      carousel.addEventListener('mousedown', e => {
-        isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft;
-        carousel.style.cursor = 'grabbing';
+      const track   = document.getElementById('reviews-track');
+      const prevBtn = document.getElementById('rev-prev');
+      const nextBtn = document.getElementById('rev-next');
+      if (!track) return;
+
+      const slides  = Array.from(track.querySelectorAll('.rev-slide'));
+      const total   = slides.length;
+      let activeIdx = 0;
+
+      function render() {
+        /* 1. Apply active class → CSS handles scale + opacity transition */
+        slides.forEach((s, i) => s.classList.toggle('rev-active', i === activeIdx));
+
+        /* 2. Translate track so active slide is centered in viewport */
+        const viewport = track.parentElement;
+        const viewW    = viewport.clientWidth;
+        const gap      = parseFloat(getComputedStyle(track).gap) || 32;
+
+        /* Sum widths of all slides before active */
+        let distToActiveCenter = 0;
+        for (let i = 0; i < activeIdx; i++) {
+          distToActiveCenter += slides[i].offsetWidth + gap;
+        }
+        distToActiveCenter += slides[activeIdx].offsetWidth / 2;
+
+        const tx = viewW / 2 - distToActiveCenter;
+        track.style.transform = `translateX(${tx}px)`;
+
+        /* 3. Toggle arrow visibility at extremes */
+        if (prevBtn) prevBtn.style.opacity = activeIdx === 0 ? '0.3' : '1';
+        if (nextBtn) nextBtn.style.opacity = activeIdx === total - 1 ? '0.3' : '1';
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => {
+        if (activeIdx > 0) { activeIdx--; render(); }
       });
-      carousel.addEventListener('mouseleave', () => { isDown = false; carousel.style.cursor = 'grab'; });
-      carousel.addEventListener('mouseup', () => { isDown = false; carousel.style.cursor = 'grab'; });
-      carousel.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - carousel.offsetLeft;
-        carousel.scrollLeft = scrollLeft - (x - startX);
+      nextBtn && nextBtn.addEventListener('click', () => {
+        if (activeIdx < total - 1) { activeIdx++; render(); }
       });
+
+      /* Initial render after paint so offsetWidth values are available */
+      requestAnimationFrame(() => requestAnimationFrame(render));
     })();
 
   </script>
