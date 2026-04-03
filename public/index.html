@@ -1316,31 +1316,39 @@
       statsObserver.observe(statsEl);
     })();
 
-    /* ── Sticky CTA — show after stats section, hide at press section ── */
+    /* ── Sticky CTA — show when stats section enters view, hide at reviews ── */
     (function() {
-      const stickyCta  = document.getElementById('sticky-cta');
-      const statsEl    = document.getElementById('features-stats');
-      const pressEl    = document.getElementById('press');
+      const stickyCta   = document.getElementById('sticky-cta');
+      const statsEl     = document.getElementById('features-stats');
+      const reviewsEl   = document.getElementById('reviews');
       if (!stickyCta) return;
 
-      let statsGone    = false;
-      let pressVisible = false;
+      let statsReached   = false;   /* true once stats row is/was in view */
+      let reviewsVisible = false;
 
       function syncCta() {
-        stickyCta.classList.toggle('visible', statsGone && !pressVisible);
+        stickyCta.classList.toggle('visible', statsReached && !reviewsVisible);
       }
 
       if (statsEl) {
         new IntersectionObserver(entries => {
-          statsGone = !entries[0].isIntersecting;
+          const e = entries[0];
+          if (e.isIntersecting) {
+            /* Stats row just came into view — start showing CTA */
+            statsReached = true;
+          } else if (e.boundingClientRect.top > 0) {
+            /* Stats row is still below the viewport — user hasn't reached it */
+            statsReached = false;
+          }
+          /* If top < 0 the row has scrolled past — keep statsReached true */
           syncCta();
         }, { threshold: 0 }).observe(statsEl);
       }
-      if (pressEl) {
+      if (reviewsEl) {
         new IntersectionObserver(entries => {
-          pressVisible = entries[0].isIntersecting;
+          reviewsVisible = entries[0].isIntersecting;
           syncCta();
-        }, { threshold: 0.05 }).observe(pressEl);
+        }, { threshold: 0.05 }).observe(reviewsEl);
       }
     })();
 

@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,700&display=swap" rel="stylesheet">
+  <!-- Sofia Pro via Adobe Fonts (falls back to DM Sans if not loaded) -->
+  <link rel="stylesheet" href="https://use.typekit.net/placeholder.css" onerror="void(0)">
   <style>
     /* ─── TOKENS ─────────────────────────────────────────── */
     :root {
@@ -22,6 +24,7 @@
       --serif:  'Hedvig Letters Serif', Georgia, serif;
       --sans:   'Helvetica Neue', Arial, sans-serif;
       --label:  'DM Sans', Arial, sans-serif;
+      --sofia:  'Sofia Pro', 'DM Sans', Arial, sans-serif;
       --ease:   0.32s ease;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -102,90 +105,306 @@
        PDP HERO
     ═══════════════════════════════════════════════════════ */
     .pdp-hero {
-      max-width: 1320px; margin: 0 auto;
-      display: grid; grid-template-columns: 58% 42%;
-      gap: 56px; padding: 138px 56px 72px;
-      align-items: start;
+      max-width: 1440px; margin: 0 auto;
+      display: flex; align-items: flex-start;
+      /* Figma: gallery X=153, panel X=942, panel W=444, right margin=54 */
+      gap: 113px;
+      padding: 62px 54px 80px 153px;
     }
 
-    /* ── 2-column editorial gallery ── */
-    .gallery {
-      position: sticky; top: 80px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 360px 220px;
-      gap: 8px;
+    /* ── Lifestyle slideshow — seamless transform-only slide ── */
+    .lifestyle-slide-wrap {
+      position: relative; overflow: hidden;
+      border-radius: 3px; width: 100%; height: 100%;
     }
-    .gallery-cell {
-      border-radius: 20px; overflow: hidden;
-      background: var(--white);
+    .lifestyle-slide-wrap img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      border-radius: 0;
+      transform: translateX(100%);   /* all offscreen-right by default */
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .lifestyle-slide-wrap img.active  { transform: translateX(0); }
+    .lifestyle-slide-wrap img.exit    { transform: translateX(-100%); }
+    /* Step indicator dots */
+    .lifestyle-dots {
+      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 5px; z-index: 2;
+    }
+    .lifestyle-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: rgba(255,255,255,0.45); transition: background 0.3s;
+    }
+    .lifestyle-dot.active { background: var(--white); }
+
+    /* ── Gallery press ticker — flush absolute overlay at bottom of product image ── */
+    .gallery-main-wrap {
+      position: relative; margin-bottom: 24px; border-radius: 3px; overflow: hidden;
+    }
+    .gallery-main-wrap .gallery-main-img {
+      display: block; width: 676px; height: 496px;
+      object-fit: cover; border-radius: 0; margin-bottom: 0;
+    }
+    .gallery-press-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: #e6e3de;
+      overflow: hidden;
+    }
+    /* soft fade edges */
+    .gallery-press-overlay::before, .gallery-press-overlay::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 48px; z-index: 2;
+      pointer-events: none;
+    }
+    .gallery-press-overlay::before {
+      left: 0; background: linear-gradient(to right, #e6e3de, transparent);
+    }
+    .gallery-press-overlay::after {
+      right: 0; background: linear-gradient(to left, #e6e3de, transparent);
+    }
+    .gallery-press-track {
+      display: flex; align-items: center; height: 100%;
+      animation: gallery-press-scroll 22s linear infinite;
+      width: max-content;
+    }
+    .gallery-press-track:hover { animation-play-state: paused; }
+    @keyframes gallery-press-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .gp-item {
+      display: flex; align-items: center; padding: 0 20px;
+      height: 100%; flex-shrink: 0; white-space: nowrap;
+    }
+    /* Press logo images — individual Figma assets
+       Figma dims: Forbes 68.87×17 → ratio 4.05:1; Globe 151.93×19.36 → ratio 7.85:1
+       At 18px display height: Forbes ≈74px wide, Globe ≈142px wide */
+    .gp-forbes-logo {
+      display: block; height: 18px; width: 74px;
+      object-fit: contain; object-position: center; flex-shrink: 0;
+    }
+    .gp-globe-logo {
+      display: block; height: 18px; width: 142px;
+      object-fit: contain; object-position: center; flex-shrink: 0;
+    }
+    /* #1 doctor recommended — Sofia Pro, soft green */
+    .gp-tag {
+      font-family: var(--sofia); font-size: 16px; font-weight: 400;
+      color: #9aaca0; white-space: nowrap; letter-spacing: -0.6px;
+      line-height: 1;
+    }
+    /* separator dot — 3px circle */
+    .gp-dot-circle {
+      width: 3px; height: 3px; border-radius: 50%;
+      background: rgba(32,76,62,0.3); flex-shrink: 0;
+    }
+
+    /* ── Gallery — exact Figma measurements ── */
+    /* Total width: 330+16+330 = 676px matching product image width */
+    .gallery {
+      width: 676px;
+      flex-shrink: 0;
+      position: sticky; top: 90px;
+      display: flex; flex-direction: column;
+    }
+    /* Product image wrapper — 24px gap handled by wrapper margin-bottom */
+    /* .gallery-main-img is styled inside .gallery-main-wrap (see above) */
+    /* 2×2 thumbnail grid: 330×330 cells, 16px column gap, 15px row gap */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 330px 330px;
+      grid-template-rows: 330px 330px;
+      column-gap: 16px; row-gap: 15px;
+    }
+    .gallery-grid img {
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 3px;
+      display: block;
+    }
+
+    /* ── Purchase panel — Figma W=444px ── */
+    .purchase-panel { width: 444px; flex-shrink: 0; }
+
+    /* ── Quantity box selector — Sofia Pro, mango fill when active ── */
+    .qty-boxes { display: flex; gap: 8px; margin-bottom: 16px; }
+    .qty-box {
+      flex: 1; border: 1.5px solid rgba(2,7,6,0.12);
+      border-radius: 10px; padding: 10px 8px;
+      text-align: center; cursor: pointer; position: relative;
+      transition: border-color 0.22s ease, background 0.22s ease;
+      background: transparent;
+    }
+    .qty-box.active {
+      border-color: var(--mango);
+      background: var(--mango);
+    }
+    .qty-box-units {
+      font-family: var(--sofia); font-size: 13px; font-weight: 600;
+      color: var(--black); margin-bottom: 3px; letter-spacing: -0.2px;
+      transition: color 0.22s;
+    }
+    .qty-box.active .qty-box-units { color: var(--white); }
+    .qty-box-price {
+      font-family: var(--sofia); font-size: 10px; font-weight: 400;
+      color: rgba(2,7,6,0.5); letter-spacing: -0.1px;
+      transition: color 0.22s;
+    }
+    .qty-box.active .qty-box-price { color: rgba(255,255,255,0.8); }
+    /* Badges — green color, Sofia Pro */
+    .qty-box-badge {
+      position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+      font-family: var(--sofia); font-size: 9px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.3px;
+      padding: 2px 8px; border-radius: 100px; white-space: nowrap;
+      background: var(--green); color: var(--white);
+      border: 1px solid transparent;
+    }
+    .qty-box-badge.popular { box-shadow: none; }
+    .qty-box-badge.deal { box-shadow: none; }
+
+    /* Panel bullet perks */
+    .panel-perks { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+    .panel-perk {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--sans); font-size: 13px;
+      letter-spacing: -0.1px; color: rgba(2,7,6,0.65);
+    }
+    .panel-perk::before {
+      content: '✓'; font-size: 11px; font-weight: 700;
+      color: var(--green); flex-shrink: 0;
+      transition: content 0.2s;
+    }
+    /* When buy-once is active, flip checkmarks to ✕ */
+    .purchase-panel.buy-once .panel-perk::before {
+      content: '✕'; color: rgba(2,7,6,0.3);
+    }
+
+    /* Start now CTA row — Figma sizing */
+    .start-now-row { display: flex; align-items: stretch; gap: 10px; margin-bottom: 8px; }
+    .qty-counter {
+      display: flex; align-items: center;
+      border: 1.5px solid rgba(2,7,6,0.14); border-radius: 8px; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .qty-counter-btn {
+      width: 44px; height: 56px; display: flex; align-items: center; justify-content: center;
+      font-family: var(--sofia); font-size: 20px; font-weight: 300;
+      cursor: pointer; background: none;
+      border: none; color: var(--black); transition: background 0.15s;
+    }
+    .qty-counter-btn:hover { background: rgba(0,0,0,0.04); }
+    .qty-counter-val {
+      width: 32px; text-align: center;
+      font-family: var(--sofia); font-size: 15px; font-weight: 500;
+    }
+    .start-now-btn {
+      flex: 1; height: 56px; border-radius: 8px;
+      font-family: var(--sofia); font-size: 17px; font-weight: 600;
+      text-transform: lowercase; letter-spacing: 0px;
+      color: var(--white); background: var(--mango); border: none; cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
       display: flex; align-items: center; justify-content: center;
     }
-    .gallery-cell.main {
-      grid-row: 1 / 3;
-      background: #f5f0e8;
-    }
-    .gallery-cell.main img { width: 78%; height: 78%; object-fit: contain; }
-    .gallery-cell.sm img { width: 88%; height: 88%; object-fit: contain; }
-    .gallery-cell.sm-lifestyle {
-      background: #e8ede9; overflow: hidden;
-    }
-    .gallery-cell.sm-lifestyle img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .gallery-cell.sm-dark {
-      background: var(--green);
-      flex-direction: column; gap: 12px;
-      padding: 20px;
-    }
-    .gallery-cell.sm-dark img { width: 56%; height: 56%; object-fit: contain; filter: brightness(1.1); }
+    .start-now-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    /* ── Purchase panel ── */
-    .purchase-panel {}
+    /* ── Animated press ticker ── */
+    .panel-press {
+      margin-top: 18px;
+      background: rgba(2,7,6,0.03); border: 1px solid rgba(2,7,6,0.07);
+      border-radius: 10px;
+      overflow: hidden; position: relative;
+      height: 40px;
+    }
+    /* fade masks on left + right edges */
+    .panel-press::before, .panel-press::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 32px; z-index: 2;
+      pointer-events: none;
+    }
+    .panel-press::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(244,241,236,0.95), transparent);
+    }
+    .panel-press::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(244,241,236,0.95), transparent);
+    }
+    .press-ticker-track {
+      display: flex; align-items: center;
+      height: 100%;
+      animation: press-ticker 22s linear infinite;
+      width: max-content;
+    }
+    .press-ticker-track:hover { animation-play-state: paused; }
+    @keyframes press-ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .press-ticker-item {
+      display: flex; align-items: center; gap: 0;
+      padding: 0 20px; height: 100%;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .press-ticker-logo {
+      font-family: Georgia, serif; font-size: 12px; font-weight: 700;
+      letter-spacing: -0.3px; color: rgba(2,7,6,0.42);
+      font-style: normal;
+    }
+    .press-ticker-logo.italic { font-style: italic; }
+    .press-ticker-tag {
+      font-family: var(--sans); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.1px; color: rgba(2,7,6,0.38); white-space: nowrap;
+    }
+    .press-ticker-dot {
+      width: 3px; height: 3px; border-radius: 50%;
+      background: rgba(2,7,6,0.2); margin: 0 14px; flex-shrink: 0;
+    }
 
-    .pdp-badges {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 14px;
-    }
-    .pdp-tag {
-      font-family: var(--label); font-size: 11px; font-weight: 600;
-      letter-spacing: 1.4px; text-transform: uppercase;
-      color: var(--soft-green);
-    }
-    .pdp-bestseller {
-      font-family: var(--label); font-size: 11px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.6px;
-      background: var(--green); color: var(--white);
-      padding: 4px 10px; border-radius: 100px;
-    }
-
-    .pdp-title {
-      font-family: var(--serif);
-      font-size: clamp(32px, 3.2vw, 48px);
-      font-weight: 400; line-height: 1.05; letter-spacing: -2px;
-      color: var(--black); margin-bottom: 14px;
-    }
-
+    /* ── PDP panel typography ── */
     .pdp-rating {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
       flex-wrap: wrap;
     }
-    .pdp-stars { font-size: 13px; color: var(--gold); letter-spacing: 2px; }
-    .pdp-rating-link {
-      font-size: 13px; letter-spacing: -0.2px;
-      color: var(--green); opacity: 0.75;
-      border-bottom: 1px solid rgba(32,76,62,0.22);
-      padding-bottom: 1px;
+    .pdp-stars { font-size: 12px; color: var(--gold); letter-spacing: 1px; }
+    .pdp-rating-count {
+      font-family: var(--sans); font-size: 13px; letter-spacing: -0.2px;
+      color: rgba(2,7,6,0.55);
     }
-    .pdp-trust {
-      font-family: var(--label); font-size: 12px; font-weight: 600;
-      color: var(--green); background: rgba(32,76,62,0.08);
-      padding: 4px 10px; border-radius: 100px;
+    .pdp-bestseller {
+      font-family: var(--sofia); font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      background: var(--green); color: var(--white);
+      padding: 3px 9px; border-radius: 100px;
     }
 
+    /* Title in Sofia Pro */
+    .pdp-title {
+      font-family: var(--sofia);
+      font-size: clamp(28px, 2.8vw, 42px);
+      font-weight: 400; line-height: 1.1; letter-spacing: -1px;
+      color: var(--black); margin-bottom: 10px;
+    }
+
+    /* Description in Helvetica Neue */
     .pdp-description {
-      font-size: 15px; line-height: 1.65; letter-spacing: -0.2px;
-      color: var(--black); opacity: 0.65;
-      margin-bottom: 24px; padding-bottom: 24px;
+      font-family: var(--sans);
+      font-size: 14px; line-height: 1.65; letter-spacing: -0.1px;
+      color: rgba(2,7,6,0.55);
+      margin-bottom: 16px; padding-bottom: 16px;
       border-bottom: 1px solid rgba(2,7,6,0.08);
+    }
+
+    /* Price in Helvetica Neue — matches Figma sizing */
+    .price-block { margin-bottom: 14px; }
+    .price-main {
+      font-family: var(--sans); font-size: 52px; font-weight: 500;
+      letter-spacing: -3px; line-height: 1;
+      color: var(--black); display: block;
+    }
+    .price-per-box {
+      font-family: var(--sans); font-size: 12px; font-weight: 400;
+      color: rgba(2,7,6,0.35); letter-spacing: 0px;
+      margin-top: 4px;
     }
 
     /* Flavor selector */
@@ -211,40 +430,50 @@
     }
     .flavor-btn.active { border-color: var(--mango); background: rgba(251,153,24,0.07); }
 
-    /* Subscribe toggle */
-    .purchase-toggle { display: flex; gap: 8px; margin-bottom: 18px; }
+    /* ── Subscribe / Buy Once — segmented slider ── */
+    .purchase-toggle {
+      position: relative;
+      display: flex; align-items: stretch;
+      background: rgba(2,7,6,0.07);
+      border-radius: 10px; padding: 4px;
+      margin-bottom: 16px;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.12);
+    }
+    /* sliding white panel */
+    .toggle-track-pill {
+      position: absolute;
+      top: 4px; left: 4px;
+      width: calc(50% - 4px); bottom: 4px;
+      background: var(--white);
+      border-radius: 7px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+      pointer-events: none; z-index: 0;
+    }
+    .purchase-toggle.once-active .toggle-track-pill {
+      transform: translateX(100%);
+    }
     .toggle-btn {
-      flex: 1; padding: 14px 16px; border-radius: 12px;
-      border: 1.5px solid rgba(2,7,6,0.1);
-      background: transparent; text-align: left;
-      transition: border-color var(--ease), background var(--ease);
+      flex: 1;
+      padding: 11px 14px; border-radius: 7px;
+      border: none; background: transparent;
+      font-family: var(--serif); /* Hedvig Letters Serif */
+      font-size: 14px; font-weight: 400;
+      text-align: center; cursor: pointer;
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      transition: opacity 0.25s;
+      white-space: nowrap;
     }
-    .toggle-btn.active { border-color: var(--green); background: rgba(32,76,62,0.04); }
-    .toggle-top {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 3px;
-    }
-    .toggle-name { font-size: 14px; font-weight: 500; letter-spacing: -0.2px; }
+    .toggle-btn:not(.active) { opacity: 0.38; }
     .toggle-save {
-      font-family: var(--label); font-size: 11px; font-weight: 700;
+      font-family: var(--sofia); font-size: 10px; font-weight: 600;
       color: var(--green); background: rgba(32,76,62,0.1);
-      padding: 2px 8px; border-radius: 100px;
+      padding: 2px 7px; border-radius: 6px;
+      letter-spacing: 0.1px;
     }
-    .toggle-btn:not(.active) .toggle-save { display: none; }
-    .toggle-price { font-size: 13px; opacity: 0.45; letter-spacing: -0.1px; }
 
-    /* Price */
-    .price-row {
-      display: flex; align-items: baseline; gap: 10px;
-      margin-bottom: 4px;
-    }
-    .price-main {
-      font-family: var(--serif); font-size: 46px; font-weight: 400;
-      letter-spacing: -2px; line-height: 1;
-    }
-    .price-freq { font-size: 14px; opacity: 0.45; letter-spacing: -0.1px; }
-    .price-compare { font-size: 16px; opacity: 0.3; text-decoration: line-through; }
-    .price-note { font-size: 13px; opacity: 0.42; letter-spacing: -0.1px; margin-bottom: 18px; }
+    /* (old price-row removed — using .price-block instead) */
 
     /* Subscribe perks */
     .sub-perks {
@@ -281,24 +510,27 @@
       margin-bottom: 22px;
     }
 
-    /* Accordions in panel */
-    .panel-accord { border-top: 1px solid rgba(2,7,6,0.08); }
-    .panel-accord-item { border-bottom: 1px solid rgba(2,7,6,0.08); }
+    /* Accordions in panel — Helvetica Neue, Figma sizing */
+    .panel-accord { border-top: 1px solid rgba(2,7,6,0.09); margin-top: 4px; }
+    .panel-accord-item { border-bottom: 1px solid rgba(2,7,6,0.09); }
     .panel-accord-trigger {
       width: 100%; display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 0; font-size: 14px; font-weight: 500; letter-spacing: -0.2px;
+      padding: 18px 0; font-family: var(--sans); font-size: 15px; font-weight: 400;
+      letter-spacing: -0.2px; color: var(--black);
       background: none; cursor: pointer;
       transition: opacity var(--ease);
     }
-    .panel-accord-trigger:hover { opacity: 0.7; }
+    .panel-accord-trigger:hover { opacity: 0.6; }
+    /* Plus icon — square with subtle border */
     .accord-icon {
-      width: 20px; height: 20px; flex-shrink: 0;
+      width: 22px; height: 22px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(2,7,6,0.15); border-radius: 100px;
-      font-size: 14px; color: var(--black); opacity: 0.5;
-      transition: transform var(--ease);
+      border: 1px solid rgba(2,7,6,0.18); border-radius: 4px;
+      font-size: 16px; font-weight: 300; color: var(--black); opacity: 0.55;
+      transition: transform var(--ease), opacity var(--ease);
+      line-height: 1;
     }
-    .panel-accord-item.open .accord-icon { transform: rotate(45deg); }
+    .panel-accord-item.open .accord-icon { transform: rotate(45deg); opacity: 0.8; }
     .panel-accord-body {
       max-height: 0; overflow: hidden;
       transition: max-height 0.4s ease;
@@ -384,81 +616,91 @@
     .stat-note { font-size: 13px; opacity: 0.38; letter-spacing: -0.1px; line-height: 1.6; max-width: 280px; }
 
     /* ═══════════════════════════════════════════════════════
-       EDITORIAL HERO — "DON'T CHOOSE"
+       INSURANCE — "INSURANCE FOR WHEN YOU DRINK"
     ═══════════════════════════════════════════════════════ */
-    .editorial-hero {
-      position: relative; overflow: hidden;
-      min-height: 560px; display: flex; align-items: center;
-    }
-    .editorial-hero-img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover; object-position: center 25%;
-    }
-    .editorial-hero-overlay {
+    .insurance-section { position: relative; background: #1a0f05; }
+    .insurance-img { width: 100%; height: 480px; object-fit: cover; object-position: center 40%; display: block; }
+    .insurance-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to right,
-        rgba(2,7,6,0.82) 0%, rgba(2,7,6,0.65) 40%, rgba(2,7,6,0.15) 75%, transparent 100%);
+        rgba(2,7,6,0.72) 0%, rgba(2,7,6,0.42) 55%, rgba(2,7,6,0.08) 100%);
+      pointer-events: none;
     }
-    .editorial-hero-content {
-      position: relative; z-index: 2;
-      max-width: 1320px; margin: 0 auto; padding: 80px 56px;
-      width: 100%;
+    .insurance-content {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; align-items: center;
+      padding: 0 clamp(40px, 6vw, 120px);
     }
-    .editorial-hero-content h2 {
-      font-family: var(--serif); font-size: clamp(42px, 5vw, 72px);
+    .insurance-headline {
+      font-family: var(--serif); font-size: clamp(36px, 4.5vw, 68px);
       font-weight: 400; letter-spacing: -3px; line-height: 1.04;
-      color: var(--white); max-width: 680px; margin-bottom: 24px;
+      color: var(--white); max-width: 580px;
     }
-    .editorial-hero-content p {
-      font-size: 17px; letter-spacing: -0.3px; line-height: 1.6;
-      color: rgba(255,255,255,0.7); max-width: 440px; margin-bottom: 36px;
+    .insurance-pills {
+      background: var(--beige); padding: 28px clamp(40px, 6vw, 120px);
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-start;
     }
-    .editorial-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--label); font-size: 15px; font-weight: 600;
-      text-transform: lowercase; letter-spacing: -0.2px;
-      color: var(--black); background: var(--mango);
-      padding: 14px 28px; border-radius: 6px;
-      transition: opacity var(--ease), transform var(--ease);
+    .insurance-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--white); border-radius: 100px;
+      padding: 11px 20px; border: 1px solid rgba(2,7,6,0.07);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-    .editorial-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .insurance-pill-icon {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(32,76,62,0.09);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .insurance-pill-icon svg { width: 15px; height: 15px; color: var(--green); }
+    .insurance-pill-label { font-family: var(--sans); font-size: 14px; font-weight: 500; letter-spacing: -0.3px; color: var(--black); }
 
     /* ═══════════════════════════════════════════════════════
-       BENEFITS — "INSURANCE FOR WHEN YOU DRINK"
+       OUR DIFFERENCE — COMPARISON TABLE
     ═══════════════════════════════════════════════════════ */
-    .benefits-section { padding: 100px 56px; max-width: 1320px; margin: 0 auto; }
-    .benefits-header {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 40px; align-items: end; margin-bottom: 64px;
+    .comparison-section { background: var(--beige); padding: 80px clamp(40px, 5vw, 100px); }
+    .comparison-inner {
+      max-width: 1320px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px; align-items: stretch;
     }
-    .benefits-header h2 {
-      font-family: var(--serif); font-size: clamp(38px, 4vw, 60px);
-      font-weight: 400; letter-spacing: -2.5px; line-height: 1.06;
+    .comparison-left {
+      border-radius: 24px; overflow: hidden; position: relative;
+      min-height: 440px; background: #1a1208;
     }
-    .benefits-header p {
-      font-size: 16px; line-height: 1.65; letter-spacing: -0.2px; opacity: 0.55;
-      max-width: 420px;
-      align-self: end;
+    .comparison-left img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .comparison-right {
+      background: var(--green); border-radius: 24px;
+      padding: 36px 32px; display: flex; flex-direction: column;
     }
-    .benefits-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    .comparison-heading {
+      font-family: var(--serif); font-size: clamp(26px, 2.4vw, 38px);
+      font-weight: 400; letter-spacing: -1.6px; line-height: 1.1;
+      color: var(--white); margin-bottom: 24px;
     }
-    .benefit-card {
-      background: var(--white); border-radius: 24px;
-      padding: 36px 28px; border: 1px solid rgba(2,7,6,0.06);
+    .comparison-table { width: 100%; border-collapse: collapse; flex: 1; }
+    .comparison-table th {
+      font-family: var(--label); font-size: 10px; font-weight: 600;
+      letter-spacing: 0.3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); padding: 0 0 10px;
+      text-align: center; border-bottom: 1px solid rgba(255,255,255,0.12);
     }
-    .benefit-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: rgba(32,76,62,0.08);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
+    .comparison-table th:first-child { text-align: left; }
+    .comparison-table th.dg-col { color: var(--white); opacity: 1; }
+    .comparison-table td {
+      padding: 11px 4px; text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 14px; color: rgba(255,255,255,0.5);
     }
-    .benefit-icon svg { width: 22px; height: 22px; color: var(--green); }
-    .benefit-title {
-      font-family: var(--serif); font-size: 20px; font-weight: 400;
-      letter-spacing: -0.8px; margin-bottom: 10px; color: var(--black);
+    .comparison-table td:first-child { text-align: left; font-size: 13px; letter-spacing: -0.2px; color: rgba(255,255,255,0.8); }
+    .comparison-table .check { color: var(--mango); font-size: 15px; font-weight: 700; }
+    .comparison-table .cross { color: rgba(255,255,255,0.22); font-size: 16px; }
+    .comparison-cta {
+      margin-top: 20px; display: block; text-align: center;
+      padding: 13px; border-radius: 8px;
+      background: var(--white); color: var(--green);
+      font-family: var(--label); font-size: 14px; font-weight: 700;
+      letter-spacing: -0.2px; transition: opacity 0.2s;
     }
-    .benefit-desc { font-size: 14px; line-height: 1.65; letter-spacing: -0.1px; opacity: 0.55; }
+    .comparison-cta:hover { opacity: 0.9; }
 
     /* ═══════════════════════════════════════════════════════
        TIMELINE — "BENEFITS THAT BUILD"
@@ -911,9 +1153,22 @@
       .stats-inner { grid-template-columns: 1fr; }
       .stat-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
     }
+    @media (max-width: 1200px) {
+      /* On narrower viewports, scale the fixed gallery down proportionally */
+      .pdp-hero { gap: 40px; padding: 62px 40px 80px 60px; }
+      .gallery { width: auto; flex-shrink: 1; }
+      .gallery-main-img { width: 100%; height: auto; aspect-ratio: 676/496; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img { height: auto; aspect-ratio: 1; }
+      .purchase-panel { width: auto; flex: 1; min-width: 320px; }
+    }
     @media (max-width: 900px) {
-      .pdp-hero { grid-template-columns: 1fr; gap: 40px; padding: 110px 24px 56px; }
-      .gallery { position: static; grid-template-rows: 280px 180px; }
+      .pdp-hero { flex-direction: column; gap: 40px; padding: 110px 24px 56px; }
+      .gallery { position: static; width: 100%; }
+      .gallery-main-img { width: 100%; height: auto; aspect-ratio: 676/496; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; column-gap: 10px; row-gap: 10px; }
+      .gallery-grid img { height: auto; aspect-ratio: 1; }
+      .purchase-panel { width: 100%; }
       .benefits-header { grid-template-columns: 1fr; }
       .doctor-inner { grid-template-columns: 1fr; }
       .ingredients-inner { grid-template-columns: 1fr; }
@@ -969,95 +1224,138 @@
   <!-- PDP HERO -->
   <section class="pdp-hero">
 
-    <!-- Gallery -->
+    <!-- Gallery — exact Figma layout (node 2144-3565) -->
+    <!-- Product Image: 676×496, 3px radius                         -->
+    <!-- 2×2 grid: 330×330 each, col-gap 16px, row-gap 15px         -->
+    <!-- 24px gap between product image and grid                     -->
     <div class="gallery">
-      <div class="gallery-cell main">
-        <img src="https://www.figma.com/api/mcp/asset/8c647c32-f6f6-41ca-b4f5-8c3f8dd3c439" alt="day–guard mango"
-             onerror="this.style.opacity='0'">
+      <!-- Main product image with animated press ticker overlay -->
+      <div class="gallery-main-wrap">
+        <img class="gallery-main-img"
+             src="/images/PDP/Product Image.png"
+             alt="day–guard mango pre-alcohol jelly sticks 10-pack">
+        <!-- Animated press ticker — covers baked-in static bar, flush at image bottom -->
+        <div class="gallery-press-overlay">
+          <div class="gallery-press-track">
+            <!-- set 1 -->
+            <div class="gp-item"><img src="https://www.figma.com/api/mcp/asset/b19b08b2-4dec-4e6c-af3d-ebcc786b71b2" class="gp-forbes-logo" alt="Forbes"></div>
+            <div class="gp-item"><span class="gp-dot-circle"></span></div>
+            <div class="gp-item"><span class="gp-tag">#1 doctor recommended</span></div>
+            <div class="gp-item"><span class="gp-dot-circle"></span></div>
+            <div class="gp-item"><img src="https://www.figma.com/api/mcp/asset/a118d5df-a124-4d69-adab-36c8bb903909" class="gp-globe-logo" alt="The Boston Globe"></div>
+            <div class="gp-item"><span class="gp-dot-circle"></span></div>
+            <!-- set 2 (seamless loop) -->
+            <div class="gp-item"><img src="https://www.figma.com/api/mcp/asset/b19b08b2-4dec-4e6c-af3d-ebcc786b71b2" class="gp-forbes-logo" alt="Forbes"></div>
+            <div class="gp-item"><span class="gp-dot-circle"></span></div>
+            <div class="gp-item"><span class="gp-tag">#1 doctor recommended</span></div>
+            <div class="gp-item"><span class="gp-dot-circle"></span></div>
+            <div class="gp-item"><img src="https://www.figma.com/api/mcp/asset/a118d5df-a124-4d69-adab-36c8bb903909" class="gp-globe-logo" alt="The Boston Globe"></div>
+            <div class="gp-item"><span class="gp-dot-circle"></span></div>
+          </div>
+        </div>
       </div>
-      <div class="gallery-cell sm sm-lifestyle">
-        <img src="https://www.figma.com/api/mcp/asset/f085f100-78f8-4c09-9db8-2ca2c6990912" alt="day–guard lifestyle"
-             onerror="this.style.opacity='0'">
-      </div>
-      <div class="gallery-cell sm sm-dark">
-        <img src="https://www.figma.com/api/mcp/asset/8a2111de-cfa1-44d2-ac2e-afe99cc7d923" alt="day–guard sticks"
-             onerror="this.style.opacity='0'">
+
+      <!-- 2×2 thumbnail grid -->
+      <div class="gallery-grid">
+        <!-- Row 1 left: mango fruit texture (Rectangle 1739331476) -->
+        <img src="/images/PDP/Rectangle 1739331476.png"
+             alt="mango flavor">
+        <!-- Row 1 right: lifestyle slideshow — cycles 1.png → 2.png → 3.png -->
+        <div class="lifestyle-slide-wrap" id="lifestyle-wrap">
+          <img src="/images/PDP/1.png" alt="take one before drinking" class="active" data-slide="0">
+          <img src="/images/PDP/2.png" alt="cheers with day–guard" data-slide="1">
+          <img src="/images/PDP/3.png" alt="friends enjoying day–guard" data-slide="2">
+          <div class="lifestyle-dots">
+            <div class="lifestyle-dot active"></div>
+            <div class="lifestyle-dot"></div>
+            <div class="lifestyle-dot"></div>
+          </div>
+        </div>
+        <!-- Row 2 left: FDA-registered facility -->
+        <img src="/images/PDP/FDA-approved.png"
+             alt="manufactured in FDA-registered facility">
+        <!-- Row 2 right: supplement facts label -->
+        <img src="/images/PDP/DG_Carousel_Artwork%238.jpg"
+             alt="supplement facts">
       </div>
     </div>
 
     <!-- Purchase panel -->
     <div class="purchase-panel">
 
-      <div class="pdp-badges">
-        <span class="pdp-tag">Pre–Alcohol Support</span>
-        <span class="pdp-bestseller">Best Seller</span>
-      </div>
-
-      <h1 class="pdp-title">day–guard daily<br>jelly sticks</h1>
-
+      <!-- Stars + bestseller tag + reviews -->
       <div class="pdp-rating">
+        <span class="pdp-bestseller">best seller</span>
         <span class="pdp-stars">★★★★★</span>
-        <a href="#reviews" class="pdp-rating-link">4.9 · 20,000+ reviews</a>
-        <span class="pdp-trust">· Doctor-Formulated</span>
+        <span class="pdp-rating-count">450+</span>
       </div>
 
+      <!-- Title in Sofia Pro -->
+      <h1 class="pdp-title">pre-alcohol<br>vitamin jelly</h1>
+
+      <!-- Description in Helvetica Neue -->
       <p class="pdp-description">
-        Doctor-formulated jelly sticks that protect your liver and gut when you drink.
-        With DHM, prebiotics, electrolytes, and B-vitamins — one stick before your first drink.
+        Clinically backed ingredients that support your liver, gut, and hydration before you drink — packed into a delicious jelly stick. Wake up feeling sharp, balanced, and ready-to-go.
       </p>
 
-      <!-- Flavour -->
-      <p class="pdp-section-label">Flavour</p>
-      <div class="flavor-btns">
-        <button class="flavor-btn active" id="fl-mango">
-          mango
-          <span class="badge">best seller</span>
-        </button>
-        <button class="flavor-btn" id="fl-peach">peach</button>
-        <button class="flavor-btn" id="fl-apple">apple</button>
+      <!-- Price in Helvetica Neue -->
+      <div class="price-block">
+        <div class="price-main" id="price-main">$36.00</div>
+        <div class="price-per-box">10 sticks per box</div>
       </div>
 
-      <!-- Subscribe toggle -->
-      <div class="purchase-toggle">
-        <button class="toggle-btn active" id="tog-sub">
-          <div class="toggle-top">
-            <span class="toggle-name">subscribe &amp; save</span>
-            <span class="toggle-save">save 20%</span>
-          </div>
-          <span class="toggle-price">delivered monthly</span>
+      <!-- Subscribe / Buy Once — pill slider, Hedvig Letters Serif -->
+      <div class="purchase-toggle" id="purchase-toggle">
+        <div class="toggle-track-pill" id="toggle-pill"></div>
+        <button class="toggle-btn active" id="tog-sub" onclick="setToggle('sub')">
+          subscribe &amp; save <span class="toggle-save">save 19%</span>
         </button>
-        <button class="toggle-btn" id="tog-once">
-          <div class="toggle-top">
-            <span class="toggle-name">one-time purchase</span>
-          </div>
-          <span class="toggle-price">one-time</span>
+        <button class="toggle-btn" id="tog-once" onclick="setToggle('once')">
+          buy once
         </button>
       </div>
 
-      <!-- Price -->
-      <div class="price-row">
-        <span class="price-main" id="price-main">$34.99</span>
-        <span class="price-freq" id="price-freq">/mo · free shipping</span>
-        <span class="price-compare" id="price-compare">$43.99</span>
+      <!-- Quantity box selector -->
+      <div class="qty-boxes" id="qty-boxes">
+        <div class="qty-box" data-qty="1" data-price="2.90" onclick="selectQty(this)">
+          <div class="qty-box-units">1 box</div>
+          <div class="qty-box-price">$2.90 / stick</div>
+        </div>
+        <div class="qty-box active" data-qty="2" data-price="2.75" onclick="selectQty(this)">
+          <span class="qty-box-badge popular">most popular</span>
+          <div class="qty-box-units">2 box</div>
+          <div class="qty-box-price">$2.75 / stick</div>
+        </div>
+        <div class="qty-box" data-qty="3" data-price="2.50" onclick="selectQty(this)">
+          <span class="qty-box-badge deal">best deal</span>
+          <div class="qty-box-units">3 box</div>
+          <div class="qty-box-price">$2.50 / stick</div>
+        </div>
       </div>
-      <p class="price-note" id="price-note">$3.50 per stick · 10 sticks per pack</p>
 
-      <!-- Perks -->
-      <ul class="sub-perks" id="sub-perks">
-        <li>free shipping on every order</li>
-        <li>skip, pause, or cancel anytime</li>
-        <li>20% off every order vs. one-time</li>
-      </ul>
+      <!-- Bullet perks -->
+      <div class="panel-perks">
+        <div class="panel-perk">free shipping for subscriptions</div>
+        <div class="panel-perk">90-day money back guarantee</div>
+        <div class="panel-perk">modify &amp; cancel anytime</div>
+      </div>
 
-      <!-- CTA -->
-      <a href="#" class="pdp-cta-btn" id="pdp-cta">subscribe &amp; save</a>
-      <p class="cta-note">90-day risk-free guarantee · Free US shipping</p>
+      <!-- Start now CTA row -->
+      <div class="start-now-row">
+        <div class="qty-counter">
+          <button class="qty-counter-btn" onclick="changeCount(-1)">−</button>
+          <span class="qty-counter-val" id="stick-count">1</span>
+          <button class="qty-counter-btn" onclick="changeCount(1)">+</button>
+        </div>
+        <button class="start-now-btn" id="cta-btn" onclick="window.location.href='#'">start now</button>
+      </div>
+      <p class="cta-note">tax included · shipping calculated at checkout</p>
 
       <!-- Accordions -->
       <div class="panel-accord">
         <div class="panel-accord-item" id="pa-benefits">
           <button class="panel-accord-trigger" onclick="toggleAccord('pa-benefits')">
-            <span>Benefits</span>
+            <span>benefits</span>
             <span class="accord-icon">+</span>
           </button>
           <div class="panel-accord-body">
@@ -1069,23 +1367,22 @@
                 <li>Restores electrolytes lost when drinking</li>
                 <li>Reduces next-morning inflammation</li>
               </ul>
-              <a href="#ingredients-section" class="accord-link">View full ingredient breakdown →</a>
             </div>
           </div>
         </div>
         <div class="panel-accord-item" id="pa-ingredients">
           <button class="panel-accord-trigger" onclick="toggleAccord('pa-ingredients')">
-            <span>Ingredients</span>
+            <span>ingredients</span>
             <span class="accord-icon">+</span>
           </button>
           <div class="panel-accord-body">
             <div class="panel-accord-inner">
               <ul>
-                <li>DHM (Dihydromyricetin) 300mg — clinically studied liver support</li>
+                <li>DHM (Dihydromyricetin) 300mg</li>
                 <li>Prebiotics (FOS) — gut microbiome defense</li>
-                <li>Electrolyte Blend — sodium, potassium, magnesium</li>
+                <li>Electrolyte Blend — Na, K, Mg</li>
                 <li>B-Vitamin Complex — B1, B6, B12</li>
-                <li>Vitamin C — antioxidant defense</li>
+                <li>Vitamin C 90mg — antioxidant defense</li>
               </ul>
               <a href="#" class="accord-link">No fillers · Vegan · Gluten-free</a>
             </div>
@@ -1093,7 +1390,7 @@
         </div>
         <div class="panel-accord-item" id="pa-shipping">
           <button class="panel-accord-trigger" onclick="toggleAccord('pa-shipping')">
-            <span>Shipping &amp; Returns</span>
+            <span>shipping &amp; returns</span>
             <span class="accord-icon">+</span>
           </button>
           <div class="panel-accord-body">
@@ -1101,13 +1398,14 @@
               <ul>
                 <li>Free US shipping on all orders</li>
                 <li>Ships within 1–2 business days</li>
-                <li>90-day money-back guarantee — no questions asked</li>
-                <li>Subscription orders billed monthly, cancel anytime</li>
+                <li>90-day money-back guarantee</li>
+                <li>Cancel subscription anytime, no fees</li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+
 
     </div>
   </section>
@@ -1116,69 +1414,114 @@
   <section class="stats-bar" id="stats-bar">
     <div class="stats-inner">
       <div class="stat-cell">
-        <div class="stat-num"><span class="count-num" data-target="20000" data-format="comma">0</span><sup>+</sup></div>
-        <div class="stat-label">happy customers</div>
-        <div class="stat-note">Trusted by thousands to protect their liver, gut, and mornings after a night out.</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num"><span class="count-num" data-target="167" data-format="plain">0</span><sup>+</sup></div>
-        <div class="stat-label">clinical human studies backing core ingredients</div>
-        <div class="stat-note">Every ingredient was carefully selected by physicians for its demonstrated clinical benefits.</div>
-      </div>
-      <div class="stat-cell">
         <div class="stat-num"><span class="count-num" data-target="60" data-format="plain">0</span><sup>+</sup></div>
         <div class="stat-label">years of pharmaceutical expertise</div>
         <div class="stat-note">Crafted in partnership with a leading Korean pharmaceutical company founded in 1963.</div>
       </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span class="count-num" data-target="1000" data-format="plain">0</span><sup>+</sup></div>
+        <div class="stat-label">clinical papers backing our key ingredients</div>
+        <div class="stat-note">Each ingredient in day–guard was carefully selected by physicians for its demonstrated clinical benefits.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span class="count-num" data-target="50000" data-format="comma">0</span><sup>+</sup></div>
+        <div class="stat-label">protected nights</div>
+        <div class="stat-note">Trusted by thousands to protect their liver, gut, and mornings after a night out.</div>
+      </div>
     </div>
   </section>
 
-  <!-- EDITORIAL HERO -->
-  <section class="editorial-hero">
-    <img class="editorial-hero-img" src="https://www.figma.com/api/mcp/asset/f085f100-78f8-4c09-9db8-2ca2c6990912" alt=""
-         onerror="this.style.display='none'; this.parentElement.style.background='#1a0f08'">
-    <div class="editorial-hero-overlay"></div>
-    <div class="editorial-hero-content">
-      <h2 class="fade-up">don't choose between your health and a night out.</h2>
-      <p class="fade-up">Doctor-formulated jelly sticks that protect your liver and gut when you drink. One stick. Tear, squeeze, enjoy.</p>
-      <a href="#" class="editorial-cta fade-up">shop now →</a>
+  <!-- INSURANCE SECTION -->
+  <section class="insurance-section">
+    <img class="insurance-img" src="https://www.figma.com/api/mcp/asset/f085f100-78f8-4c09-9db8-2ca2c6990912" alt="insurance for when you drink"
+         onerror="this.style.background='#1a0f08'">
+    <div class="insurance-overlay"></div>
+    <div class="insurance-content">
+      <h2 class="insurance-headline fade-up">insurance for<br>when you drink.</h2>
     </div>
-  </section>
-
-  <!-- BENEFITS -->
-  <section class="benefits-section fade-up">
-    <div class="benefits-header">
-      <h2>insurance for<br>when you drink.</h2>
-      <p>Every ingredient in day–guard works together to help your body process alcohol, restore nutrients, and reduce inflammation — so you can enjoy your night without sacrificing your morning.</p>
-    </div>
-    <div class="benefits-grid">
-      <div class="benefit-card fade-up">
-        <div class="benefit-icon">
+    <!-- Benefit pills -->
+    <div class="insurance-pills">
+      <div class="insurance-pill">
+        <div class="insurance-pill-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.5 2 5 5 5 9c0 4.5 7 13 7 13s7-8.5 7-13c0-4-3.5-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
         </div>
-        <h3 class="benefit-title">Liver Support</h3>
-        <p class="benefit-desc">Boost your body's detox system. DHM accelerates alcohol metabolism and supports liver enzyme function.</p>
+        <span class="insurance-pill-label">Liver Support</span>
       </div>
-      <div class="benefit-card fade-up">
-        <div class="benefit-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c1-2 5-2 6 0s5 2 6 0"/><path d="M6 9c0-1 2-2 3-1"/></svg>
+      <div class="insurance-pill">
+        <div class="insurance-pill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
         </div>
-        <h3 class="benefit-title">Gut Support</h3>
-        <p class="benefit-desc">Reduce bloating and support healthy digestion. Prebiotics reinforce your gut microbiome barrier against alcohol's inflammatory effects.</p>
+        <span class="insurance-pill-label">Gut Support</span>
       </div>
-      <div class="benefit-card fade-up">
-        <div class="benefit-icon">
+      <div class="insurance-pill">
+        <div class="insurance-pill-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
         </div>
-        <h3 class="benefit-title">Vitamin Replenishment</h3>
-        <p class="benefit-desc">Restore key vitamins that alcohol depletes. B1, B6, B12, and Vitamin C are replenished so your body has what it needs to recover.</p>
+        <span class="insurance-pill-label">Vitamin Replenishment</span>
       </div>
-      <div class="benefit-card fade-up">
-        <div class="benefit-icon">
+      <div class="insurance-pill">
+        <div class="insurance-pill-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
         </div>
-        <h3 class="benefit-title">Hydration</h3>
-        <p class="benefit-desc">Replenish electrolytes lost when drinking. Our balanced blend of sodium, potassium, and magnesium keeps you hydrated all night.</p>
+        <span class="insurance-pill-label">Hydration</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR DIFFERENCE — COMPARISON TABLE -->
+  <section class="comparison-section">
+    <div class="comparison-inner">
+      <!-- Left: hand / lifestyle image -->
+      <div class="comparison-left">
+        <img src="https://www.figma.com/api/mcp/asset/8a2111de-cfa1-44d2-ac2e-afe99cc7d923" alt="day–guard jelly stick"
+             onerror="this.style.opacity='0.4'">
+      </div>
+      <!-- Right: comparison table card -->
+      <div class="comparison-right">
+        <h2 class="comparison-heading">our difference.</h2>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="dg-col">day—guard</th>
+              <th>competitor</th>
+              <th>competitor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>liver support complex</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="cross">–</span></td>
+              <td><span class="cross">–</span></td>
+            </tr>
+            <tr>
+              <td>prebiotics</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="cross">–</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>electrolyte complex</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="cross">–</span></td>
+            </tr>
+            <tr>
+              <td>vitamin b complex</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="cross">–</span></td>
+            </tr>
+            <tr>
+              <td>capsule-free serving</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="cross">–</span></td>
+              <td><span class="cross">–</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <a href="/shop.html" class="comparison-cta">buy now</a>
       </div>
     </div>
   </section>
@@ -1665,11 +2008,11 @@
                onerror="this.style.display='none'">
         </div>
         <div>
-          <div class="sticky-product-name">day–guard daily jelly sticks</div>
-          <div class="sticky-product-price">$34.99/mo · subscribe &amp; save 20%</div>
+          <div class="sticky-product-name">pre—alcohol / vitamin jelly</div>
+          <div class="sticky-product-price" id="sticky-price-label">$36.00 · subscribe &amp; save</div>
         </div>
       </div>
-      <a href="#" class="sticky-cta">subscribe &amp; save</a>
+      <a href="#" class="sticky-cta">start now</a>
     </div>
   </div>
 
@@ -1680,51 +2023,88 @@
       nav.classList.toggle('scrolled', window.scrollY > 20);
     });
 
-    /* ── Subscribe/one-time toggle ── */
+    /* ── Subscribe / Buy Once — slider toggle ── */
     const togSub  = document.getElementById('tog-sub');
     const togOnce = document.getElementById('tog-once');
+    const toggleEl = document.getElementById('purchase-toggle');
+    const purchasePanel = document.querySelector('.purchase-panel');
     const priceMain = document.getElementById('price-main');
-    const priceFreq = document.getElementById('price-freq');
-    const priceComp = document.getElementById('price-compare');
-    const priceNote = document.getElementById('price-note');
-    const subPerks  = document.getElementById('sub-perks');
-    const pdpCta    = document.getElementById('pdp-cta');
-    const stickyCta = document.querySelector('.sticky-cta');
-    const stickyPrice = document.querySelector('.sticky-product-price');
 
-    function setMode(mode) {
+    // Prices: [subscribe, one-time] — subscription base = $29 for 1 box
+    const PRICES = { 1: [29.00, 36.00], 2: [49.00, 65.00], 3: [65.00, 85.00] };
+    let currentMode = 'sub';
+    const ctaBtn = document.getElementById('cta-btn');
+
+    function setToggle(mode) {
+      currentMode = mode;
       togSub.classList.toggle('active', mode === 'sub');
       togOnce.classList.toggle('active', mode === 'once');
-      if (mode === 'sub') {
-        priceMain.textContent = '$34.99';
-        priceFreq.textContent = '/mo · free shipping';
-        priceComp.textContent = '$43.99';
-        priceNote.textContent = '$3.50 per stick · 10 sticks per pack';
-        subPerks.style.display = 'flex';
-        pdpCta.innerHTML = 'subscribe &amp; save';
-        stickyCta.innerHTML = 'subscribe &amp; save';
-        stickyPrice.textContent = '$34.99/mo · subscribe & save 20%';
-      } else {
-        priceMain.textContent = '$43.99';
-        priceFreq.textContent = '';
-        priceComp.textContent = '';
-        priceNote.textContent = '$4.40 per stick · 10 sticks per pack';
-        subPerks.style.display = 'none';
-        pdpCta.innerHTML = 'add to cart';
-        stickyCta.innerHTML = 'add to cart';
-        stickyPrice.textContent = '$43.99 · one-time';
-      }
+      toggleEl.classList.toggle('once-active', mode === 'once');
+      purchasePanel.classList.toggle('buy-once', mode === 'once');
+      // update button label
+      if (ctaBtn) ctaBtn.textContent = mode === 'once' ? 'buy now' : 'start now';
+      updatePrice();
     }
-    togSub.addEventListener('click', () => setMode('sub'));
-    togOnce.addEventListener('click', () => setMode('once'));
+    togSub && togSub.addEventListener('click', () => setToggle('sub'));
+    togOnce && togOnce.addEventListener('click', () => setToggle('once'));
 
-    /* ── Flavor buttons ── */
-    document.querySelectorAll('.flavor-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.flavor-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
+    /* ── Lifestyle slideshow — cycles 1.png → 2.png → 3.png ── */
+    (function() {
+      const wrap = document.getElementById('lifestyle-wrap');
+      if (!wrap) return;
+      const slides = wrap.querySelectorAll('img');
+      const dots   = wrap.querySelectorAll('.lifestyle-dot');
+      let cur = 0;
+
+      function goTo(next) {
+        const prev = cur;
+        cur = next;
+        // Exit current slide to the left
+        slides[prev].classList.remove('active');
+        slides[prev].classList.add('exit');
+        dots[prev].classList.remove('active');
+        // Enter next slide from the right
+        slides[next].classList.add('active');
+        dots[next].classList.add('active');
+        // After exit animation, snap the old slide back to off-right
+        // WITHOUT animating (disable transition, move, re-enable)
+        setTimeout(() => {
+          slides[prev].style.transition = 'none';
+          slides[prev].classList.remove('exit');
+          // force reflow so the browser applies position before re-enabling transition
+          void slides[prev].offsetWidth;
+          slides[prev].style.transition = '';
+        }, 580);
+      }
+
+      setInterval(() => {
+        goTo((cur + 1) % slides.length);
+      }, 2800);
+    })();
+
+    /* ── Quantity box selector ── */
+    function selectQty(el) {
+      document.querySelectorAll('.qty-box').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      updatePrice();
+    }
+    function updatePrice() {
+      const boxes = parseInt(document.querySelector('.qty-box.active')?.dataset.qty || 2);
+      const isSub = currentMode === 'sub';
+      const total = PRICES[boxes]?.[isSub ? 0 : 1] || 36;
+      if (priceMain) priceMain.textContent = '$' + total.toFixed(2);
+      const stickyLabel = document.getElementById('sticky-price-label');
+      if (stickyLabel) stickyLabel.textContent = '$' + total.toFixed(2) + (isSub ? ' · subscribe & save' : ' · one-time');
+    }
+    updatePrice();
+
+    /* ── Qty counter ── */
+    let stickCount = 1;
+    function changeCount(delta) {
+      stickCount = Math.max(1, Math.min(10, stickCount + delta));
+      const el = document.getElementById('stick-count');
+      if (el) el.textContent = stickCount;
+    }
 
     /* ── Panel accordions ── */
     function toggleAccord(id) {
@@ -1749,11 +2129,12 @@
 
     /* ── Sticky ATC ── */
     const stickyAtc = document.getElementById('sticky-atc');
-    const pdpCtaBtn = document.querySelector('.pdp-cta-btn');
-    const atcObserver = new IntersectionObserver(([entry]) => {
-      stickyAtc.classList.toggle('visible', !entry.isIntersecting);
-    }, { threshold: 0 });
-    if (pdpCtaBtn) atcObserver.observe(pdpCtaBtn);
+    const startNowBtn = document.querySelector('.start-now-btn');
+    if (stickyAtc && startNowBtn) {
+      new IntersectionObserver(([entry]) => {
+        stickyAtc.classList.toggle('visible', !entry.isIntersecting);
+      }, { threshold: 0 }).observe(startNowBtn);
+    }
 
     /* ── Footer toggle (email/sms) ── */
     (function() {
