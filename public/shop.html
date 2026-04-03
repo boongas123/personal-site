@@ -282,7 +282,7 @@
       display: flex; align-items: flex-start;
       /* Figma: gallery X=153, panel X=942, panel W=444, right margin=54 */
       gap: 113px;
-      padding: 62px 54px 80px 153px;
+      padding: 100px 54px 80px 153px;
     }
 
     /* ── Lifestyle slideshow — seamless transform-only slide ── */
@@ -1605,12 +1605,12 @@
           <div class="qty-box-units">1 box</div>
           <div class="qty-box-price">$2.90 / stick</div>
         </div>
-        <div class="qty-box active" data-qty="2" data-price="2.75" onclick="selectQty(this)">
+        <div class="qty-box" data-qty="2" data-price="2.75" onclick="selectQty(this)">
           <span class="qty-box-badge popular">most popular</span>
           <div class="qty-box-units">2 box</div>
           <div class="qty-box-price">$2.75 / stick</div>
         </div>
-        <div class="qty-box" data-qty="3" data-price="2.50" onclick="selectQty(this)">
+        <div class="qty-box active" data-qty="3" data-price="2.50" onclick="selectQty(this)">
           <span class="qty-box-badge deal">best deal</span>
           <div class="qty-box-units">3 box</div>
           <div class="qty-box-price">$2.50 / stick</div>
@@ -2296,7 +2296,7 @@
 
     /* Populate cart from PDP selection */
     function syncCartFromPDP() {
-      const boxes   = parseInt(document.querySelector('.qty-box.active')?.dataset.qty || 2);
+      const boxes   = parseInt(document.querySelector('.qty-box.active')?.dataset.qty || 3);
       const isSub   = currentMode === 'sub';
       const price   = PRICES[boxes]?.[isSub ? 0 : 1] || 29;
       const modeLabel = isSub ? 'subscribe & save · 19% off' : 'one-time purchase';
