@@ -355,18 +355,18 @@
        4. PRODUCT SHOWCASE
     ═══════════════════════════════════════════════════════ */
     .features-section {
-      background: #f1f1ea; padding: 80px clamp(80px, 13vw, 240px) 80px;
+      background: #f1f1ea; padding: 52px clamp(80px, 13vw, 240px) 52px;
       border-radius: 0 0 50px 50px;
     }
 
     /* Two-column product showcase */
     .product-showcase {
-      display: flex; gap: clamp(40px, 5vw, 80px);
-      align-items: center; margin-bottom: 64px;
+      display: flex; gap: clamp(28px, 3.3vw, 54px);
+      align-items: center; margin-bottom: 42px;
     }
     .pshow-photo-wrap {
-      width: clamp(260px, 34vw, 651px); flex-shrink: 0;
-      border-radius: 30px; overflow: hidden; background: #f5ede0;
+      width: clamp(174px, 23vw, 434px); flex-shrink: 0;
+      border-radius: 20px; overflow: hidden; background: #f5ede0;
     }
     .pshow-photo {
       width: 100%; height: auto; display: block;
@@ -375,22 +375,22 @@
     .pshow-info { flex: 1; min-width: 0; }
     .pshow-title {
       font-family: var(--sans);
-      font-size: clamp(24px, 3.1vw, 60px);
-      font-weight: 400; letter-spacing: -2.4px; line-height: 1.0;
-      color: var(--green); margin-bottom: 28px;
+      font-size: clamp(16px, 2.1vw, 40px);
+      font-weight: 400; letter-spacing: -1.6px; line-height: 1.0;
+      color: var(--green); margin-bottom: 18px;
     }
     .pshow-desc {
       font-family: var(--serif);
-      font-size: clamp(16px, 1.8vw, 35px);
-      font-weight: 400; letter-spacing: -1.4px; line-height: 1.3;
-      color: var(--green); margin-bottom: 36px; max-width: 620px;
+      font-size: clamp(12px, 1.2vw, 23px);
+      font-weight: 400; letter-spacing: -0.9px; line-height: 1.3;
+      color: var(--green); margin-bottom: 24px; max-width: 620px;
     }
     .pshow-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--label); font-size: 16px; font-weight: 500;
+      font-family: var(--label); font-size: 13px; font-weight: 500;
       text-transform: lowercase; letter-spacing: -0.5px;
       color: var(--white); background: var(--mango);
-      padding: 14px 28px; border-radius: 6px;
+      padding: 10px 20px; border-radius: 6px;
       transition: background 0.28s ease;
     }
     .pshow-btn:hover { background: #e8880e; }
@@ -472,22 +472,22 @@
     ═══════════════════════════════════════════════════════ */
     .howto-section {
       background: #f1f1ea;
-      padding: 80px clamp(100px, 13vw, 240px) 80px;
+      padding: 54px clamp(160px, 18vw, 320px) 54px;
       border-radius: 0 0 50px 50px;
     }
-    .howto-intro { margin-bottom: 48px; }
+    .howto-intro { margin-bottom: 32px; }
     .howto-heading {
       font-family: var(--serif);
-      font-size: clamp(36px, 4vw, 72px);
-      font-weight: 400; line-height: 1.1; letter-spacing: -3px;
-      color: var(--green); margin-bottom: 12px;
+      font-size: clamp(24px, 2.7vw, 48px);
+      font-weight: 400; line-height: 1.1; letter-spacing: -2px;
+      color: var(--green); margin-bottom: 10px;
     }
     .howto-sub {
       font-family: var(--sans);
-      font-size: clamp(13px, 1.1vw, 18px);
+      font-size: clamp(11px, 0.85vw, 14px);
       font-weight: 400; color: var(--black); letter-spacing: -0.3px;
     }
-    .howto-grid { display: flex; gap: 14px; }
+    .howto-grid { display: flex; gap: 10px; }
     .howto-card {
       flex: 1;
       transition: transform 0.3s cubic-bezier(.4,0,.2,1);
@@ -516,57 +516,143 @@
     }
     .howto-card:hover .howto-card-video { opacity: 1; }
     .howto-step-badge {
-      position: absolute; top: 14px; left: 14px;
-      width: 32px; height: 32px;
-      background: rgba(2,7,6,0.80); border-radius: 8px;
+      position: absolute; top: 10px; left: 10px;
+      width: 22px; height: 22px;
+      background: rgba(2,7,6,0.80); border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--sans); font-size: 14px; font-weight: 500;
+      font-family: var(--sans); font-size: 10px; font-weight: 500;
       color: var(--white); letter-spacing: -0.3px;
       z-index: 3; /* always above the video layer */
     }
     .howto-card-label {
       font-family: var(--sans);
-      font-size: clamp(13px, 1.1vw, 18px);
+      font-size: clamp(10px, 0.8vw, 13px);
       font-weight: 400; color: var(--black); letter-spacing: -0.3px;
     }
 
     /* ═══════════════════════════════════════════════════════
-       6. INGREDIENTS
+       6. THE SCIENCE / PILLARS
     ═══════════════════════════════════════════════════════ */
-    .ingredients { padding: var(--pad-section) 80px; background: var(--white); }
-    .ing-header {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      margin-bottom: 56px; gap: 40px;
+    .science-section {
+      background: var(--beige);
+      padding: 80px 130px 80px;
     }
-    .ing-heading {
+    .science-header { margin-bottom: 40px; }
+    .science-tag {
+      font-family: var(--sans); font-size: 20px; letter-spacing: -0.8px;
+      color: var(--black); display: block; margin-bottom: 16px;
+    }
+    .science-heading {
       font-family: var(--serif);
-      font-size: clamp(42px, 4.2vw, 66px);
-      font-weight: 400; line-height: 1.0; letter-spacing: -2.8px;
+      font-size: clamp(56px, 6vw, 100px);
+      font-weight: 400; line-height: 1.05; letter-spacing: -4px;
+      color: var(--black); margin-bottom: 16px;
     }
-    .ing-note {
-      font-family: var(--sans); font-size: 14px; letter-spacing: -0.2px;
-      opacity: 0.45; line-height: 1.6; max-width: 260px; text-align: right;
+    .science-sub {
+      font-family: var(--sans); font-size: clamp(13px, 1.05vw, 20px);
+      letter-spacing: -0.5px; color: rgba(0,0,0,0.7);
+      max-width: 900px; line-height: 1.5; margin-bottom: 22px;
     }
-    .ing-grid {
-      display: grid; grid-template-columns: repeat(5,1fr); gap: 14px;
+    .science-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+    .science-pill {
+      font-family: var(--sans); font-size: 12px; font-weight: 400;
+      color: var(--white); background: var(--green);
+      padding: 6px 13px; border-radius: 17px; letter-spacing: -0.1px;
+      text-transform: lowercase; line-height: 1.4;
+      display: inline-flex; align-items: center;
     }
-    .ing-card {
-      background: var(--beige); border-radius: var(--radius-card);
-      padding: 34px 26px; display: flex; flex-direction: column; gap: 18px;
-      transition: transform var(--ease), box-shadow var(--ease);
+    .pillar-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; height: clamp(320px, 38vw, 640px);
     }
-    .ing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(32,76,62,0.09); }
-    .ing-icon { width: 42px; height: 42px; color: var(--green); }
-    .ing-name { font-family: var(--sans); font-size: 18px; font-weight: 500; letter-spacing: -0.5px; }
-    .ing-desc {
-      font-family: var(--sans); font-size: 13px; font-weight: 400;
-      line-height: 1.6; opacity: 0.55; flex: 1;
+    .pillar-card {
+      position: relative; border-radius: 20px; overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(.4,0,.2,1), box-shadow 0.35s ease;
     }
-    .ing-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 44px; }
-    .ing-badge {
-      font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: -0.1px;
-      color: var(--green); background: rgba(32,76,62,0.08);
-      padding: 7px 14px; border-radius: var(--radius-pill);
+    .pillar-card:hover {
+      transform: scale(1.04); z-index: 2;
+      box-shadow: 0 24px 56px rgba(0,0,0,0.2);
+    }
+    .pillar-bg {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      pointer-events: none;
+    }
+    .pillar-gradient {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; pointer-events: none;
+    }
+    .pillar-label {
+      position: absolute; bottom: 24px; left: 24px;
+      font-family: var(--serif); font-size: clamp(18px, 1.8vw, 30px);
+      font-weight: 400; color: var(--white); letter-spacing: -0.8px;
+      line-height: 1.1; pointer-events: none;
+    }
+    /* ── Pillar Modal ── */
+    .pillar-modal-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(0,0,0,0.55);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 24px;
+    }
+    .pillar-modal-overlay.active { opacity: 1; pointer-events: all; }
+    .pillar-modal {
+      display: grid; grid-template-columns: 1fr 1fr;
+      width: 100%; max-width: 1100px;
+      height: min(78vh, 680px);
+      border-radius: 24px; overflow: hidden;
+      transform: scale(0.96) translateY(14px);
+      transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+    }
+    .pillar-modal-overlay.active .pillar-modal { transform: scale(1) translateY(0); }
+    .pillar-modal-left { position: relative; overflow: hidden; }
+    .pillar-modal-bg { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pillar-modal-left-gradient {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 55%);
+    }
+    .pillar-modal-left-label {
+      position: absolute; bottom: 32px; left: 32px;
+      font-family: var(--serif); font-size: clamp(26px, 2.8vw, 46px);
+      font-weight: 400; color: var(--white); letter-spacing: -1.5px; line-height: 1.1;
+    }
+    .pillar-modal-right {
+      background: var(--white); padding: 40px 44px;
+      overflow-y: auto; position: relative;
+    }
+    .pillar-modal-close {
+      position: absolute; top: 20px; right: 20px;
+      width: 36px; height: 36px;
+      background: var(--green); color: var(--white);
+      border: none; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.22s ease, transform 0.22s ease;
+    }
+    .pillar-modal-close:hover { background: #163527; transform: rotate(90deg); }
+    .pillar-modal-close svg { display: block; flex-shrink: 0; }
+    .pillar-modal-title {
+      font-family: var(--sans); font-size: 13px; font-weight: 700;
+      letter-spacing: 0.6px; text-transform: uppercase; color: var(--black);
+      margin-bottom: 18px; padding-right: 52px;
+    }
+    .pillar-modal-desc {
+      font-family: var(--sans); font-size: clamp(13px, 1.1vw, 17px);
+      font-weight: 400; line-height: 1.65; letter-spacing: -0.3px;
+      color: rgba(0,0,0,0.7); margin-bottom: 28px;
+    }
+    .pillar-modal-ing-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .pillar-modal-ing-item { display: flex; align-items: center; gap: 14px; }
+    .pillar-modal-ing-img {
+      width: 48px; height: 48px; border-radius: 10px;
+      object-fit: cover; flex-shrink: 0; background: var(--beige);
+    }
+    .pillar-modal-ing-name {
+      font-family: var(--sans); font-size: clamp(12px, 0.95vw, 15px);
+      font-weight: 400; letter-spacing: -0.3px; color: var(--black); line-height: 1.3;
     }
 
 
@@ -575,40 +661,40 @@
     ═══════════════════════════════════════════════════════ */
     .trusted-section {
       background: var(--white);
-      padding: 80px clamp(100px, 13vw, 240px);
+      padding: 54px clamp(160px, 18vw, 320px);
       border-radius: 0 0 50px 50px;
       display: grid; grid-template-columns: 3fr 2fr;
-      gap: clamp(40px, 5vw, 100px); align-items: center;
+      gap: clamp(28px, 3.3vw, 67px); align-items: center;
     }
     .trusted-heading {
       font-family: var(--sans);
-      font-size: clamp(32px, 3.3vw, 60px);
-      font-weight: 400; line-height: 1.1; letter-spacing: -2.5px;
-      color: var(--green); margin-bottom: 28px;
+      font-size: clamp(22px, 2.2vw, 40px);
+      font-weight: 400; line-height: 1.1; letter-spacing: -1.7px;
+      color: var(--green); margin-bottom: 18px;
     }
     .trusted-quote {
       font-family: var(--serif);
-      font-size: clamp(18px, 2vw, 38px);
-      font-weight: 400; line-height: 1.25; letter-spacing: -1.5px;
-      color: var(--green); margin-bottom: 24px;
+      font-size: clamp(13px, 1.4vw, 26px);
+      font-weight: 400; line-height: 1.25; letter-spacing: -1px;
+      color: var(--green); margin-bottom: 16px;
     }
     .trusted-doctor-name {
-      font-family: var(--sans); font-size: clamp(16px, 1.3vw, 25px);
-      font-weight: 700; color: var(--black); letter-spacing: -1px; margin-bottom: 4px;
+      font-family: var(--sans); font-size: clamp(11px, 0.9vw, 17px);
+      font-weight: 700; color: var(--black); letter-spacing: -0.7px; margin-bottom: 4px;
     }
     .trusted-doctor-title {
-      font-family: var(--sans); font-size: clamp(14px, 1.3vw, 25px);
-      font-weight: 400; color: #757575; letter-spacing: -1px; margin-bottom: 28px;
+      font-family: var(--sans); font-size: clamp(11px, 0.9vw, 17px);
+      font-weight: 400; color: #757575; letter-spacing: -0.7px; margin-bottom: 18px;
     }
     .trusted-learn-more {
-      font-family: var(--sans); font-size: clamp(18px, 1.6vw, 30px);
-      font-weight: 400; color: var(--green); letter-spacing: -1.2px;
+      font-family: var(--sans); font-size: clamp(13px, 1.1vw, 20px);
+      font-weight: 400; color: var(--green); letter-spacing: -0.8px;
       text-decoration: underline; text-underline-offset: 3px;
       transition: opacity 0.2s ease;
     }
     .trusted-learn-more:hover { opacity: 0.65; }
     .trusted-photo {
-      width: 100%; aspect-ratio: 1/1; border-radius: 33px;
+      width: 100%; aspect-ratio: 1/1; border-radius: 22px;
       object-fit: cover; display: block;
     }
 
@@ -617,7 +703,7 @@
     ═══════════════════════════════════════════════════════ */
     .press-section {
       position: relative; overflow: hidden;
-      padding: 100px clamp(100px, 13vw, 240px) 100px;
+      padding: 67px clamp(160px, 18vw, 320px) 67px;
       background: #2d1a0a;
     }
     .press-bg {
@@ -626,13 +712,13 @@
     }
     .press-inner { position: relative; z-index: 2; text-align: center; }
     .press-label {
-      font-family: var(--label); font-size: clamp(22px, 2.2vw, 42px);
-      font-weight: 400; color: var(--white); letter-spacing: -1px;
-      text-transform: lowercase; margin-bottom: 32px;
+      font-family: var(--label); font-size: clamp(15px, 1.5vw, 28px);
+      font-weight: 400; color: var(--white); letter-spacing: -0.7px;
+      text-transform: lowercase; margin-bottom: 21px;
     }
     .press-quote {
       font-family: var(--serif);
-      font-size: clamp(20px, 2.3vw, 44px);
+      font-size: clamp(13px, 1.5vw, 29px);
       font-weight: 400; line-height: 1.2; letter-spacing: -1.5px;
       color: var(--white); max-width: clamp(480px, 58vw, 860px); margin-bottom: 56px;
       margin-left: auto; margin-right: auto;
@@ -652,7 +738,7 @@
     .press-logo-btn:hover { opacity: 0.9; transform: translateY(-2px); }
     .press-logo-btn.active { opacity: 1; }
     .press-logo {
-      height: clamp(20px, 2vw, 32px); width: auto; object-fit: contain;
+      height: clamp(14px, 1.4vw, 21px); width: auto; object-fit: contain;
       filter: brightness(0) invert(1); display: block;
     }
 
@@ -660,11 +746,11 @@
     /* ═══════════════════════════════════════════════════════
        8. REVIEWS
     ═══════════════════════════════════════════════════════ */
-    .reviews { background: #204c3e; padding: 80px 0 80px; }
-    .reviews-head { text-align: center; margin-bottom: 48px; padding: 0 clamp(60px, 8vw, 160px); }
+    .reviews { background: #204c3e; padding: 54px 0 54px; }
+    .reviews-head { text-align: center; margin-bottom: 32px; padding: 0 clamp(160px, 18vw, 320px); }
     .rev-community-heading {
-      font-family: var(--label); font-size: clamp(20px, 1.5vw, 28px);
-      font-weight: 400; color: var(--white); letter-spacing: -1px; text-transform: lowercase;
+      font-family: var(--label); font-size: clamp(14px, 1vw, 19px);
+      font-weight: 400; color: var(--white); letter-spacing: -0.7px; text-transform: lowercase;
     }
     /* Arrow nav wrapper */
     .reviews-nav { position: relative; }
@@ -696,7 +782,7 @@
     /* Slides */
     .rev-slide {
       flex-shrink: 0;
-      width: clamp(240px, 21vw, 407px); height: clamp(360px, 42vw, 582px);
+      width: clamp(160px, 14vw, 271px); height: clamp(240px, 28vw, 388px);
       border-radius: 30px; overflow: hidden; background: #f1f1ea;
       transition: transform 0.55s cubic-bezier(.4,0,.2,1), opacity 0.55s ease;
       transform: scale(0.84);
@@ -709,33 +795,33 @@
       z-index: 2;
     }
     .rev-slide.wide {
-      width: clamp(270px, 24vw, 470px);
+      width: clamp(180px, 16vw, 313px);
     }
     .rev-slide.photo img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .rev-slide-inner {
-      padding: clamp(28px, 3vw, 48px) clamp(24px, 2.5vw, 40px);
+      padding: clamp(16px, 1.8vw, 28px) clamp(14px, 1.5vw, 24px);
       height: 100%; box-sizing: border-box;
       display: flex; flex-direction: column; justify-content: center;
     }
     .rev-slide-stars {
-      font-size: clamp(18px, 1.5vw, 26px); color: #204c3e; letter-spacing: 2px; margin-bottom: 20px;
+      font-size: clamp(12px, 1vw, 17px); color: #204c3e; letter-spacing: 2px; margin-bottom: 12px;
     }
     .rev-slide-quote {
-      font-family: var(--serif); font-size: clamp(18px, 1.8vw, 32px);
-      font-weight: 400; line-height: 1.3; letter-spacing: -1.2px;
-      color: #204c3e; flex: 1; margin-bottom: 24px;
+      font-family: var(--serif); font-size: clamp(12px, 1.2vw, 21px);
+      font-weight: 400; line-height: 1.3; letter-spacing: -0.8px;
+      color: #204c3e; flex: 1; margin-bottom: 14px;
     }
     .rev-slide-name {
-      font-family: var(--label); font-size: clamp(14px, 1.1vw, 20px);
-      font-weight: 600; color: #204c3e; letter-spacing: -0.5px; margin-bottom: 5px;
+      font-family: var(--label); font-size: clamp(9px, 0.75vw, 13px);
+      font-weight: 600; color: #204c3e; letter-spacing: -0.3px; margin-bottom: 4px;
     }
     .rev-slide-verified {
-      font-family: var(--label); font-size: 12px;
+      font-family: var(--label); font-size: 9px;
       color: #204c3e; opacity: 0.6; letter-spacing: -0.2px;
     }
-    .reviews-cta { text-align: center; margin-top: 48px; }
+    .reviews-cta { text-align: center; margin-top: 32px; }
     .rev-cta-btn {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--mango); color: var(--white);
@@ -762,12 +848,13 @@
     ═══════════════════════════════════════════════════════ */
     .footer {
       display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 620px; overflow: hidden;
+      height: 88vh; max-height: 88vh; overflow: hidden;
+      border-top: 2px solid #ffffff;
     }
     /* Left green panel */
     .footer-left {
-      background: #204c3e; padding: 56px 56px 48px 56px;
-      display: flex; flex-direction: column;
+      background: #204c3e; padding: 44px 56px 38px 56px;
+      display: flex; flex-direction: column; overflow: hidden;
     }
     .footer-left-top { margin-bottom: 36px; }
     .footer-signup-h {
@@ -845,11 +932,11 @@
     .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
     /* Right photo panel */
     .footer-right {
-      position: relative; overflow: hidden; min-height: 580px; background: #2a3a30;
+      position: relative; overflow: hidden; background: #2a3a30;
     }
     .footer-girl-img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center 15%; display: block;
+      object-fit: cover; object-position: center 50%; display: block;
     }
     .footer-right-overlay {
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -874,7 +961,8 @@
        RESPONSIVE
     ═══════════════════════════════════════════════════════ */
     @media (max-width: 1280px) {
-      .ing-grid  { grid-template-columns: repeat(3,1fr); }
+      .pillar-grid { grid-template-columns: repeat(2,1fr); height: auto; gap: 10px; }
+      .pillar-card { height: clamp(200px, 30vw, 360px); }
       .credibility { grid-template-columns: 1fr; gap: 48px; }
       .cred-img-block { height: 300px; }
     }
@@ -891,11 +979,11 @@
       .pshow-photo-wrap { width: 100%; max-width: 420px; }
       .features-stats { flex-direction: column; }
       .fstat:first-child { width: 100%; }
-      .ingredients, .credibility { padding-left: 24px; padding-right: 24px; }
-      .ing-header { flex-direction: column; align-items: flex-start; }
-      .ing-note { text-align: left; max-width: 100%; }
-      .footer { grid-template-columns: 1fr; }
-      .footer-right { min-height: 320px; }
+      .science-section { padding-left: 24px; padding-right: 24px; }
+      .pillar-modal { grid-template-columns: 1fr; }
+      .pillar-modal-left { height: 40%; }
+      .footer { grid-template-columns: 1fr; height: auto; max-height: none; }
+      .footer-right { height: 320px; }
       .footer-left { padding: 40px 24px 36px 24px; }
       .footer-nav-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
       .howto-grid { flex-direction: column; }
@@ -903,12 +991,12 @@
     @media (max-width: 600px) {
       .hero-h1 { font-size: 36px; letter-spacing: -1.8px; }
       .hero-badge { display: none; }
-      .ing-grid { grid-template-columns: 1fr 1fr; }
+      .pillar-grid { grid-template-columns: 1fr 1fr; }
       .cred-stats { flex-direction: column; gap: 28px; }
       .trusted-section { grid-template-columns: 1fr; }
     }
     @media (max-width: 400px) {
-      .ing-grid { grid-template-columns: 1fr; }
+      .pillar-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -1121,74 +1209,64 @@
 
 
   <!-- ════════════════════════════
-       5. INGREDIENTS
+       5. THE SCIENCE / PILLARS
   ════════════════════════════ -->
-  <section class="ingredients" id="ingredients">
-    <div class="ing-header fade-up">
-      <h2 class="ing-heading">what's inside.</h2>
-      <p class="ing-note">Every ingredient is clinically studied, precisely dosed, and doctor-reviewed.</p>
+  <section class="science-section" id="ingredients">
+    <div class="science-header fade-up">
+      <span class="science-tag">WHAT'S INSIDE</span>
+      <h2 class="science-heading">the science</h2>
+      <p class="science-sub">Every ingredient in day—guard is clinically backed, transparently dosed, and formulated to protect your body the morning after.</p>
+      <div class="science-pills">
+        <span class="science-pill">doctor-formulated</span>
+        <span class="science-pill">clinically studied</span>
+        <span class="science-pill">transparently dosed</span>
+      </div>
     </div>
 
-    <div class="ing-grid">
-
-      <div class="ing-card fade-up">
-        <svg class="ing-icon" viewBox="0 0 44 44" fill="none">
-          <circle cx="22" cy="22" r="14" stroke="currentColor" stroke-width="2" opacity=".25"/>
-          <path d="M22 15v7l4.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="22" cy="22" r="2" fill="currentColor"/>
-        </svg>
-        <p class="ing-name">DHM</p>
-        <p class="ing-desc">Dihydromyricetin — clinically studied to support liver detoxification and reduce alcohol's impact on the body.</p>
+    <div class="pillar-grid">
+      <div class="pillar-card fade-up" data-pillar="liver">
+        <img class="pillar-bg" src="https://www.figma.com/api/mcp/asset/1cd7ec1d-3c88-4f86-9392-1a0afbb9881f" alt="Liver Support">
+        <img class="pillar-gradient" src="https://www.figma.com/api/mcp/asset/0777d3e5-e75f-4aa2-a0d2-5bac6f43c291" alt="">
+        <span class="pillar-label">Liver Support</span>
       </div>
-
-      <div class="ing-card fade-up" style="transition-delay:.06s">
-        <svg class="ing-icon" viewBox="0 0 44 44" fill="none">
-          <path d="M14 22c0-4.42 3.58-8 8-8s8 3.58 8 8-3.58 8-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M30 22c0 4.42-3.58 8-8 8H10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="10" cy="30" r="2.5" fill="currentColor"/>
-          <circle cx="22" cy="14" r="2.5" fill="currentColor"/>
-        </svg>
-        <p class="ing-name">Prebiotics</p>
-        <p class="ing-desc">Shields your gut microbiome and digestive lining when alcohol disrupts the balance most.</p>
+      <div class="pillar-card fade-up" data-pillar="gut" style="transition-delay:.08s">
+        <img class="pillar-bg" src="https://www.figma.com/api/mcp/asset/5f3a9f21-aa80-44ca-abf1-9b7ca8a6665a" alt="Gut Support">
+        <img class="pillar-gradient" src="https://www.figma.com/api/mcp/asset/23798e9c-f986-443d-ac62-ed5c6cad9af9" alt="">
+        <span class="pillar-label">Gut Support</span>
       </div>
-
-      <div class="ing-card fade-up" style="transition-delay:.12s">
-        <svg class="ing-icon" viewBox="0 0 44 44" fill="none">
-          <path d="M22 8l3 9h9l-7.5 5.5 3 9L22 26l-7.5 5.5 3-9L10 17h9l3-9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        </svg>
-        <p class="ing-name">Electrolytes</p>
-        <p class="ing-desc">Sodium, potassium, and magnesium — restoring the hydration balance that alcohol actively depletes.</p>
+      <div class="pillar-card fade-up" data-pillar="vitamins" style="transition-delay:.16s">
+        <img class="pillar-bg" src="https://www.figma.com/api/mcp/asset/92a90509-0988-45d1-8e92-3e59dee17aae" alt="Vitamin Replenishment">
+        <img class="pillar-gradient" src="https://www.figma.com/api/mcp/asset/f38d5df4-9d2c-41e9-9ee2-d33e8e1188ef" alt="">
+        <span class="pillar-label">Vitamin Replenishment</span>
       </div>
-
-      <div class="ing-card fade-up" style="transition-delay:.18s">
-        <svg class="ing-icon" viewBox="0 0 44 44" fill="none">
-          <rect x="11" y="11" width="22" height="22" rx="5" stroke="currentColor" stroke-width="2"/>
-          <path d="M17 22h5c1.1 0 2-.9 2-2s-.9-2-2-2h-5v8h5.5c1.38 0 2.5-1.12 2.5-2.5S22.88 24 21.5 24H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <p class="ing-name">B-Vitamins</p>
-        <p class="ing-desc">B1, B6, and B12 — the vitamins alcohol depletes fastest, replenished before your first sip.</p>
+      <div class="pillar-card fade-up" data-pillar="hydration" style="transition-delay:.24s">
+        <img class="pillar-bg" src="https://www.figma.com/api/mcp/asset/32d04d91-8432-4044-bec7-8f22b76052a9" alt="Hydration">
+        <div class="pillar-gradient" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 60%);"></div>
+        <span class="pillar-label">Hydration</span>
       </div>
-
-      <div class="ing-card fade-up" style="transition-delay:.24s">
-        <svg class="ing-icon" viewBox="0 0 44 44" fill="none">
-          <circle cx="22" cy="22" r="12" stroke="currentColor" stroke-width="2"/>
-          <path d="M18.5 22c0-1.93 1.57-3.5 3.5-3.5s3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M22 11v2M22 31v2M11 22h2M31 22h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <p class="ing-name">Vitamin C</p>
-        <p class="ing-desc">Antioxidant defense that neutralizes oxidative stress triggered during alcohol metabolism.</p>
-      </div>
-
-    </div>
-
-    <div class="ing-badges fade-up">
-      <span class="ing-badge">Doctor-Formulated</span>
-      <span class="ing-badge">No Fillers</span>
-      <span class="ing-badge">Vegan</span>
-      <span class="ing-badge">Gluten-Free</span>
-      <span class="ing-badge">30-Day Money Back</span>
     </div>
   </section>
+
+  <!-- Pillar Modal Overlay -->
+  <div class="pillar-modal-overlay" id="pillarModal">
+    <div class="pillar-modal">
+      <div class="pillar-modal-left">
+        <img class="pillar-modal-bg" id="pillarModalBg" src="" alt="">
+        <div class="pillar-modal-left-gradient"></div>
+        <span class="pillar-modal-left-label" id="pillarModalLabel"></span>
+      </div>
+      <div class="pillar-modal-right">
+        <button class="pillar-modal-close" id="pillarModalClose" aria-label="Close">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L12 12M12 1L1 12" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <p class="pillar-modal-title" id="pillarModalTitle"></p>
+        <p class="pillar-modal-desc" id="pillarModalDesc"></p>
+        <ul class="pillar-modal-ing-list" id="pillarModalIngList"></ul>
+      </div>
+    </div>
+  </div>
 
 
   <!-- ════════════════════════════
@@ -1664,6 +1742,100 @@
 
       /* Initial render after paint so offsetWidth values are available */
       requestAnimationFrame(() => requestAnimationFrame(render));
+    })();
+
+    /* ── Pillar modal ── */
+    (function() {
+      const pillars = {
+        liver: {
+          label: 'Liver Support',
+          title: 'LIVER SUPPORT',
+          bg: 'https://www.figma.com/api/mcp/asset/1cd7ec1d-3c88-4f86-9392-1a0afbb9881f',
+          desc: 'As the liver breaks down alcohol, it produces acetaldehyde, a toxic compound responsible for fatigue and discomfort.\n\nday–guard\'s liver support complex combines Hovenia Dulcis, Turmeric Extract, Milk Thistle, and L-Cysteine to expedite acetaldehyde breakdown, reduce oxidative stress, and support natural detoxification.',
+          ingredients: [
+            { name: 'Hovenia Dulcis (Oriental Raisin Tree) Fruit Concentrate', img: 'https://www.figma.com/api/mcp/asset/bd958b09-16e5-488f-931a-903c2cfd9dca' },
+            { name: 'Turmeric (Rhizome) Extract', img: 'https://www.figma.com/api/mcp/asset/1804923b-efb3-443b-bd32-5ead34707968' },
+            { name: 'Milk Thistle (Seed) Extract', img: 'https://www.figma.com/api/mcp/asset/7256a0c3-f231-4e94-820f-4d5dd289752b' },
+            { name: 'L-Cysteine', img: 'https://www.figma.com/api/mcp/asset/cf7db0ef-80a9-4294-952a-c5cc2b1e6706' },
+            { name: 'Black Pepper (Fruit) Extract', img: 'https://www.figma.com/api/mcp/asset/51bba8ff-72c4-4b2c-8e46-dba1fa9c0544' }
+          ]
+        },
+        gut: {
+          label: 'Gut Support',
+          title: 'GUT SUPPORT',
+          bg: 'https://www.figma.com/api/mcp/asset/5f3a9f21-aa80-44ca-abf1-9b7ca8a6665a',
+          desc: 'Alcohol can disrupt gut function and slow digestion.\n\nPear Juice Concentrate, Fructo-oligosaccharides (prebiotics), and Ginger Extract help maintain microbial balance, soothe the stomach, and support healthy digestion, so your body stays comfortable during recovery.',
+          ingredients: [
+            { name: 'Ginger', img: 'https://www.figma.com/api/mcp/asset/47e35e9a-1d2d-474e-adfa-b3520b8a5b8f' },
+            { name: 'Korean Pear', img: 'https://www.figma.com/api/mcp/asset/398dce93-6627-46e7-b694-81274c2af271' },
+            { name: 'Fructo-oligosaccharides', img: 'https://www.figma.com/api/mcp/asset/b3ac866b-104a-4086-a098-cbb23cdc7122' },
+            { name: 'Xylitol', img: 'https://www.figma.com/api/mcp/asset/797f2d11-4de1-407e-8193-a64941d0e621' },
+            { name: 'Black Pepper (Fruit) Extract', img: 'https://www.figma.com/api/mcp/asset/51bba8ff-72c4-4b2c-8e46-dba1fa9c0544' }
+          ]
+        },
+        vitamins: {
+          label: 'Vitamin Replenishment',
+          title: 'VITAMIN REPLENISHMENT',
+          bg: 'https://www.figma.com/api/mcp/asset/92a90509-0988-45d1-8e92-3e59dee17aae',
+          desc: 'Your body needs vitamins for energy and recovery, and alcohol robs your body of these essential vitamins.\n\nday–guard® replenishes them with Thiamine (B1), Riboflavin (B2), Niacin (B3), and Vitamin B6, supporting metabolism, energy production, and overall cellular repair.',
+          ingredients: [
+            { name: 'Thiamine (Vitamin B1)', img: 'https://www.figma.com/api/mcp/asset/c0d0f886-393c-4d0d-869f-824ac24940ef' },
+            { name: 'Riboflavin (Vitamin B2)', img: 'https://www.figma.com/api/mcp/asset/6f2e5c93-c754-42b2-9508-696014b74d16' },
+            { name: 'Niacin (Vitamin B3)', img: 'https://www.figma.com/api/mcp/asset/432cfd6b-2e17-406b-bae6-c2c584108675' },
+            { name: 'Vitamin B6', img: 'https://www.figma.com/api/mcp/asset/648b7ca8-e754-447a-bf2b-df716e3b4e34' },
+            { name: 'Black Pepper (Fruit) Extract', img: 'https://www.figma.com/api/mcp/asset/51bba8ff-72c4-4b2c-8e46-dba1fa9c0544' }
+          ]
+        },
+        hydration: {
+          label: 'Hydration',
+          title: 'HYDRATION',
+          bg: 'https://www.figma.com/api/mcp/asset/32d04d91-8432-4044-bec7-8f22b76052a9',
+          desc: 'Alcohol acts as a diuretic, leading to dehydration and electrolyte loss.\n\nMagnesium Gluconate and Sodium Citrate help restore fluid balance and muscle function, while natural fruit concentrates aid hydration and nutrient absorption.',
+          ingredients: [
+            { name: 'Magnesium', img: 'https://www.figma.com/api/mcp/asset/615c6622-3985-44ac-adef-ae27eb423859' },
+            { name: 'Sodium', img: 'https://www.figma.com/api/mcp/asset/c12dbae5-8722-4516-b0e6-ad56a45abc06' },
+            { name: 'Korean Pear', img: 'https://www.figma.com/api/mcp/asset/6ff94394-102c-4258-9056-d5c96652540d' },
+            { name: 'Black Pepper (Fruit) Extract', img: 'https://www.figma.com/api/mcp/asset/51bba8ff-72c4-4b2c-8e46-dba1fa9c0544' }
+          ]
+        }
+      };
+
+      const overlay    = document.getElementById('pillarModal');
+      const modalBg    = document.getElementById('pillarModalBg');
+      const modalLabel = document.getElementById('pillarModalLabel');
+      const modalTitle = document.getElementById('pillarModalTitle');
+      const modalDesc  = document.getElementById('pillarModalDesc');
+      const modalList  = document.getElementById('pillarModalIngList');
+      const closeBtn   = document.getElementById('pillarModalClose');
+      if (!overlay) return;
+
+      function openModal(key) {
+        const d = pillars[key]; if (!d) return;
+        modalBg.src          = d.bg;
+        modalLabel.textContent = d.label;
+        modalTitle.textContent = d.title;
+        modalDesc.innerHTML  = d.desc.replace(/\n\n/g, '<br><br>');
+        modalList.innerHTML  = d.ingredients.map(ing =>
+          `<li class="pillar-modal-ing-item">
+            <img class="pillar-modal-ing-img" src="${ing.img}" alt="${ing.name}">
+            <span class="pillar-modal-ing-name">${ing.name}</span>
+          </li>`
+        ).join('');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.pillar-card').forEach(card => {
+        card.addEventListener('click', () => openModal(card.dataset.pillar));
+      });
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
     })();
 
     /* ── How-to hover videos ── */

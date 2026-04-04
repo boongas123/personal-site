@@ -791,81 +791,130 @@
     /* ═══════════════════════════════════════════════════════
        INSURANCE — "INSURANCE FOR WHEN YOU DRINK"
     ═══════════════════════════════════════════════════════ */
-    .insurance-section { position: relative; background: #1a0f05; }
-    .insurance-img { width: 100%; height: 480px; object-fit: cover; object-position: center 40%; display: block; }
-    .insurance-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to right,
-        rgba(2,7,6,0.72) 0%, rgba(2,7,6,0.42) 55%, rgba(2,7,6,0.08) 100%);
-      pointer-events: none;
+    .insurance-section { background: #f1f1ea; padding: 60px 45px; }
+    .insurance-card {
+      position: relative; border-radius: 10px; overflow: hidden;
+      height: clamp(380px, 38vw, 540px);
     }
-    .insurance-content {
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      display: flex; align-items: center;
-      padding: 0 clamp(40px, 6vw, 120px);
+    .insurance-card-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center; display: block;
+    }
+    .insurance-card-content {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(32px, 3.8vw, 52px) clamp(32px, 3.8vw, 52px) clamp(28px, 3.2vw, 44px);
     }
     .insurance-headline {
-      font-family: var(--serif); font-size: clamp(36px, 4.5vw, 68px);
-      font-weight: 400; letter-spacing: -3px; line-height: 1.04;
-      color: var(--white); max-width: 580px;
+      font-family: var(--serif); font-size: clamp(34px, 4.5vw, 64px);
+      font-weight: 400; letter-spacing: -1.92px; line-height: 0.9;
+      color: var(--white); text-transform: lowercase; max-width: 520px;
     }
-    .insurance-pills {
-      background: var(--beige); padding: 28px clamp(40px, 6vw, 120px);
-      display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-start;
+    .insurance-benefits {
+      background: rgba(217,217,217,0.20); border-radius: 3px;
+      padding: clamp(20px, 2.5vw, 32px) clamp(20px, 2.5vw, 36px);
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
     }
-    .insurance-pill {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--white); border-radius: 100px;
-      padding: 11px 20px; border: 1px solid rgba(2,7,6,0.07);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-    .insurance-pill-icon {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(32,76,62,0.09);
+    .ins-benefit { display: flex; flex-direction: column; gap: 18px; }
+    .ins-benefit-icon {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: rgba(255,255,255,0.92);
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .insurance-pill-icon svg { width: 15px; height: 15px; color: var(--green); }
-    .insurance-pill-label { font-family: var(--sans); font-size: 14px; font-weight: 500; letter-spacing: -0.3px; color: var(--black); }
+    .ins-benefit-icon img { width: 28px; height: 28px; display: block; object-fit: contain; }
+    .ins-benefit-text {}
+    .ins-benefit-name {
+      font-family: var(--sans); font-size: clamp(16px, 1.8vw, 26px);
+      font-weight: 400; letter-spacing: -1.04px; line-height: 1.25;
+      color: var(--white); margin-bottom: 5px;
+    }
+    .ins-benefit-desc {
+      font-family: var(--serif); font-size: clamp(12px, 1.2vw, 18px);
+      font-weight: 400; letter-spacing: -0.72px; line-height: 1.4;
+      color: rgba(255,255,255,0.72);
+    }
 
     /* ═══════════════════════════════════════════════════════
        OUR DIFFERENCE — COMPARISON TABLE
     ═══════════════════════════════════════════════════════ */
-    .comparison-section { background: var(--beige); padding: 80px clamp(40px, 5vw, 100px); }
+    .comparison-section { background: #f1f1ea; padding: 0 45px 60px; }
     .comparison-inner {
       max-width: 1320px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px; align-items: stretch;
+      display: grid; grid-template-columns: 391fr 898fr; gap: 20px; align-items: stretch;
     }
     .comparison-left {
-      border-radius: 24px; overflow: hidden; position: relative;
-      min-height: 440px; background: #1a1208;
+      border-radius: 10px; overflow: hidden; position: relative;
+      min-height: 440px;
     }
-    .comparison-left img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .comparison-left img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .comparison-right {
-      background: var(--green); border-radius: 24px;
-      padding: 36px 32px; display: flex; flex-direction: column;
+      background: var(--green); border-radius: 10px;
+      padding: clamp(28px, 3vw, 44px) clamp(24px, 2.8vw, 40px);
+      display: flex; flex-direction: column;
     }
     .comparison-heading {
       font-family: var(--serif); font-size: clamp(26px, 2.4vw, 38px);
       font-weight: 400; letter-spacing: -1.6px; line-height: 1.1;
       color: var(--white); margin-bottom: 24px;
     }
-    .comparison-table { width: 100%; border-collapse: collapse; flex: 1; }
+    .comparison-table { width: 100%; border-collapse: collapse; flex: 1; table-layout: fixed; }
+    .comparison-table col.label-col { width: 28%; }
+    .comparison-table col.dg-col-col { width: 20%; }
+    .comparison-table col.comp-col { width: 17.33%; }
     .comparison-table th {
-      font-family: var(--label); font-size: 10px; font-weight: 600;
-      letter-spacing: 0.3px; text-transform: uppercase;
-      color: rgba(255,255,255,0.45); padding: 0 0 10px;
-      text-align: center; border-bottom: 1px solid rgba(255,255,255,0.12);
+      font-family: var(--label); font-size: clamp(8px, 0.75vw, 11px); font-weight: 600;
+      letter-spacing: 0.2px; text-transform: lowercase;
+      color: rgba(255,255,255,0.45); padding: 0 6px 10px;
+      text-align: center; border-bottom: 1px solid rgba(154,172,160,0.5);
+      vertical-align: bottom; line-height: 1.3;
     }
-    .comparison-table th:first-child { text-align: left; }
-    .comparison-table th.dg-col { color: var(--white); opacity: 1; }
+    .comparison-table th:first-child { text-align: left; padding-left: 0; }
+    .comparison-table th.dg-col {
+      background: var(--white);
+      border-radius: 4px 4px 0 0;
+      padding-bottom: 10px; padding-top: 8px;
+    }
+    .comparison-table th.dg-col .dg-wordmark {
+      font-family: var(--serif); font-size: clamp(10px, 1vw, 14px);
+      font-weight: 400; letter-spacing: -0.5px;
+      color: var(--green); text-transform: lowercase; display: block;
+    }
     .comparison-table td {
-      padding: 11px 4px; text-align: center;
+      padding: 10px 6px; text-align: center;
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      font-size: 14px; color: rgba(255,255,255,0.5);
+      font-size: 13px; color: rgba(255,255,255,0.5);
     }
-    .comparison-table td:first-child { text-align: left; font-size: 13px; letter-spacing: -0.2px; color: rgba(255,255,255,0.8); }
-    .comparison-table .check { color: var(--mango); font-size: 15px; font-weight: 700; }
-    .comparison-table .cross { color: rgba(255,255,255,0.22); font-size: 16px; }
+    .comparison-table td:first-child {
+      text-align: left; font-family: var(--sofia); font-size: clamp(10px, 0.9vw, 13px);
+      letter-spacing: -0.2px; color: rgba(255,255,255,0.8); padding-left: 0; text-transform: lowercase;
+    }
+    .comparison-table td.dg-cell {
+      background: var(--white);
+    }
+    .comparison-table tbody tr:last-child td.dg-cell { border-radius: 0 0 4px 4px; }
+    .comparison-table .check-circle {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--green); color: var(--white);
+      font-size: 11px; font-weight: 700; line-height: 1;
+    }
+    .comparison-table td.dg-cell .check-circle {
+      background: var(--green); color: var(--white);
+    }
+    .comparison-table .cross-circle {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.3); font-size: 10px; line-height: 1;
+    }
+    .comparison-table .dg-mg {
+      font-family: var(--sans); font-size: clamp(10px, 0.9vw, 13px);
+      font-weight: 500; color: var(--green); letter-spacing: -0.3px;
+    }
+    .comparison-table .comp-mg {
+      font-family: var(--sans); font-size: clamp(9px, 0.8vw, 12px);
+      color: rgba(255,255,255,0.45); letter-spacing: -0.2px;
+    }
     .comparison-cta {
       margin-top: 20px; display: block; text-align: center;
       padding: 13px; border-radius: 8px;
@@ -1052,7 +1101,7 @@
       display: flex; align-items: center; justify-content: center;
       background: #ece8e0;
     }
-    .howto-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    .howto-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 50%; }
     .howto-img-placeholder {
       width: 100%; height: 100%;
       background: #e8e3da;
@@ -1165,6 +1214,176 @@
     .reviews-read-all:hover { background: var(--green); color: var(--beige); }
 
     /* ═══════════════════════════════════════════════════════
+       BUNDLES / OPTIONS
+    ═══════════════════════════════════════════════════════ */
+    .bundles-section {
+      background: var(--beige);
+      padding: 80px 130px;
+    }
+    .bundles-header { margin-bottom: 52px; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+    .bundles-heading {
+      font-family: var(--serif); font-size: clamp(36px, 4vw, 64px);
+      font-weight: 400; letter-spacing: -3px; line-height: 1.05; color: var(--black);
+    }
+    .bundles-sub {
+      font-family: var(--sans); font-size: clamp(12px, 1vw, 16px);
+      color: rgba(0,0,0,0.55); letter-spacing: -0.3px; line-height: 1.5;
+      max-width: 280px; text-align: right;
+    }
+    .bundles-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    .bundle-card {
+      background: var(--white); border-radius: 28px;
+      padding: 36px 32px; display: flex; flex-direction: column;
+      border: 1.5px solid rgba(2,7,6,0.07);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      position: relative; overflow: hidden;
+    }
+    .bundle-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.09); }
+    .bundle-card.featured {
+      background: var(--green); border-color: var(--green);
+      color: var(--white);
+    }
+    .bundle-badge {
+      position: absolute; top: 20px; right: 20px;
+      font-family: var(--label); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      background: var(--mango); color: var(--white);
+      padding: 5px 10px; border-radius: 100px;
+    }
+    .bundle-count {
+      font-family: var(--serif); font-size: clamp(38px, 4vw, 62px);
+      font-weight: 400; letter-spacing: -2.5px; line-height: 1;
+      color: var(--black); margin-bottom: 2px;
+    }
+    .bundle-card.featured .bundle-count { color: var(--white); }
+    .bundle-sticks {
+      font-family: var(--label); font-size: 13px; font-weight: 400;
+      letter-spacing: -0.3px; opacity: 0.5; margin-bottom: 28px;
+    }
+    .bundle-divider {
+      height: 1px; background: rgba(2,7,6,0.08); margin-bottom: 24px;
+    }
+    .bundle-card.featured .bundle-divider { background: rgba(255,255,255,0.15); }
+    .bundle-price-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .bundle-price-label {
+      font-family: var(--sans); font-size: 12px; letter-spacing: -0.2px;
+      opacity: 0.55;
+    }
+    .bundle-price {
+      font-family: var(--sans); font-size: 20px; font-weight: 700;
+      letter-spacing: -0.8px; color: var(--black);
+    }
+    .bundle-card.featured .bundle-price { color: var(--white); }
+    .bundle-price-sub {
+      font-family: var(--sans); font-size: 20px; font-weight: 700;
+      letter-spacing: -0.8px; color: var(--mango);
+    }
+    .bundle-save {
+      font-family: var(--label); font-size: 11px; font-weight: 600;
+      color: var(--mango); letter-spacing: -0.1px;
+      margin-bottom: 28px; margin-top: 4px; display: block;
+    }
+    .bundle-card:not(.featured) .bundle-save-white { display: none; }
+    .bundle-per-stick {
+      font-family: var(--sans); font-size: 12px; opacity: 0.45;
+      letter-spacing: -0.2px; margin-bottom: auto; padding-bottom: 28px;
+    }
+    .bundle-cta {
+      display: block; text-align: center; padding: 14px;
+      border-radius: 8px; margin-top: auto;
+      font-family: var(--label); font-size: 14px; font-weight: 600;
+      letter-spacing: -0.3px; transition: opacity 0.2s, background 0.2s;
+    }
+    .bundle-card:not(.featured) .bundle-cta {
+      background: var(--green); color: var(--white);
+    }
+    .bundle-card:not(.featured) .bundle-cta:hover { opacity: 0.85; }
+    .bundle-card.featured .bundle-cta {
+      background: var(--white); color: var(--green);
+    }
+    .bundle-card.featured .bundle-cta:hover { background: #f0f0ea; }
+
+    /* ═══════════════════════════════════════════════════════
+       SCIENCE / PILLARS (shared with homepage)
+    ═══════════════════════════════════════════════════════ */
+    .science-section { background: var(--beige); padding: 80px 130px 80px; }
+    .science-header { margin-bottom: 40px; }
+    .science-tag { font-family: var(--sans); font-size: 20px; letter-spacing: -0.8px; color: var(--black); display: block; margin-bottom: 16px; }
+    .science-heading { font-family: var(--serif); font-size: clamp(56px, 6vw, 100px); font-weight: 400; line-height: 1.05; letter-spacing: -4px; color: var(--black); margin-bottom: 16px; }
+    .science-sub { font-family: var(--sans); font-size: clamp(13px, 1.05vw, 20px); letter-spacing: -0.5px; color: rgba(0,0,0,0.7); max-width: 900px; line-height: 1.5; margin-bottom: 22px; }
+    .science-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+    .science-pill { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--white); background: var(--green); padding: 6px 13px; border-radius: 17px; letter-spacing: -0.1px; text-transform: lowercase; line-height: 1.4; display: inline-flex; align-items: center; }
+    .pillar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; height: clamp(320px, 38vw, 640px); }
+    .pillar-card { position: relative; border-radius: 20px; overflow: hidden; cursor: pointer; transition: transform 0.35s cubic-bezier(.4,0,.2,1), box-shadow 0.35s ease; }
+    .pillar-card:hover { transform: scale(1.04); z-index: 2; box-shadow: 0 24px 56px rgba(0,0,0,0.2); }
+    .pillar-bg { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+    .pillar-gradient { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+    .pillar-label { position: absolute; bottom: 24px; left: 24px; font-family: var(--serif); font-size: clamp(18px, 1.8vw, 30px); font-weight: 400; color: var(--white); letter-spacing: -0.8px; line-height: 1.1; pointer-events: none; }
+    .pillar-modal-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 24px; }
+    .pillar-modal-overlay.active { opacity: 1; pointer-events: all; }
+    .pillar-modal { display: grid; grid-template-columns: 1fr 1fr; width: 100%; max-width: 1100px; height: min(78vh, 680px); border-radius: 24px; overflow: hidden; transform: scale(0.96) translateY(14px); transition: transform 0.35s cubic-bezier(.4,0,.2,1); box-shadow: 0 40px 100px rgba(0,0,0,0.3); }
+    .pillar-modal-overlay.active .pillar-modal { transform: scale(1) translateY(0); }
+    .pillar-modal-left { position: relative; overflow: hidden; }
+    .pillar-modal-bg { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pillar-modal-left-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 55%); }
+    .pillar-modal-left-label { position: absolute; bottom: 32px; left: 32px; font-family: var(--serif); font-size: clamp(26px, 2.8vw, 46px); font-weight: 400; color: var(--white); letter-spacing: -1.5px; line-height: 1.1; }
+    .pillar-modal-right { background: var(--white); padding: 40px 44px; overflow-y: auto; position: relative; }
+    .pillar-modal-close { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; background: var(--green); color: var(--white); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.22s ease, transform 0.22s ease; }
+    .pillar-modal-close:hover { background: #163527; transform: rotate(90deg); }
+    .pillar-modal-close svg { display: block; flex-shrink: 0; }
+    .pillar-modal-title { font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--black); margin-bottom: 18px; padding-right: 52px; }
+    .pillar-modal-desc { font-family: var(--sans); font-size: clamp(13px, 1.1vw, 17px); font-weight: 400; line-height: 1.65; letter-spacing: -0.3px; color: rgba(0,0,0,0.7); margin-bottom: 28px; }
+    .pillar-modal-ing-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .pillar-modal-ing-item { display: flex; align-items: center; gap: 14px; }
+    .pillar-modal-ing-img { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; flex-shrink: 0; background: var(--beige); }
+    .pillar-modal-ing-name { font-family: var(--sans); font-size: clamp(12px, 0.95vw, 15px); font-weight: 400; letter-spacing: -0.3px; color: var(--black); line-height: 1.3; }
+
+    /* ═══════════════════════════════════════════════════════
+       TRUSTED BY EXPERTS (shared with homepage)
+    ═══════════════════════════════════════════════════════ */
+    .trusted-section { background: var(--white); padding: 54px clamp(160px, 18vw, 320px); border-radius: 0 0 50px 50px; display: grid; grid-template-columns: 3fr 2fr; gap: clamp(28px, 3.3vw, 67px); align-items: center; }
+    .trusted-heading { font-family: var(--sans); font-size: clamp(22px, 2.2vw, 40px); font-weight: 400; line-height: 1.1; letter-spacing: -1.7px; color: var(--green); margin-bottom: 18px; }
+    .trusted-quote { font-family: var(--serif); font-size: clamp(13px, 1.4vw, 26px); font-weight: 400; line-height: 1.25; letter-spacing: -1px; color: var(--green); margin-bottom: 16px; }
+    .trusted-doctor-name { font-family: var(--sans); font-size: clamp(11px, 0.9vw, 17px); font-weight: 700; color: var(--black); letter-spacing: -0.7px; margin-bottom: 4px; }
+    .trusted-doctor-title { font-family: var(--sans); font-size: clamp(11px, 0.9vw, 17px); font-weight: 400; color: #757575; letter-spacing: -0.7px; margin-bottom: 18px; }
+    .trusted-learn-more { font-family: var(--sans); font-size: clamp(13px, 1.1vw, 20px); font-weight: 400; color: var(--green); letter-spacing: -0.8px; text-decoration: underline; text-underline-offset: 3px; transition: opacity 0.2s ease; }
+    .trusted-learn-more:hover { opacity: 0.65; }
+    .trusted-photo { width: 100%; aspect-ratio: 1/1; border-radius: 22px; object-fit: cover; display: block; }
+
+    /* ═══════════════════════════════════════════════════════
+       REVIEWS CAROUSEL (shared with homepage)
+    ═══════════════════════════════════════════════════════ */
+    .reviews { background: #204c3e; padding: 54px 0 54px; }
+    .reviews-head { text-align: center; margin-bottom: 32px; padding: 0 clamp(160px, 18vw, 320px); }
+    .rev-community-heading { font-family: var(--label); font-size: clamp(14px, 1vw, 19px); font-weight: 400; color: var(--white); letter-spacing: -0.7px; text-transform: lowercase; }
+    .reviews-nav { position: relative; }
+    .rev-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.35); color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease; z-index: 10; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+    .rev-arrow:hover { background: rgba(255,255,255,0.28); }
+    .rev-arrow-prev { left: clamp(12px, 3vw, 60px); }
+    .rev-arrow-next { right: clamp(12px, 3vw, 60px); }
+    .reviews-viewport { overflow: hidden; padding: 52px 0; margin: -52px 0; }
+    .reviews-track { display: flex; gap: clamp(12px, 1.7vw, 32px); transition: transform 0.55s cubic-bezier(.4,0,.2,1); will-change: transform; }
+    .rev-slide { flex-shrink: 0; width: clamp(160px, 14vw, 271px); height: clamp(240px, 28vw, 388px); border-radius: 30px; overflow: hidden; background: #f1f1ea; transition: transform 0.55s cubic-bezier(.4,0,.2,1), opacity 0.55s ease; transform: scale(0.84); opacity: 0.6; cursor: default; }
+    .rev-slide.rev-active { transform: scale(1.0); opacity: 1; z-index: 2; }
+    .rev-slide.wide { width: clamp(180px, 16vw, 313px); }
+    .rev-slide.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .rev-slide-inner { padding: clamp(16px, 1.8vw, 28px) clamp(14px, 1.5vw, 24px); height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; }
+    .rev-slide-stars { font-size: clamp(12px, 1vw, 17px); color: #204c3e; letter-spacing: 2px; margin-bottom: 12px; }
+    .rev-slide-quote { font-family: var(--serif); font-size: clamp(12px, 1.2vw, 21px); font-weight: 400; line-height: 1.3; letter-spacing: -0.8px; color: #204c3e; flex: 1; margin-bottom: 14px; }
+    .rev-slide-name { font-family: var(--label); font-size: clamp(9px, 0.75vw, 13px); font-weight: 600; color: #204c3e; letter-spacing: -0.3px; margin-bottom: 4px; }
+    .rev-slide-verified { font-family: var(--label); font-size: 9px; color: #204c3e; opacity: 0.6; letter-spacing: -0.2px; }
+    .reviews-cta { text-align: center; margin-top: 32px; }
+    .rev-cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--mango); color: var(--white); font-family: var(--label); font-size: 14px; font-weight: 500; letter-spacing: -0.5px; text-transform: lowercase; padding: 14px 32px; border-radius: 6px; transition: background var(--ease), transform 0.2s ease; }
+    .rev-cta-btn:hover { background: #e07e00; transform: translateY(-1px); }
+    .rev-cta-arrow { display: inline-block; max-width: 0; overflow: hidden; opacity: 0; margin-left: 0; transition: max-width 0.25s ease, opacity 0.25s ease, margin-left 0.25s ease; }
+    .rev-cta-btn:hover .rev-cta-arrow { max-width: 24px; opacity: 1; margin-left: 6px; }
+
+    /* ═══════════════════════════════════════════════════════
        FAQ
     ═══════════════════════════════════════════════════════ */
     .faq-section { background: var(--white); padding: 100px 56px; }
@@ -1212,13 +1431,14 @@
     ═══════════════════════════════════════════════════════ */
     .footer {
       display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 620px; overflow: hidden;
+      height: 88vh; max-height: 88vh; overflow: hidden;
+      border-top: 2px solid #ffffff;
     }
     /* ── Left green panel ── */
     .footer-left {
       background: #204c3e;
-      padding: 56px 56px 48px 56px;
-      display: flex; flex-direction: column;
+      padding: 44px 56px 38px 56px;
+      display: flex; flex-direction: column; overflow: hidden;
     }
     .footer-left-top { margin-bottom: 36px; }
     .footer-signup-h {
@@ -1296,12 +1516,12 @@
     .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
     /* ── Right photo panel ── */
     .footer-right {
-      position: relative; overflow: hidden; min-height: 580px;
+      position: relative; overflow: hidden;
       background: #2a3a30;
     }
     .footer-girl-img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center 15%;
+      object-fit: cover; object-position: center 50%;
       display: block;
     }
     .footer-right-overlay {
@@ -1398,8 +1618,8 @@
       .nav-hamburger { display: flex; }
       .benefits-section, .doctor-section, .certs-section, .reviews-section { padding: 64px 24px; }
       .timeline-section, .howto-section, .faq-section, .ingredients-section { padding: 64px 24px; }
-      .footer { grid-template-columns: 1fr; }
-      .footer-right { min-height: 320px; }
+      .footer { grid-template-columns: 1fr; height: auto; max-height: none; }
+      .footer-right { height: 320px; }
       .footer-left { padding: 40px 24px 36px 24px; }
       .footer-nav-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
       .sticky-atc { padding: 14px 24px; }
@@ -1694,377 +1914,325 @@
     </div>
   </section>
 
-  <!-- INSURANCE SECTION -->
+  <!-- ════════════════════════════
+       INSURANCE FOR WHEN YOU DRINK
+  ════════════════════════════ -->
   <section class="insurance-section">
-    <img class="insurance-img" src="https://www.figma.com/api/mcp/asset/f085f100-78f8-4c09-9db8-2ca2c6990912" alt="insurance for when you drink"
-         onerror="this.style.background='#1a0f08'">
-    <div class="insurance-overlay"></div>
-    <div class="insurance-content">
-      <h2 class="insurance-headline fade-up">insurance for<br>when you drink.</h2>
-    </div>
-    <!-- Benefit pills -->
-    <div class="insurance-pills">
-      <div class="insurance-pill">
-        <div class="insurance-pill-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.5 2 5 5 5 9c0 4.5 7 13 7 13s7-8.5 7-13c0-4-3.5-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    <div class="insurance-card fade-up">
+      <img class="insurance-card-bg"
+           src="https://www.figma.com/api/mcp/asset/4660d733-a35b-4e4a-be64-5c783bad6553"
+           alt="">
+      <div class="insurance-card-content">
+        <h2 class="insurance-headline">Insurance for<br>when you drink</h2>
+        <div class="insurance-benefits">
+          <!-- Liver Support -->
+          <div class="ins-benefit">
+            <div class="ins-benefit-icon">
+              <img src="https://www.figma.com/api/mcp/asset/6599f22a-a5bb-4497-a9b4-c06b11d6a0b7" alt="Liver Support">
+            </div>
+            <div class="ins-benefit-text">
+              <p class="ins-benefit-name">Liver Support</p>
+              <p class="ins-benefit-desc">Boost your body's detox system</p>
+            </div>
+          </div>
+          <!-- Gut Support -->
+          <div class="ins-benefit">
+            <div class="ins-benefit-icon">
+              <img src="https://www.figma.com/api/mcp/asset/2618c38e-66f2-4424-ac1c-73f1ac67b523" alt="Gut Support">
+            </div>
+            <div class="ins-benefit-text">
+              <p class="ins-benefit-name">Gut Support</p>
+              <p class="ins-benefit-desc">Reduce bloating and support healthy digestion</p>
+            </div>
+          </div>
+          <!-- Vitamin Replenishment -->
+          <div class="ins-benefit">
+            <div class="ins-benefit-icon">
+              <img src="https://www.figma.com/api/mcp/asset/5a3a6be4-32b2-4465-a5b8-9ffe9c6e650d" alt="Vitamin Replenishment">
+            </div>
+            <div class="ins-benefit-text">
+              <p class="ins-benefit-name">Vitamin Replenishment</p>
+              <p class="ins-benefit-desc">Restore key vitamins that alcohol depletes</p>
+            </div>
+          </div>
+          <!-- Hydration -->
+          <div class="ins-benefit">
+            <div class="ins-benefit-icon">
+              <img src="https://www.figma.com/api/mcp/asset/af9cb13b-999f-481d-9741-d426221e7851" alt="Hydration">
+            </div>
+            <div class="ins-benefit-text">
+              <p class="ins-benefit-name">Hydration</p>
+              <p class="ins-benefit-desc">Replenish electrolytes lost when drinking</p>
+            </div>
+          </div>
         </div>
-        <span class="insurance-pill-label">Liver Support</span>
-      </div>
-      <div class="insurance-pill">
-        <div class="insurance-pill-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-        </div>
-        <span class="insurance-pill-label">Gut Support</span>
-      </div>
-      <div class="insurance-pill">
-        <div class="insurance-pill-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-        </div>
-        <span class="insurance-pill-label">Vitamin Replenishment</span>
-      </div>
-      <div class="insurance-pill">
-        <div class="insurance-pill-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
-        </div>
-        <span class="insurance-pill-label">Hydration</span>
       </div>
     </div>
   </section>
 
-  <!-- OUR DIFFERENCE — COMPARISON TABLE -->
+  <!-- ════════════════════════════
+       OUR DIFFERENCE
+  ════════════════════════════ -->
   <section class="comparison-section">
     <div class="comparison-inner">
-      <!-- Left: hand / lifestyle image -->
+      <!-- Left: lifestyle photo -->
       <div class="comparison-left">
-        <img src="https://www.figma.com/api/mcp/asset/8a2111de-cfa1-44d2-ac2e-afe99cc7d923" alt="day–guard jelly stick"
-             onerror="this.style.opacity='0.4'">
+        <img src="https://www.figma.com/api/mcp/asset/5fecc569-3c2e-4217-bd30-66ed6981c0ae"
+             alt="day–guard lifestyle">
       </div>
-      <!-- Right: comparison table card -->
+      <!-- Right: comparison table on dark green -->
       <div class="comparison-right">
         <h2 class="comparison-heading">our difference.</h2>
         <table class="comparison-table">
+          <colgroup>
+            <col class="label-col">
+            <col class="dg-col-col">
+            <col class="comp-col">
+            <col class="comp-col">
+            <col class="comp-col">
+          </colgroup>
           <thead>
             <tr>
               <th></th>
-              <th class="dg-col">day—guard</th>
-              <th>competitor</th>
-              <th>competitor</th>
+              <th class="dg-col"><span class="dg-wordmark">day—guard</span></th>
+              <th>recovery<br>capsules</th>
+              <th>recovery<br>shot</th>
+              <th>hydration<br>powder</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>liver support complex</td>
-              <td><span class="check">✓</span></td>
-              <td><span class="cross">–</span></td>
-              <td><span class="cross">–</span></td>
+              <td class="dg-cell"><span class="dg-mg">1255mg</span></td>
+              <td><span class="comp-mg">300mg</span></td>
+              <td><span class="comp-mg">&lt;1000mg</span></td>
+              <td><span class="comp-mg">0mg</span></td>
             </tr>
             <tr>
               <td>prebiotics</td>
-              <td><span class="check">✓</span></td>
-              <td><span class="cross">–</span></td>
-              <td><span class="check">✓</span></td>
+              <td class="dg-cell"><span class="check-circle">✓</span></td>
+              <td><span class="cross-circle">✕</span></td>
+              <td><span class="cross-circle">✕</span></td>
+              <td><span class="cross-circle">✕</span></td>
             </tr>
             <tr>
-              <td>electrolyte complex</td>
-              <td><span class="check">✓</span></td>
-              <td><span class="check">✓</span></td>
-              <td><span class="cross">–</span></td>
+              <td>b-vitamin complex</td>
+              <td class="dg-cell"><span class="check-circle">✓</span></td>
+              <td><span class="cross-circle">✕</span></td>
+              <td><span class="cross-circle">✕</span></td>
+              <td><span class="cross-circle">✕</span></td>
             </tr>
             <tr>
-              <td>vitamin b complex</td>
-              <td><span class="check">✓</span></td>
-              <td><span class="check">✓</span></td>
-              <td><span class="cross">–</span></td>
+              <td>electrolytes</td>
+              <td class="dg-cell"><span class="check-circle">✓</span></td>
+              <td><span class="cross-circle">✕</span></td>
+              <td><span class="cross-circle">✕</span></td>
+              <td><span class="check-circle" style="background:rgba(255,255,255,0.18);color:rgba(255,255,255,0.6)">✓</span></td>
             </tr>
             <tr>
-              <td>capsule-free serving</td>
-              <td><span class="check">✓</span></td>
-              <td><span class="cross">–</span></td>
-              <td><span class="cross">–</span></td>
+              <td>portable single servings</td>
+              <td class="dg-cell"><span class="check-circle">✓</span></td>
+              <td><span class="cross-circle">✕</span></td>
+              <td><span class="cross-circle">✕</span></td>
+              <td><span class="cross-circle">✕</span></td>
             </tr>
           </tbody>
         </table>
-        <a href="/shop.html" class="comparison-cta">buy now</a>
+        <a href="#bundles" class="comparison-cta">buy now</a>
       </div>
     </div>
   </section>
 
-  <!-- STATS BAR -->
-  <section class="stats-bar" id="stats-bar">
-    <div class="stats-inner">
-      <div class="stat-cell">
-        <div class="stat-num"><span class="count-num" data-target="60" data-format="plain">0</span><sup>+</sup></div>
-        <div class="stat-label">years of pharmaceutical expertise</div>
-        <div class="stat-note">Crafted in partnership with a leading Korean pharmaceutical company founded in 1963.</div>
+  <!-- ════════════════════════════
+       INGREDIENTS
+  <section class="science-section" id="ingredients">
+    <div class="science-header fade-up">
+      <span class="science-tag">WHAT'S INSIDE</span>
+      <h2 class="science-heading">the science</h2>
+      <p class="science-sub">Every ingredient in day—guard is clinically backed, transparently dosed, and formulated to protect your body the morning after.</p>
+      <div class="science-pills">
+        <span class="science-pill">doctor-formulated</span>
+        <span class="science-pill">clinically studied</span>
+        <span class="science-pill">transparently dosed</span>
       </div>
-      <div class="stat-cell">
-        <div class="stat-num"><span class="count-num" data-target="1000" data-format="plain">0</span><sup>+</sup></div>
-        <div class="stat-label">clinical papers backing our key ingredients</div>
-        <div class="stat-note">Each ingredient in day–guard was carefully selected by physicians for its demonstrated clinical benefits.</div>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card fade-up" data-pillar="liver">
+        <img class="pillar-bg" src="https://www.figma.com/api/mcp/asset/1cd7ec1d-3c88-4f86-9392-1a0afbb9881f" alt="Liver Support">
+        <img class="pillar-gradient" src="https://www.figma.com/api/mcp/asset/0777d3e5-e75f-4aa2-a0d2-5bac6f43c291" alt="">
+        <span class="pillar-label">Liver Support</span>
       </div>
-      <div class="stat-cell">
-        <div class="stat-num"><span class="count-num" data-target="50000" data-format="comma">0</span><sup>+</sup></div>
-        <div class="stat-label">protected nights</div>
-        <div class="stat-note">Trusted by thousands to protect their liver, gut, and mornings after a night out.</div>
+      <div class="pillar-card fade-up" data-pillar="gut" style="transition-delay:.08s">
+        <img class="pillar-bg" src="https://www.figma.com/api/mcp/asset/5f3a9f21-aa80-44ca-abf1-9b7ca8a6665a" alt="Gut Support">
+        <img class="pillar-gradient" src="https://www.figma.com/api/mcp/asset/23798e9c-f986-443d-ac62-ed5c6cad9af9" alt="">
+        <span class="pillar-label">Gut Support</span>
+      </div>
+      <div class="pillar-card fade-up" data-pillar="vitamins" style="transition-delay:.16s">
+        <img class="pillar-bg" src="https://www.figma.com/api/mcp/asset/92a90509-0988-45d1-8e92-3e59dee17aae" alt="Vitamin Replenishment">
+        <img class="pillar-gradient" src="https://www.figma.com/api/mcp/asset/f38d5df4-9d2c-41e9-9ee2-d33e8e1188ef" alt="">
+        <span class="pillar-label">Vitamin Replenishment</span>
+      </div>
+      <div class="pillar-card fade-up" data-pillar="hydration" style="transition-delay:.24s">
+        <img class="pillar-bg" src="https://www.figma.com/api/mcp/asset/32d04d91-8432-4044-bec7-8f22b76052a9" alt="Hydration">
+        <div class="pillar-gradient" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 60%);"></div>
+        <span class="pillar-label">Hydration</span>
       </div>
     </div>
   </section>
 
-  <!-- HIDDEN START -->
-  <!-- TIMELINE -->
-  <section class="timeline-section">
-    <div class="timeline-inner">
-      <div class="timeline-header fade-up">
-        <h2>benefits that build in real time.</h2>
-        <p>day–guard works with your body's natural processes — before, during, and after.</p>
+  <!-- Pillar Modal -->
+  <div class="pillar-modal-overlay" id="pillarModal">
+    <div class="pillar-modal">
+      <div class="pillar-modal-left">
+        <img class="pillar-modal-bg" id="pillarModalBg" src="" alt="">
+        <div class="pillar-modal-left-gradient"></div>
+        <span class="pillar-modal-left-label" id="pillarModalLabel"></span>
       </div>
-      <div class="timeline-steps">
-        <div class="timeline-step fade-up">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <span class="timeline-when">Before you drink</span>
-          </div>
-          <h3 class="timeline-heading">primed &amp; protected.</h3>
-          <div class="timeline-body">
-            <p>DHM activates liver enzymes. Prebiotics begin reinforcing the gut barrier. Your body is ready before the first sip.</p>
-            <ul>
-              <li>Liver enzymes primed for faster metabolism</li>
-              <li>Gut microbiome barrier reinforced</li>
-              <li>Electrolytes loaded for the night ahead</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-step fade-up">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <span class="timeline-when">During the night</span>
-          </div>
-          <h3 class="timeline-heading">working while you're not.</h3>
-          <div class="timeline-body">
-            <p>DHM continuously supports alcohol processing. Electrolytes replenish as fast as you lose them. B-vitamins stay stocked.</p>
-            <ul>
-              <li>Active alcohol metabolism support</li>
-              <li>Continuous electrolyte balance</li>
-              <li>Anti-inflammatory action begins</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-step fade-up">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <span class="timeline-when">Next morning</span>
-          </div>
-          <h3 class="timeline-heading">wake up yourself.</h3>
-          <div class="timeline-body">
-            <p>Reduced inflammation means a clearer head. Restored nutrients mean real energy. Day–guard means the night doesn't define the morning.</p>
-            <ul>
-              <li>Reduced next-day inflammation</li>
-              <li>Restored B-vitamins &amp; antioxidants</li>
-              <li>Gut microbiome intact</li>
-            </ul>
-          </div>
-        </div>
+      <div class="pillar-modal-right">
+        <button class="pillar-modal-close" id="pillarModalClose" aria-label="Close">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 1L12 12M12 1L1 12" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <p class="pillar-modal-title" id="pillarModalTitle"></p>
+        <p class="pillar-modal-desc" id="pillarModalDesc"></p>
+        <ul class="pillar-modal-ing-list" id="pillarModalIngList"></ul>
       </div>
-    </div>
-  </section>
-
-  <!-- INGREDIENTS DARK SECTION -->
-  <section class="ingredients-section" id="ingredients-section">
-    <div class="ingredients-inner">
-      <div class="ingredients-left fade-up">
-        <h2>what's<br>inside.</h2>
-        <p>Every ingredient was chosen for a clinically supported purpose. No fillers, no fluff — just what your body actually needs when you drink.</p>
-        <div class="ingredients-badges">
-          <span class="ingr-badge">Doctor-Formulated</span>
-          <span class="ingr-badge">Clinically Studied</span>
-          <span class="ingr-badge">No Fillers</span>
-          <span class="ingr-badge">Vegan</span>
-          <span class="ingr-badge">Gluten-Free</span>
-        </div>
-      </div>
-      <div class="ingredients-list fade-up">
-        <div class="ingr-row" onclick="toggleIngr(this)">
-          <span class="ingr-name">DHM</span>
-          <span class="ingr-amount">300mg</span>
-        </div>
-        <div class="ingr-desc">Dihydromyricetin — the most clinically studied ingredient for alcohol metabolism. Supports liver enzyme activity and reduces acetaldehyde buildup.</div>
-        <div class="ingr-row" onclick="toggleIngr(this)">
-          <span class="ingr-name">Prebiotics</span>
-          <span class="ingr-amount">FOS Complex</span>
-        </div>
-        <div class="ingr-desc">Feeds beneficial gut bacteria. Alcohol disrupts your microbiome — prebiotics help rebuild the barrier and reduce bloating.</div>
-        <div class="ingr-row" onclick="toggleIngr(this)">
-          <span class="ingr-name">Electrolytes</span>
-          <span class="ingr-amount">Balanced Blend</span>
-        </div>
-        <div class="ingr-desc">Sodium, potassium, and magnesium work together to replace what alcohol flushes out — keeping you hydrated from the inside out.</div>
-        <div class="ingr-row" onclick="toggleIngr(this)">
-          <span class="ingr-name">B-Vitamins</span>
-          <span class="ingr-amount">B1, B6, B12</span>
-        </div>
-        <div class="ingr-desc">Alcohol heavily depletes B-vitamins, leading to fatigue and brain fog. Our complex replenishes all three key forms.</div>
-        <div class="ingr-row" onclick="toggleIngr(this)">
-          <span class="ingr-name">Vitamin C</span>
-          <span class="ingr-amount">Antioxidant</span>
-        </div>
-        <div class="ingr-desc">A powerful antioxidant that neutralizes free radicals produced during alcohol metabolism. Helps reduce next-morning inflammation.</div>
-      </div>
-    </div>
-  </section>
-  <!-- HIDDEN END -->
-
-  <!-- DOCTOR CREDIBILITY -->
-  <section class="doctor-section">
-    <div class="doctor-inner">
-      <div class="doctor-left fade-up">
-        <p class="doctor-eyebrow">Doctor–Formulated at Brown University</p>
-        <h2>built with<br>the science<br>to back it.</h2>
-        <blockquote class="doctor-quote">
-          "Every ingredient in day–guard was carefully selected for a clinically supported purpose. Together, they help your body process alcohol, restore nutrients, and reduce inflammation."
-        </blockquote>
-        <p class="doctor-attr">Dr. Steven Oh, MD — Medical Advisor</p>
-        <div class="trust-badges">
-          <span class="trust-badge">Doctor-Formulated</span>
-          <span class="trust-badge">167+ Clinical Studies</span>
-          <span class="trust-badge">60+ Years Pharma Expertise</span>
-          <span class="trust-badge">90-Day Money Back</span>
-        </div>
-      </div>
-      <div class="doctor-right fade-up">
-        <div class="doctor-right-placeholder">
-          <span>Dr. Steven Oh, MD<br>Medical Advisor<br>Brown University</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HIDDEN START -->
-  <!-- HOW-TO -->
-  <section class="howto-section">
-    <div class="howto-inner">
-      <div class="howto-header fade-up">
-        <h2>how—to.</h2>
-        <p>built for post-work, pre-drinks</p>
-      </div>
-      <div class="howto-steps">
-        <div class="howto-card fade-up">
-          <div class="howto-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/8c647c32-f6f6-41ca-b4f5-8c3f8dd3c439" alt="tear"
-                 onerror="this.style.display='none'">
-          </div>
-          <div class="howto-card-body">
-            <p class="howto-step-num">Step 01</p>
-            <h3 class="howto-card-title">take before<br>you drink.</h3>
-            <p class="howto-card-desc">Tear open a single day–guard stick. No water needed, no measuring. One stick = one night covered.</p>
-          </div>
-        </div>
-        <div class="howto-card fade-up">
-          <div class="howto-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/8a2111de-cfa1-44d2-ac2e-afe99cc7d923" alt="squeeze"
-                 onerror="this.style.display='none'">
-          </div>
-          <div class="howto-card-body">
-            <p class="howto-step-num">Step 02</p>
-            <h3 class="howto-card-title">take another<br>every 3–5 drinks.</h3>
-            <p class="howto-card-desc">Squeeze the jelly directly onto your tongue. Doctor-dosed — every squeeze delivers the exact right amount.</p>
-          </div>
-        </div>
-        <div class="howto-card fade-up">
-          <div class="howto-img-wrap">
-            <div class="howto-img-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-            </div>
-          </div>
-          <div class="howto-card-body">
-            <p class="howto-step-num">Step 03</p>
-            <h3 class="howto-card-title">enjoy<br>your night.</h3>
-            <p class="howto-card-desc">That's it. Let day–guard do the rest — protecting your liver and gut through the night.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section class="certs-section">
-    <div class="certs-header fade-up">
-      <h2>nothing you don't need.</h2>
-    </div>
-    <div class="certs-grid fade-up">
-      <span class="cert-pill">✓ Vegan</span>
-      <span class="cert-pill">✓ Gluten-Free</span>
-      <span class="cert-pill">✓ No Artificial Flavors</span>
-      <span class="cert-pill">✓ No Fillers</span>
-      <span class="cert-pill">✓ No Preservatives</span>
-      <span class="cert-pill">✓ Soy-Free</span>
-      <span class="cert-pill">✓ Dairy-Free</span>
-      <span class="cert-pill">✓ Doctor-Formulated</span>
-      <span class="cert-pill">✓ Third-Party Tested</span>
-      <span class="cert-pill">✓ Made in USA</span>
-    </div>
-  </section>
-
-  <!-- PRESS TICKER -->
-  <div class="ticker-section">
-    <div class="ticker-track">
-      <img class="ticker-logo" src="/logos/boston-globe.svg" alt="The Boston Globe">
-      <img class="ticker-logo" src="/logos/forbes.svg" alt="Forbes">
-      <img class="ticker-logo" src="/logos/korea-herald.svg" alt="The Korea Herald">
-      <img class="ticker-logo" src="/logos/sfgate.svg" alt="SFGate">
-      <img class="ticker-logo" src="/logos/brown-university.svg" alt="Brown University">
-      <!-- duplicate for seamless loop -->
-      <img class="ticker-logo" src="/logos/boston-globe.svg" alt="The Boston Globe">
-      <img class="ticker-logo" src="/logos/forbes.svg" alt="Forbes">
-      <img class="ticker-logo" src="/logos/korea-herald.svg" alt="The Korea Herald">
-      <img class="ticker-logo" src="/logos/sfgate.svg" alt="SFGate">
-      <img class="ticker-logo" src="/logos/brown-university.svg" alt="Brown University">
     </div>
   </div>
-  <!-- HIDDEN END -->
 
-  <!-- REVIEWS -->
-  <section class="reviews-section" id="reviews">
-    <!-- Centered header: stars + "loved by our community" -->
-    <div class="reviews-community-header fade-up">
-      <img class="reviews-stars-img" src="https://www.figma.com/api/mcp/asset/b7e6caef-3618-43e1-a8e6-836f43782880" alt="★★★★★">
-      <span class="reviews-community-title">loved by our community</span>
+  <!-- ════════════════════════════
+       EXPERT TESTIMONIALS
+  ════════════════════════════ -->
+  <section class="trusted-section" id="credibility">
+    <div class="trusted-left fade-up">
+      <h2 class="trusted-heading">trusted by experts</h2>
+      <blockquote class="trusted-quote">"What makes day–guard different is the comprehensiveness. The formulation targets the full cascade of what alcohol does to your body."</blockquote>
+      <p class="trusted-doctor-name">Dr. Steven Oh</p>
+      <p class="trusted-doctor-title">MD, Medical Advisor</p>
+      <a href="/science" class="trusted-learn-more">learn more</a>
     </div>
+    <div class="trusted-right fade-up" style="transition-delay:.12s">
+      <img class="trusted-photo"
+           src="https://www.figma.com/api/mcp/asset/cae94d42-d11a-4abf-bb26-f6e9b5ff9199"
+           alt="Dr. Steven Oh, Medical Advisor">
+    </div>
+  </section>
 
-    <!-- 4-item strip: photo | dark-green review card | photo | dark-green review card -->
-    <div class="reviews-community-strip fade-up">
-      <div class="rcomm-photo-card">
-        <img src="https://www.figma.com/api/mcp/asset/1fe224f3-ab05-4ff5-b0e9-e62d9ae2a67e" alt="day–guard lifestyle">
-      </div>
-      <div class="rcomm-review-card">
-        <img class="rcomm-stars" src="https://www.figma.com/api/mcp/asset/ae96bdc1-7ebc-47ab-9ad6-e6827825639a" alt="★★★★★">
-        <p class="rcomm-quote">"day-guard is my going out essential for me! need to stay on top of my health"</p>
-        <div class="rcomm-author">
-          <span class="rcomm-name">Carol B.</span>
-          <div class="rcomm-verified">
-            <span>Verified Buyer</span>
-            <img class="rcomm-verified-badge" src="https://www.figma.com/api/mcp/asset/62f8c3e5-0081-42da-8e5b-183406547141" alt="verified">
+  <!-- ════════════════════════════
+       REVIEWS
+  ════════════════════════════ -->
+  <section class="reviews" id="reviews">
+    <div class="reviews-head fade-up">
+      <p class="rev-community-heading">★★★★★ loved by our community</p>
+    </div>
+    <div class="reviews-nav">
+      <button class="rev-arrow rev-arrow-prev" id="rev-prev" aria-label="Previous review">&#8592;</button>
+      <div class="reviews-viewport">
+        <div class="reviews-track" id="reviews-track">
+          <div class="rev-slide">
+            <div class="rev-slide-inner">
+              <p class="rev-slide-stars">★★★★★</p>
+              <p class="rev-slide-quote">"I take one before going out and wake up completely like myself. mango flavor is genuinely delicious."</p>
+              <p class="rev-slide-name">Sarah M.</p>
+              <p class="rev-slide-verified">Verified Buyer ✓</p>
+            </div>
+          </div>
+          <div class="rev-slide photo">
+            <img src="https://www.figma.com/api/mcp/asset/5cdb804d-ba3a-4c9b-92e0-17c019343bb7" alt="day-guard lifestyle">
+          </div>
+          <div class="rev-slide wide">
+            <div class="rev-slide-inner">
+              <p class="rev-slide-stars">★★★★★</p>
+              <p class="rev-slide-quote">"day-guard is my going out essential for me! need to stay on top of my health"</p>
+              <p class="rev-slide-name">Carol B.</p>
+              <p class="rev-slide-verified">Verified Buyer ✓</p>
+            </div>
+          </div>
+          <div class="rev-slide photo">
+            <img src="https://www.figma.com/api/mcp/asset/2c0883f7-bb62-4728-9250-eafdba5e4917" alt="day-guard lifestyle">
+          </div>
+          <div class="rev-slide">
+            <div class="rev-slide-inner">
+              <p class="rev-slide-stars">★★★★★</p>
+              <p class="rev-slide-quote">"Subscribed after my second box. My whole friend group is on it now. I'd give it 6 stars if I could."</p>
+              <p class="rev-slide-name">Jake T.</p>
+              <p class="rev-slide-verified">Verified Buyer ✓</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="rcomm-photo-card">
-        <img src="https://www.figma.com/api/mcp/asset/953d0c05-e90b-41f2-bff3-3aa40ba18349" alt="day–guard lifestyle">
-      </div>
-      <div class="rcomm-review-card">
-        <img class="rcomm-stars" src="https://www.figma.com/api/mcp/asset/ae96bdc1-7ebc-47ab-9ad6-e6827825639a" alt="★★★★★">
-        <p class="rcomm-quote">"day-guard is my going out essential for me! need to stay on top of my health"</p>
-        <div class="rcomm-author">
-          <span class="rcomm-name">Carol B.</span>
-          <div class="rcomm-verified">
-            <span>Verified Buyer</span>
-            <img class="rcomm-verified-badge" src="https://www.figma.com/api/mcp/asset/62f8c3e5-0081-42da-8e5b-183406547141" alt="verified">
-          </div>
-        </div>
-      </div>
+      <button class="rev-arrow rev-arrow-next" id="rev-next" aria-label="Next review">&#8594;</button>
     </div>
+    <div class="reviews-cta fade-up">
+      <a href="#" class="rev-cta-btn">read all reviews<span class="rev-cta-arrow">→</span></a>
+    </div>
+  </section>
 
-    <!-- Read All Reviews CTA -->
-    <div class="reviews-community-cta fade-up">
-      <a href="#" class="reviews-read-all">Read All Reviews</a>
+  <!-- ════════════════════════════
+       BUNDLES / OPTIONS
+  ════════════════════════════ -->
+  <section class="bundles-section" id="bundles">
+    <div class="bundles-header fade-up">
+      <h2 class="bundles-heading">stock up &amp; save.</h2>
+      <p class="bundles-sub">The more you protect, the less you pay. Subscribe for an additional 15% off every order.</p>
+    </div>
+    <div class="bundles-grid">
+
+      <!-- Card 1: Starter -->
+      <div class="bundle-card fade-up">
+        <p class="bundle-count">1</p>
+        <p class="bundle-sticks">box · 10 sticks</p>
+        <div class="bundle-divider"></div>
+        <div class="bundle-price-row">
+          <span class="bundle-price-label">one-time</span>
+          <span class="bundle-price">$34.99</span>
+        </div>
+        <div class="bundle-price-row">
+          <span class="bundle-price-label">subscribe &amp; save</span>
+          <span class="bundle-price-sub">$29.74</span>
+        </div>
+        <span class="bundle-save">save 15% on subscription</span>
+        <p class="bundle-per-stick">$2.97 per stick (subscribe)</p>
+        <a href="#" class="bundle-cta">add to cart</a>
+      </div>
+
+      <!-- Card 2: Most Popular (featured) -->
+      <div class="bundle-card featured fade-up" style="transition-delay:.08s">
+        <span class="bundle-badge">most popular</span>
+        <p class="bundle-count">3</p>
+        <p class="bundle-sticks">boxes · 30 sticks</p>
+        <div class="bundle-divider"></div>
+        <div class="bundle-price-row">
+          <span class="bundle-price-label">one-time</span>
+          <span class="bundle-price">$89.99</span>
+        </div>
+        <div class="bundle-price-row">
+          <span class="bundle-price-label">subscribe &amp; save</span>
+          <span class="bundle-price-sub">$76.49</span>
+        </div>
+        <span class="bundle-save">save 15% on subscription · $10 off bundle</span>
+        <p class="bundle-per-stick">$2.55 per stick (subscribe)</p>
+        <a href="#" class="bundle-cta">add to cart</a>
+      </div>
+
+      <!-- Card 3: Best Value -->
+      <div class="bundle-card fade-up" style="transition-delay:.16s">
+        <span class="bundle-badge">best value</span>
+        <p class="bundle-count">6</p>
+        <p class="bundle-sticks">boxes · 60 sticks</p>
+        <div class="bundle-divider"></div>
+        <div class="bundle-price-row">
+          <span class="bundle-price-label">one-time</span>
+          <span class="bundle-price">$159.99</span>
+        </div>
+        <div class="bundle-price-row">
+          <span class="bundle-price-label">subscribe &amp; save</span>
+          <span class="bundle-price-sub">$135.99</span>
+        </div>
+        <span class="bundle-save">save 15% on subscription · $30 off bundle</span>
+        <p class="bundle-per-stick">$2.27 per stick (subscribe)</p>
+        <a href="#" class="bundle-cta">add to cart</a>
+      </div>
+
     </div>
   </section>
 
@@ -2520,6 +2688,108 @@
     }, { threshold: 0.25 });
     const statsBar = document.getElementById('stats-bar');
     if (statsBar) statsObserver.observe(statsBar);
+
+    /* ── Pillar modal ── */
+    (function() {
+      const pillars = {
+        liver: {
+          label: 'Liver Support', title: 'LIVER SUPPORT',
+          bg: 'https://www.figma.com/api/mcp/asset/1cd7ec1d-3c88-4f86-9392-1a0afbb9881f',
+          desc: 'As the liver breaks down alcohol, it produces acetaldehyde, a toxic compound responsible for fatigue and discomfort.\n\nday–guard\'s liver support complex combines Hovenia Dulcis, Turmeric Extract, Milk Thistle, and L-Cysteine to expedite acetaldehyde breakdown, reduce oxidative stress, and support natural detoxification.',
+          ingredients: [
+            { name: 'Hovenia Dulcis (Oriental Raisin Tree) Fruit Concentrate', img: 'https://www.figma.com/api/mcp/asset/bd958b09-16e5-488f-931a-903c2cfd9dca' },
+            { name: 'Turmeric (Rhizome) Extract', img: 'https://www.figma.com/api/mcp/asset/1804923b-efb3-443b-bd32-5ead34707968' },
+            { name: 'Milk Thistle (Seed) Extract', img: 'https://www.figma.com/api/mcp/asset/7256a0c3-f231-4e94-820f-4d5dd289752b' },
+            { name: 'L-Cysteine', img: 'https://www.figma.com/api/mcp/asset/cf7db0ef-80a9-4294-952a-c5cc2b1e6706' },
+            { name: 'Black Pepper (Fruit) Extract', img: 'https://www.figma.com/api/mcp/asset/51bba8ff-72c4-4b2c-8e46-dba1fa9c0544' }
+          ]
+        },
+        gut: {
+          label: 'Gut Support', title: 'GUT SUPPORT',
+          bg: 'https://www.figma.com/api/mcp/asset/5f3a9f21-aa80-44ca-abf1-9b7ca8a6665a',
+          desc: 'Alcohol can disrupt gut function and slow digestion.\n\nPear Juice Concentrate, Fructo-oligosaccharides (prebiotics), and Ginger Extract help maintain microbial balance, soothe the stomach, and support healthy digestion, so your body stays comfortable during recovery.',
+          ingredients: [
+            { name: 'Ginger', img: 'https://www.figma.com/api/mcp/asset/47e35e9a-1d2d-474e-adfa-b3520b8a5b8f' },
+            { name: 'Korean Pear', img: 'https://www.figma.com/api/mcp/asset/398dce93-6627-46e7-b694-81274c2af271' },
+            { name: 'Fructo-oligosaccharides', img: 'https://www.figma.com/api/mcp/asset/b3ac866b-104a-4086-a098-cbb23cdc7122' },
+            { name: 'Xylitol', img: 'https://www.figma.com/api/mcp/asset/797f2d11-4de1-407e-8193-a64941d0e621' },
+            { name: 'Black Pepper (Fruit) Extract', img: 'https://www.figma.com/api/mcp/asset/51bba8ff-72c4-4b2c-8e46-dba1fa9c0544' }
+          ]
+        },
+        vitamins: {
+          label: 'Vitamin Replenishment', title: 'VITAMIN REPLENISHMENT',
+          bg: 'https://www.figma.com/api/mcp/asset/92a90509-0988-45d1-8e92-3e59dee17aae',
+          desc: 'Your body needs vitamins for energy and recovery, and alcohol robs your body of these essential vitamins.\n\nday–guard® replenishes them with Thiamine (B1), Riboflavin (B2), Niacin (B3), and Vitamin B6, supporting metabolism, energy production, and overall cellular repair.',
+          ingredients: [
+            { name: 'Thiamine (Vitamin B1)', img: 'https://www.figma.com/api/mcp/asset/c0d0f886-393c-4d0d-869f-824ac24940ef' },
+            { name: 'Riboflavin (Vitamin B2)', img: 'https://www.figma.com/api/mcp/asset/6f2e5c93-c754-42b2-9508-696014b74d16' },
+            { name: 'Niacin (Vitamin B3)', img: 'https://www.figma.com/api/mcp/asset/432cfd6b-2e17-406b-bae6-c2c584108675' },
+            { name: 'Vitamin B6', img: 'https://www.figma.com/api/mcp/asset/648b7ca8-e754-447a-bf2b-df716e3b4e34' },
+            { name: 'Black Pepper (Fruit) Extract', img: 'https://www.figma.com/api/mcp/asset/51bba8ff-72c4-4b2c-8e46-dba1fa9c0544' }
+          ]
+        },
+        hydration: {
+          label: 'Hydration', title: 'HYDRATION',
+          bg: 'https://www.figma.com/api/mcp/asset/32d04d91-8432-4044-bec7-8f22b76052a9',
+          desc: 'Alcohol acts as a diuretic, leading to dehydration and electrolyte loss.\n\nMagnesium Gluconate and Sodium Citrate help restore fluid balance and muscle function, while natural fruit concentrates aid hydration and nutrient absorption.',
+          ingredients: [
+            { name: 'Magnesium', img: 'https://www.figma.com/api/mcp/asset/615c6622-3985-44ac-adef-ae27eb423859' },
+            { name: 'Sodium', img: 'https://www.figma.com/api/mcp/asset/c12dbae5-8722-4516-b0e6-ad56a45abc06' },
+            { name: 'Korean Pear', img: 'https://www.figma.com/api/mcp/asset/6ff94394-102c-4258-9056-d5c96652540d' },
+            { name: 'Black Pepper (Fruit) Extract', img: 'https://www.figma.com/api/mcp/asset/51bba8ff-72c4-4b2c-8e46-dba1fa9c0544' }
+          ]
+        }
+      };
+      const overlay    = document.getElementById('pillarModal');
+      const modalBg    = document.getElementById('pillarModalBg');
+      const modalLabel = document.getElementById('pillarModalLabel');
+      const modalTitle = document.getElementById('pillarModalTitle');
+      const modalDesc  = document.getElementById('pillarModalDesc');
+      const modalList  = document.getElementById('pillarModalIngList');
+      const closeBtn   = document.getElementById('pillarModalClose');
+      if (!overlay) return;
+      function openModal(key) {
+        const d = pillars[key]; if (!d) return;
+        modalBg.src = d.bg; modalLabel.textContent = d.label;
+        modalTitle.textContent = d.title;
+        modalDesc.innerHTML = d.desc.replace(/\n\n/g, '<br><br>');
+        modalList.innerHTML = d.ingredients.map(ing =>
+          `<li class="pillar-modal-ing-item"><img class="pillar-modal-ing-img" src="${ing.img}" alt="${ing.name}"><span class="pillar-modal-ing-name">${ing.name}</span></li>`
+        ).join('');
+        overlay.classList.add('active'); document.body.style.overflow = 'hidden';
+      }
+      function closeModal() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
+      document.querySelectorAll('.pillar-card').forEach(card => card.addEventListener('click', () => openModal(card.dataset.pillar)));
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    })();
+
+    /* ── Reviews carousel ── */
+    (function() {
+      const track   = document.getElementById('reviews-track');
+      const prevBtn = document.getElementById('rev-prev');
+      const nextBtn = document.getElementById('rev-next');
+      if (!track) return;
+      const slides = Array.from(track.querySelectorAll('.rev-slide'));
+      const total  = slides.length;
+      let activeIdx = 2;
+      function render() {
+        slides.forEach((s, i) => s.classList.toggle('rev-active', i === activeIdx));
+        const viewport = track.parentElement;
+        const viewW = viewport.clientWidth;
+        const gap = parseFloat(getComputedStyle(track).gap) || 32;
+        let distToActiveCenter = 0;
+        for (let i = 0; i < activeIdx; i++) distToActiveCenter += slides[i].offsetWidth + gap;
+        distToActiveCenter += slides[activeIdx].offsetWidth / 2;
+        track.style.transform = `translateX(${viewW / 2 - distToActiveCenter}px)`;
+        if (prevBtn) prevBtn.style.opacity = activeIdx === 0 ? '0.3' : '1';
+        if (nextBtn) nextBtn.style.opacity = activeIdx === total - 1 ? '0.3' : '1';
+      }
+      prevBtn && prevBtn.addEventListener('click', () => { if (activeIdx > 0) { activeIdx--; render(); } });
+      nextBtn && nextBtn.addEventListener('click', () => { if (activeIdx < total - 1) { activeIdx++; render(); } });
+      requestAnimationFrame(() => requestAnimationFrame(render));
+    })();
 
   </script>
 
