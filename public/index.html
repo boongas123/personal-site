@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,700&display=swap" rel="stylesheet">
+  <!-- Sofia Pro via Adobe Fonts (falls back to DM Sans if not loaded) -->
+  <link rel="stylesheet" href="https://use.typekit.net/placeholder.css" onerror="void(0)">
 
   <style>
     /* ─── DESIGN TOKENS ──────────────────────────────────── */
@@ -29,6 +31,7 @@
       --serif:   'Hedvig Letters Serif', Georgia, serif;
       --sans:    'Helvetica Neue', Arial, sans-serif;
       --label:   'DM Sans', Arial, sans-serif;
+      --sofia:   'Sofia Pro', 'DM Sans', Arial, sans-serif;
 
       --pad-section: 100px;
       --radius-card: 35px;
@@ -227,7 +230,7 @@
        2. HERO
     ═══════════════════════════════════════════════════════ */
     .hero {
-      position: relative; min-height: 92vh;
+      position: relative; min-height: calc(100vh - 52px);
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; background: #1a0e08;
     }
@@ -355,7 +358,7 @@
        4. PRODUCT SHOWCASE
     ═══════════════════════════════════════════════════════ */
     .features-section {
-      background: #f1f1ea; padding: 52px clamp(80px, 13vw, 240px) 52px;
+      background: #f1f1ea; padding: 52px clamp(80px, 11vw, 200px) 52px;
       border-radius: 0 0 50px 50px;
     }
 
@@ -407,7 +410,7 @@
     /* Stats row — equal thirds */
     .features-stats {
       display: flex; gap: 14px;
-      margin-top: 0;
+      margin-top: 80px; margin-bottom: 80px;
     }
     .fstat { flex: 1; }
     .fstat-num {
@@ -447,9 +450,9 @@
     .sticky-cta-btn {
       display: flex; align-items: center; gap: 8px;
       background: var(--mango); color: var(--white);
-      font-family: var(--label); font-size: 14px; font-weight: 500;
+      font-family: var(--label); font-size: 16px; font-weight: 500;
       letter-spacing: -0.5px; text-transform: lowercase;
-      padding: 11px 24px; border-radius: 6px;
+      padding: 14px 32px; border-radius: 6px;
       border: 2px solid var(--beige);
       box-shadow: 0 4px 24px rgba(251,153,24,0.3);
       white-space: nowrap;
@@ -472,19 +475,19 @@
     ═══════════════════════════════════════════════════════ */
     .howto-section {
       background: #f1f1ea;
-      padding: 54px clamp(160px, 18vw, 320px) 54px;
+      padding: 54px clamp(80px, 11vw, 200px) 54px;
       border-radius: 0 0 50px 50px;
     }
     .howto-intro { margin-bottom: 32px; }
     .howto-heading {
-      font-family: var(--serif);
-      font-size: clamp(24px, 2.7vw, 48px);
+      font-family: var(--sans);
+      font-size: clamp(28px, 2.8vw, 48px);
       font-weight: 400; line-height: 1.1; letter-spacing: -2px;
       color: var(--green); margin-bottom: 10px;
     }
     .howto-sub {
       font-family: var(--sans);
-      font-size: clamp(11px, 0.85vw, 14px);
+      font-size: clamp(13px, 1.05vw, 18px);
       font-weight: 400; color: var(--black); letter-spacing: -0.3px;
     }
     .howto-grid { display: flex; gap: 10px; }
@@ -516,17 +519,17 @@
     }
     .howto-card:hover .howto-card-video { opacity: 1; }
     .howto-step-badge {
-      position: absolute; top: 10px; left: 10px;
-      width: 22px; height: 22px;
-      background: rgba(2,7,6,0.80); border-radius: 6px;
+      position: absolute; top: 14px; left: 14px;
+      width: 28px; height: 28px;
+      background: transparent; border: 1.5px solid rgba(255,255,255,0.75); border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--sans); font-size: 10px; font-weight: 500;
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
       color: var(--white); letter-spacing: -0.3px;
-      z-index: 3; /* always above the video layer */
+      z-index: 3;
     }
     .howto-card-label {
       font-family: var(--sans);
-      font-size: clamp(10px, 0.8vw, 13px);
+      font-size: clamp(13px, 1.05vw, 18px);
       font-weight: 400; color: var(--black); letter-spacing: -0.3px;
     }
 
@@ -535,31 +538,23 @@
     ═══════════════════════════════════════════════════════ */
     .science-section {
       background: var(--beige);
-      padding: 80px 130px 80px;
+      padding: 80px clamp(80px, 11vw, 200px) 80px;
     }
     .science-header { margin-bottom: 40px; }
     .science-tag {
-      font-family: var(--sans); font-size: 20px; letter-spacing: -0.8px;
-      color: var(--black); display: block; margin-bottom: 16px;
+      font-family: var(--sans); font-size: 13px; letter-spacing: 1.2px;
+      text-transform: uppercase; color: rgba(0,0,0,0.45); display: block; margin-bottom: 20px;
     }
     .science-heading {
-      font-family: var(--serif);
-      font-size: clamp(56px, 6vw, 100px);
-      font-weight: 400; line-height: 1.05; letter-spacing: -4px;
-      color: var(--black); margin-bottom: 16px;
+      font-family: var(--sans);
+      font-size: clamp(28px, 2.8vw, 48px);
+      font-weight: 400; line-height: 1.1; letter-spacing: -2px;
+      color: var(--green); margin-bottom: 16px;
     }
     .science-sub {
-      font-family: var(--sans); font-size: clamp(13px, 1.05vw, 20px);
-      letter-spacing: -0.5px; color: rgba(0,0,0,0.7);
-      max-width: 900px; line-height: 1.5; margin-bottom: 22px;
-    }
-    .science-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
-    .science-pill {
-      font-family: var(--sans); font-size: 12px; font-weight: 400;
-      color: var(--white); background: var(--green);
-      padding: 6px 13px; border-radius: 17px; letter-spacing: -0.1px;
-      text-transform: lowercase; line-height: 1.4;
-      display: inline-flex; align-items: center;
+      font-family: var(--sans); font-size: clamp(13px, 1.05vw, 18px);
+      letter-spacing: -0.4px; color: var(--black);
+      max-width: 900px; line-height: 1.5; margin-bottom: 40px;
     }
     .pillar-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -584,8 +579,8 @@
     }
     .pillar-label {
       position: absolute; bottom: 24px; left: 24px;
-      font-family: var(--serif); font-size: clamp(18px, 1.8vw, 30px);
-      font-weight: 400; color: var(--white); letter-spacing: -0.8px;
+      font-family: var(--serif); font-size: clamp(14px, 1.2vw, 20px);
+      font-weight: 400; color: var(--white); letter-spacing: -0.5px;
       line-height: 1.1; pointer-events: none;
     }
     /* ── Pillar Modal ── */
@@ -601,7 +596,7 @@
     .pillar-modal {
       display: grid; grid-template-columns: 1fr 1fr;
       width: 100%; max-width: 1100px;
-      height: min(78vh, 680px);
+      height: min(88vh, 740px);
       border-radius: 24px; overflow: hidden;
       transform: scale(0.96) translateY(14px);
       transition: transform 0.35s cubic-bezier(.4,0,.2,1);
@@ -615,13 +610,13 @@
       background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 55%);
     }
     .pillar-modal-left-label {
-      position: absolute; bottom: 32px; left: 32px;
-      font-family: var(--serif); font-size: clamp(26px, 2.8vw, 46px);
-      font-weight: 400; color: var(--white); letter-spacing: -1.5px; line-height: 1.1;
+      position: absolute; bottom: 44px; left: 44px;
+      font-family: var(--serif); font-size: clamp(28px, 4.5vw, 72px);
+      font-weight: 400; color: var(--white); letter-spacing: -2.5px; line-height: 1.1;
     }
     .pillar-modal-right {
-      background: var(--white); padding: 40px 44px;
-      overflow-y: auto; position: relative;
+      background: var(--beige); padding: 52px 60px;
+      overflow-y: hidden; position: relative;
     }
     .pillar-modal-close {
       position: absolute; top: 20px; right: 20px;
@@ -635,24 +630,30 @@
     .pillar-modal-close:hover { background: #163527; transform: rotate(90deg); }
     .pillar-modal-close svg { display: block; flex-shrink: 0; }
     .pillar-modal-title {
-      font-family: var(--sans); font-size: 13px; font-weight: 700;
-      letter-spacing: 0.6px; text-transform: uppercase; color: var(--black);
-      margin-bottom: 18px; padding-right: 52px;
+      font-family: var(--sans); font-size: clamp(11px, 1.1vw, 16px); font-weight: 500;
+      letter-spacing: -0.6px; text-transform: uppercase; color: var(--green);
+      margin-bottom: 10px; padding-right: 52px; line-height: 1.3;
     }
     .pillar-modal-desc {
-      font-family: var(--sans); font-size: clamp(13px, 1.1vw, 17px);
-      font-weight: 400; line-height: 1.65; letter-spacing: -0.3px;
-      color: rgba(0,0,0,0.7); margin-bottom: 28px;
+      font-family: var(--sans); font-size: clamp(11px, 0.95vw, 14px);
+      font-weight: 400; line-height: 1.4; letter-spacing: -0.3px;
+      color: rgba(0,0,0,0.7); margin-bottom: 10px;
     }
-    .pillar-modal-ing-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .pillar-modal-ing-item { display: flex; align-items: center; gap: 14px; }
+    .pillar-modal-ing-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .pillar-modal-ing-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1.5px solid rgba(33,76,62,0.18);
+    }
+    .pillar-modal-ing-item:last-child { border-bottom: none; }
     .pillar-modal-ing-img {
-      width: 48px; height: 48px; border-radius: 10px;
-      object-fit: cover; flex-shrink: 0; background: var(--beige);
+      width: clamp(36px, 3vw, 48px); height: clamp(36px, 3vw, 48px);
+      border-radius: clamp(7px, 0.7vw, 10px);
+      object-fit: cover; flex-shrink: 0; background: rgba(32,76,62,0.08);
     }
     .pillar-modal-ing-name {
-      font-family: var(--sans); font-size: clamp(12px, 0.95vw, 15px);
-      font-weight: 400; letter-spacing: -0.3px; color: var(--black); line-height: 1.3;
+      font-family: var(--sans); font-size: clamp(11px, 0.95vw, 14px);
+      font-weight: 600; letter-spacing: -0.3px; color: var(--green); line-height: 1.3;
     }
 
 
@@ -661,41 +662,46 @@
     ═══════════════════════════════════════════════════════ */
     .trusted-section {
       background: var(--white);
-      padding: 54px clamp(160px, 18vw, 320px);
+      padding: clamp(60px, 7vw, 120px) clamp(60px, 10vw, 180px);
       border-radius: 0 0 50px 50px;
-      display: grid; grid-template-columns: 3fr 2fr;
-      gap: clamp(28px, 3.3vw, 67px); align-items: center;
+      display: grid; grid-template-columns: 55fr 45fr;
+      gap: clamp(40px, 5vw, 90px); align-items: center;
+    }
+    .trusted-left {
+      display: flex; flex-direction: column;
     }
     .trusted-heading {
       font-family: var(--sans);
-      font-size: clamp(22px, 2.2vw, 40px);
-      font-weight: 400; line-height: 1.1; letter-spacing: -1.7px;
-      color: var(--green); margin-bottom: 18px;
+      font-size: clamp(24px, 3vw, 48px);
+      font-weight: 400; line-height: 1.05; letter-spacing: -2px;
+      color: var(--green); margin-bottom: clamp(20px, 2.5vw, 44px);
     }
     .trusted-quote {
       font-family: var(--serif);
-      font-size: clamp(13px, 1.4vw, 26px);
-      font-weight: 400; line-height: 1.25; letter-spacing: -1px;
-      color: var(--green); margin-bottom: 16px;
+      font-size: clamp(14px, 1.35vw, 22px);
+      font-weight: 400; line-height: 1.35; letter-spacing: -0.7px;
+      color: var(--green); margin-bottom: clamp(16px, 2vw, 32px);
     }
     .trusted-doctor-name {
-      font-family: var(--sans); font-size: clamp(11px, 0.9vw, 17px);
-      font-weight: 700; color: var(--black); letter-spacing: -0.7px; margin-bottom: 4px;
+      font-family: var(--sans); font-size: clamp(11px, 0.8vw, 14px);
+      font-weight: 700; color: var(--black); letter-spacing: -0.3px; margin-bottom: 3px;
     }
     .trusted-doctor-title {
-      font-family: var(--sans); font-size: clamp(11px, 0.9vw, 17px);
-      font-weight: 400; color: #757575; letter-spacing: -0.7px; margin-bottom: 18px;
+      font-family: var(--sans); font-size: clamp(11px, 0.8vw, 14px);
+      font-weight: 400; color: #757575; letter-spacing: -0.3px;
+      margin-bottom: clamp(28px, 4vw, 64px);
     }
     .trusted-learn-more {
-      font-family: var(--sans); font-size: clamp(13px, 1.1vw, 20px);
-      font-weight: 400; color: var(--green); letter-spacing: -0.8px;
+      font-family: var(--sofia); font-size: clamp(13px, 1vw, 18px);
+      font-weight: 400; color: var(--green); letter-spacing: -0.5px;
       text-decoration: underline; text-underline-offset: 3px;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.2s ease; display: inline-block;
     }
     .trusted-learn-more:hover { opacity: 0.65; }
     .trusted-photo {
       width: 100%; aspect-ratio: 1/1; border-radius: 22px;
       object-fit: cover; display: block;
+      box-shadow: 2px 4px 24px rgba(0,0,0,0.13);
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -703,7 +709,7 @@
     ═══════════════════════════════════════════════════════ */
     .press-section {
       position: relative; overflow: hidden;
-      padding: 67px clamp(160px, 18vw, 320px) 67px;
+      padding: clamp(48px, 7vw, 120px) clamp(48px, 7vw, 120px) clamp(36px, 6vw, 100px);
       background: #2d1a0a;
     }
     .press-bg {
@@ -712,22 +718,22 @@
     }
     .press-inner { position: relative; z-index: 2; text-align: center; }
     .press-label {
-      font-family: var(--label); font-size: clamp(15px, 1.5vw, 28px);
+      font-family: var(--sans); font-size: clamp(11px, 1.1vw, 18px);
       font-weight: 400; color: var(--white); letter-spacing: -0.7px;
-      text-transform: lowercase; margin-bottom: 21px;
+      text-transform: lowercase; margin-bottom: clamp(18px, 3vw, 52px);
     }
     .press-quote {
       font-family: var(--serif);
-      font-size: clamp(13px, 1.5vw, 29px);
-      font-weight: 400; line-height: 1.2; letter-spacing: -1.5px;
-      color: var(--white); max-width: clamp(480px, 58vw, 860px); margin-bottom: 56px;
+      font-size: clamp(14px, 1.8vw, 34px);
+      font-weight: 400; line-height: 1.2; letter-spacing: -1.2px;
+      color: var(--white); max-width: clamp(360px, 52vw, 820px); margin-bottom: clamp(28px, 3vw, 56px);
       margin-left: auto; margin-right: auto;
       transition: opacity 0.25s ease;
     }
     .press-quote.switching { opacity: 0; }
     .press-logos {
       display: flex; align-items: center; justify-content: center;
-      gap: clamp(32px, 4vw, 64px); flex-wrap: wrap;
+      gap: clamp(20px, 3.2vw, 60px); flex-wrap: wrap;
     }
     .press-logo-btn {
       background: none; border: none; cursor: pointer; padding: 8px;
@@ -738,7 +744,7 @@
     .press-logo-btn:hover { opacity: 0.9; transform: translateY(-2px); }
     .press-logo-btn.active { opacity: 1; }
     .press-logo {
-      height: clamp(14px, 1.4vw, 21px); width: auto; object-fit: contain;
+      height: clamp(18px, 1.8vw, 34px); width: auto; object-fit: contain;
       filter: brightness(0) invert(1); display: block;
     }
 
@@ -746,47 +752,48 @@
     /* ═══════════════════════════════════════════════════════
        8. REVIEWS
     ═══════════════════════════════════════════════════════ */
-    .reviews { background: #204c3e; padding: 54px 0 54px; }
-    .reviews-head { text-align: center; margin-bottom: 32px; padding: 0 clamp(160px, 18vw, 320px); }
+    .reviews { background: #204c3e; padding: 100px 0 80px; }
+    .reviews-head { text-align: center; margin-bottom: 36px; }
     .rev-community-heading {
-      font-family: var(--label); font-size: clamp(14px, 1vw, 19px);
-      font-weight: 400; color: var(--white); letter-spacing: -0.7px; text-transform: lowercase;
+      font-family: var(--sans); font-size: clamp(14px, 1vw, 19px);
+      font-weight: 400; color: var(--white); letter-spacing: -0.5px; text-transform: lowercase;
     }
     /* Arrow nav wrapper */
     .reviews-nav { position: relative; }
     .rev-arrow {
       position: absolute; top: 50%; transform: translateY(-50%);
-      width: 52px; height: 52px; border-radius: 50%;
+      width: 44px; height: 44px; border-radius: 50%;
       background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.35);
-      color: white; font-size: 20px; cursor: pointer;
+      color: white; font-size: 18px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: background 0.2s ease; z-index: 10;
       backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
     }
     .rev-arrow:hover { background: rgba(255,255,255,0.28); }
     .rev-arrow:active { background: rgba(255,255,255,0.4); }
-    .rev-arrow-prev { left: clamp(12px, 3vw, 60px); }
-    .rev-arrow-next { right: clamp(12px, 3vw, 60px); }
-    /* Click-only viewport + slide track */
+    .rev-arrow-prev { left: clamp(8px, 2vw, 40px); }
+    .rev-arrow-next { right: clamp(8px, 2vw, 40px); }
+    /* Viewport + slide track */
     .reviews-viewport {
       overflow: hidden;
-      padding: 52px 0;   /* vertical room so scaled card isn't clipped */
-      margin: -52px 0;   /* cancel the space visually */
+      padding: 52px 0;
+      margin: -52px 0;
     }
     .reviews-track {
       display: flex;
-      gap: clamp(12px, 1.7vw, 32px);
+      gap: 12px;
       transition: transform 0.55s cubic-bezier(.4,0,.2,1);
       will-change: transform;
     }
-    /* Slides */
+    /* Slides — sized so ~6 fit viewport (5 full + 2 halves) */
     .rev-slide {
       flex-shrink: 0;
-      width: clamp(160px, 14vw, 271px); height: clamp(240px, 28vw, 388px);
+      width: clamp(160px, calc(100vw / 6 - 12px), 310px);
+      height: clamp(220px, 26vw, 400px);
       border-radius: 30px; overflow: hidden; background: #f1f1ea;
       transition: transform 0.55s cubic-bezier(.4,0,.2,1), opacity 0.55s ease;
-      transform: scale(0.84);
-      opacity: 0.6;
+      transform: scale(0.85);
+      opacity: 0.55;
       cursor: default;
     }
     .rev-slide.rev-active {
@@ -794,52 +801,65 @@
       opacity: 1;
       z-index: 2;
     }
-    .rev-slide.wide {
-      width: clamp(180px, 16vw, 313px);
-    }
     .rev-slide.photo img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .rev-slide-inner {
-      padding: clamp(16px, 1.8vw, 28px) clamp(14px, 1.5vw, 24px);
+      padding: clamp(14px, 1.6vw, 26px) clamp(12px, 1.4vw, 22px);
       height: 100%; box-sizing: border-box;
-      display: flex; flex-direction: column; justify-content: center;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center;
     }
     .rev-slide-stars {
-      font-size: clamp(12px, 1vw, 17px); color: #204c3e; letter-spacing: 2px; margin-bottom: 12px;
+      font-family: var(--sofia); font-size: clamp(14px, 1.2vw, 22px);
+      color: #204c3e; letter-spacing: 2px; margin-bottom: clamp(8px, 0.8vw, 14px);
     }
     .rev-slide-quote {
-      font-family: var(--serif); font-size: clamp(12px, 1.2vw, 21px);
-      font-weight: 400; line-height: 1.3; letter-spacing: -0.8px;
-      color: #204c3e; flex: 1; margin-bottom: 14px;
+      font-family: var(--serif); font-size: clamp(18px, 2.2vw, 36px);
+      font-weight: 400; line-height: 1.2; letter-spacing: -1.5px;
+      color: #204c3e; flex: 1; margin-bottom: clamp(18px, 2vw, 28px);
+      display: flex; align-items: center;
     }
     .rev-slide-name {
-      font-family: var(--label); font-size: clamp(9px, 0.75vw, 13px);
-      font-weight: 600; color: #204c3e; letter-spacing: -0.3px; margin-bottom: 4px;
+      font-family: var(--sofia); font-size: clamp(12px, 1vw, 17px);
+      font-weight: 400; color: #204c3e; letter-spacing: -0.5px; margin-bottom: 4px;
     }
     .rev-slide-verified {
-      font-family: var(--label); font-size: 9px;
-      color: #204c3e; opacity: 0.6; letter-spacing: -0.2px;
+      font-family: var(--sofia); font-size: clamp(11px, 0.9vw, 15px);
+      font-weight: 400; color: #9aaca0; letter-spacing: -0.3px;
     }
-    .reviews-cta { text-align: center; margin-top: 32px; }
-    .rev-cta-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--mango); color: var(--white);
-      font-family: var(--label); font-size: 14px; font-weight: 500;
-      letter-spacing: -0.5px; text-transform: lowercase;
-      padding: 14px 32px; border-radius: 6px;
-      transition: background var(--ease), transform 0.2s ease;
+    /* Product CTA */
+    .reviews-cta { text-align: center; margin-top: 40px; }
+    .rev-product-cta {
+      display: inline-flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 16px; padding: 12px 20px 12px 14px;
+      margin-bottom: 16px; cursor: default;
     }
-    .rev-cta-btn:hover { background: #e07e00; transform: translateY(-1px); }
-    .rev-cta-arrow {
-      display: inline-block;
-      max-width: 0; overflow: hidden; opacity: 0;
-      margin-left: 0;
-      transition: max-width 0.25s ease, opacity 0.25s ease, margin-left 0.25s ease;
+    .rev-product-thumb {
+      width: 58px; height: 58px; border-radius: 10px;
+      object-fit: cover; background: rgba(255,255,255,0.12);
+      padding: 0; flex-shrink: 0;
     }
-    .rev-cta-btn:hover .rev-cta-arrow {
-      max-width: 24px; opacity: 1; margin-left: 6px;
+    .rev-product-info { text-align: left; }
+    .rev-product-title {
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      color: var(--white); letter-spacing: -0.3px; margin-bottom: 2px;
     }
+    .rev-product-price {
+      font-family: var(--sans); font-size: 12px;
+      color: rgba(255,255,255,0.6); letter-spacing: -0.1px;
+    }
+    .rev-product-btn {
+      font-family: var(--label); font-size: 13px; font-weight: 600;
+      color: var(--white); background: var(--mango);
+      padding: 10px 18px; border-radius: 8px;
+      letter-spacing: -0.2px; text-transform: lowercase;
+      white-space: nowrap; flex-shrink: 0;
+      transition: background 0.2s ease;
+    }
+    .rev-product-btn:hover { background: #e07800; }
 
 
 
@@ -941,11 +961,12 @@
     .footer-right-overlay {
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
       display: flex; flex-direction: column;
-      align-items: flex-end; padding: 40px 44px; pointer-events: none;
+      align-items: flex-end; justify-content: flex-start;
+      padding: 40px 44px; pointer-events: none;
     }
     .footer-dg-logo {
-      width: clamp(180px, 28vw, 440px); height: auto;
-      display: block; align-self: flex-end; margin-bottom: 10px;
+      display: block; width: auto; max-width: clamp(180px, 28vw, 440px);
+      height: auto; margin-bottom: 8px; margin-right: 6px;
     }
     .footer-tagline {
       font-family: var(--sans); font-size: clamp(14px, 1.5vw, 22px);
@@ -1050,11 +1071,11 @@
         </div>
       </li>
       <li class="nav-item has-dropdown">
-        <a href="#" class="has-arrow">help</a>
+        <a href="/help.html" class="has-arrow">help</a>
         <div class="nav-dropdown">
-          <a href="#">help center</a>
-          <a href="#">FAQs</a>
-          <a href="#">contact us</a>
+          <a href="/help.html">Help Center</a>
+          <a href="/help.html#faq">FAQs</a>
+          <a href="/help.html#contact">Contact Us</a>
         </div>
       </li>
     </ul>
@@ -1082,17 +1103,17 @@
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-rating fade-up">
+      <div class="hero-rating">
         <span class="hero-stars">★★★★★</span>
         <span class="hero-rating-txt">20,000+ happy customers</span>
       </div>
-      <h1 class="hero-h1 fade-up" style="transition-delay:.1s">
+      <h1 class="hero-h1">
         don't let your tonight<br>ruin your tomorrow.
       </h1>
-      <p class="hero-sub fade-up" style="transition-delay:.2s">
+      <p class="hero-sub">
         doctor formulated jelly sticks that protect<br>your liver and gut when you drink
       </p>
-      <a href="/shop.html" class="hero-btn fade-up" style="transition-delay:.3s">
+      <a href="/shop.html" class="hero-btn">
         shop now<span class="hero-btn-arrow">→</span>
       </a>
     </div>
@@ -1216,11 +1237,6 @@
       <span class="science-tag">WHAT'S INSIDE</span>
       <h2 class="science-heading">the science</h2>
       <p class="science-sub">Every ingredient in day—guard is clinically backed, transparently dosed, and formulated to protect your body the morning after.</p>
-      <div class="science-pills">
-        <span class="science-pill">doctor-formulated</span>
-        <span class="science-pill">clinically studied</span>
-        <span class="science-pill">transparently dosed</span>
-      </div>
     </div>
 
     <div class="pillar-grid">
@@ -1270,12 +1286,44 @@
 
 
   <!-- ════════════════════════════
-       6. HOW-TO
+       6. PRESS
+  ════════════════════════════ -->
+  <section class="press-section" id="press">
+    <img class="press-bg"
+         src="https://www.figma.com/api/mcp/asset/6623c733-4e3c-4dd3-ae01-cc4200402162"
+         alt="" aria-hidden="true">
+    <div class="press-inner">
+      <p class="press-label fade-up">day–guard in the press</p>
+      <blockquote class="press-quote fade-up" id="press-quote">"day–guard brings Korean wellness culture to American consumers through a reimagined approach to social drinking."</blockquote>
+      <div class="press-logos fade-up">
+        <button class="press-logo-btn active" data-publication="Forbes"
+                data-quote="&ldquo;day&ndash;guard brings Korean wellness culture to American consumers through a reimagined approach to social drinking.&rdquo;">
+          <img class="press-logo" src="/images/Forbes_logo.svg" alt="Forbes">
+        </button>
+        <button class="press-logo-btn" data-publication="SFGate"
+                data-quote="&ldquo;The latest pre-drinking supplement making waves among health-conscious millennials — and it actually tastes good.&rdquo;">
+          <img class="press-logo" src="/images/Logo_of_SFGate.svg" alt="SF Gate">
+        </button>
+        <button class="press-logo-btn" data-publication="The Korea Herald"
+                data-quote="&ldquo;Korean pharmaceutical expertise meets modern wellness — day&ndash;guard is redefining how the world drinks.&rdquo;">
+          <img class="press-logo" src="/images/The_Korea_Herald__idup90auts_1_1.svg" alt="The Korea Herald">
+        </button>
+        <button class="press-logo-btn" data-publication="The Boston Globe"
+                data-quote="&ldquo;An innovative approach to next-day recovery that has young professionals rethinking their relationship with alcohol.&rdquo;">
+          <img class="press-logo" src="/images/The_Boston_Globe (1).svg" alt="The Boston Globe">
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       7. HOW-TO
   ════════════════════════════ -->
   <section class="howto-section" id="how-to">
     <div class="howto-intro fade-up">
       <h2 class="howto-heading">how—to.</h2>
-      <p class="howto-sub">built for post — work, pre — drinks</p>
+      <p class="howto-sub">protected in just three steps</p>
     </div>
     <div class="howto-grid">
       <div class="howto-card fade-up" data-video="/videos/howto-video/howto-1.mp4">
@@ -1332,38 +1380,6 @@
 
 
   <!-- ════════════════════════════
-       8. PRESS
-  ════════════════════════════ -->
-  <section class="press-section" id="press">
-    <img class="press-bg"
-         src="https://www.figma.com/api/mcp/asset/6623c733-4e3c-4dd3-ae01-cc4200402162"
-         alt="" aria-hidden="true">
-    <div class="press-inner">
-      <p class="press-label fade-up">day–guard in the press</p>
-      <blockquote class="press-quote fade-up" id="press-quote">"day–guard brings Korean wellness culture to American consumers through a reimagined approach to social drinking."</blockquote>
-      <div class="press-logos fade-up">
-        <button class="press-logo-btn active" data-publication="Forbes"
-                data-quote="&ldquo;day&ndash;guard brings Korean wellness culture to American consumers through a reimagined approach to social drinking.&rdquo;">
-          <img class="press-logo" src="/images/Forbes_logo.svg" alt="Forbes">
-        </button>
-        <button class="press-logo-btn" data-publication="SFGate"
-                data-quote="&ldquo;The latest pre-drinking supplement making waves among health-conscious millennials — and it actually tastes good.&rdquo;">
-          <img class="press-logo" src="/images/Logo_of_SFGate.svg" alt="SF Gate">
-        </button>
-        <button class="press-logo-btn" data-publication="The Korea Herald"
-                data-quote="&ldquo;Korean pharmaceutical expertise meets modern wellness — day&ndash;guard is redefining how the world drinks.&rdquo;">
-          <img class="press-logo" src="/images/The_Korea_Herald__idup90auts_1_1.svg" alt="The Korea Herald">
-        </button>
-        <button class="press-logo-btn" data-publication="The Boston Globe"
-                data-quote="&ldquo;An innovative approach to next-day recovery that has young professionals rethinking their relationship with alcohol.&rdquo;">
-          <img class="press-logo" src="/images/The_Boston_Globe (1).svg" alt="The Boston Globe">
-        </button>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ════════════════════════════
        9. REVIEWS
   ════════════════════════════ -->
   <section class="reviews" id="reviews">
@@ -1374,42 +1390,84 @@
       <button class="rev-arrow rev-arrow-prev" id="rev-prev" aria-label="Previous review">&#8592;</button>
       <div class="reviews-viewport">
         <div class="reviews-track" id="reviews-track">
+          <!-- 1: Text – Ali -->
           <div class="rev-slide">
             <div class="rev-slide-inner">
               <p class="rev-slide-stars">★★★★★</p>
-              <p class="rev-slide-quote">"I take one before going out and wake up completely like myself. mango flavor is genuinely delicious."</p>
-              <p class="rev-slide-name">Sarah M.</p>
+              <p class="rev-slide-quote">"I don't drink without them now."</p>
+              <p class="rev-slide-name">Ali</p>
               <p class="rev-slide-verified">Verified Buyer ✓</p>
             </div>
           </div>
+          <!-- 4: Photo -->
           <div class="rev-slide photo">
-            <img src="https://www.figma.com/api/mcp/asset/5cdb804d-ba3a-4c9b-92e0-17c019343bb7" alt="day-guard lifestyle — friends out together">
+            <img src="/images/reviews/DSCF9265.jpg" alt="day-guard lifestyle">
           </div>
-          <div class="rev-slide wide">
-            <div class="rev-slide-inner">
-              <p class="rev-slide-stars">★★★★★</p>
-              <p class="rev-slide-quote">"day-guard is my going out essential for me! need to stay on top of my health"</p>
-              <p class="rev-slide-name">Carol B.</p>
-              <p class="rev-slide-verified">Verified Buyer ✓</p>
-            </div>
-          </div>
-          <div class="rev-slide photo">
-            <img src="https://www.figma.com/api/mcp/asset/2c0883f7-bb62-4728-9250-eafdba5e4917" alt="day-guard lifestyle — night out">
-          </div>
+          <!-- 5: Text – Jeffrey T. -->
           <div class="rev-slide">
             <div class="rev-slide-inner">
               <p class="rev-slide-stars">★★★★★</p>
-              <p class="rev-slide-quote">"Subscribed after my second box. My whole friend group is on it now. I'd give it 6 stars if I could."</p>
-              <p class="rev-slide-name">Jake T.</p>
+              <p class="rev-slide-quote">"Easy to keep in my pocket."</p>
+              <p class="rev-slide-name">Jeffrey T.</p>
               <p class="rev-slide-verified">Verified Buyer ✓</p>
             </div>
+          </div>
+          <!-- 8: Photo -->
+          <div class="rev-slide photo">
+            <img src="/images/reviews/DSC01864.jpg" alt="day-guard lifestyle">
+          </div>
+          <!-- 9: Text – Scarlett M. -->
+          <div class="rev-slide">
+            <div class="rev-slide-inner">
+              <p class="rev-slide-stars">★★★★★</p>
+              <p class="rev-slide-quote">"Mornings much more manageable."</p>
+              <p class="rev-slide-name">Scarlett M.</p>
+              <p class="rev-slide-verified">Verified Buyer ✓</p>
+            </div>
+          </div>
+          <!-- 10: Photo -->
+          <div class="rev-slide photo">
+            <img src="/images/reviews/C599192_C599192-R1-024-10A.jpg" alt="day-guard lifestyle">
+          </div>
+          <!-- 11: Text – Isaac C. -->
+          <div class="rev-slide">
+            <div class="rev-slide-inner">
+              <p class="rev-slide-stars">★★★★★</p>
+              <p class="rev-slide-quote">"Tastes like a fruity snack."</p>
+              <p class="rev-slide-name">Isaac C.</p>
+              <p class="rev-slide-verified">Verified Buyer ✓</p>
+            </div>
+          </div>
+          <!-- 12: Photo -->
+          <div class="rev-slide photo">
+            <img src="/images/reviews/1Y0A0569.jpg" alt="day-guard lifestyle">
+          </div>
+          <!-- 9: Text – Isaiah W. -->
+          <div class="rev-slide">
+            <div class="rev-slide-inner">
+              <p class="rev-slide-stars">★★★★★</p>
+              <p class="rev-slide-quote">"Woke up way more functional."</p>
+              <p class="rev-slide-name">Isaiah W.</p>
+              <p class="rev-slide-verified">Verified Buyer ✓</p>
+            </div>
+          </div>
+          <!-- 10: Photo -->
+          <div class="rev-slide photo">
+            <img src="/images/reviews/DSC09693.jpg" alt="day-guard lifestyle">
           </div>
         </div>
       </div>
       <button class="rev-arrow rev-arrow-next" id="rev-next" aria-label="Next review">&#8594;</button>
     </div>
     <div class="reviews-cta fade-up">
-      <a href="/shop.html" class="rev-cta-btn">read all reviews<span class="rev-cta-arrow">→</span></a>
+      <div class="rev-product-cta">
+        <img class="rev-product-thumb" src="https://www.figma.com/api/mcp/asset/8c647c32-f6f6-41ca-b4f5-8c3f8dd3c439" alt="day–guard" onerror="this.style.display='none'">
+        <div class="rev-product-info">
+          <p class="rev-product-title">pre-alcohol vitamin jelly sticks</p>
+          <p class="rev-product-price">from $29.00 · subscribe &amp; save</p>
+        </div>
+        <a href="/shop.html" class="rev-product-btn">shop now →</a>
+      </div>
     </div>
   </section>
 
@@ -1465,9 +1523,9 @@
         <div class="footer-nav-col">
           <p class="footer-nav-h">Support</p>
           <ul class="footer-nav-links">
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="/help.html">Help Center</a></li>
+            <li><a href="/help.html#faq">FAQs</a></li>
+            <li><a href="/help.html#contact">Contact Us</a></li>
           </ul>
         </div>
       </div>
@@ -1487,10 +1545,10 @@
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.02-.07z"/></svg>
             </a>
             <a href="#" class="social-icon" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
             <a href="#" class="social-icon" aria-label="Amazon">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705c-.209.189-.512.201-.748.076-1.051-.873-1.237-1.279-1.814-2.111-1.732 1.767-2.958 2.296-5.2 2.296-2.654 0-4.717-1.638-4.717-4.917 0-2.56 1.385-4.304 3.357-5.155 1.711-.755 4.1-.89 5.93-1.098v-.41c0-.753.06-1.642-.384-2.294-.385-.579-1.124-.818-1.774-.818-1.205 0-2.277.618-2.54 1.899-.054.285-.261.567-.547.582l-3.065-.333c-.259-.056-.547-.267-.472-.663C5.869 1.8 9.141 1 12.078 1c1.501 0 3.462.401 4.646 1.541 1.502 1.4 1.358 3.267 1.358 5.3v4.8c0 1.443.599 2.076 1.163 2.855.2.28.244.614-.01.824-.629.527-1.75 1.508-2.362 2.058l-.008-.023zm3.56 1.077c.116-.153.298-.2.48-.122 1.56.84 2.257 1.454 2.257 2.375 0 .627-.516 1.24-1.55 1.84C20.948 23.513 19.48 24 18 24c-1.3 0-2.557-.337-3.773-1.01C13.01 22.316 12 21.374 12 20.234c0-.782.447-1.617 1.342-2.505.274-.27.591-.196.722.09.13.284.02.59-.244.858-.485.492-.728.972-.728 1.44 0 .646.7 1.25 2.099 1.806C16.39 22.38 17.25 22.6 18 22.6c.99 0 1.986-.296 2.988-.887.998-.59 1.498-1.177 1.498-1.763 0-.485-.43-.928-1.29-1.327-.283-.133-.39-.4-.262-.642l-.23-.108z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M15.93 17.09c-.15.12-.37.13-.54.05-.76-.63-.9-.92-1.31-1.52-1.25 1.28-2.14 1.66-3.76 1.66-1.92 0-3.41-1.18-3.41-3.56 0-1.85 1-3.11 2.43-3.73 1.24-.54 2.96-.64 4.28-.79v-.3c0-.55.04-1.19-.28-1.66-.28-.42-.81-.59-1.28-.59-.87 0-1.65.45-1.84 1.38-.04.21-.19.41-.4.42l-2.22-.24c-.19-.04-.4-.19-.34-.48.52-2.74 2.99-3.56 5.21-3.56 1.13 0 2.61.3 3.5 1.16 1.13 1.06 1.02 2.47 1.02 4.01v3.63c0 1.09.45 1.57.88 2.16.15.21.18.46-.01.62l-1.93 1.67zm-1.55-5.49v-.51c-1.65.1-3.39.37-3.39 2.3 0 .99.51 1.66 1.38 1.66.64 0 1.21-.39 1.57-.99.44-.74.44-1.44.44-2.46zm6.43 7.27C18.5 20.5 16.08 21 13.76 21c-3.69 0-7.01-1.37-9.52-3.62-.2-.18-.02-.42.21-.28 2.71 1.57 6.06 2.52 9.52 2.52 2.33 0 4.89-.48 7.26-1.49.36-.15.66.24.58.64zm.92-1.06c-.27-.35-1.78-.17-2.46-.08-.21.03-.24-.16-.06-.29 1.2-.85 3.18-.6 3.4-.32.22.29-.06 2.27-1.18 3.21-.17.15-.34.07-.26-.12.25-.64.83-2.07.56-2.4z"/></svg>
             </a>
           </div>
         </div>
@@ -1612,29 +1670,29 @@
       statsObserver.observe(statsEl);
     })();
 
-    /* ── Sticky CTA — show after stats, hide at reviews and footer ── */
+    /* ── Sticky CTA — show after science section, hide at reviews and footer ── */
     (function() {
-      const stickyCta = document.getElementById('sticky-cta');
-      const statsEl   = document.getElementById('features-stats');
-      const reviewsEl = document.getElementById('reviews');
-      const footerEl  = document.getElementById('footer');
+      const stickyCta  = document.getElementById('sticky-cta');
+      const scienceEl  = document.getElementById('ingredients');
+      const reviewsEl  = document.getElementById('reviews');
+      const footerEl   = document.getElementById('footer');
       if (!stickyCta) return;
 
-      let statsReached    = false;
+      let scienceReached  = false;
       let reviewsVisible  = false;
       let footerVisible   = false;
 
       function syncCta() {
-        stickyCta.classList.toggle('visible', statsReached && !reviewsVisible && !footerVisible);
+        stickyCta.classList.toggle('visible', scienceReached && !reviewsVisible && !footerVisible);
       }
 
-      if (statsEl) {
+      if (scienceEl) {
         new IntersectionObserver(entries => {
           const e = entries[0];
-          if (e.isIntersecting) { statsReached = true; }
-          else if (e.boundingClientRect.top > 0) { statsReached = false; }
+          if (e.isIntersecting) { scienceReached = true; }
+          else if (e.boundingClientRect.top > 0) { scienceReached = false; }
           syncCta();
-        }, { threshold: 0 }).observe(statsEl);
+        }, { threshold: 0 }).observe(scienceEl);
       }
       if (reviewsEl) {
         new IntersectionObserver(entries => {
@@ -1698,50 +1756,78 @@
       });
     });
 
-    /* ── Reviews: click-only navigation, translateX centering, active scale ── */
+    /* ── Reviews: circular navigation, translateX centering, active scale, 10s auto-advance ── */
     (function() {
       const track   = document.getElementById('reviews-track');
       const prevBtn = document.getElementById('rev-prev');
       const nextBtn = document.getElementById('rev-next');
       if (!track) return;
 
-      const slides  = Array.from(track.querySelectorAll('.rev-slide'));
-      const total   = slides.length;
-      let activeIdx = 2;
+      /* ── Infinite carousel: clone slides before + after ── */
+      const origSlides = Array.from(track.querySelectorAll('.rev-slide'));
+      const origCount  = origSlides.length;
 
-      function render() {
-        /* 1. Apply active class → CSS handles scale + opacity transition */
-        slides.forEach((s, i) => s.classList.toggle('rev-active', i === activeIdx));
+      /* Prepend clones of last origCount slides */
+      [...origSlides].reverse().forEach(s => track.insertBefore(s.cloneNode(true), track.firstChild));
+      /* Append clones of first origCount slides */
+      origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
 
-        /* 2. Translate track so active slide is centered in viewport */
+      const allSlides = Array.from(track.querySelectorAll('.rev-slide'));
+      /* Start at origCount+4 so we're viewing the "real" middle set */
+      let activeIdx = origCount + 4;
+      let autoTimer;
+      let transitioning = false;
+
+      function calcOffset(idx) {
         const viewport = track.parentElement;
         const viewW    = viewport.clientWidth;
-        const gap      = parseFloat(getComputedStyle(track).gap) || 32;
-
-        /* Sum widths of all slides before active */
-        let distToActiveCenter = 0;
-        for (let i = 0; i < activeIdx; i++) {
-          distToActiveCenter += slides[i].offsetWidth + gap;
-        }
-        distToActiveCenter += slides[activeIdx].offsetWidth / 2;
-
-        const tx = viewW / 2 - distToActiveCenter;
-        track.style.transform = `translateX(${tx}px)`;
-
-        /* 3. Toggle arrow visibility at extremes */
-        if (prevBtn) prevBtn.style.opacity = activeIdx === 0 ? '0.3' : '1';
-        if (nextBtn) nextBtn.style.opacity = activeIdx === total - 1 ? '0.3' : '1';
+        const gap      = 12;
+        let dist = 0;
+        for (let i = 0; i < idx; i++) dist += allSlides[i].offsetWidth + gap;
+        dist += allSlides[idx].offsetWidth / 2;
+        return viewW / 2 - dist;
       }
 
-      prevBtn && prevBtn.addEventListener('click', () => {
-        if (activeIdx > 0) { activeIdx--; render(); }
-      });
-      nextBtn && nextBtn.addEventListener('click', () => {
-        if (activeIdx < total - 1) { activeIdx++; render(); }
-      });
+      function render(animate) {
+        allSlides.forEach((s, i) => s.classList.toggle('rev-active', i === activeIdx));
+        if (!animate) {
+          track.style.transition = 'none';
+          track.style.transform  = `translateX(${calcOffset(activeIdx)}px)`;
+          void track.offsetWidth;
+          track.style.transition = '';
+        } else {
+          track.style.transform  = `translateX(${calcOffset(activeIdx)}px)`;
+        }
+      }
 
-      /* Initial render after paint so offsetWidth values are available */
-      requestAnimationFrame(() => requestAnimationFrame(render));
+      function navigate(dir) {
+        if (transitioning) return;
+        activeIdx += dir;
+        render(true);
+        transitioning = true;
+        setTimeout(() => {
+          /* Seamlessly wrap to middle set if we've gone into the clone zone */
+          if (activeIdx >= origCount * 2) {
+            activeIdx -= origCount;
+            render(false);
+          } else if (activeIdx < origCount) {
+            activeIdx += origCount;
+            render(false);
+          }
+          transitioning = false;
+        }, 570);
+      }
+
+      function startAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => navigate(1), 10000);
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => { navigate(-1); startAuto(); });
+      nextBtn && nextBtn.addEventListener('click', () => { navigate(1);  startAuto(); });
+
+      requestAnimationFrame(() => requestAnimationFrame(() => render(false)));
+      startAuto();
     })();
 
     /* ── Pillar modal ── */
