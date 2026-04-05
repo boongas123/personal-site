@@ -1699,6 +1699,9 @@
       .bundles-header { flex-direction: column; align-items: flex-start; gap: 12px; }
       .bundles-sub { text-align: left; max-width: none; }
       .bundles-grid { grid-template-columns: 1fr; gap: 12px; }
+      /* Toggle — smaller text so "save 19%" fits on mobile */
+      .toggle-btn { font-size: 11px; padding: 10px 6px; gap: 3px; }
+      .toggle-save { font-size: 10px; padding: 2px 5px; }
       /* Pillar modal — stacked on mobile */
       .pillar-modal { grid-template-columns: 1fr; height: auto; max-height: 88vh; overflow-y: auto; }
       .pillar-modal-left { height: 220px; flex-shrink: 0; }
@@ -1958,6 +1961,24 @@
         <div class="price-per-box">10 sticks per box</div>
       </div>
 
+      <!-- Quantity box selector -->
+      <div class="qty-boxes" id="qty-boxes">
+        <div class="qty-box" data-qty="1" data-price="2.90" onclick="selectQty(this)">
+          <div class="qty-box-units">1 box</div>
+          <div class="qty-box-price">$2.90 / stick</div>
+        </div>
+        <div class="qty-box" data-qty="2" data-price="2.75" onclick="selectQty(this)">
+          <span class="qty-box-badge popular">most popular</span>
+          <div class="qty-box-units">2 box</div>
+          <div class="qty-box-price">$2.75 / stick</div>
+        </div>
+        <div class="qty-box active" data-qty="3" data-price="2.50" onclick="selectQty(this)">
+          <span class="qty-box-badge deal">best deal</span>
+          <div class="qty-box-units">3 box</div>
+          <div class="qty-box-price">$2.50 / stick</div>
+        </div>
+      </div>
+
       <!-- Subscribe / Buy Once — pill slider, Hedvig Letters Serif -->
       <div class="purchase-toggle" id="purchase-toggle">
         <div class="toggle-track-pill" id="toggle-pill"></div>
@@ -1984,24 +2005,6 @@
           </div>
         </div>
         <input type="hidden" id="cadence-dropdown" value="4">
-      </div>
-
-      <!-- Quantity box selector -->
-      <div class="qty-boxes" id="qty-boxes">
-        <div class="qty-box" data-qty="1" data-price="2.90" onclick="selectQty(this)">
-          <div class="qty-box-units">1 box</div>
-          <div class="qty-box-price">$2.90 / stick</div>
-        </div>
-        <div class="qty-box" data-qty="2" data-price="2.75" onclick="selectQty(this)">
-          <span class="qty-box-badge popular">most popular</span>
-          <div class="qty-box-units">2 box</div>
-          <div class="qty-box-price">$2.75 / stick</div>
-        </div>
-        <div class="qty-box active" data-qty="3" data-price="2.50" onclick="selectQty(this)">
-          <span class="qty-box-badge deal">best deal</span>
-          <div class="qty-box-units">3 box</div>
-          <div class="qty-box-price">$2.50 / stick</div>
-        </div>
       </div>
 
       <!-- Bullet perks -->
