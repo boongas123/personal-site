@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center — day–guard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #204c3e;
+      --soft-green: #9aaca0;
+      --beige:   #f4f1ec;
+      --bg:      #f1f1ea;
+      --mango:   #fb9918;
+      --white:   #ffffff;
+      --black:   #020706;
+      --serif:   'Hedvig Letters Serif', Georgia, serif;
+      --sans:    'Helvetica Neue', Arial, sans-serif;
+      --label:   'DM Sans', Arial, sans-serif;
+      --ease:    0.22s ease;
+    }
+
+    html { font-family: var(--sans); color: var(--black); background: var(--bg); scroll-behavior: smooth; }
+    body { overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ═══════════════════════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════════════════════ */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; padding: 0 44px;
+      height: 72px;
+      background: rgba(244,241,236,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(2,7,6,0.06);
+      transition: background var(--ease), border-color var(--ease);
+    }
+    .nav-logo img { height: 28px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 44px; margin-left: auto; margin-right: 44px; list-style: none; }
+    .nav-links a {
+      font-family: var(--sans); font-size: 15px; font-weight: 400;
+      letter-spacing: -0.5px; color: var(--black); opacity: 0.75;
+      transition: opacity var(--ease);
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a.active { opacity: 1; }
+    .nav-item { position: relative; }
+    .nav-item > a { cursor: pointer; }
+    .nav-dropdown {
+      position: absolute; top: calc(100% + 12px); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: var(--white); border-radius: 12px;
+      padding: 10px 0; min-width: 180px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .nav-item:hover .nav-dropdown,
+    .nav-item.open .nav-dropdown {
+      opacity: 1; pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown a {
+      display: block; padding: 9px 18px;
+      font-size: 14px; opacity: 0.7;
+    }
+    .nav-dropdown a:hover { opacity: 1; background: rgba(2,7,6,0.03); }
+    .nav-item > a.has-arrow::after {
+      content: ''; display: inline-block;
+      width: 6px; height: 6px;
+      border-right: 1.4px solid currentColor;
+      border-bottom: 1.4px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+      margin-left: 5px; opacity: 0.5;
+    }
+    .nav-cart {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid rgba(2,7,6,0.12);
+      color: var(--black);
+      transition: border-color var(--ease);
+    }
+    .nav-cart:hover { border-color: var(--black); }
+
+    /* ═══════════════════════════════════════════════════════
+       CONTACT HERO
+    ═══════════════════════════════════════════════════════ */
+    .contact-hero {
+      background: var(--green);
+      padding: clamp(60px, 8vw, 120px) clamp(32px, 8vw, 140px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 80px);
+      align-items: start;
+    }
+    .contact-hero-left h1 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 5.5vw, 96px);
+      font-weight: 400; line-height: 1.0;
+      letter-spacing: -3px; color: var(--white);
+      margin-bottom: 24px;
+    }
+    .contact-hero-left p {
+      font-family: var(--sans);
+      font-size: clamp(15px, 1.4vw, 20px);
+      font-weight: 400; line-height: 1.55;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: -0.3px;
+      max-width: 440px;
+    }
+    .contact-hero-left p a {
+      color: var(--white); text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 20px;
+      padding: clamp(28px, 3vw, 48px);
+    }
+    .contact-card h2 {
+      font-family: var(--sans);
+      font-size: clamp(18px, 1.8vw, 28px);
+      font-weight: 500; letter-spacing: -0.8px;
+      color: var(--white); margin-bottom: 24px;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .contact-form label {
+      font-family: var(--sans); font-size: 12px;
+      font-weight: 600; letter-spacing: 0.8px;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+      display: block; margin-bottom: 6px;
+    }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%; padding: 12px 16px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px;
+      font-family: var(--sans); font-size: 15px; font-weight: 400;
+      color: var(--white); outline: none;
+      transition: border-color 0.2s;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus { border-color: rgba(255,255,255,0.5); }
+    .contact-form select {
+      appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+      padding-right: 36px; cursor: pointer;
+    }
+    .contact-form select option { background: var(--green); }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-submit {
+      font-family: var(--label); font-size: 15px; font-weight: 600;
+      letter-spacing: -0.2px; text-transform: lowercase;
+      background: var(--mango); color: var(--white);
+      padding: 14px 32px; border-radius: 8px;
+      width: 100%; text-align: center;
+      transition: opacity 0.2s;
+    }
+    .contact-submit:hover { opacity: 0.88; }
+
+    .contact-quick-links {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-top: 32px;
+    }
+    .contact-quick-link {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+    .contact-quick-link:hover { background: rgba(255,255,255,0.1); }
+    .contact-quick-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-quick-icon svg { color: var(--white); }
+    .contact-quick-text-title {
+      font-family: var(--sans); font-size: 14px;
+      font-weight: 500; letter-spacing: -0.3px; color: var(--white);
+    }
+    .contact-quick-text-sub {
+      font-family: var(--sans); font-size: 12px;
+      color: rgba(255,255,255,0.5); letter-spacing: -0.1px;
+      margin-top: 2px;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       FAQ
+    ═══════════════════════════════════════════════════════ */
+    .faq-section { background: var(--white); padding: clamp(60px, 8vw, 120px) clamp(32px, 8vw, 140px); }
+    .faq-inner { display: grid; grid-template-columns: 1fr 2fr; gap: clamp(40px, 6vw, 100px); align-items: start; }
+    .faq-left h2 {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 64px);
+      font-weight: 400; line-height: 1.05;
+      letter-spacing: -2px; color: var(--green);
+      margin-bottom: 20px;
+    }
+    .faq-left p {
+      font-family: var(--sans); font-size: 15px;
+      color: rgba(2,7,6,0.55); line-height: 1.5;
+      letter-spacing: -0.2px;
+    }
+    .faq-left p a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+    .faq-left-sticky { position: sticky; top: 88px; }
+    .faq-right { display: flex; flex-direction: column; }
+    .faq-category {
+      font-family: var(--sans); font-size: 11px;
+      font-weight: 600; letter-spacing: 1.2px;
+      text-transform: uppercase; color: rgba(2,7,6,0.35);
+      margin-top: 32px; margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(2,7,6,0.07);
+    }
+    .faq-category:first-child { margin-top: 0; }
+    .faq-item { border-bottom: 1px solid rgba(2,7,6,0.07); }
+    .faq-question {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0;
+      font-family: var(--sans); font-size: clamp(15px, 1.2vw, 18px);
+      font-weight: 400; letter-spacing: -0.4px;
+      color: var(--black); text-align: left;
+      transition: opacity 0.2s;
+    }
+    .faq-question:hover { opacity: 0.65; }
+    .faq-chevron {
+      font-size: 20px; font-weight: 300;
+      color: var(--green); flex-shrink: 0; margin-left: 16px;
+      transition: transform 0.25s ease;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(45deg); }
+    .faq-answer {
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer p {
+      font-family: var(--sans); font-size: 15px;
+      color: rgba(2,7,6,0.6); line-height: 1.6;
+      letter-spacing: -0.2px; padding-bottom: 20px;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════ */
+    .footer {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+    .footer-left {
+      background: var(--green);
+      padding: clamp(40px, 4vw, 64px) clamp(32px, 4vw, 56px);
+      display: flex; flex-direction: column; justify-content: space-between;
+      gap: 32px;
+    }
+    .footer-signup-h {
+      font-family: var(--sans); font-size: clamp(20px, 2.2vw, 32px);
+      font-weight: 500; letter-spacing: -1px; color: var(--white);
+      margin-bottom: 16px;
+    }
+    .footer-toggles { display: flex; gap: 8px; margin-bottom: 14px; }
+    .ft-btn {
+      font-family: var(--label); font-size: 13px; font-weight: 600;
+      letter-spacing: -0.1px; text-transform: lowercase;
+      padding: 8px 20px; border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.5);
+      transition: all 0.2s;
+    }
+    .ft-btn.active { color: var(--white); border-color: var(--white); }
+    .footer-input {
+      width: 100%; padding: 12px 18px;
+      background: transparent; border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 8px; outline: none;
+      font-family: var(--sans); font-size: 15px; color: var(--white);
+      margin-bottom: 10px;
+    }
+    .footer-input::placeholder { color: rgba(255,255,255,0.35); }
+    .footer-input:focus { border-color: rgba(255,255,255,0.7); }
+    .footer-disclaimer {
+      font-size: 11px; color: rgba(255,255,255,0.3);
+      line-height: 1.5; letter-spacing: 0.1px;
+    }
+    .footer-nav-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .footer-nav-h {
+      font-family: var(--sans); font-size: 13px;
+      font-weight: 600; letter-spacing: -0.2px; color: rgba(255,255,255,0.5);
+      margin-bottom: 12px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.8px;
+    }
+    .footer-nav-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-nav-links a {
+      font-family: var(--sans); font-size: 13px;
+      color: rgba(255,255,255,0.6); letter-spacing: -0.2px;
+      transition: color 0.2s;
+    }
+    .footer-nav-links a:hover { color: var(--white); }
+    .footer-fda {
+      font-size: 10px; line-height: 1.5;
+      color: rgba(255,255,255,0.25); letter-spacing: 0.1px;
+      margin-bottom: 16px;
+    }
+    .footer-bottom-row {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copyright {
+      font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: -0.1px;
+    }
+    .footer-socials { display: flex; align-items: center; gap: 14px; }
+    .social-icon { color: rgba(255,255,255,0.5); transition: color 0.2s; display: flex; }
+    .social-icon:hover { color: var(--white); }
+    .footer-right {
+      position: relative; overflow: hidden;
+      background: #2a3a30;
+    }
+    .footer-girl-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 50%;
+      display: block;
+    }
+    .footer-right-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; flex-direction: column;
+      align-items: flex-end; justify-content: flex-end; padding: 40px 44px;
+      pointer-events: none;
+    }
+    .footer-dg-logo {
+      width: auto; max-width: clamp(180px, 28vw, 440px); height: auto;
+      display: block; align-self: flex-end; margin-bottom: 8px;
+    }
+    .footer-tagline {
+      font-family: var(--sans); font-size: clamp(14px, 1.5vw, 22px);
+      font-weight: 400; color: var(--white); letter-spacing: -0.9px;
+      text-align: right; opacity: 0.9;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .contact-hero { grid-template-columns: 1fr; }
+      .faq-inner { grid-template-columns: 1fr; }
+      .faq-left-sticky { position: static; }
+      .footer { grid-template-columns: 1fr; }
+      .footer-right { display: none; }
+      .footer-nav-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="site-nav">
+    <a href="/" class="nav-logo" aria-label="day–guard home">
+      <img src="https://www.figma.com/api/mcp/asset/bf338aff-a962-423b-8ebb-6042ee6ff20b"
+           alt="day–guard"
+           onerror="this.style.display='none'">
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item has-dropdown">
+        <a href="/shop.html" class="has-arrow">shop</a>
+        <div class="nav-dropdown">
+          <a href="/shop.html">pre-alcohol vitamin jelly</a>
+          <a href="#">every day-guard</a>
+          <a href="#">bulk order</a>
+          <a href="#">merch</a>
+        </div>
+      </li>
+      <li><a href="/#ingredients">science</a></li>
+      <li class="nav-item has-dropdown">
+        <a href="#" class="has-arrow">learn</a>
+        <div class="nav-dropdown">
+          <a href="#">about us</a>
+          <a href="#">blog</a>
+        </div>
+      </li>
+      <li class="nav-item has-dropdown">
+        <a href="/help.html" class="has-arrow active">help</a>
+        <div class="nav-dropdown">
+          <a href="/help.html">Help Center</a>
+          <a href="/help.html#faq">FAQs</a>
+          <a href="/help.html#contact">Contact Us</a>
+        </div>
+      </li>
+    </ul>
+    <button class="nav-cart" aria-label="Open cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- CONTACT HERO -->
+  <section class="contact-hero" id="contact">
+    <div class="contact-hero-left">
+      <h1>we're here to help.</h1>
+      <p>
+        Have a question about your order, subscription, or the science behind day–guard?
+        Fill out the form or email us at <a href="mailto:hello@dayguard.com">hello@dayguard.com</a> — we reply within one business day.
+      </p>
+      <div class="contact-quick-links">
+        <a href="mailto:hello@dayguard.com" class="contact-quick-link">
+          <div class="contact-quick-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-quick-text-title">email us</div>
+            <div class="contact-quick-text-sub">hello@dayguard.com · reply within 1 business day</div>
+          </div>
+        </a>
+        <a href="#faq" class="contact-quick-link">
+          <div class="contact-quick-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div>
+            <div class="contact-quick-text-title">browse FAQs</div>
+            <div class="contact-quick-text-sub">answers to our most common questions</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <h2>send us a message</h2>
+      <form class="contact-form" onsubmit="handleContactSubmit(event)">
+        <div>
+          <label for="contact-name">name</label>
+          <input type="text" id="contact-name" placeholder="your name" required>
+        </div>
+        <div>
+          <label for="contact-email">email</label>
+          <input type="email" id="contact-email" placeholder="your@email.com" required>
+        </div>
+        <div>
+          <label for="contact-topic">topic</label>
+          <select id="contact-topic">
+            <option value="">select a topic</option>
+            <option value="order">order &amp; shipping</option>
+            <option value="subscription">subscription</option>
+            <option value="returns">returns &amp; refunds</option>
+            <option value="product">product question</option>
+            <option value="science">science &amp; ingredients</option>
+            <option value="other">other</option>
+          </select>
+        </div>
+        <div>
+          <label for="contact-message">message</label>
+          <textarea id="contact-message" placeholder="how can we help?" required></textarea>
+        </div>
+        <button type="submit" class="contact-submit">send message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-inner">
+      <div class="faq-left-sticky">
+        <div class="faq-left">
+          <h2>Questions?<br>We're here<br>to help.</h2>
+          <p>Can't find your answer? Email us at <a href="mailto:hello@dayguard.com">hello@dayguard.com</a> — we reply within one business day.</p>
+        </div>
+      </div>
+      <div class="faq-right">
+        <p class="faq-category">Product</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            When should I take day–guard?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Take one stick before your first drink. For longer nights, take another every 3–5 drinks. The jelly format means no water needed — just tear, squeeze, and you're set.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How many sticks should I take?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>One stick covers a typical night out. For heavier nights, take one before drinking and one more midway through. Each pack contains 10 sticks — enough for 10 nights.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is day–guard safe with other supplements?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Yes. day–guard contains all-natural ingredients that are safe for most people. If you have a specific medical condition or take prescription medications, consult your doctor first.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What flavors are available?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>day–guard currently comes in Mango, Peach, and Apple flavors. All three deliver the same clinical formula — choose your favorite or try all three.</p></div>
+        </div>
+
+        <p class="faq-category">Subscription</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How does the subscription work?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Subscribe and save 19% on every order. Your pack ships on your chosen cadence (every 4 or 8 weeks) — skip, pause, or cancel anytime from your account dashboard with no fees or penalties.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I cancel anytime?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Absolutely. Cancel anytime before your next billing date with no questions asked. Log in to your account or email us and we'll handle it immediately.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I change my delivery frequency?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Yes — you can switch between 4-week and 8-week delivery intervals anytime from your account dashboard, or by emailing us at hello@dayguard.com.</p></div>
+        </div>
+
+        <p class="faq-category">Shipping &amp; Orders</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How fast will I receive my order?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Orders ship within 1–2 business days. US shipping is always free on subscriptions. You'll receive a tracking confirmation email as soon as your order leaves our warehouse.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What is your return policy?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>We offer a 90-day money back guarantee. If you're not satisfied for any reason, email us at hello@dayguard.com and we'll issue a full refund — no questions asked.</p></div>
+        </div>
+
+        <p class="faq-category">Science</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What is DHM and how does it work?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>DHM (Dihydromyricetin) is a flavonoid extracted from the Oriental Raisin Tree, used in traditional Korean medicine for centuries. It's backed by 167+ clinical studies showing it accelerates alcohol metabolism, reduces acetaldehyde buildup, and supports liver enzyme function.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Who formulated day–guard?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>day–guard was formulated by Dr. Steven Oh, MD at Brown University, in partnership with a leading Korean pharmaceutical company with 60+ years of expertise. Every ingredient was selected for clinically supported efficacy.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Are the ingredients vegan and allergen-free?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Yes. day–guard is vegan, gluten-free, and free from common allergens. The full ingredient list is printed on every pack and available on our product page.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-left">
+      <div class="footer-left-top">
+        <p class="footer-signup-h">Join for 15% off your first order.</p>
+        <div class="footer-toggles">
+          <button class="ft-btn active" id="ft-email">email</button>
+          <button class="ft-btn" id="ft-sms">sms</button>
+        </div>
+        <div class="footer-form">
+          <input class="footer-input" id="ft-input" type="email" placeholder="enter your email.">
+        </div>
+        <p class="footer-disclaimer">*by completing this form you are signing up to receive our marketing and can unsubscribe at any time.</p>
+      </div>
+      <div class="footer-nav-grid">
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Shop</p>
+          <ul class="footer-nav-links">
+            <li><a href="/shop.html">Pre-Alcohol Vitamin Jelly</a></li>
+            <li><a href="#">Every Day-Guard</a></li>
+            <li><a href="#">Bulk Order</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Learn</p>
+          <ul class="footer-nav-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="/#ingredients">Science</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Legal</p>
+          <ul class="footer-nav-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms &amp; Conditions</a></li>
+            <li><a href="#">Accessibility</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Support</p>
+          <ul class="footer-nav-links">
+            <li><a href="/help.html">Help Center</a></li>
+            <li><a href="/help.html#faq">FAQs</a></li>
+            <li><a href="/help.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-left-bottom">
+        <p class="footer-fda">FDA DISCLAIMER: The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease.</p>
+        <div class="footer-bottom-row">
+          <p class="footer-copyright">© 2025 LioLabs, Inc. &nbsp;·&nbsp; 8 THE GRN STE A Dover, DE 19901 &nbsp;·&nbsp; info@dayguard.com</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="18" height="18"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.02-.07z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-right">
+      <img class="footer-girl-img"
+           src="/images/Firefly_Gemini%20Flash_make%20sure%20that%20the%20products(day-guard%20sticks)%20she%20is%20holding%20is%20precisely%20the%20same%20as%20326422.png"
+           alt="day–guard lifestyle">
+      <div class="footer-right-overlay">
+        <img class="footer-dg-logo"
+             src="https://www.figma.com/api/mcp/asset/9bba314e-c6d3-4ca7-a314-ca9fc35c6b2e"
+             alt="day–guard">
+        <span class="footer-tagline">social tonight. healthy tomorrow.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* FAQ accordion */
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    /* Footer email/SMS toggle */
+    document.getElementById('ft-email')?.addEventListener('click', function() {
+      document.getElementById('ft-email').classList.add('active');
+      document.getElementById('ft-sms').classList.remove('active');
+      document.getElementById('ft-input').type = 'email';
+      document.getElementById('ft-input').placeholder = 'enter your email.';
+    });
+    document.getElementById('ft-sms')?.addEventListener('click', function() {
+      document.getElementById('ft-sms').classList.add('active');
+      document.getElementById('ft-email').classList.remove('active');
+      document.getElementById('ft-input').type = 'tel';
+      document.getElementById('ft-input').placeholder = 'enter your phone number.';
+    });
+
+    /* Nav dropdowns */
+    document.addEventListener('click', e => {
+      document.querySelectorAll('.nav-item.has-dropdown').forEach(item => {
+        if (!item.contains(e.target)) item.classList.remove('open');
+      });
+    });
+
+    /* Contact form */
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.contact-submit');
+      btn.textContent = 'sent! we\'ll be in touch.';
+      btn.style.background = 'var(--green)';
+      btn.disabled = true;
+    }
+  </script>
+</body>
+</html>
