@@ -405,6 +405,7 @@
     .mgc-track::-webkit-scrollbar { display: none; }
     .mgc-slide { flex: 0 0 100%; scroll-snap-align: start; position: relative; overflow: hidden; }
     .mgc-slide img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+    .mgc-slide-product img { object-fit: contain; background: #f0ede6; }
     .mgc-slide-steps { position: relative; }
     .mgc-step { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease; object-fit: cover; aspect-ratio: 1; }
     .mgc-step.active { opacity: 1; position: relative; }
@@ -1471,9 +1472,11 @@
       flex-shrink: 0; width: 18px; height: 18px;
       border: 1px solid rgba(2,7,6,0.18); border-radius: 100%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px; color: var(--black); opacity: 0.5;
+      color: var(--black); opacity: 0.5;
       transition: transform var(--ease);
+      transform-origin: center center;
     }
+    .faq-chevron svg { display: block; flex-shrink: 0; }
     .faq-item.open .faq-chevron { transform: rotate(45deg); }
     .faq-answer {
       max-height: 0; overflow: hidden;
@@ -1682,7 +1685,7 @@
       .gallery-main-wrap, .gallery-grid { display: none; }
       .mobile-gallery { display: block; width: 100%; }
       /* Insurance / comparison — full-width, stacked */
-      .insurance-section { padding: 16px 16px 0; }
+      .insurance-section { padding: 0; }
       .insurance-inner { max-width: none; }
       .comparison-section { padding: 12px 16px 16px; }
       .comparison-inner { grid-template-columns: 1fr; gap: 12px; }
@@ -1695,6 +1698,14 @@
       .bundles-header { flex-direction: column; align-items: flex-start; gap: 12px; }
       .bundles-sub { text-align: left; max-width: none; }
       .bundles-grid { grid-template-columns: 1fr; gap: 12px; }
+      /* Pillar modal — stacked on mobile */
+      .pillar-modal { grid-template-columns: 1fr; height: auto; max-height: 88vh; overflow-y: auto; }
+      .pillar-modal-left { height: 220px; flex-shrink: 0; }
+      .pillar-modal-right { overflow-y: auto; padding: 24px 20px; }
+      .pillar-modal-left-label { font-size: 28px; bottom: 20px; left: 20px; letter-spacing: -1.4px; }
+      .pillar-modal-title { font-size: 13px; }
+      .pillar-modal-desc { font-size: 13px; }
+      .pillar-modal-ing-name { font-size: 13px; }
       /* Science — minimal side padding */
       .science-section { padding: 48px 0; }
       .science-inner { padding: 0 16px; }
@@ -1819,8 +1830,25 @@
       <!-- Mobile-only snap-scroll carousel -->
       <div class="mobile-gallery" id="mobile-gallery">
         <div class="mgc-track" id="mgc-track">
-          <div class="mgc-slide">
+          <div class="mgc-slide mgc-slide-product">
             <img src="/images/PDP/Product Image.png" alt="day–guard mango pre-alcohol jelly sticks 10-pack">
+            <!-- Press ticker overlay — same as desktop, shown on mobile -->
+            <div class="gallery-press-overlay">
+              <div class="gallery-press-track">
+                <div class="gp-item"><img src="/images/Forbes_logo.svg" class="gp-forbes-logo" alt="Forbes"></div>
+                <div class="gp-item"><span class="gp-dot-circle"></span></div>
+                <div class="gp-item"><span class="gp-tag">#1 doctor recommended</span></div>
+                <div class="gp-item"><span class="gp-dot-circle"></span></div>
+                <div class="gp-item"><img src="/images/The_Boston_Globe%20(1).svg" class="gp-globe-logo" alt="The Boston Globe"></div>
+                <div class="gp-item"><span class="gp-dot-circle"></span></div>
+                <div class="gp-item"><img src="/images/Forbes_logo.svg" class="gp-forbes-logo" alt="Forbes"></div>
+                <div class="gp-item"><span class="gp-dot-circle"></span></div>
+                <div class="gp-item"><span class="gp-tag">#1 doctor recommended</span></div>
+                <div class="gp-item"><span class="gp-dot-circle"></span></div>
+                <div class="gp-item"><img src="/images/The_Boston_Globe%20(1).svg" class="gp-globe-logo" alt="The Boston Globe"></div>
+                <div class="gp-item"><span class="gp-dot-circle"></span></div>
+              </div>
+            </div>
           </div>
           <div class="mgc-slide">
             <img src="/images/PDP/Rectangle 1739331476.png" alt="mango flavor">
@@ -1933,7 +1961,7 @@
       <div class="purchase-toggle" id="purchase-toggle">
         <div class="toggle-track-pill" id="toggle-pill"></div>
         <button class="toggle-btn active" id="tog-sub" onclick="setToggle('sub')">
-          subscribe <span class="toggle-save">save 19%</span>
+          subscribe &amp; <span class="toggle-save">save 19%</span>
         </button>
         <button class="toggle-btn" id="tog-once" onclick="setToggle('once')">
           buy once
@@ -2371,21 +2399,21 @@
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
             When should I take day–guard?
-            <span class="faq-chevron">+</span>
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-answer"><p>Take one stick before your first drink. For longer nights, take another every 3–5 drinks. The jelly format means no water needed — just tear, squeeze, and you're set.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
             How many sticks should I take?
-            <span class="faq-chevron">+</span>
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-answer"><p>One stick covers a typical night out. For heavier nights, take one before drinking and one more midway through. Each pack contains 10 sticks — enough for 10 nights.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
             Is day–guard safe with other supplements?
-            <span class="faq-chevron">+</span>
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-answer"><p>Yes. day–guard contains all-natural ingredients that are safe for most people. If you have a specific medical condition or take prescription medications, consult your doctor first.</p></div>
         </div>
@@ -2394,14 +2422,14 @@
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
             How does the subscription work?
-            <span class="faq-chevron">+</span>
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-answer"><p>Subscribe and save 20% on every order. Your pack ships monthly — skip, pause, or cancel anytime from your account dashboard with no fees or penalties.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
             Can I cancel anytime?
-            <span class="faq-chevron">+</span>
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-answer"><p>Absolutely. Cancel anytime before your next billing date with no questions asked. Log in to your account or email us and we'll handle it immediately.</p></div>
         </div>
@@ -2410,7 +2438,7 @@
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
             How fast will I receive my order?
-            <span class="faq-chevron">+</span>
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-answer"><p>Orders ship within 1–2 business days. US shipping is always free. You'll receive a tracking confirmation email as soon as your order leaves our warehouse.</p></div>
         </div>
@@ -2419,14 +2447,14 @@
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
             What is DHM and how does it work?
-            <span class="faq-chevron">+</span>
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-answer"><p>DHM (Dihydromyricetin) is a flavonoid extracted from the Oriental Raisin Tree, used in traditional Korean medicine for centuries. It's backed by 167+ clinical studies showing it accelerates alcohol metabolism, reduces acetaldehyde buildup, and supports liver enzyme function.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
             Who formulated day–guard?
-            <span class="faq-chevron">+</span>
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-answer"><p>day–guard was formulated by Dr. Steven Oh, MD at Brown University, in partnership with a leading Korean pharmaceutical company with 60+ years of expertise. Every ingredient was selected for clinically supported efficacy.</p></div>
         </div>
