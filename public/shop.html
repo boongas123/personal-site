@@ -311,7 +311,7 @@
     }
     .lifestyle-dot.active { background: var(--white); }
 
-    /* ── Gallery press ticker — tile-based SVG approach ── */
+    /* ── Gallery press ticker — large-scale tile approach ── */
     .gallery-main-wrap {
       position: relative; margin-bottom: 24px; border-radius: 3px; overflow: hidden;
     }
@@ -321,103 +321,112 @@
     }
     .gallery-press-overlay {
       position: absolute; bottom: 0; left: 0; right: 0;
-      height: 60px;
-      background: #e1ded5;
+      height: 86px;
+      background: #e4e1d8;
       overflow: hidden;
+      display: flex; align-items: center;
     }
     /* soft fade edges */
     .gallery-press-overlay::before, .gallery-press-overlay::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 48px; z-index: 2;
+      content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2;
       pointer-events: none;
     }
     .gallery-press-overlay::before {
-      left: 0; background: linear-gradient(to right, #e1ded5, transparent);
+      left: 0; background: linear-gradient(to right, #e4e1d8, transparent);
     }
     .gallery-press-overlay::after {
-      right: 0; background: linear-gradient(to left, #e1ded5, transparent);
+      right: 0; background: linear-gradient(to left, #e4e1d8, transparent);
     }
     .gallery-press-track {
       display: flex; align-items: center; height: 100%;
-      animation: gallery-press-scroll 22s linear infinite;
+      animation: gallery-press-scroll 28s linear infinite;
       width: max-content;
     }
-    .gallery-press-track:hover { animation-play-state: paused; }
     @keyframes gallery-press-scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
     }
-    /* Each tile: press-bar.svg (625×23.035 viewBox) + "#1 doctor recommended" text overlay
-       Tile fixed at 500px; SVG fills tile width; text at 42.72% = 267/625 of tile */
+    /* Tile: press-bar.svg at 40px height → width = 625 × (40/23.035) = 1085px
+       Text centered in the gap (SVG x=82–445): center = 263.5/625 = 42.16% */
     .gp-tile {
       position: relative; display: flex; align-items: center;
-      height: 100%; flex-shrink: 0; width: 500px;
+      height: 100%; flex-shrink: 0; width: 1085px;
     }
     .gp-bar-svg {
-      display: block; width: 100%; height: auto; flex-shrink: 0;
+      display: block; width: 1085px; height: 40px; flex-shrink: 0;
     }
-    /* "#1 doctor recommended" — fills gap between Forbes and Globe logos */
     .gp-bar-text {
-      position: absolute; left: 42.72%;
-      font-family: var(--sofia); font-size: 14px; font-weight: 400;
-      color: #9aaca0; white-space: nowrap; letter-spacing: -0.5px;
-      line-height: 1; transform: translateY(-1px);
+      position: absolute; left: 42.16%; transform: translateX(-50%);
+      font-family: var(--sofia); font-size: 18px; font-weight: 400;
+      color: #9aaca0; white-space: nowrap; letter-spacing: -0.5px; line-height: 1;
     }
 
     /* ── FrontrowMD Clinicians' Choice badge ── */
+    /* Uses filter:drop-shadow so the ribbon ::after inherits shadow */
     .fmd-badge {
       position: absolute; top: 16px; right: 16px; z-index: 10;
-      width: 160px;
-      background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
-      border-radius: 12px; padding: 12px 10px;
-      display: flex; flex-direction: column; align-items: center; gap: 5px;
-      box-shadow: 0 2px 18px rgba(0,0,0,0.10);
+      width: 162px;
+      filter: drop-shadow(0 3px 14px rgba(0,0,0,0.14));
+    }
+    .fmd-badge-inner {
+      background: #fff;
+      border-radius: 10px 10px 0 0;
+      padding: 10px 12px 14px;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    /* Ribbon bottom — two triangles meeting at center */
+    .fmd-badge::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 14px;
+      background:
+        linear-gradient(to bottom right, #fff 49.5%, transparent 50%) left,
+        linear-gradient(to bottom left,  #fff 49.5%, transparent 50%) right;
+      background-size: 50% 100%;
+      background-repeat: no-repeat;
     }
     .fmd-logo-row {
       display: flex; align-items: center; gap: 5px; width: 100%;
     }
-    /* Explicit dims from viewBox aspect ratios (SVGs have width="100%" so width:auto is unreliable)
-       logo-mark vB=9.875×7.222 → at h13: w≈17.8 | text-mark vB=35.443×5.26 → at h7: w≈47.2
-       wreath vB=10.974×21.823 → at h20: w≈10 */
-    .fmd-logo-mark { height: 13px; width: 18px; flex-shrink: 0; object-fit: contain; }
-    .fmd-text-mark { height: 7px; width: 48px; flex-shrink: 0; object-fit: contain; }
+    /* Explicit dims — SVGs have width="100%" so width:auto is unreliable.
+       logo-mark vB=9.875×7.222 → at h12: w≈16 | text-mark vB=35.443×5.26 → at h9: w≈61
+       wreath    vB=10.974×21.823 → at h38: w≈19 */
+    .fmd-logo-mark { height: 12px; width: 16px; flex-shrink: 0; object-fit: contain; }
+    .fmd-text-mark { height: 9px; width: 61px; flex-shrink: 0; object-fit: contain; }
+    .fmd-close-btn {
+      margin-left: auto; flex-shrink: 0;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-size: 12px; line-height: 1; color: rgba(28,43,67,0.4);
+    }
     .fmd-divider {
-      width: 100%; height: 1px; background: rgba(28,43,67,0.10); margin: 1px 0;
+      width: 100%; height: 1px; background: rgba(28,43,67,0.10);
     }
     .fmd-choice-row {
-      display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%;
+      display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%;
     }
-    .fmd-choice-wreath { height: 20px; width: 10px; flex-shrink: 0; object-fit: contain; }
+    .fmd-choice-wreath { height: 38px; width: 19px; flex-shrink: 0; object-fit: contain; }
     .fmd-choice-label {
-      font-family: var(--sofia); font-size: 8.5px; font-weight: 700;
-      color: #1C2B43; text-align: center; letter-spacing: 0.4px;
-      text-transform: uppercase; white-space: nowrap; line-height: 1.2;
+      font-family: var(--sofia); font-size: 13px; font-weight: 700;
+      color: #1C2B43; text-align: center; letter-spacing: 0; line-height: 1.15;
     }
     .fmd-count {
-      font-family: var(--serif); font-size: 26px; font-weight: 400;
+      font-family: var(--sofia); font-size: 13px; font-weight: 600;
       color: #1C2B43; text-align: center; line-height: 1;
     }
-    .fmd-count-label {
-      font-family: var(--sofia); font-size: 8.5px; color: rgba(28,43,67,0.6);
-      text-align: center; line-height: 1;
-    }
     .fmd-share-text {
-      font-family: var(--sofia); font-size: 8.5px; color: rgba(28,43,67,0.65);
+      font-family: var(--sofia); font-size: 10px; color: rgba(28,43,67,0.65);
       text-align: center; line-height: 1.4; width: 100%;
     }
-    .fmd-actions {
-      display: flex; gap: 4px; width: 100%; margin-top: 1px;
-    }
     .fmd-learn-link {
-      flex: 1; text-align: center;
-      font-family: var(--sofia); font-size: 8.5px; color: #1C2B43;
-      border: 1px solid rgba(28,43,67,0.25); border-radius: 5px;
-      padding: 5px 2px; text-decoration: none; line-height: 1;
+      font-family: var(--sofia); font-size: 10px; color: #1C2B43;
+      text-decoration: underline; text-align: center;
     }
     .fmd-view-btn {
-      flex: 1; text-align: center;
-      font-family: var(--sofia); font-size: 8.5px; color: #fff;
-      background: #1C2B43; border-radius: 5px;
-      padding: 5px 2px; text-decoration: none; line-height: 1;
+      display: block; width: 100%; text-align: center;
+      font-family: var(--sofia); font-size: 10px; font-weight: 500; color: #1C2B43;
+      border: 1px solid rgba(28,43,67,0.3); border-radius: 5px;
+      padding: 6px 4px; text-decoration: none; line-height: 1;
     }
 
     /* ── Gallery — exact Figma measurements ── */
@@ -1770,14 +1779,17 @@
       .sticky-atc { padding: 14px 24px; }
       .reviews-community-strip { grid-template-columns: repeat(2, 1fr); }
       /* FrontrowMD badge — mobile sizing */
-      .fmd-badge { width: 130px; top: 10px; right: 10px; padding: 9px 8px; gap: 4px; border-radius: 10px; }
-      .fmd-logo-mark { height: 11px; width: 15px; }
-      .fmd-text-mark { height: 6px; width: 41px; }
-      .fmd-choice-wreath { height: 17px; width: 9px; }
-      .fmd-choice-label { font-size: 7.5px; }
-      .fmd-count { font-size: 22px; }
-      .fmd-count-label, .fmd-share-text { font-size: 7.5px; }
-      .fmd-learn-link, .fmd-view-btn { font-size: 7.5px; padding: 4px 2px; }
+      .fmd-badge { width: 120px; top: 10px; right: 10px; }
+      .fmd-badge-inner { padding: 8px 10px 10px; gap: 4px; }
+      .fmd-logo-mark { height: 10px; width: 14px; }
+      .fmd-text-mark { height: 7px; width: 48px; }
+      .fmd-choice-wreath { height: 28px; width: 14px; }
+      .fmd-choice-label { font-size: 10px; }
+      .fmd-count { font-size: 10px; }
+      .fmd-share-text { font-size: 8px; }
+      .fmd-learn-link { font-size: 8px; }
+      .fmd-view-btn { font-size: 8px; padding: 5px 4px; }
+      .fmd-badge::after { height: 10px; }
     }
   </style>
 </head>
@@ -1894,20 +1906,20 @@
             <img src="/images/PDP/Product Image.png" alt="day–guard mango pre-alcohol jelly sticks 10-pack">
             <!-- FrontrowMD Clinicians' Choice badge -->
             <div class="fmd-badge">
-              <div class="fmd-logo-row">
-                <img src="/images/fmd/logo-mark.svg" class="fmd-logo-mark" alt="">
-                <img src="/images/fmd/text-mark.svg" class="fmd-text-mark" alt="FrontrowMD">
-              </div>
-              <div class="fmd-divider"></div>
-              <div class="fmd-choice-row">
-                <img src="/images/fmd/wreath-left.svg" class="fmd-choice-wreath" alt="">
-                <span class="fmd-choice-label">Clinicians'<br>Choice</span>
-                <img src="/images/fmd/wreath-right.svg" class="fmd-choice-wreath" alt="">
-              </div>
-              <div class="fmd-count">184</div>
-              <div class="fmd-count-label">clinicians</div>
-              <div class="fmd-share-text">share this product<br>on FrontrowMD.</div>
-              <div class="fmd-actions">
+              <div class="fmd-badge-inner">
+                <div class="fmd-logo-row">
+                  <img src="/images/fmd/logo-mark.svg" class="fmd-logo-mark" alt="">
+                  <img src="/images/fmd/text-mark.svg" class="fmd-text-mark" alt="frontrowMD">
+                  <button class="fmd-close-btn" aria-label="Close">×</button>
+                </div>
+                <div class="fmd-divider"></div>
+                <div class="fmd-choice-row">
+                  <img src="/images/fmd/wreath-left.svg" class="fmd-choice-wreath" alt="">
+                  <span class="fmd-choice-label">Clinicians'<br>Choice</span>
+                  <img src="/images/fmd/wreath-right.svg" class="fmd-choice-wreath" alt="">
+                </div>
+                <div class="fmd-count">184 clinicians</div>
+                <div class="fmd-share-text">share this product<br>on FrontrowMD.</div>
                 <a href="#" class="fmd-learn-link">Learn more</a>
                 <a href="#" class="fmd-view-btn">View clinicians</a>
               </div>
@@ -1962,20 +1974,20 @@
              alt="day–guard mango pre-alcohol jelly sticks 10-pack">
         <!-- FrontrowMD Clinicians' Choice badge -->
         <div class="fmd-badge">
-          <div class="fmd-logo-row">
-            <img src="/images/fmd/logo-mark.svg" class="fmd-logo-mark" alt="">
-            <img src="/images/fmd/text-mark.svg" class="fmd-text-mark" alt="FrontrowMD">
-          </div>
-          <div class="fmd-divider"></div>
-          <div class="fmd-choice-row">
-            <img src="/images/fmd/wreath-left.svg" class="fmd-choice-wreath" alt="">
-            <span class="fmd-choice-label">Clinicians'<br>Choice</span>
-            <img src="/images/fmd/wreath-right.svg" class="fmd-choice-wreath" alt="">
-          </div>
-          <div class="fmd-count">184</div>
-          <div class="fmd-count-label">clinicians</div>
-          <div class="fmd-share-text">share this product<br>on FrontrowMD.</div>
-          <div class="fmd-actions">
+          <div class="fmd-badge-inner">
+            <div class="fmd-logo-row">
+              <img src="/images/fmd/logo-mark.svg" class="fmd-logo-mark" alt="">
+              <img src="/images/fmd/text-mark.svg" class="fmd-text-mark" alt="frontrowMD">
+              <button class="fmd-close-btn" aria-label="Close">×</button>
+            </div>
+            <div class="fmd-divider"></div>
+            <div class="fmd-choice-row">
+              <img src="/images/fmd/wreath-left.svg" class="fmd-choice-wreath" alt="">
+              <span class="fmd-choice-label">Clinicians'<br>Choice</span>
+              <img src="/images/fmd/wreath-right.svg" class="fmd-choice-wreath" alt="">
+            </div>
+            <div class="fmd-count">184 clinicians</div>
+            <div class="fmd-share-text">share this product<br>on FrontrowMD.</div>
             <a href="#" class="fmd-learn-link">Learn more</a>
             <a href="#" class="fmd-view-btn">View clinicians</a>
           </div>
