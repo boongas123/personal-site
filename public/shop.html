@@ -361,6 +361,16 @@
       color: #9aaca0; white-space: nowrap; letter-spacing: -0.5px; line-height: 1;
     }
 
+    /* ── PDP hero badge (hero.png overlay) ── */
+    .pdp-hero-badge {
+      position: absolute; top: 12px; right: 12px; z-index: 10;
+      width: 160px; height: auto;
+      pointer-events: none;
+    }
+    @media (max-width: 768px) {
+      .pdp-hero-badge { width: 110px; top: 8px; right: 8px; }
+    }
+
     /* ── FrontrowMD Clinicians' Choice badge ── */
     /* Uses filter:drop-shadow so the ribbon ::after inherits shadow */
     .fmd-badge {
@@ -1817,7 +1827,7 @@
       <!-- Items (hidden until something is added) -->
       <div id="cart-items-wrap" style="display:none">
         <div class="cart-item">
-          <img src="/images/PDP/Product Image.png" class="cart-item-img" alt="day–guard">
+          <img src="/images/product(slanted).png" class="cart-item-img" alt="day–guard">
           <div class="cart-item-info">
             <div class="cart-item-name">pre-alcohol vitamin jelly</div>
             <div class="cart-item-sub" id="cart-mode-label">subscribe & save · 19% off</div>
@@ -1847,9 +1857,7 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a href="/" class="nav-logo" aria-label="day–guard home">
-      <img src="https://www.figma.com/api/mcp/asset/bf338aff-a962-423b-8ebb-6042ee6ff20b" alt="day–guard"
-           onerror="this.style.display='none'; this.parentElement.querySelector('.nav-logo-fallback').style.display='block'">
-      <span class="nav-logo-fallback" style="display:none">day–guard</span>
+      <img src="/images/DG_Horizontal_Black.png" alt="day–guard">
     </a>
     <ul class="nav-links">
       <li class="nav-item has-dropdown">
@@ -1903,7 +1911,16 @@
       <div class="mobile-gallery" id="mobile-gallery">
         <div class="mgc-track" id="mgc-track">
           <div class="mgc-slide mgc-slide-product">
-            <img src="/images/Product Image.png" alt="day–guard mango pre-alcohol jelly sticks 10-pack">
+            <img src="/images/product image with jelly.png" alt="day–guard mango pre-alcohol jelly sticks 10-pack">
+            <!-- FrontrowMD badge baked-in overlay -->
+            <img src="/images/hero.png" class="pdp-hero-badge" alt="FrontrowMD Clinicians Choice">
+            <!-- Animated press bar -->
+            <div class="gallery-press-overlay">
+              <div class="gallery-press-track">
+                <div class="gp-tile"><img src="/images/press-bar.svg" class="gp-bar-svg" alt="Forbes · #1 doctor recommended · The Boston Globe"><span class="gp-bar-text">#1 doctor recommended</span></div>
+                <div class="gp-tile"><img src="/images/press-bar.svg" class="gp-bar-svg" alt=""><span class="gp-bar-text">#1 doctor recommended</span></div>
+              </div>
+            </div>
           </div>
           <div class="mgc-slide">
             <img src="/images/PDP/Rectangle 1739331476.png" alt="mango flavor">
@@ -1934,11 +1951,18 @@
         </div>
       </div>
 
-      <!-- Main product image -->
+      <!-- Main product image with FrontrowMD badge + press bar -->
       <div class="gallery-main-wrap">
         <img class="gallery-main-img"
-             src="/images/Product Image.png"
+             src="/images/product image with jelly.png"
              alt="day–guard mango pre-alcohol jelly sticks 10-pack">
+        <img src="/images/hero.png" class="pdp-hero-badge" alt="FrontrowMD Clinicians Choice">
+        <div class="gallery-press-overlay">
+          <div class="gallery-press-track">
+            <div class="gp-tile"><img src="/images/press-bar.svg" class="gp-bar-svg" alt="Forbes · #1 doctor recommended · The Boston Globe"><span class="gp-bar-text">#1 doctor recommended</span></div>
+            <div class="gp-tile"><img src="/images/press-bar.svg" class="gp-bar-svg" alt=""><span class="gp-bar-text">#1 doctor recommended</span></div>
+          </div>
+        </div>
       </div>
 
       <!-- 2×2 thumbnail grid -->
@@ -2344,7 +2368,7 @@
     </div>
     <div class="reviews-cta fade-up">
       <div class="rev-product-cta">
-        <img class="rev-product-thumb" src="/images/product-default.png" alt="day–guard">
+        <img class="rev-product-thumb" src="/images/product(slanted).png" alt="day–guard">
         <div class="rev-product-info">
           <p class="rev-product-title">pre-alcohol vitamin jelly sticks</p>
           <p class="rev-product-price">from $29.00 · subscribe &amp; save</p>
@@ -2603,8 +2627,7 @@
     <div class="sticky-atc-inner">
       <div class="sticky-product">
         <div class="sticky-thumb">
-          <img src="https://www.figma.com/api/mcp/asset/8c647c32-f6f6-41ca-b4f5-8c3f8dd3c439" alt="day–guard"
-               onerror="this.style.display='none'">
+          <img src="/images/product(slanted).png" alt="day–guard">
         </div>
         <div>
           <div class="sticky-product-name">pre—alcohol / vitamin jelly</div>
