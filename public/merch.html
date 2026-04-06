@@ -291,28 +291,24 @@
       aspect-ratio: 1/1;
       overflow: hidden;
       background: #ede9e0;
+      position: relative;
     }
     .merch-card-img {
+      position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover; display: block;
+    }
+    /* Accessory cards: zoom on hover */
+    .merch-card:not(.merch-card-tee) .merch-card-img {
       transition: transform 0.5s ease;
     }
-    .merch-card:hover .merch-card-img { transform: scale(1.04); }
-    /* Placeholder image divs */
-    .merch-card-img-placeholder {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      transition: transform 0.5s ease;
-    }
-    .merch-card:hover .merch-card-img-placeholder { transform: scale(1.04); }
-    .merch-card-img-placeholder span {
-      font-family: var(--sans);
-      font-size: clamp(11px, 1vw, 15px);
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.35;
-    }
+    .merch-card:not(.merch-card-tee):hover .merch-card-img { transform: scale(1.04); }
+    /* Tee card: crossfade front → back on hover */
+    .merch-img-front, .merch-img-back { transition: opacity 0.38s ease; }
+    .merch-img-front { opacity: 1; z-index: 1; }
+    .merch-img-back  { opacity: 0; z-index: 2; }
+    .merch-card-tee:hover .merch-img-back  { opacity: 1; }
+    .merch-card-tee:hover .merch-img-front { opacity: 0; }
     .merch-card-info { padding: 20px 22px 24px; }
     .merch-card-tag {
       font-family: var(--sans);
@@ -635,9 +631,8 @@
       <!-- Tee — full width, 4 color options -->
       <a href="/merch-tee-mosaic.html" class="merch-card merch-card-tee fade-up" id="tee-card">
         <div class="merch-card-img-wrap">
-          <div class="merch-card-img-placeholder" id="tee-preview" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
-            <span id="tee-preview-label" style="color: rgba(255,255,255,0.25); font-family: 'Helvetica Neue', sans-serif; font-size: clamp(13px,1vw,17px); letter-spacing: -0.5px;">day–guard tee</span>
-          </div>
+          <img class="merch-card-img merch-img-front" id="tee-img-front" src="/images/merch/1Y0A9888.jpg" alt="day–guard tee — front">
+          <img class="merch-card-img merch-img-back"  id="tee-img-back"  src="/images/merch/1Y0A9896.jpg" alt="day–guard tee — back">
         </div>
         <div class="merch-card-info">
           <div class="merch-card-info-left">
@@ -645,10 +640,10 @@
             <p class="merch-card-name">day–guard tee</p>
             <p class="merch-card-desc">Heavyweight cotton. Drop-shoulder or classic fit depending on colorway. Four options.</p>
             <div class="tee-swatches">
-              <button class="tee-swatch active" data-color="Black" data-bg="linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%)" data-text="rgba(255,255,255,0.25)" data-href="/merch-tee-mosaic.html" style="background:#111;" aria-label="Black" onclick="return false;"></button>
-              <button class="tee-swatch" data-color="Creme" data-bg="linear-gradient(135deg,#f5ede0 0%,#ece1ce 100%)" data-text="rgba(32,76,62,0.3)" data-href="/merch-tee-mosaic.html" style="background:#f5ede0; border-color:rgba(0,0,0,0.1);" aria-label="Creme" onclick="return false;"></button>
-              <button class="tee-swatch" data-color="Green" data-bg="linear-gradient(135deg,#204c3e 0%,#2e6a58 100%)" data-text="rgba(255,255,255,0.25)" data-href="/merch-tee-future-proof.html" style="background:#204c3e;" aria-label="Green" onclick="return false;"></button>
-              <button class="tee-swatch" data-color="Beige" data-bg="linear-gradient(135deg,#f4ede0 0%,#ebe0ce 100%)" data-text="rgba(32,76,62,0.3)" data-href="/merch-tee-future-proof.html" style="background:#f4ede0; border-color:rgba(0,0,0,0.1);" aria-label="Beige" onclick="return false;"></button>
+              <button class="tee-swatch active" data-color="Black" data-href="/merch-tee-mosaic.html" data-front="/images/merch/1Y0A9888.jpg" data-back="/images/merch/1Y0A9896.jpg" style="background:#111;" aria-label="Black" onclick="return false;"></button>
+              <button class="tee-swatch" data-color="Creme" data-href="/merch-tee-mosaic.html" data-front="/images/merch/1Y0A0263.jpg" data-back="/images/merch/1Y0A0311.jpg" style="background:#f5ede0; border-color:rgba(0,0,0,0.1);" aria-label="Creme" onclick="return false;"></button>
+              <button class="tee-swatch" data-color="Green" data-href="/merch-tee-future-proof.html" data-front="/images/merch/1Y0A0080.jpg" data-back="/images/merch/1Y0A9997.jpg" style="background:#204c3e;" aria-label="Green" onclick="return false;"></button>
+              <button class="tee-swatch" data-color="Beige" data-href="/merch-tee-future-proof.html" data-front="/images/merch/1Y0A0119.jpg" data-back="/images/merch/1Y0A0136.jpg" style="background:#f4ede0; border-color:rgba(0,0,0,0.1);" aria-label="Beige" onclick="return false;"></button>
             </div>
             <p class="tee-swatch-label" id="tee-color-label">Black · Mosaic</p>
           </div>
@@ -664,9 +659,7 @@
       <!-- C: Wine Opener -->
       <a href="/merch-wine-opener.html" class="merch-card fade-up">
         <div class="merch-card-img-wrap">
-          <div class="merch-card-img-placeholder" style="background: linear-gradient(135deg, #c0bdb4 0%, #a8a59c 100%);">
-            <span style="color: #ffffff; letter-spacing: 3px;">DG</span>
-          </div>
+          <img class="merch-card-img" src="/images/merch/1Y0A0820.jpg" alt="day–guard wine opener">
         </div>
         <div class="merch-card-info">
           <span class="merch-card-tag">Accessories</span>
@@ -682,9 +675,7 @@
       <!-- D: Ice Cube — Day-Guard -->
       <a href="/merch-ice-cube.html" class="merch-card fade-up">
         <div class="merch-card-img-wrap">
-          <div class="merch-card-img-placeholder" style="background: linear-gradient(135deg, #e8e4dc 0%, #d0ccc4 100%);">
-            <span style="color: #020706; letter-spacing: 3px;">DG</span>
-          </div>
+          <img class="merch-card-img" src="/images/merch/1Y0A0798.jpg" alt="day–guard ice cubes">
         </div>
         <div class="merch-card-info">
           <span class="merch-card-tag">Accessories</span>
@@ -851,19 +842,22 @@
     /* ── Tee card swatch switcher ── */
     (function() {
       const swatches   = document.querySelectorAll('.tee-swatch');
-      const preview    = document.getElementById('tee-preview');
-      const previewLbl = document.getElementById('tee-preview-label');
+      const frontImg   = document.getElementById('tee-img-front');
+      const backImg    = document.getElementById('tee-img-back');
       const colorLabel = document.getElementById('tee-color-label');
       const stockLabel = document.getElementById('tee-stock-label');
       const card       = document.getElementById('tee-card');
-      if (!swatches.length || !preview) return;
+      if (!swatches.length || !frontImg) return;
 
       const colorMeta = {
-        'Black': { label: 'Black · Mosaic',       stock: 'Sold Out', stockColor: 'rgba(2,7,6,0.3)' },
-        'Creme': { label: 'Creme · Mosaic',        stock: 'Sold Out', stockColor: 'rgba(2,7,6,0.3)' },
-        'Green': { label: 'Green · Future Proof',  stock: 'In Stock — S',  stockColor: '#204c3e'       },
-        'Beige': { label: 'Beige · Future Proof',  stock: 'Sold Out', stockColor: 'rgba(2,7,6,0.3)' },
+        'Black': { label: 'Black · Mosaic',       stock: 'Sold Out',    stockColor: 'rgba(2,7,6,0.3)' },
+        'Creme': { label: 'Creme · Mosaic',        stock: 'Sold Out',    stockColor: 'rgba(2,7,6,0.3)' },
+        'Green': { label: 'Green · Future Proof',  stock: 'In Stock — S', stockColor: '#204c3e'         },
+        'Beige': { label: 'Beige · Future Proof',  stock: 'Sold Out',    stockColor: 'rgba(2,7,6,0.3)' },
       };
+
+      // Preload all back images for instant hover
+      swatches.forEach(s => { const img = new Image(); img.src = s.dataset.back; });
 
       swatches.forEach(s => {
         s.addEventListener('click', (e) => {
@@ -871,13 +865,13 @@
           swatches.forEach(x => x.classList.remove('active'));
           s.classList.add('active');
           const color = s.dataset.color;
-          preview.style.background  = s.dataset.bg;
-          previewLbl.style.color    = s.dataset.text;
-          card.href                 = s.dataset.href;
+          frontImg.src = s.dataset.front;
+          backImg.src  = s.dataset.back;
+          card.href    = s.dataset.href;
           if (colorLabel) colorLabel.textContent = colorMeta[color].label;
           if (stockLabel) {
-            stockLabel.textContent  = colorMeta[color].stock;
-            stockLabel.style.color  = colorMeta[color].stockColor;
+            stockLabel.textContent = colorMeta[color].stock;
+            stockLabel.style.color = colorMeta[color].stockColor;
           }
         });
       });
