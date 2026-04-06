@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bulk order — day–guard | pre-alcohol vitamin jelly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/placeholder.css" onerror="void(0)">
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --green:       #204c3e;
+      --soft-green:  #9aaca0;
+      --beige:       #f4f1ec;
+      --mango:       #fb9918;
+      --peach:       #fc6731;
+      --apple:       #44c555;
+      --white:       #ffffff;
+      --black:       #020706;
+      --gold:        #d4af38;
+      --serif:  'Hedvig Letters Serif', Georgia, serif;
+      --sans:   'Helvetica Neue', Arial, sans-serif;
+      --label:  'DM Sans', Arial, sans-serif;
+      --sofia:  'Sofia Pro', 'DM Sans', Arial, sans-serif;
+      --ease:   0.32s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--beige); color: var(--black); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+
+    /* ─── FADE-IN ─────────────────────────────────────────── */
+    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ═══════════════════════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: flex-start;
+      padding: 0 56px; height: 90px;
+      background: rgba(244,241,236,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(2,7,6,0.06);
+      transition: box-shadow 0.4s ease;
+    }
+    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.06); }
+    .nav-logo img { height: 28px; width: auto; }
+    .nav-logo-fallback {
+      font-family: var(--label); font-size: 20px; font-weight: 700;
+      letter-spacing: -0.8px; color: var(--black);
+    }
+    .nav-links { display: flex; align-items: center; gap: 44px; margin-left: auto; margin-right: 44px; }
+    .nav-links a {
+      font-family: var(--label); font-size: 20px; font-weight: 400;
+      letter-spacing: -0.8px; color: var(--black);
+      transition: color 0.2s ease;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--green); opacity: 1; }
+    .nav-links a::after { display: none; }
+    .nav-cart {
+      display: flex; align-items: center; position: relative;
+      color: var(--black); transition: color 0.4s ease;
+    }
+    .nav-cart svg { display: block; }
+    .nav-cart-count {
+      position: absolute; top: -4px; right: -4px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--black); color: var(--white);
+      font-family: var(--sans); font-size: 10px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--black); border-radius: 2px; }
+
+    /* ── Nav dropdowns ── */
+    .nav-item { position: relative; list-style: none; }
+    .nav-item > a { cursor: pointer; }
+    .nav-dropdown {
+      position: absolute; top: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background: rgba(244,241,236,0.98);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(2,7,6,0.08);
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+      padding: 6px;
+      min-width: 210px;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 400;
+    }
+    .nav-dropdown::before {
+      content: ''; position: absolute;
+      top: -12px; left: -16px; right: -16px; height: 12px;
+    }
+    .nav-item:hover .nav-dropdown,
+    .nav-item.open .nav-dropdown {
+      opacity: 1; visibility: visible; pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown a {
+      display: block; padding: 10px 14px;
+      font-family: var(--label); font-size: 15px; font-weight: 400;
+      letter-spacing: -0.3px; color: var(--black);
+      border-radius: 9px;
+      transition: background 0.14s ease;
+      white-space: nowrap; opacity: 1;
+    }
+    .nav-dropdown a::after { display: none; }
+    .nav-dropdown a:hover { background: rgba(2,7,6,0.06); opacity: 1; }
+    .nav-item > a.has-arrow::after {
+      display: inline-block; content: '';
+      width: 5px; height: 5px;
+      border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg);
+      transform-origin: 50% 50%;
+      margin-left: 6px; vertical-align: middle;
+      position: relative; top: -2px;
+      transition: transform 0.18s ease;
+    }
+    .nav-item:hover > a.has-arrow::after,
+    .nav-item.open > a.has-arrow::after {
+      transform: rotate(-135deg);
+    }
+
+    /* ── Cart drawer overlay ── */
+    .cart-overlay {
+      position: fixed; inset: 0;
+      background: rgba(2,7,6,0.28);
+      z-index: 800; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+    .cart-overlay.open { opacity: 1; visibility: visible; pointer-events: all; }
+
+    /* ── Cart drawer panel ── */
+    .cart-drawer {
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: 400px; max-width: 100vw;
+      background: #f4f1ec;
+      z-index: 801;
+      transform: translateX(100%);
+      transition: transform 0.36s cubic-bezier(.4,0,.2,1);
+      display: flex; flex-direction: column;
+      border-left: 1px solid rgba(2,7,6,0.08);
+    }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-drawer-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid rgba(2,7,6,0.08);
+      flex-shrink: 0;
+    }
+    .cart-drawer-title {
+      font-family: var(--sofia); font-size: 18px; font-weight: 400;
+      letter-spacing: -0.4px; color: var(--black);
+    }
+    .cart-drawer-close {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(2,7,6,0.07); color: var(--black);
+      transition: background 0.15s ease;
+    }
+    .cart-drawer-close:hover { background: rgba(2,7,6,0.13); }
+    .cart-drawer-body { flex: 1; overflow-y: auto; padding: 24px 28px; }
+    .cart-empty {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; height: 100%; gap: 12px;
+      color: rgba(2,7,6,0.4);
+    }
+    .cart-empty-icon { font-size: 40px; opacity: 0.4; }
+    .cart-empty p {
+      font-family: var(--sofia); font-size: 16px; letter-spacing: -0.3px;
+    }
+    .cart-shop-link {
+      font-family: var(--sofia); font-size: 13px; font-weight: 600;
+      color: var(--green); letter-spacing: -0.2px;
+      border-bottom: 1px solid var(--green); padding-bottom: 1px;
+    }
+    .cart-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px 0; border-bottom: 1px solid rgba(2,7,6,0.08);
+    }
+    .cart-item-img {
+      width: 80px; height: 80px; object-fit: cover;
+      border-radius: 10px; flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-name {
+      font-family: var(--sofia); font-size: 14px; font-weight: 600;
+      letter-spacing: -0.3px; color: var(--black); margin-bottom: 3px;
+    }
+    .cart-item-sub {
+      font-family: var(--sans); font-size: 12px;
+      color: rgba(2,7,6,0.5); margin-bottom: 10px; letter-spacing: -0.1px;
+    }
+    .cart-item-qty-row {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cart-item-qty {
+      display: flex; align-items: center; gap: 0;
+      border: 1.5px solid rgba(2,7,6,0.15); border-radius: 8px; overflow: hidden;
+    }
+    .cart-item-qty button {
+      width: 30px; height: 30px;
+      font-family: var(--sofia); font-size: 18px; font-weight: 300;
+      color: var(--black); background: transparent;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cart-item-qty button:hover { background: rgba(2,7,6,0.06); }
+    .cart-item-qty span {
+      width: 32px; text-align: center;
+      font-family: var(--sofia); font-size: 14px; font-weight: 500;
+      color: var(--black); border-left: 1.5px solid rgba(2,7,6,0.15);
+      border-right: 1.5px solid rgba(2,7,6,0.15);
+    }
+    .cart-item-price {
+      font-family: var(--sofia); font-size: 16px; font-weight: 600;
+      color: var(--black); letter-spacing: -0.3px;
+    }
+    .cart-footer-section {
+      flex-shrink: 0; padding: 20px 28px 32px;
+      border-top: 1px solid rgba(2,7,6,0.08);
+    }
+    .cart-subtotal {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 6px;
+    }
+    .cart-subtotal span {
+      font-family: var(--sofia); font-size: 14px; color: rgba(2,7,6,0.55);
+      letter-spacing: -0.2px;
+    }
+    .cart-subtotal-price {
+      font-family: var(--sofia); font-size: 18px; font-weight: 600;
+      color: var(--black); letter-spacing: -0.4px;
+    }
+    .cart-note {
+      font-family: var(--sans); font-size: 11px;
+      color: rgba(2,7,6,0.4); letter-spacing: -0.1px;
+      margin-bottom: 16px;
+    }
+    .cart-checkout-btn {
+      width: 100%; padding: 16px;
+      background: var(--green); color: var(--white);
+      border-radius: 12px;
+      font-family: var(--sofia); font-size: 16px; font-weight: 500;
+      letter-spacing: -0.3px;
+      transition: opacity 0.2s ease;
+    }
+    .cart-checkout-btn:hover { opacity: 0.88; }
+    .cart-nav-cart { cursor: pointer; }
+
+    /* ═══════════════════════════════════════════════════════
+       ANNOUNCE BAR
+    ═══════════════════════════════════════════════════════ */
+    .announce-bar {
+      background: var(--green); color: var(--white);
+      text-align: center; padding: 10px 20px;
+      font-family: var(--sans); font-size: 13px; letter-spacing: -0.1px;
+      opacity: 0.92;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       PDP HERO
+    ═══════════════════════════════════════════════════════ */
+    .pdp-hero {
+      max-width: 1440px; margin: 0 auto;
+      display: flex; align-items: flex-start;
+      gap: 113px;
+      padding: 100px 54px 80px 153px;
+    }
+
+    /* ── Lifestyle slideshow ── */
+    .lifestyle-slide-wrap {
+      position: relative; overflow: hidden;
+      border-radius: 3px; width: 100%; height: 100%;
+    }
+    .lifestyle-slide-wrap img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      border-radius: 0;
+      transform: translateX(100%);
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .lifestyle-slide-wrap img.active  { transform: translateX(0); }
+    .lifestyle-slide-wrap img.exit    { transform: translateX(-100%); }
+    .lifestyle-dots {
+      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 5px; z-index: 2;
+    }
+    .lifestyle-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: rgba(255,255,255,0.45); transition: background 0.3s;
+    }
+    .lifestyle-dot.active { background: var(--white); }
+
+    /* ── Gallery press ticker ── */
+    .gallery-main-wrap {
+      position: relative; margin-bottom: 24px; border-radius: 3px; overflow: hidden;
+    }
+    .gallery-main-wrap .gallery-main-img {
+      display: block; width: 676px; height: auto;
+      border-radius: 0; margin-bottom: 0;
+    }
+    .gallery-press-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 44px;
+      background: #ede9e1;
+      overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .gallery-press-track {
+      display: flex; align-items: center; height: 100%;
+      animation: gallery-press-scroll 18s linear infinite;
+      will-change: transform;
+    }
+    @keyframes gallery-press-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .gp-bar-img {
+      height: 20px; width: 417px; display: block; flex-shrink: 0; max-width: none;
+    }
+    .gp-bar-sep {
+      flex: 0 0 16px; width: 16px;
+      display: flex; align-items: center; justify-content: center;
+      height: 20px;
+      font-size: 7px; color: #9aaca0; letter-spacing: 0;
+      user-select: none; line-height: 1;
+    }
+
+    /* ── FrontrowMD Clinicians' Choice badge ── */
+    .fmd-badge {
+      position: absolute; top: 12px; right: 12px; z-index: 10;
+      width: 90px;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.12));
+    }
+    .fmd-badge-inner {
+      background: #fff;
+      border-radius: 8px 8px 0 0;
+      padding: 7px 8px 10px;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .fmd-badge::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 10px;
+      background:
+        linear-gradient(to bottom right, #fff 49.5%, transparent 50%) left,
+        linear-gradient(to bottom left,  #fff 49.5%, transparent 50%) right;
+      background-size: 50% 100%;
+      background-repeat: no-repeat;
+    }
+    .fmd-logo-row {
+      display: flex; align-items: center; gap: 3px; width: 100%;
+    }
+    .fmd-logo-mark { height: 8px; width: 11px; flex-shrink: 0; object-fit: contain; }
+    .fmd-text-mark { height: 6px; width: 42px; flex-shrink: 0; object-fit: contain; }
+    .fmd-close-btn {
+      margin-left: auto; flex-shrink: 0;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-size: 9px; line-height: 1; color: rgba(28,43,67,0.4);
+    }
+    .fmd-divider {
+      width: 100%; height: 1px; background: rgba(28,43,67,0.10);
+    }
+    .fmd-choice-row {
+      display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%;
+    }
+    .fmd-choice-wreath { height: 26px; width: 13px; flex-shrink: 0; object-fit: contain; }
+    .fmd-choice-label {
+      font-family: var(--sofia); font-size: 9px; font-weight: 700;
+      color: #1C2B43; text-align: center; letter-spacing: 0; line-height: 1.15;
+    }
+    .fmd-count {
+      font-family: var(--sofia); font-size: 9px; font-weight: 600;
+      color: #1C2B43; text-align: center; line-height: 1;
+    }
+    .fmd-share-text {
+      font-family: var(--sofia); font-size: 7px; color: rgba(28,43,67,0.65);
+      text-align: center; line-height: 1.4; width: 100%;
+    }
+    .fmd-learn-link {
+      font-family: var(--sofia); font-size: 7px; color: #1C2B43;
+      text-decoration: underline; text-align: center;
+    }
+    .fmd-view-btn {
+      display: block; width: 100%; text-align: center;
+      font-family: var(--sofia); font-size: 7px; font-weight: 500; color: #1C2B43;
+      border: 1px solid rgba(28,43,67,0.3); border-radius: 4px;
+      padding: 4px 3px; text-decoration: none; line-height: 1;
+    }
+
+    /* ── Gallery ── */
+    .gallery {
+      width: 676px;
+      flex-shrink: 0;
+      position: sticky; top: 90px;
+      display: flex; flex-direction: column;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 330px 330px;
+      grid-template-rows: 330px 330px;
+      column-gap: 16px; row-gap: 15px;
+    }
+    .gallery-grid img {
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 3px;
+      display: block;
+    }
+
+    /* ── Mobile gallery carousel (hidden on desktop) ── */
+    .mobile-gallery { display: none; }
+    .mgc-track {
+      display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .mgc-track::-webkit-scrollbar { display: none; }
+    .mgc-slide { flex: 0 0 100%; scroll-snap-align: start; position: relative; overflow: hidden; }
+    .mgc-slide img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+    .mgc-slide-product img { object-fit: cover; background: #f0ede6; transform: scale(1.25); transform-origin: center center; }
+    .mobile-gallery { position: relative; }
+    .mgc-slide-steps { position: relative; width: 100%; aspect-ratio: 1; }
+    .mgc-step { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease; }
+    .mgc-step.active { opacity: 1; }
+    .mgc-step-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; }
+    .mgc-step-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: background 0.3s; }
+    .mgc-step-dot.active { background: var(--white); }
+    .mgc-dots { display: flex; justify-content: center; gap: 6px; padding: 10px 0 4px; }
+    .mgc-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(32,76,62,0.18); transition: all 0.3s; }
+    .mgc-dot.active { background: var(--green); width: 18px; border-radius: 3px; }
+
+    /* ── Purchase panel ── */
+    .purchase-panel { width: 444px; flex-shrink: 0; }
+
+    /* ── Quantity box selector ── */
+    .qty-boxes { display: flex; gap: 8px; margin-bottom: 16px; }
+    .qty-box {
+      flex: 1; border: 1.5px solid rgba(2,7,6,0.12);
+      border-radius: 10px; padding: 10px 8px;
+      text-align: center; cursor: pointer; position: relative;
+      transition: border-color 0.22s ease, background 0.22s ease;
+      background: transparent;
+    }
+    .qty-box.active {
+      border-color: var(--mango);
+      background: var(--mango);
+    }
+    .qty-box-units {
+      font-family: var(--sofia); font-size: 13px; font-weight: 600;
+      color: var(--black); margin-bottom: 3px; letter-spacing: -0.2px;
+      transition: color 0.22s;
+    }
+    .qty-box.active .qty-box-units { color: var(--white); }
+    .qty-box-price {
+      font-family: var(--sofia); font-size: 10px; font-weight: 400;
+      color: rgba(2,7,6,0.5); letter-spacing: -0.1px;
+      transition: color 0.22s;
+    }
+    .qty-box.active .qty-box-price { color: rgba(255,255,255,0.8); }
+    .qty-box-badge {
+      position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+      font-family: var(--sofia); font-size: 9px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.3px;
+      padding: 2px 8px; border-radius: 100px; white-space: nowrap;
+      background: var(--green); color: var(--white);
+      border: 1px solid transparent;
+    }
+    .qty-box-badge.popular { box-shadow: none; }
+    .qty-box-badge.deal { box-shadow: none; }
+
+    /* Panel bullet perks */
+    .panel-perks { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+    .panel-perk {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--sans); font-size: 13px;
+      letter-spacing: -0.1px; color: rgba(2,7,6,0.65);
+    }
+    .panel-perk::before {
+      content: '✓'; font-size: 11px; font-weight: 700;
+      color: var(--green); flex-shrink: 0;
+    }
+
+    /* Start now CTA row */
+    .start-now-row { display: flex; align-items: stretch; gap: 10px; margin-bottom: 8px; }
+    .qty-counter {
+      display: flex; align-items: center;
+      border: 1.5px solid rgba(2,7,6,0.14); border-radius: 8px; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .qty-counter-btn {
+      width: 44px; height: 56px; display: flex; align-items: center; justify-content: center;
+      font-family: var(--sofia); font-size: 20px; font-weight: 300;
+      cursor: pointer; background: none;
+      border: none; color: var(--black); transition: background 0.15s;
+    }
+    .qty-counter-btn:hover { background: rgba(0,0,0,0.04); }
+    .qty-counter-val {
+      width: 32px; text-align: center;
+      font-family: var(--sofia); font-size: 15px; font-weight: 500;
+    }
+    .start-now-btn {
+      flex: 1; height: 56px; border-radius: 8px;
+      font-family: var(--sofia); font-size: 17px; font-weight: 600;
+      text-transform: lowercase; letter-spacing: 0px;
+      color: var(--white); background: var(--mango); border: none; cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .start-now-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── PDP panel typography ── */
+    .pdp-rating {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .pdp-stars { font-size: 12px; color: var(--gold); letter-spacing: 1px; }
+    .pdp-rating-count {
+      font-family: var(--sans); font-size: 13px; letter-spacing: -0.2px;
+      color: rgba(2,7,6,0.55);
+    }
+    .pdp-bestseller {
+      font-family: var(--sofia); font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      background: var(--green); color: var(--white);
+      padding: 3px 9px; border-radius: 100px;
+    }
+
+    .pdp-title {
+      font-family: var(--sofia);
+      font-size: clamp(28px, 2.8vw, 42px);
+      font-weight: 400; line-height: 1.1; letter-spacing: -1px;
+      color: var(--black); margin-bottom: 10px;
+    }
+
+    .pdp-description {
+      font-family: var(--sans);
+      font-size: 14px; line-height: 1.65; letter-spacing: -0.1px;
+      color: rgba(2,7,6,0.55);
+      margin-bottom: 16px; padding-bottom: 16px;
+      border-bottom: 1px solid rgba(2,7,6,0.08);
+    }
+
+    .price-block { margin-bottom: 14px; }
+    .price-row { display: flex; align-items: baseline; gap: 10px; }
+    .price-main {
+      font-family: var(--sans); font-size: 26px; font-weight: 500;
+      letter-spacing: -1.4px; line-height: 1;
+      color: var(--black); display: block;
+    }
+    .price-original {
+      font-family: var(--sans); font-size: 18px; font-weight: 400;
+      letter-spacing: -0.8px; line-height: 1;
+      color: rgba(2,7,6,0.35); text-decoration: line-through;
+      display: none;
+    }
+    .price-original.visible { display: block; }
+    .price-per-box {
+      font-family: var(--sans); font-size: 12px; font-weight: 400;
+      color: rgba(2,7,6,0.35); letter-spacing: 0px;
+      margin-top: 4px;
+    }
+
+    /* CTA note */
+    .cta-note {
+      text-align: center; font-size: 12px; opacity: 0.4; letter-spacing: -0.1px;
+      margin-bottom: 22px;
+    }
+
+    /* Accordions in panel */
+    .panel-accord { border-top: 1px solid rgba(2,7,6,0.09); margin-top: 4px; }
+    .panel-accord-item { border-bottom: 1px solid rgba(2,7,6,0.09); }
+    .panel-accord-trigger {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 0; font-family: var(--sans); font-size: 15px; font-weight: 400;
+      letter-spacing: -0.2px; color: var(--black);
+      background: none; cursor: pointer;
+      transition: opacity var(--ease);
+    }
+    .panel-accord-trigger:hover { opacity: 0.6; }
+    .accord-icon {
+      width: 22px; height: 22px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(2,7,6,0.18); border-radius: 4px;
+      color: var(--black); opacity: 0.55;
+      transition: opacity var(--ease);
+    }
+    .accord-icon svg { display: block; transition: transform var(--ease); }
+    .panel-accord-item.open .accord-icon { opacity: 0.8; }
+    .panel-accord-item.open .accord-icon svg { transform: rotate(45deg); }
+    .panel-accord-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .panel-accord-item.open .panel-accord-body { max-height: 400px; }
+    .panel-accord-inner {
+      padding: 0 0 18px 0;
+      font-size: 13px; line-height: 1.7; opacity: 0.65;
+      letter-spacing: -0.1px;
+    }
+    .panel-accord-inner ul { display: flex; flex-direction: column; gap: 6px; }
+    .panel-accord-inner li { display: flex; align-items: flex-start; gap: 8px; }
+    .panel-accord-inner li::before { content: '–'; flex-shrink: 0; opacity: 0.5; }
+    .accord-link {
+      display: inline-block; margin-top: 10px;
+      font-size: 13px; font-weight: 500; color: var(--green);
+      border-bottom: 1px solid rgba(32,76,62,0.25);
+      padding-bottom: 1px;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       STATS BAR
+    ═══════════════════════════════════════════════════════ */
+    .stats-bar {
+      background: var(--green);
+      background-image: radial-gradient(ellipse at 20% 50%, rgba(154,172,160,0.12) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 50%, rgba(251,153,24,0.06) 0%, transparent 60%);
+      color: var(--white);
+      overflow: hidden;
+    }
+    .stats-inner {
+      max-width: 1320px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+    }
+    .stat-cell {
+      padding: 72px 52px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .stat-cell:nth-child(2) { transition-delay: 0.12s; }
+    .stat-cell:nth-child(3) { transition-delay: 0.24s; }
+    .stat-cell.stat-visible { opacity: 1; transform: translateY(0); }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell::before {
+      content: '';
+      position: absolute; top: 0; left: 52px; right: 52px; height: 2px;
+      background: linear-gradient(to right, var(--mango), transparent);
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: opacity 0.5s ease 0.3s, transform 0.6s cubic-bezier(.4,0,.2,1) 0.3s;
+    }
+    .stat-cell.stat-visible::before { opacity: 0.45; transform: scaleX(1); }
+    .stat-cell:nth-child(2)::before { transition-delay: 0.42s, 0.42s; }
+    .stat-cell:nth-child(3)::before { transition-delay: 0.54s, 0.54s; }
+    .stat-num {
+      font-family: var(--serif); font-size: clamp(56px, 5.5vw, 88px);
+      font-weight: 400; letter-spacing: -4px; line-height: 1;
+      margin-bottom: 12px;
+      color: var(--white);
+      display: flex; align-items: flex-start; gap: 2px;
+    }
+    .count-num {
+      background: linear-gradient(135deg, #ffffff 55%, rgba(255,255,255,0.55) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-num sup {
+      font-family: var(--sans); font-size: 0.35em; vertical-align: super;
+      letter-spacing: 0; color: rgba(255,255,255,0.45); margin-top: 6px;
+    }
+    .stat-label {
+      font-size: 15px; letter-spacing: -0.3px; opacity: 0.7;
+      line-height: 1.4; margin-bottom: 14px;
+    }
+    .stat-note { font-size: 13px; opacity: 0.38; letter-spacing: -0.1px; line-height: 1.6; max-width: 280px; }
+
+    /* ═══════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════ */
+    .footer {
+      display: grid; grid-template-columns: 1fr 1fr;
+      height: 88vh; max-height: 88vh; overflow: hidden;
+      border-top: 2px solid #ffffff;
+    }
+    .footer-left {
+      background: #204c3e;
+      padding: 44px 56px 38px 56px;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .footer-left-top { margin-bottom: 36px; }
+    .footer-signup-h {
+      font-family: var(--sans); font-size: clamp(26px, 2.4vw, 35px);
+      font-weight: 700; color: var(--white); letter-spacing: -1.4px;
+      line-height: 1.1; margin-bottom: 28px;
+    }
+    .footer-toggles { display: flex; gap: 8px; margin-bottom: 14px; }
+    .ft-btn {
+      font-family: var(--sofia); font-size: 15px; font-weight: 400;
+      color: var(--white); letter-spacing: -0.5px;
+      padding: 5px 20px; border-radius: 3px;
+      border: 2px solid rgba(255,255,255,0.8);
+      background: transparent; cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .ft-btn.active { background: var(--white); color: var(--green); border-color: var(--white); }
+    .footer-form { margin-bottom: 12px; }
+    .footer-input {
+      width: 100%; background: transparent;
+      border: 2px solid rgba(255,255,255,0.6); border-radius: 3px;
+      padding: 12px 18px;
+      font-family: var(--sofia); font-size: 19px; color: var(--white); letter-spacing: -0.8px;
+      outline: none; transition: border-color 0.2s;
+    }
+    .footer-input:focus { border-color: rgba(255,255,255,0.95); }
+    .footer-input::placeholder { color: rgba(255,255,255,0.5); }
+    .footer-disclaimer {
+      font-family: var(--sans); font-size: 11px; font-weight: 300;
+      color: rgba(255,255,255,0.5); letter-spacing: -0.3px; line-height: 1.4;
+      margin-bottom: 36px;
+    }
+    .footer-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      width: 100%;
+      margin-bottom: auto;
+      padding-top: 8px;
+    }
+    .footer-nav-col { display: flex; flex-direction: column; }
+    .footer-nav-h {
+      font-family: var(--sans); font-size: 17px;
+      font-weight: 700; color: var(--white); letter-spacing: -0.7px; margin-bottom: 16px;
+    }
+    .footer-nav-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-nav-links a {
+      font-family: var(--sans); font-size: 16px;
+      font-weight: 400; color: rgba(255,255,255,0.72); letter-spacing: -0.5px;
+      transition: color 0.18s;
+    }
+    .footer-nav-links a:hover { color: var(--white); }
+    .footer-left-bottom { margin-top: 44px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.12); }
+    .footer-fda {
+      font-family: var(--sofia); font-size: 10px;
+      color: rgba(255,255,255,0.38); letter-spacing: -0.3px; line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .footer-bottom-row {
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
+    }
+    .footer-copyright {
+      font-family: var(--sofia); font-size: 10.5px;
+      color: rgba(255,255,255,0.45); letter-spacing: -0.3px; line-height: 1.6;
+    }
+    .footer-socials { display: flex; gap: 8px; flex-shrink: 0; }
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 7px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center; color: var(--white);
+      transition: background 0.18s;
+    }
+    .social-icon:hover { background: rgba(255,255,255,0.2); }
+    .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
+    .footer-right {
+      position: relative; overflow: hidden;
+      background: #2a3a30;
+    }
+    .footer-girl-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 50%;
+      display: block;
+    }
+    .footer-right-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; flex-direction: column;
+      align-items: flex-end; justify-content: flex-start; padding: 40px 44px;
+      pointer-events: none;
+    }
+    .footer-dg-logo {
+      width: auto; max-width: clamp(180px, 28vw, 440px); height: auto;
+      display: block; align-self: flex-end; margin-bottom: 8px;
+    }
+    .footer-tagline {
+      font-family: var(--sans); font-size: clamp(14px, 1.5vw, 22px);
+      font-weight: 400; color: var(--white); letter-spacing: -0.9px;
+      text-align: right; opacity: 0.9;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       STICKY ATC BAR
+    ═══════════════════════════════════════════════════════ */
+    .sticky-atc {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+      background: rgba(244,241,236,0.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(2,7,6,0.08);
+      padding: 9px 56px;
+      transform: translateY(100%);
+      transition: transform 0.36s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 -4px 32px rgba(0,0,0,0.08);
+    }
+    .sticky-atc.visible { transform: translateY(0); }
+    .sticky-atc-inner {
+      max-width: 1320px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .sticky-product { display: flex; align-items: center; gap: 11px; }
+    .sticky-thumb {
+      width: 48px; height: 48px; border-radius: 8px;
+      background: var(--white); border: 1px solid rgba(2,7,6,0.08);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .sticky-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .sticky-product-name { font-size: 13px; font-weight: 500; letter-spacing: -0.2px; }
+    .sticky-product-price { font-size: 12px; opacity: 0.45; letter-spacing: -0.1px; }
+    .sticky-cta {
+      font-family: var(--label); font-size: 13px; font-weight: 600;
+      text-transform: lowercase; letter-spacing: -0.2px;
+      background: var(--mango); color: var(--white);
+      padding: 9px 28px; border-radius: 6px;
+      transition: opacity var(--ease), transform var(--ease);
+      white-space: nowrap;
+    }
+    .sticky-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── Mobile slide-in menu ── */
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 399; opacity: 0; pointer-events: none; transition: opacity 0.32s ease; }
+    .mobile-menu-overlay.open { opacity: 1; pointer-events: all; }
+    .mobile-menu { position: fixed; top: 0; right: -100%; width: 78%; max-width: 320px; height: 100dvh; background: var(--beige); z-index: 400; display: flex; flex-direction: column; padding: 28px 28px 40px; box-shadow: -6px 0 40px rgba(0,0,0,0.14); transition: right 0.35s cubic-bezier(.4,0,.2,1); }
+    .mobile-menu.open { right: 0; }
+    .mobile-menu-top { display: flex; justify-content: flex-end; margin-bottom: 36px; }
+    .mobile-menu-close { font-size: 30px; line-height: 1; background: none; border: none; cursor: pointer; color: var(--black); padding: 0; }
+    .mobile-menu-nav { display: flex; flex-direction: column; gap: 0; }
+    .mobile-menu-nav a { font-family: var(--sans); font-size: 30px; font-weight: 400; letter-spacing: -1.2px; color: var(--black); padding: 14px 0; border-bottom: 1px solid rgba(2,7,6,0.07); display: block; transition: color 0.2s ease; }
+    .mobile-menu-nav a:hover { color: var(--green); }
+
+    /* ── Bulk-specific styles ── */
+    /* Bulk info note */
+    .bulk-note {
+      background: rgba(32,76,62,0.05);
+      border: 1px solid rgba(32,76,62,0.12);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(2,7,6,0.65);
+      letter-spacing: -0.1px;
+    }
+    .bulk-note strong {
+      color: var(--green);
+      font-weight: 600;
+    }
+    /* Quantity total display */
+    .bulk-total-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-top: 1px solid rgba(2,7,6,0.08);
+      margin-bottom: 14px;
+    }
+    .bulk-total-label {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: rgba(2,7,6,0.5);
+      letter-spacing: -0.2px;
+    }
+    .bulk-total-price {
+      font-family: var(--sans);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -1px;
+      color: var(--black);
+    }
+    .bulk-savings-pill {
+      font-family: var(--sofia);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--green);
+      padding: 3px 8px;
+      border-radius: 100px;
+      margin-left: 8px;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .pdp-hero { gap: 48px; padding: 100px 32px 80px; }
+      .gallery { width: 520px; }
+      .gallery-main-wrap .gallery-main-img { width: 520px; }
+      .gallery-grid { grid-template-columns: 252px 252px; }
+      .purchase-panel { width: 380px; }
+    }
+    @media (max-width: 960px) {
+      .nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-cart { margin-left: auto; margin-right: 14px; }
+      .nav-hamburger { display: flex; }
+      .pdp-hero { flex-direction: column; gap: 0; padding: 0; }
+      .gallery { width: 100%; position: static; }
+      .gallery-main-wrap { display: none; }
+      .gallery-grid { display: none; }
+      .mobile-gallery { display: block; }
+      .purchase-panel { width: 100%; padding: 28px 20px 40px; }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-cart { margin-left: auto; margin-right: 14px; }
+      .nav-hamburger { display: flex; }
+      .gallery-main-wrap, .gallery-grid { display: none; }
+      .mobile-gallery { display: block; width: 100%; }
+      .gp-bar-img { height: 30px; }
+      .gallery-press-overlay { height: 58px; }
+      #mobile-fmd-badge { width: 108px; }
+      #mobile-fmd-badge .fmd-badge-inner { padding: 8px 9px 11px; gap: 4px; }
+      #mobile-fmd-badge .fmd-logo-mark { height: 9px; width: 13px; }
+      #mobile-fmd-badge .fmd-text-mark { height: 6px; width: 46px; }
+      #mobile-fmd-badge .fmd-choice-wreath { height: 26px; width: 13px; }
+      #mobile-fmd-badge .fmd-choice-label { font-size: 9px; }
+      #mobile-fmd-badge .fmd-count { font-size: 9px; }
+      #mobile-fmd-badge .fmd-share-text { font-size: 7.5px; }
+      #mobile-fmd-badge .fmd-learn-link { font-size: 7.5px; }
+      #mobile-fmd-badge .fmd-view-btn { font-size: 7.5px; padding: 4px 3px; }
+      #mobile-fmd-badge::after { height: 10px; }
+      .footer { grid-template-columns: 1fr; height: auto; max-height: none; }
+      .footer-right { height: 320px; }
+      .footer-left { padding: 40px 24px 36px 24px; }
+      .footer-nav-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .sticky-atc { padding: 9px 24px; }
+    }
+    @media (max-width: 600px) {
+      .qty-boxes { flex-direction: column; gap: 8px; }
+      .qty-box { padding: 12px 16px; text-align: left; display: flex; justify-content: space-between; align-items: center; }
+      .qty-box-units { font-size: 14px; }
+      .qty-box-price { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCE BAR -->
+  <div class="announce-bar">bulk pricing available — 20, 40, or 60 boxes · free shipping included</div>
+
+  <!-- Cart overlay + drawer -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <span class="cart-drawer-title">your cart</span>
+      <button class="cart-drawer-close" id="cart-close" aria-label="Close cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="cart-drawer-body" id="cart-drawer-body">
+      <div class="cart-empty" id="cart-empty">
+        <div class="cart-empty-icon">🛍</div>
+        <p>your cart is empty</p>
+        <a href="/shop.html" class="cart-shop-link">shop now →</a>
+      </div>
+      <div id="cart-items-wrap" style="display:none">
+        <div class="cart-item">
+          <img src="/images/product%28slanted%29.png" class="cart-item-img" alt="day–guard">
+          <div class="cart-item-info">
+            <div class="cart-item-name">pre-alcohol vitamin jelly</div>
+            <div class="cart-item-sub" id="cart-mode-label">bulk order · 20 boxes</div>
+            <div class="cart-item-qty-row">
+              <div class="cart-item-qty">
+                <button onclick="cartQty(-1)">−</button>
+                <span id="cart-qty">20</span>
+                <button onclick="cartQty(1)">+</button>
+              </div>
+              <div class="cart-item-price" id="cart-item-price">$560.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cart-footer-section" id="cart-footer" style="display:none">
+      <div class="cart-subtotal">
+        <span>subtotal</span>
+        <span class="cart-subtotal-price" id="cart-subtotal">$560.00</span>
+      </div>
+      <p class="cart-note">tax included · free shipping on bulk orders</p>
+      <button class="cart-checkout-btn">checkout →</button>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="/" class="nav-logo" aria-label="day–guard home">
+      <img src="/images/DG_Horizontal_Black.png" alt="day–guard">
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item has-dropdown">
+        <a href="/shop.html" class="has-arrow">shop</a>
+        <div class="nav-dropdown">
+          <a href="/shop.html">pre-alcohol vitamin jelly</a>
+          <a href="#">every day-guard</a>
+          <a href="/bulk-order.html">bulk order</a>
+          <a href="/merch.html">merch</a>
+        </div>
+      </li>
+      <li><a href="/science.html">science</a></li>
+      <li class="nav-item has-dropdown">
+        <a href="#" class="has-arrow">learn</a>
+        <div class="nav-dropdown">
+          <a href="#">about us</a>
+          <a href="#">blog</a>
+        </div>
+      </li>
+      <li class="nav-item has-dropdown">
+        <a href="/help.html" class="has-arrow">help</a>
+        <div class="nav-dropdown">
+          <a href="/help.html">Help Center</a>
+          <a href="/help.html#faq">FAQs</a>
+          <a href="/help.html#contact">Contact Us</a>
+        </div>
+      </li>
+    </ul>
+    <div class="nav-cart cart-nav-cart" id="cart-trigger" role="button" aria-label="Open cart">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="nav-cart-count" id="cart-count">0</span>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile slide-in menu -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-top">
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">×</button>
+    </div>
+    <nav class="mobile-menu-nav">
+      <a href="/shop.html">shop</a>
+      <a href="/science.html">science</a>
+      <a href="#">learn</a>
+      <a href="/help.html">help</a>
+    </nav>
+  </div>
+
+  <!-- PDP HERO -->
+  <section class="pdp-hero">
+
+    <div class="gallery">
+      <!-- Mobile-only snap-scroll carousel -->
+      <div class="mobile-gallery" id="mobile-gallery">
+        <div class="mgc-track" id="mgc-track">
+          <div class="mgc-slide mgc-slide-product">
+            <img src="/images/product image with jelly.png" alt="day–guard bulk order jelly sticks">
+            <div class="gallery-press-overlay">
+              <div class="gallery-press-track">
+                <img src="/images/press%20bar.png" class="gp-bar-img" alt="">
+                <span class="gp-bar-sep" aria-hidden="true">·</span>
+                <img src="/images/press%20bar.png" class="gp-bar-img" aria-hidden="true">
+                <span class="gp-bar-sep" aria-hidden="true">·</span>
+                <img src="/images/press%20bar.png" class="gp-bar-img" aria-hidden="true">
+                <span class="gp-bar-sep" aria-hidden="true">·</span>
+                <img src="/images/press%20bar.png" class="gp-bar-img" aria-hidden="true">
+                <span class="gp-bar-sep" aria-hidden="true">·</span>
+              </div>
+            </div>
+          </div>
+          <div class="mgc-slide">
+            <img src="/images/PDP/Rectangle 1739331476.png" alt="mango flavor">
+          </div>
+          <div class="mgc-slide mgc-slide-steps" id="mgc-steps-slide">
+            <img src="/images/steps/1.png" class="mgc-step active" alt="take one before drinking">
+            <img src="/images/steps/2.png" class="mgc-step" alt="cheers with day–guard">
+            <img src="/images/steps/3.png" class="mgc-step" alt="enjoy your night">
+            <div class="mgc-step-dots">
+              <div class="mgc-step-dot active"></div>
+              <div class="mgc-step-dot"></div>
+              <div class="mgc-step-dot"></div>
+            </div>
+          </div>
+          <div class="mgc-slide">
+            <img src="/images/PDP/FDA-approved.png" alt="clinician approved">
+          </div>
+          <div class="mgc-slide">
+            <img src="/images/PDP/DG_Carousel_Artwork%238.jpg" alt="supplement facts">
+          </div>
+        </div>
+        <div class="mgc-dots" id="mgc-dots">
+          <div class="mgc-dot active"></div>
+          <div class="mgc-dot"></div>
+          <div class="mgc-dot"></div>
+          <div class="mgc-dot"></div>
+          <div class="mgc-dot"></div>
+        </div>
+        <div class="fmd-badge" id="mobile-fmd-badge" style="position:absolute;top:10px;right:10px;z-index:20;">
+          <div class="fmd-badge-inner">
+            <div class="fmd-logo-row">
+              <img src="/images/fmd/logo-mark.svg" class="fmd-logo-mark" alt="">
+              <img src="/images/fmd/text-mark.svg" class="fmd-text-mark" alt="frontrowMD">
+              <button class="fmd-close-btn" aria-label="Close">×</button>
+            </div>
+            <div class="fmd-divider"></div>
+            <div class="fmd-choice-row">
+              <img src="/images/fmd/wreath-left.svg" class="fmd-choice-wreath" alt="">
+              <span class="fmd-choice-label">Clinicians'<br>Choice</span>
+              <img src="/images/fmd/wreath-right.svg" class="fmd-choice-wreath" alt="">
+            </div>
+            <div class="fmd-count">184 clinicians</div>
+            <div class="fmd-share-text">share this product<br>on FrontrowMD.</div>
+            <a href="#" class="fmd-learn-link">Learn more</a>
+            <a href="#" class="fmd-view-btn">View clinicians</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop main image -->
+      <div class="gallery-main-wrap">
+        <img class="gallery-main-img" src="/images/product image with jelly.png" alt="day–guard bulk order">
+        <div class="fmd-badge">
+          <div class="fmd-badge-inner">
+            <div class="fmd-logo-row">
+              <img src="/images/fmd/logo-mark.svg" class="fmd-logo-mark" alt="">
+              <img src="/images/fmd/text-mark.svg" class="fmd-text-mark" alt="frontrowMD">
+              <button class="fmd-close-btn" aria-label="Close">×</button>
+            </div>
+            <div class="fmd-divider"></div>
+            <div class="fmd-choice-row">
+              <img src="/images/fmd/wreath-left.svg" class="fmd-choice-wreath" alt="">
+              <span class="fmd-choice-label">Clinicians'<br>Choice</span>
+              <img src="/images/fmd/wreath-right.svg" class="fmd-choice-wreath" alt="">
+            </div>
+            <div class="fmd-count">184 clinicians</div>
+            <div class="fmd-share-text">share this product<br>on FrontrowMD.</div>
+            <a href="#" class="fmd-learn-link">Learn more</a>
+            <a href="#" class="fmd-view-btn">View clinicians</a>
+          </div>
+        </div>
+        <div class="gallery-press-overlay">
+          <div class="gallery-press-track">
+            <img src="/images/press%20bar.png" class="gp-bar-img" alt="">
+            <span class="gp-bar-sep" aria-hidden="true">·</span>
+            <img src="/images/press%20bar.png" class="gp-bar-img" aria-hidden="true">
+            <span class="gp-bar-sep" aria-hidden="true">·</span>
+            <img src="/images/press%20bar.png" class="gp-bar-img" aria-hidden="true">
+            <span class="gp-bar-sep" aria-hidden="true">·</span>
+            <img src="/images/press%20bar.png" class="gp-bar-img" aria-hidden="true">
+            <span class="gp-bar-sep" aria-hidden="true">·</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop 2×2 grid -->
+      <div class="gallery-grid">
+        <img src="/images/PDP/Rectangle 1739331476.png" alt="mango flavor">
+        <div class="lifestyle-slide-wrap" id="lifestyle-wrap">
+          <img src="/images/steps/1.png" alt="take one before drinking" class="active" data-slide="0">
+          <img src="/images/steps/2.png" alt="cheers with day–guard" data-slide="1">
+          <img src="/images/steps/3.png" alt="friends enjoying day–guard" data-slide="2">
+          <div class="lifestyle-dots">
+            <div class="lifestyle-dot active"></div>
+            <div class="lifestyle-dot"></div>
+            <div class="lifestyle-dot"></div>
+          </div>
+        </div>
+        <img src="/images/PDP/FDA-approved.png" alt="manufactured in FDA-registered facility">
+        <img src="/images/PDP/DG_Carousel_Artwork%238.jpg" alt="supplement facts">
+      </div>
+    </div>
+
+    <!-- Purchase panel — BULK VERSION -->
+    <div class="purchase-panel">
+
+      <!-- Rating row -->
+      <div class="pdp-rating">
+        <span class="pdp-bestseller">bulk order</span>
+        <span class="pdp-stars">★★★★★</span>
+        <span class="pdp-rating-count">450+ reviews</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="pdp-title">pre-alcohol<br>vitamin jelly</h1>
+
+      <!-- Description -->
+      <p class="pdp-description">
+        Clinically backed ingredients that support your liver, gut, and hydration before you drink — packed into a delicious jelly stick. Think insurance for when you drink.
+      </p>
+
+      <!-- Price display -->
+      <div class="price-block">
+        <div class="price-row">
+          <div class="price-main" id="price-main">$560.00</div>
+        </div>
+        <div class="price-per-box" id="price-per-stick">200 sticks · $2.80 / stick</div>
+      </div>
+
+      <!-- Bulk qty selector: 3 options -->
+      <div class="qty-boxes" id="qty-boxes">
+        <div class="qty-box active" data-boxes="20" data-sticks="200" data-total="560" data-per-stick="2.80" onclick="selectBulkQty(this)">
+          <div class="qty-box-units">20 boxes</div>
+          <div class="qty-box-price">200 sticks · $2.80 ea</div>
+        </div>
+        <div class="qty-box" data-boxes="40" data-sticks="400" data-total="1040" data-per-stick="2.60" onclick="selectBulkQty(this)">
+          <span class="qty-box-badge popular">most popular</span>
+          <div class="qty-box-units">40 boxes</div>
+          <div class="qty-box-price">400 sticks · $2.60 ea</div>
+        </div>
+        <div class="qty-box" data-boxes="60" data-sticks="600" data-total="1440" data-per-stick="2.40" onclick="selectBulkQty(this)">
+          <span class="qty-box-badge deal">best deal</span>
+          <div class="qty-box-units">60 boxes</div>
+          <div class="qty-box-price">600 sticks · $2.40 ea</div>
+        </div>
+      </div>
+
+      <!-- Bulk info note -->
+      <div class="bulk-note">
+        <strong>Bulk pricing</strong> — Save up to 17% vs. single-box pricing. Perfect for events, venues, hotels, and wellness programs.
+      </div>
+
+      <!-- Perks -->
+      <div class="panel-perks">
+        <div class="panel-perk">free shipping on all bulk orders</div>
+        <div class="panel-perk">volume discount — the more you order, the less you pay per stick</div>
+        <div class="panel-perk">dedicated support for bulk customers</div>
+      </div>
+
+      <!-- CTA row -->
+      <div class="start-now-row">
+        <button class="start-now-btn" id="cta-btn" onclick="window.location.href='#'">place bulk order</button>
+      </div>
+      <p class="cta-note">tax included · free shipping · ships within 2–3 business days</p>
+
+      <!-- Accordions -->
+      <div class="panel-accord">
+        <div class="panel-accord-item" id="pa-benefits">
+          <button class="panel-accord-trigger" onclick="toggleAccord('pa-benefits')">
+            <span>benefits</span>
+            <span class="accord-icon"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1v9M1 5.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="panel-accord-body">
+            <div class="panel-accord-inner">
+              <ul>
+                <li>Supports liver detox and alcohol metabolism</li>
+                <li>Reduces bloating and supports gut microbiome</li>
+                <li>Replenishes B-vitamins alcohol depletes</li>
+                <li>Restores electrolytes lost when drinking</li>
+                <li>Reduces next-morning inflammation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel-accord-item" id="pa-ingredients">
+          <button class="panel-accord-trigger" onclick="toggleAccord('pa-ingredients')">
+            <span>ingredients</span>
+            <span class="accord-icon"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1v9M1 5.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="panel-accord-body">
+            <div class="panel-accord-inner">
+              <ul>
+                <li>Hovenia Dulcis (DHM) — acetaldehyde breakdown</li>
+                <li>Milk Thistle, Turmeric, L-Cysteine — liver support</li>
+                <li>Prebiotics (FOS), Ginger, Korean Pear — gut health</li>
+                <li>B-Vitamin Complex (B1, B2, B3, B6) — nutrient replenishment</li>
+                <li>Magnesium &amp; Sodium — electrolyte restoration</li>
+              </ul>
+              <a href="/science.html" class="accord-link">Caffeine-free · Vegan · Gluten-free · Nut-free</a>
+            </div>
+          </div>
+        </div>
+        <div class="panel-accord-item" id="pa-shipping">
+          <button class="panel-accord-trigger" onclick="toggleAccord('pa-shipping')">
+            <span>shipping &amp; returns</span>
+            <span class="accord-icon"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1v9M1 5.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="panel-accord-body">
+            <div class="panel-accord-inner">
+              <ul>
+                <li>Free shipping on all bulk orders</li>
+                <li>Ships within 2–3 business days</li>
+                <li>30-day money-back guarantee</li>
+                <li>Need a custom quantity? Contact us at info@dayguard.com</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar" id="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-cell">
+        <div class="stat-num"><span class="count-num" data-target="20000">0</span><sup>+</sup></div>
+        <div class="stat-label">happy customers</div>
+        <div class="stat-note">Trusted by thousands to protect their liver, gut, and mornings after a night out.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span class="count-num" data-target="167">0</span><sup>+</sup></div>
+        <div class="stat-label">clinical studies backing core ingredients</div>
+        <div class="stat-note">Each ingredient selected by physicians for demonstrated clinical benefits.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span class="count-num" data-target="60">0</span><sup>+</sup></div>
+        <div class="stat-label">years of pharmaceutical expertise</div>
+        <div class="stat-note">Crafted in partnership with a leading Korean pharmaceutical company founded in 1963.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <!-- LEFT PANEL: dark green -->
+    <div class="footer-left">
+      <div class="footer-left-top">
+        <p class="footer-signup-h">Join for 15% off your first order.</p>
+        <div class="footer-toggles">
+          <button class="ft-btn active" id="ft-email">email</button>
+          <button class="ft-btn" id="ft-sms">sms</button>
+        </div>
+        <div class="footer-form">
+          <input class="footer-input" id="ft-input" type="email" placeholder="enter your email.">
+        </div>
+        <p class="footer-disclaimer">*by completing this form you are signing up to receive our marketing and can unsubscribe at any time.</p>
+      </div>
+
+      <!-- Middle: nav columns -->
+      <div class="footer-nav-grid">
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Shop</p>
+          <ul class="footer-nav-links">
+            <li><a href="/shop.html">Pre-Alcohol Vitamin Jelly</a></li>
+            <li><a href="#">Every Day-Guard</a></li>
+            <li><a href="/bulk-order.html">Bulk Order</a></li>
+            <li><a href="/merch.html">Merch</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Learn</p>
+          <ul class="footer-nav-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="/science.html">Science</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Legal</p>
+          <ul class="footer-nav-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms &amp; Conditions</a></li>
+            <li><a href="#">Accessibility</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Support</p>
+          <ul class="footer-nav-links">
+            <li><a href="/help.html">Help Center</a></li>
+            <li><a href="/help.html#faq">FAQs</a></li>
+            <li><a href="/help.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom: FDA disclaimer + copyright + socials -->
+      <div class="footer-left-bottom">
+        <p class="footer-fda">FDA DISCLAIMER: The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease. All information presented here is not meant as a substitute for or alternate to information from health care practitioners. Please consult your health care professional about potential interactions or other possible complications before using any product. The Federal Food, Drug, and Cosmetic Act requires this notice.</p>
+        <div class="footer-bottom-row">
+          <p class="footer-copyright">© 2025 LioLabs, Inc. &nbsp;·&nbsp; 8 THE GRN STE A Dover, DE 19901 &nbsp;·&nbsp; info@dayguard.com</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="18" height="18"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="18" height="18"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.02-.07z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Amazon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:block"><path d="M15.93 17.09c-.15.12-.37.13-.54.05-.76-.63-.9-.92-1.31-1.52-1.25 1.28-2.14 1.66-3.76 1.66-1.92 0-3.41-1.18-3.41-3.56 0-1.85 1-3.11 2.43-3.73 1.24-.54 2.96-.64 4.28-.79v-.3c0-.55.04-1.19-.28-1.66-.28-.42-.81-.59-1.28-.59-.87 0-1.65.45-1.84 1.38-.04.21-.19.41-.4.42l-2.22-.24c-.19-.04-.4-.19-.34-.48.52-2.74 2.99-3.56 5.21-3.56 1.13 0 2.61.3 3.5 1.16 1.13 1.06 1.02 2.47 1.02 4.01v3.63c0 1.09.45 1.57.88 2.16.15.21.18.46-.01.62l-1.93 1.67zm-1.55-5.49v-.51c-1.65.1-3.39.37-3.39 2.3 0 .99.51 1.66 1.38 1.66.64 0 1.21-.39 1.57-.99.44-.74.44-1.44.44-2.46zm6.43 7.27C18.5 20.5 16.08 21 13.76 21c-3.69 0-7.01-1.37-9.52-3.62-.2-.18-.02-.42.21-.28 2.71 1.57 6.06 2.52 9.52 2.52 2.33 0 4.89-.48 7.26-1.49.36-.15.66.24.58.64zm.92-1.06c-.27-.35-1.78-.17-2.46-.08-.21.03-.24-.16-.06-.29 1.2-.85 3.18-.6 3.4-.32.22.29-.06 2.27-1.18 3.21-.17.15-.34.07-.26-.12.25-.64.83-2.07.56-2.4z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: girl photo -->
+    <div class="footer-right">
+      <img class="footer-girl-img"
+           src="/images/Firefly_Gemini%20Flash_make%20sure%20that%20the%20products(day-guard%20sticks)%20she%20is%20holding%20is%20precisely%20the%20same%20as%20326422.png"
+           alt="day–guard lifestyle">
+      <div class="footer-right-overlay">
+        <img class="footer-dg-logo" src="https://www.figma.com/api/mcp/asset/9bba314e-c6d3-4ca7-a314-ca9fc35c6b2e" alt="day–guard">
+        <span class="footer-tagline">social tonight. healthy tomorrow.</span>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- STICKY ATC -->
+  <div class="sticky-atc" id="sticky-atc">
+    <div class="sticky-atc-inner">
+      <div class="sticky-product">
+        <div class="sticky-thumb">
+          <img src="/images/product%28slanted%29.png" alt="day–guard">
+        </div>
+        <div>
+          <div class="sticky-product-name">pre—alcohol / vitamin jelly</div>
+          <div class="sticky-product-price" id="sticky-price-label">$560.00 · 20 boxes</div>
+        </div>
+      </div>
+      <a href="javascript:document.getElementById('cta-btn').click()" class="sticky-cta">place bulk order</a>
+    </div>
+  </div>
+
+  <script>
+    /* ── Nav scroll ── */
+    const nav = document.getElementById('nav');
+    nav.classList.add('scrolled');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ── Cart drawer ── */
+    const cartDrawer  = document.getElementById('cart-drawer');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const cartClose   = document.getElementById('cart-close');
+    const cartTrigger = document.getElementById('cart-trigger');
+    const cartCountEl = document.getElementById('cart-count');
+    let cartOpen = false;
+    let cartHasItems = false;
+
+    function openCart() {
+      cartDrawer.classList.add('open');
+      cartOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      cartOpen = true;
+    }
+    function closeCart() {
+      cartDrawer.classList.remove('open');
+      cartOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+      cartOpen = false;
+    }
+
+    cartTrigger.addEventListener('click', () => cartOpen ? closeCart() : openCart());
+    cartOverlay.addEventListener('click', closeCart);
+    cartClose.addEventListener('click', closeCart);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && cartOpen) closeCart(); });
+
+    function syncCartFromBulk() {
+      const activeBox = document.querySelector('.qty-box.active');
+      if (!activeBox) return;
+      const boxes = activeBox.dataset.boxes;
+      const total = parseFloat(activeBox.dataset.total);
+      document.getElementById('cart-mode-label').textContent = 'bulk order · ' + boxes + ' boxes';
+      document.getElementById('cart-qty').textContent = boxes;
+      document.getElementById('cart-item-price').textContent = '$' + total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('cart-subtotal').textContent = '$' + total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
+
+    function showCartItems() {
+      document.getElementById('cart-empty').style.display = 'none';
+      document.getElementById('cart-items-wrap').style.display = 'block';
+      document.getElementById('cart-footer').style.display = 'block';
+      cartHasItems = true;
+      cartCountEl.textContent = '1';
+      syncCartFromBulk();
+    }
+
+    function cartQty(delta) {
+      syncCartFromBulk();
+    }
+
+    document.getElementById('cta-btn')?.addEventListener('click', () => {
+      showCartItems();
+      openCart();
+    });
+
+    /* ── Nav dropdowns — close on outside click ── */
+    document.addEventListener('click', e => {
+      document.querySelectorAll('.nav-item.has-dropdown').forEach(item => {
+        if (!item.contains(e.target)) item.classList.remove('open');
+      });
+    });
+
+    /* ── Bulk qty selector ── */
+    function selectBulkQty(el) {
+      document.querySelectorAll('.qty-box').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      const total    = parseFloat(el.dataset.total);
+      const perStick = parseFloat(el.dataset.perStick);
+      const boxes    = el.dataset.boxes;
+      const sticks   = el.dataset.sticks;
+      document.getElementById('price-main').textContent = '$' + total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('price-per-stick').textContent = sticks + ' sticks · $' + perStick.toFixed(2) + ' / stick';
+      const stickyLabel = document.getElementById('sticky-price-label');
+      if (stickyLabel) stickyLabel.textContent = '$' + total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' · ' + boxes + ' boxes';
+    }
+
+    /* ── Accordion ── */
+    function toggleAccord(id) {
+      const item = document.getElementById(id);
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.panel-accord-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    /* ── Lifestyle slideshow — cycles images every 3s ── */
+    (function() {
+      const wrap = document.getElementById('lifestyle-wrap');
+      if (!wrap) return;
+      const slides = wrap.querySelectorAll('img');
+      const dots   = wrap.querySelectorAll('.lifestyle-dot');
+      let cur = 0;
+
+      function goTo(next) {
+        const prev = cur;
+        cur = next;
+        slides[prev].classList.remove('active');
+        slides[prev].classList.add('exit');
+        dots[prev].classList.remove('active');
+        slides[next].classList.add('active');
+        dots[next].classList.add('active');
+        setTimeout(() => {
+          slides[prev].style.transition = 'none';
+          slides[prev].classList.remove('exit');
+          void slides[prev].offsetWidth;
+          slides[prev].style.transition = '';
+        }, 580);
+      }
+
+      setInterval(() => {
+        goTo((cur + 1) % slides.length);
+      }, 3000);
+    })();
+
+    /* ── Stats count-up ── */
+    function easeOutExpo(t) {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+    function formatNum(n) {
+      return Math.round(n).toLocaleString('en-US');
+    }
+    function animateCount(el) {
+      const target = +el.dataset.target;
+      const dur    = target >= 1000 ? 1800 : 1200;
+      const start  = performance.now();
+      function step(now) {
+        const elapsed  = now - start;
+        const progress = Math.min(elapsed / dur, 1);
+        const eased    = easeOutExpo(progress);
+        el.textContent = formatNum(eased * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = formatNum(target);
+      }
+      requestAnimationFrame(step);
+    }
+
+    const statsCells = document.querySelectorAll('.stat-cell');
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        statsCells.forEach(cell => cell.classList.add('stat-visible'));
+        document.querySelectorAll('.count-num').forEach(el => animateCount(el));
+        statsObserver.disconnect();
+      });
+    }, { threshold: 0.25 });
+    const statsBar = document.getElementById('stats-bar');
+    if (statsBar) statsObserver.observe(statsBar);
+
+    /* ── Mobile gallery carousel ── */
+    (function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('mgc-track');
+        if (!track) return;
+        const dotEls = document.querySelectorAll('#mgc-dots .mgc-dot');
+        const stepsSlide = document.getElementById('mgc-steps-slide');
+        let stepsTimer = null, stepIdx = 0;
+
+        function updateDots(idx) {
+          dotEls.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+
+        function startSteps() {
+          if (stepsTimer) return;
+          const steps = stepsSlide.querySelectorAll('.mgc-step');
+          const sDots = stepsSlide.querySelectorAll('.mgc-step-dot');
+          stepsTimer = setInterval(() => {
+            steps[stepIdx].classList.remove('active');
+            sDots[stepIdx].classList.remove('active');
+            stepIdx = (stepIdx + 1) % steps.length;
+            steps[stepIdx].classList.add('active');
+            sDots[stepIdx].classList.add('active');
+          }, 1600);
+        }
+
+        function stopSteps() {
+          if (stepsTimer) { clearInterval(stepsTimer); stepsTimer = null; }
+          const steps = stepsSlide.querySelectorAll('.mgc-step');
+          const sDots = stepsSlide.querySelectorAll('.mgc-step-dot');
+          stepIdx = 0;
+          steps.forEach((s, i) => s.classList.toggle('active', i === 0));
+          sDots.forEach((d, i) => d.classList.toggle('active', i === 0));
+        }
+
+        const slides = Array.from(track.querySelectorAll('.mgc-slide'));
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.intersectionRatio >= 0.5) {
+              const idx = slides.indexOf(entry.target);
+              if (idx >= 0) {
+                updateDots(idx);
+                if (stepsSlide && entry.target === stepsSlide) startSteps();
+                else stopSteps();
+              }
+            }
+          });
+        }, { root: track, threshold: 0.5 });
+
+        slides.forEach(s => observer.observe(s));
+      });
+    })();
+
+    /* ── Mobile hamburger menu ── */
+    (function() {
+      const hamburger = document.getElementById('nav-hamburger');
+      const overlay   = document.getElementById('mobile-menu-overlay');
+      const menu      = document.getElementById('mobile-menu');
+      const closeBtn  = document.getElementById('mobile-menu-close');
+      if (!hamburger || !menu) return;
+
+      function openMenu() {
+        menu.classList.add('open');
+        overlay.classList.add('open');
+        menu.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        menu.classList.remove('open');
+        overlay.classList.remove('open');
+        menu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', closeMenu);
+    })();
+
+    /* ── Sticky ATC ── */
+    const stickyAtc   = document.getElementById('sticky-atc');
+    const startNowBtn = document.querySelector('.start-now-btn');
+    let atcShouldShow = false;
+    if (stickyAtc && startNowBtn) {
+      new IntersectionObserver(([entry]) => {
+        atcShouldShow = !entry.isIntersecting;
+        stickyAtc.classList.toggle('visible', atcShouldShow);
+      }, { threshold: 0 }).observe(startNowBtn);
+    }
+    const footerElForAtc = document.querySelector('.footer');
+    if (stickyAtc && footerElForAtc) {
+      new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) stickyAtc.classList.remove('visible');
+        else if (atcShouldShow) stickyAtc.classList.add('visible');
+      }, { threshold: 0.05 }).observe(footerElForAtc);
+    }
+
+    /* ── Footer toggle (email/sms) ── */
+    (function() {
+      const ftEmail = document.getElementById('ft-email');
+      const ftSms   = document.getElementById('ft-sms');
+      const ftInput = document.getElementById('ft-input');
+      if (!ftEmail || !ftSms) return;
+      ftEmail.addEventListener('click', () => {
+        ftEmail.classList.add('active'); ftSms.classList.remove('active');
+        if (ftInput) { ftInput.type = 'email'; ftInput.placeholder = 'enter your email.'; }
+      });
+      ftSms.addEventListener('click', () => {
+        ftSms.classList.add('active'); ftEmail.classList.remove('active');
+        if (ftInput) { ftInput.type = 'tel'; ftInput.placeholder = 'enter your phone number.'; }
+      });
+    })();
+
+    /* ── FrontrowMD badge close buttons ── */
+    document.querySelectorAll('.fmd-close-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const badge = btn.closest('.fmd-badge');
+        if (badge) badge.style.display = 'none';
+      });
+    });
+
+    /* ── Scroll fade-in ── */
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    fadeEls.forEach(el => fadeObserver.observe(el));
+
+  </script>
+
+</body>
+</html>
