@@ -361,16 +361,6 @@
       color: #9aaca0; white-space: nowrap; letter-spacing: -0.5px; line-height: 1;
     }
 
-    /* ── PDP hero badge (hero.png overlay) ── */
-    .pdp-hero-badge {
-      position: absolute; top: 12px; right: 12px; z-index: 10;
-      width: 160px; height: auto;
-      pointer-events: none;
-    }
-    @media (max-width: 768px) {
-      .pdp-hero-badge { width: 110px; top: 8px; right: 8px; }
-    }
-
     /* ── FrontrowMD Clinicians' Choice badge ── */
     /* Uses filter:drop-shadow so the ribbon ::after inherits shadow */
     .fmd-badge {
@@ -1827,7 +1817,7 @@
       <!-- Items (hidden until something is added) -->
       <div id="cart-items-wrap" style="display:none">
         <div class="cart-item">
-          <img src="/images/product(slanted).png" class="cart-item-img" alt="day–guard">
+          <img src="/images/product%28slanted%29.png" class="cart-item-img" alt="day–guard">
           <div class="cart-item-info">
             <div class="cart-item-name">pre-alcohol vitamin jelly</div>
             <div class="cart-item-sub" id="cart-mode-label">subscribe & save · 19% off</div>
@@ -1912,8 +1902,26 @@
         <div class="mgc-track" id="mgc-track">
           <div class="mgc-slide mgc-slide-product">
             <img src="/images/product image with jelly.png" alt="day–guard mango pre-alcohol jelly sticks 10-pack">
-            <!-- FrontrowMD badge baked-in overlay -->
-            <img src="/images/hero.png" class="pdp-hero-badge" alt="FrontrowMD Clinicians Choice">
+            <!-- FrontrowMD Clinicians' Choice badge -->
+            <div class="fmd-badge">
+              <div class="fmd-badge-inner">
+                <div class="fmd-logo-row">
+                  <img src="/images/fmd/logo-mark.svg" class="fmd-logo-mark" alt="">
+                  <img src="/images/fmd/text-mark.svg" class="fmd-text-mark" alt="frontrowMD">
+                  <button class="fmd-close-btn" aria-label="Close">×</button>
+                </div>
+                <div class="fmd-divider"></div>
+                <div class="fmd-choice-row">
+                  <img src="/images/fmd/wreath-left.svg" class="fmd-choice-wreath" alt="">
+                  <span class="fmd-choice-label">Clinicians'<br>Choice</span>
+                  <img src="/images/fmd/wreath-right.svg" class="fmd-choice-wreath" alt="">
+                </div>
+                <div class="fmd-count">184 clinicians</div>
+                <div class="fmd-share-text">share this product<br>on FrontrowMD.</div>
+                <a href="#" class="fmd-learn-link">Learn more</a>
+                <a href="#" class="fmd-view-btn">View clinicians</a>
+              </div>
+            </div>
             <!-- Animated press bar -->
             <div class="gallery-press-overlay">
               <div class="gallery-press-track">
@@ -1956,7 +1964,27 @@
         <img class="gallery-main-img"
              src="/images/product image with jelly.png"
              alt="day–guard mango pre-alcohol jelly sticks 10-pack">
-        <img src="/images/hero.png" class="pdp-hero-badge" alt="FrontrowMD Clinicians Choice">
+        <!-- FrontrowMD Clinicians' Choice badge -->
+        <div class="fmd-badge">
+          <div class="fmd-badge-inner">
+            <div class="fmd-logo-row">
+              <img src="/images/fmd/logo-mark.svg" class="fmd-logo-mark" alt="">
+              <img src="/images/fmd/text-mark.svg" class="fmd-text-mark" alt="frontrowMD">
+              <button class="fmd-close-btn" aria-label="Close">×</button>
+            </div>
+            <div class="fmd-divider"></div>
+            <div class="fmd-choice-row">
+              <img src="/images/fmd/wreath-left.svg" class="fmd-choice-wreath" alt="">
+              <span class="fmd-choice-label">Clinicians'<br>Choice</span>
+              <img src="/images/fmd/wreath-right.svg" class="fmd-choice-wreath" alt="">
+            </div>
+            <div class="fmd-count">184 clinicians</div>
+            <div class="fmd-share-text">share this product<br>on FrontrowMD.</div>
+            <a href="#" class="fmd-learn-link">Learn more</a>
+            <a href="#" class="fmd-view-btn">View clinicians</a>
+          </div>
+        </div>
+        <!-- Animated press bar -->
         <div class="gallery-press-overlay">
           <div class="gallery-press-track">
             <div class="gp-tile"><img src="/images/press-bar.svg" class="gp-bar-svg" alt="Forbes · #1 doctor recommended · The Boston Globe"><span class="gp-bar-text">#1 doctor recommended</span></div>
@@ -2368,7 +2396,7 @@
     </div>
     <div class="reviews-cta fade-up">
       <div class="rev-product-cta">
-        <img class="rev-product-thumb" src="/images/product(slanted).png" alt="day–guard">
+        <img class="rev-product-thumb" src="/images/product%28slanted%29.png" alt="day–guard">
         <div class="rev-product-info">
           <p class="rev-product-title">pre-alcohol vitamin jelly sticks</p>
           <p class="rev-product-price">from $29.00 · subscribe &amp; save</p>
@@ -2627,7 +2655,7 @@
     <div class="sticky-atc-inner">
       <div class="sticky-product">
         <div class="sticky-thumb">
-          <img src="/images/product(slanted).png" alt="day–guard">
+          <img src="/images/product%28slanted%29.png" alt="day–guard">
         </div>
         <div>
           <div class="sticky-product-name">pre—alcohol / vitamin jelly</div>
