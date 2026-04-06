@@ -81,7 +81,8 @@
       border-bottom: 1px solid rgba(2,7,6,0.06);
       box-shadow: 0 2px 24px rgba(0,0,0,0.06);
     }
-    .nav-logo img { height: 28px; width: auto; }
+    .nav-logo img { height: 28px; width: auto; filter: invert(1); }
+    .nav.scrolled .nav-logo img { filter: none; }
     .nav-logo-fallback {
       font-family: var(--label); font-size: 20px; font-weight: 700;
       letter-spacing: -0.8px; color: var(--white);
@@ -370,10 +371,72 @@
     .pshow-photo-wrap {
       width: clamp(174px, 23vw, 434px); flex-shrink: 0;
       border-radius: 20px; overflow: hidden; background: #f5ede0;
+      position: relative;
     }
     .pshow-photo {
       width: 100%; height: auto; display: block;
       object-fit: cover; aspect-ratio: 651 / 920;
+    }
+
+    /* ── FrontrowMD badge on product showcase ── */
+    .pshow-fmd-badge {
+      position: absolute; top: 12px; right: 12px; z-index: 10;
+      width: 110px;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.12));
+    }
+    .pshow-fmd-inner {
+      background: #fff; border-radius: 8px 8px 0 0;
+      padding: 7px 8px 10px;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .pshow-fmd-badge::after {
+      content: ''; display: block; width: 100%; height: 10px;
+      background:
+        linear-gradient(to bottom right, #fff 49.5%, transparent 50%) left,
+        linear-gradient(to bottom left,  #fff 49.5%, transparent 50%) right;
+      background-size: 50% 100%; background-repeat: no-repeat;
+    }
+    .pshow-fmd-logo-row { display: flex; align-items: center; gap: 3px; width: 100%; }
+    .pshow-fmd-logo-mark { height: 9px; width: 12px; object-fit: contain; flex-shrink: 0; }
+    .pshow-fmd-text-mark { height: 6px; width: 41px; object-fit: contain; flex-shrink: 0; }
+    .pshow-fmd-close { margin-left: auto; background: none; border: none; padding: 0; font-size: 9px; color: rgba(28,43,67,0.4); cursor: pointer; }
+    .pshow-fmd-divider { width: 100%; height: 1px; background: rgba(28,43,67,0.10); }
+    .pshow-fmd-wreaths { display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%; }
+    .pshow-fmd-wreath { height: 26px; width: 13px; object-fit: contain; flex-shrink: 0; }
+    .pshow-fmd-choice { font-family: var(--sofia); font-size: 9px; font-weight: 700; color: #1C2B43; text-align: center; line-height: 1.15; }
+    .pshow-fmd-count { font-family: var(--sofia); font-size: 9px; font-weight: 600; color: #1C2B43; }
+    .pshow-fmd-share { font-family: var(--sofia); font-size: 7px; color: rgba(28,43,67,0.65); text-align: center; line-height: 1.4; }
+    .pshow-fmd-link { font-family: var(--sofia); font-size: 7px; color: #1C2B43; text-decoration: underline; }
+    .pshow-fmd-btn { display: block; width: 100%; text-align: center; font-family: var(--sofia); font-size: 7px; color: #1C2B43; border: 1px solid rgba(28,43,67,0.3); border-radius: 4px; padding: 4px 2px; text-decoration: none; }
+
+    /* ── Press bar on product showcase ── */
+    .pshow-press-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 56px; background: #e4e1d8; overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .pshow-press-overlay::before, .pshow-press-overlay::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 40px; z-index: 2; pointer-events: none;
+    }
+    .pshow-press-overlay::before { left: 0; background: linear-gradient(to right, #e4e1d8, transparent); }
+    .pshow-press-overlay::after  { right: 0; background: linear-gradient(to left, #e4e1d8, transparent); }
+    .pshow-press-track {
+      display: flex; align-items: center; height: 100%;
+      animation: pshow-press-scroll 22s linear infinite; width: max-content;
+    }
+    @keyframes pshow-press-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .pshow-press-tile {
+      position: relative; display: flex; align-items: center;
+      height: 100%; flex-shrink: 0; width: 700px;
+    }
+    .pshow-press-svg { display: block; width: 700px; height: 26px; flex-shrink: 0; }
+    .pshow-press-text {
+      position: absolute; left: 42.16%; transform: translateX(-50%);
+      font-family: var(--sofia); font-size: 12px; font-weight: 400;
+      color: #9aaca0; white-space: nowrap; letter-spacing: -0.4px; line-height: 1;
     }
     .pshow-info { flex: 1; min-width: 0; }
     .pshow-title {
@@ -542,23 +605,23 @@
     }
     .science-header { margin-bottom: 40px; }
     .science-tag {
-      font-family: var(--sans); font-size: 13px; letter-spacing: 1.2px;
+      font-family: var(--sans); font-size: 15px; letter-spacing: 1.2px;
       text-transform: uppercase; color: rgba(0,0,0,0.45); display: block; margin-bottom: 20px;
     }
     .science-heading {
       font-family: var(--sans);
-      font-size: clamp(28px, 2.8vw, 48px);
+      font-size: clamp(32px, 3.2vw, 54px);
       font-weight: 400; line-height: 1.1; letter-spacing: -2px;
       color: var(--green); margin-bottom: 16px;
     }
     .science-sub {
-      font-family: var(--sans); font-size: clamp(13px, 1.05vw, 18px);
+      font-family: var(--sans); font-size: clamp(15px, 1.2vw, 21px);
       letter-spacing: -0.4px; color: var(--black);
       max-width: 900px; line-height: 1.5; margin-bottom: 40px;
     }
     .pillar-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 16px; height: clamp(320px, 38vw, 640px);
+      gap: 16px; height: clamp(300px, 34vw, 560px);
     }
     .pillar-card {
       position: relative; border-radius: 20px; overflow: hidden;
@@ -578,7 +641,7 @@
       width: 100%; height: 100%; object-fit: cover; pointer-events: none;
     }
     .pillar-label {
-      position: absolute; bottom: 24px; left: 24px;
+      position: absolute; top: 22px; left: 24px;
       font-family: var(--serif); font-size: clamp(14px, 1.2vw, 20px);
       font-weight: 400; color: var(--white); letter-spacing: -0.5px;
       line-height: 1.1; pointer-events: none;
@@ -635,8 +698,8 @@
       margin-bottom: 10px; padding-right: 52px; line-height: 1.3;
     }
     .pillar-modal-desc {
-      font-family: var(--sans); font-size: clamp(11px, 0.95vw, 14px);
-      font-weight: 400; line-height: 1.4; letter-spacing: -0.3px;
+      font-family: var(--sans); font-size: clamp(13px, 1.1vw, 16px);
+      font-weight: 400; line-height: 1.5; letter-spacing: -0.3px;
       color: rgba(0,0,0,0.7); margin-bottom: 10px;
     }
     .pillar-modal-ing-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
@@ -652,7 +715,7 @@
       object-fit: cover; flex-shrink: 0; background: rgba(32,76,62,0.08);
     }
     .pillar-modal-ing-name {
-      font-family: var(--sans); font-size: clamp(11px, 0.95vw, 14px);
+      font-family: var(--sans); font-size: clamp(13px, 1.1vw, 16px);
       font-weight: 600; letter-spacing: -0.3px; color: var(--green); line-height: 1.3;
     }
 
@@ -662,34 +725,37 @@
     ═══════════════════════════════════════════════════════ */
     .trusted-section {
       background: var(--white);
-      padding: clamp(60px, 7vw, 120px) clamp(60px, 10vw, 180px);
-      border-radius: 0 0 50px 50px;
-      display: grid; grid-template-columns: 55fr 45fr;
-      gap: clamp(40px, 5vw, 90px); align-items: center;
+      padding: clamp(40px, 4.5vw, 72px) 0;
+      border-radius: 0;
+    }
+    .trusted-inner {
+      max-width: 1410px; margin: 0 auto; padding: 0 45px; box-sizing: border-box;
+      display: grid; grid-template-columns: 65fr 30fr;
+      gap: clamp(32px, 4vw, 64px); align-items: center;
     }
     .trusted-left {
       display: flex; flex-direction: column;
     }
     .trusted-heading {
       font-family: var(--sans);
-      font-size: clamp(24px, 3vw, 48px);
-      font-weight: 400; line-height: 1.05; letter-spacing: -2px;
-      color: var(--green); margin-bottom: clamp(20px, 2.5vw, 44px);
+      font-size: clamp(32px, 3.2vw, 54px);
+      font-weight: 400; line-height: 1.1; letter-spacing: -2px;
+      color: var(--green); margin-bottom: clamp(18px, 2vw, 32px);
     }
     .trusted-quote {
       font-family: var(--serif);
-      font-size: clamp(14px, 1.35vw, 22px);
+      font-size: clamp(16px, 1.6vw, 26px);
       font-weight: 400; line-height: 1.35; letter-spacing: -0.7px;
-      color: var(--green); margin-bottom: clamp(16px, 2vw, 32px);
+      color: var(--green); margin-bottom: clamp(16px, 1.8vw, 28px);
     }
     .trusted-doctor-name {
-      font-family: var(--sans); font-size: clamp(11px, 0.8vw, 14px);
+      font-family: var(--sans); font-size: clamp(12px, 0.95vw, 15px);
       font-weight: 700; color: var(--black); letter-spacing: -0.3px; margin-bottom: 3px;
     }
     .trusted-doctor-title {
-      font-family: var(--sans); font-size: clamp(11px, 0.8vw, 14px);
+      font-family: var(--sans); font-size: clamp(12px, 0.95vw, 15px);
       font-weight: 400; color: #757575; letter-spacing: -0.3px;
-      margin-bottom: clamp(28px, 4vw, 64px);
+      margin-bottom: clamp(24px, 3vw, 48px);
     }
     .trusted-learn-more {
       font-family: var(--sofia); font-size: clamp(13px, 1vw, 18px);
@@ -790,7 +856,7 @@
       flex-shrink: 0;
       width: clamp(160px, calc(100vw / 6 - 12px), 310px);
       height: clamp(220px, 26vw, 400px);
-      border-radius: 30px; overflow: hidden; background: #f1f1ea;
+      border-radius: 12px; overflow: hidden; background: #f1f1ea;
       transition: transform 0.55s cubic-bezier(.4,0,.2,1), opacity 0.55s ease;
       transform: scale(0.85);
       opacity: 0.55;
@@ -804,6 +870,33 @@
     .rev-slide.photo img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
+    .rev-slide:not(.rev-active) { cursor: pointer; }
+    /* ── Review photo lightbox ── */
+    .rev-lightbox {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(2,7,6,0.88);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .rev-lightbox.active { opacity: 1; pointer-events: all; }
+    .rev-lightbox-img {
+      max-width: min(88vw, 640px); max-height: 88vh;
+      object-fit: contain; border-radius: 16px;
+      transform: scale(0.94) translateY(10px);
+      transition: transform 0.32s cubic-bezier(.4,0,.2,1);
+    }
+    .rev-lightbox.active .rev-lightbox-img { transform: scale(1) translateY(0); }
+    .rev-lightbox-close {
+      position: absolute; top: 20px; right: 20px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+      color: #fff; font-size: 20px; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .rev-lightbox-close:hover { background: rgba(255,255,255,0.22); }
     .rev-slide-inner {
       padding: clamp(14px, 1.6vw, 26px) clamp(12px, 1.4vw, 22px);
       height: 100%; box-sizing: border-box;
@@ -856,12 +949,62 @@
       color: var(--white); background: var(--mango);
       padding: 10px 18px; border-radius: 8px;
       letter-spacing: -0.2px; text-transform: lowercase;
-      white-space: nowrap; flex-shrink: 0;
-      transition: background 0.2s ease;
+      white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center;
+      transition: background 0.22s ease;
     }
     .rev-product-btn:hover { background: #e07800; }
+    .rev-btn-arrow { display: inline-block; max-width: 0; overflow: hidden; opacity: 0; margin-left: 0; white-space: nowrap; transition: max-width 0.25s ease, opacity 0.2s ease, margin-left 0.25s ease; }
+    .rev-product-btn:hover .rev-btn-arrow { max-width: 1.5em; opacity: 1; margin-left: 5px; }
 
 
+
+    /* ═══════════════════════════════════════════════════════
+       FAQ
+    ═══════════════════════════════════════════════════════ */
+    .faq-section { background: var(--white); padding: 100px 56px; }
+    .faq-inner { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .faq-left h2 {
+      font-family: var(--serif); font-size: clamp(36px, 4vw, 52px);
+      font-weight: 400; letter-spacing: -2.2px; line-height: 1.1; margin-bottom: 16px;
+    }
+    .faq-left p { font-size: 15px; opacity: 0.5; letter-spacing: -0.2px; line-height: 1.65; }
+    .faq-right { padding-top: 4px; }
+    .faq-category {
+      font-family: var(--label); font-size: 11px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      opacity: 0.35; margin-top: 32px; margin-bottom: 4px;
+    }
+    .faq-category:first-child { margin-top: 0; }
+    .faq-item { border-bottom: 1px solid rgba(2,7,6,0.07); }
+    .faq-question {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0; font-size: 15px; font-weight: 500; letter-spacing: -0.3px;
+      text-align: left; background: none; border: none; cursor: pointer; color: inherit;
+      transition: opacity 0.2s ease;
+    }
+    .faq-question:hover { opacity: 0.65; }
+    .faq-chevron {
+      flex-shrink: 0; width: 18px; height: 18px;
+      border: 1px solid rgba(2,7,6,0.18); border-radius: 100%;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.28s ease; margin-left: 16px;
+      transform-origin: center center;
+    }
+    .faq-chevron svg { display: block; flex-shrink: 0; }
+    .faq-item.open .faq-chevron { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.38s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer p {
+      font-size: 14px; line-height: 1.7; opacity: 0.55; letter-spacing: -0.1px;
+      padding-bottom: 18px;
+    }
+    @media (max-width: 768px) {
+      .faq-section { padding: 64px 24px; }
+      .faq-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
 
     /* ═══════════════════════════════════════════════════════
        8. FOOTER — split layout
@@ -991,7 +1134,7 @@
       :root { --pad-section: 64px; }
       .nav { padding: 0 24px; }
       .nav-links { display: none; }
-      .nav-cart { margin-left: auto; }
+      .nav-cart { margin-left: auto; margin-right: 14px; }
       .nav-hamburger { display: flex; }
       .hero-content { padding: 72px 28px 60px; max-width: 100%; }
       .hero-h1 { font-size: 44px; letter-spacing: -2.2px; }
@@ -1014,12 +1157,44 @@
       .hero-h1 { font-size: 36px; letter-spacing: -1.8px; }
       .hero-badge { display: none; }
       .pillar-grid { grid-template-columns: 1fr 1fr; }
+      .pillar-card { aspect-ratio: 3/4; }
+      .pillar-label { font-size: 16px; }
       .cred-stats { flex-direction: column; gap: 28px; }
-      .trusted-section { grid-template-columns: 1fr; }
+      .trusted-inner { grid-template-columns: 1fr; padding: 0 24px; }
+      .trusted-right { display: none; }
+      .trusted-photo-mobile { display: block; width: 100%; aspect-ratio: 1/1; border-radius: 16px; object-fit: cover; margin-bottom: 24px; box-shadow: 2px 4px 24px rgba(0,0,0,0.13); }
+      /* Review cards — much larger on mobile */
+      .rev-slide { width: clamp(260px, 74vw, 340px); height: clamp(340px, 88vw, 440px); }
+      /* Review quotes — fill the card */
+      .rev-slide-inner { padding: 20px 18px; }
+      .rev-slide-stars { font-size: 16px; margin-bottom: 14px; }
+      .rev-slide-quote { font-size: clamp(24px, 7vw, 30px); line-height: 1.15; letter-spacing: -1.2px; margin-bottom: 16px; }
+      .rev-slide-name { font-size: 13px; }
+      .rev-slide-verified { font-size: 12px; }
+      /* CTA strip — smaller on mobile */
+      .rev-product-cta { padding: 8px 14px 8px 10px; gap: 10px; border-radius: 12px; }
+      .rev-product-thumb { width: 40px; height: 40px; border-radius: 8px; }
+      .rev-product-title { font-size: 11px; }
+      .rev-product-price { font-size: 10px; }
+      .rev-product-btn { font-size: 11px; padding: 7px 12px; }
     }
     @media (max-width: 400px) {
       .pillar-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── Trusted photo — mobile-only ── */
+    .trusted-photo-mobile { display: none; }
+
+    /* ── Mobile slide-in menu ── */
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 399; opacity: 0; pointer-events: none; transition: opacity 0.32s ease; }
+    .mobile-menu-overlay.open { opacity: 1; pointer-events: all; }
+    .mobile-menu { position: fixed; top: 0; right: -100%; width: 78%; max-width: 320px; height: 100dvh; background: var(--beige); z-index: 400; display: flex; flex-direction: column; padding: 28px 28px 40px; box-shadow: -6px 0 40px rgba(0,0,0,0.14); transition: right 0.35s cubic-bezier(.4,0,.2,1); }
+    .mobile-menu.open { right: 0; }
+    .mobile-menu-top { display: flex; justify-content: flex-end; margin-bottom: 36px; }
+    .mobile-menu-close { font-size: 30px; line-height: 1; background: none; border: none; cursor: pointer; color: var(--black); padding: 0; }
+    .mobile-menu-nav { display: flex; flex-direction: column; gap: 0; }
+    .mobile-menu-nav a { font-family: var(--sans); font-size: 30px; font-weight: 400; letter-spacing: -1.2px; color: var(--black); padding: 14px 0; border-bottom: 1px solid rgba(2,7,6,0.07); display: block; transition: color 0.2s ease; }
+    .mobile-menu-nav a:hover { color: var(--green); }
   </style>
 </head>
 <body>
@@ -1056,10 +1231,10 @@
           <a href="/shop.html">pre-alcohol vitamin jelly</a>
           <a href="#">every day-guard</a>
           <a href="#">bulk order</a>
-          <a href="#">merch</a>
+          <a href="/merch.html">merch</a>
         </div>
       </li>
-      <li><a href="#ingredients">science</a></li>
+      <li><a href="/science.html">science</a></li>
       <li class="nav-item has-dropdown">
         <a href="#" class="has-arrow">learn</a>
         <div class="nav-dropdown">
@@ -1084,10 +1259,24 @@
       </svg>
       <span class="nav-cart-count" id="cart-count" style="display:none">0</span>
     </button>
-    <button class="nav-hamburger" aria-label="Open menu">
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
+
+  <!-- Mobile slide-in menu -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-top">
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">×</button>
+    </div>
+    <nav class="mobile-menu-nav">
+      <a href="/shop.html">shop</a>
+      <a href="/science.html">science</a>
+      <a href="#">learn</a>
+      <a href="/help.html">help</a>
+    </nav>
+  </div>
 
 
   <!-- ════════════════════════════
@@ -1361,17 +1550,22 @@
        7. TRUSTED BY EXPERTS
   ════════════════════════════ -->
   <section class="trusted-section" id="credibility">
-    <div class="trusted-left fade-up">
-      <h2 class="trusted-heading">trusted by experts</h2>
-      <blockquote class="trusted-quote">"What makes day–guard different is the comprehensiveness. The formulation targets the full cascade of what alcohol does to your body."</blockquote>
-      <p class="trusted-doctor-name">Dr. Steven Oh</p>
-      <p class="trusted-doctor-title">MD, Medical Advisor</p>
-      <a href="/science" class="trusted-learn-more">learn more</a>
-    </div>
-    <div class="trusted-right fade-up" style="transition-delay:.12s">
-      <img class="trusted-photo"
-           src="https://www.figma.com/api/mcp/asset/cae94d42-d11a-4abf-bb26-f6e9b5ff9199"
-           alt="Dr. Steven Oh, Medical Advisor">
+    <div class="trusted-inner">
+      <div class="trusted-left fade-up">
+        <h2 class="trusted-heading">trusted by experts</h2>
+        <img class="trusted-photo-mobile"
+             src="https://www.figma.com/api/mcp/asset/cae94d42-d11a-4abf-bb26-f6e9b5ff9199"
+             alt="Dr. Steven Oh, Medical Advisor">
+        <blockquote class="trusted-quote">"What makes day–guard different is the comprehensiveness. The formulation targets the full cascade of what alcohol does to your body."</blockquote>
+        <p class="trusted-doctor-name">Dr. Steven Oh</p>
+        <p class="trusted-doctor-title">MD, Medical Advisor</p>
+        <a href="/science.html" class="trusted-learn-more">learn more</a>
+      </div>
+      <div class="trusted-right fade-up" style="transition-delay:.12s">
+        <img class="trusted-photo"
+             src="https://www.figma.com/api/mcp/asset/cae94d42-d11a-4abf-bb26-f6e9b5ff9199"
+             alt="Dr. Steven Oh, Medical Advisor">
+      </div>
     </div>
   </section>
 
@@ -1458,21 +1652,122 @@
     </div>
     <div class="reviews-cta fade-up">
       <div class="rev-product-cta">
-        <img class="rev-product-thumb" src="https://www.figma.com/api/mcp/asset/8c647c32-f6f6-41ca-b4f5-8c3f8dd3c439" alt="day–guard" onerror="this.style.display='none'">
+        <img class="rev-product-thumb" src="/images/product%28slanted%29.png" alt="day–guard">
         <div class="rev-product-info">
           <p class="rev-product-title">pre-alcohol vitamin jelly sticks</p>
           <p class="rev-product-price">from $29.00 · subscribe &amp; save</p>
         </div>
-        <a href="/shop.html" class="rev-product-btn">shop now →</a>
+        <a href="/shop.html" class="rev-product-btn">shop now <span class="rev-btn-arrow">→</span></a>
       </div>
     </div>
   </section>
 
-
-  <!-- Press spotlight overlay (fixed, behind press section) -->
+  <!-- Review photo lightbox -->
+  <div id="rev-lightbox" class="rev-lightbox" onclick="closeRevLightbox(event)">
+    <img id="rev-lightbox-img" class="rev-lightbox-img" src="" alt="">
+    <button class="rev-lightbox-close" onclick="closeRevLightbox(event)" aria-label="Close">&#x2715;</button>
+  </div>
 
   <!-- ════════════════════════════
-       10. FOOTER
+       10. FAQ
+  ════════════════════════════ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-inner">
+      <div class="faq-left fade-up">
+        <h2>We're here<br>to help.</h2>
+        <p>Can't find your answer? Email us at info@dayguard.com. We'll reply shortly.</p>
+      </div>
+      <div class="faq-right">
+        <p class="faq-category">How It Works</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How does day–guard work?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>day–guard combines clinically backed ingredients that help your body break down acetaldehyde (a toxic alcohol byproduct), replenish key nutrients, and reduce inflammation.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What are the key ingredients?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>day–guard features four functional areas: liver support (DHM, milk thistle, turmeric, L-cysteine), electrolytes (magnesium, sodium), vitamins (B1, B2, B3, B6), and gut health (pear, ginger, xylitol, prebiotics).</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How is it different from electrolytes?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>While electrolytes address hydration, day–guard goes beyond simple rehydration. It also supports your body's natural detox process, replenishes lost nutrients, and protects your liver and gut health.</p></div>
+        </div>
+
+        <p class="faq-category">Usage</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            When do I take it?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Take one stick right before or during drinking and another for every 3–5 drinks.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I have multiple in one night?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Yes. Most people take one before drinking and, optionally, another for every 3–5 drinks. All ingredients are within safe daily limits.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do I need to mix it with anything?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>No. Each stick is a ready–to–eat jelly — no water or mixing required.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I take it without alcohol?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Yes. Many people use day–guard for general liver, gut, and nutrient support — even on days they don't drink.</p></div>
+        </div>
+
+        <p class="faq-category">Safety &amp; Manufacturing</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is it FDA approved / safe?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Like all dietary supplements, day–guard is not FDA–approved to treat or prevent disease, but is manufactured in FDA–registered, GMP–certified facilities.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Where is it made?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>day–guard is made in Korea by a pharmaceutical partner founded in 1963, bringing over 60 years of clinical expertise.</p></div>
+        </div>
+
+        <p class="faq-category">Effectiveness</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Does it help with hangovers?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>day–guard provides complete support for your body when you drink, helping you feel clearer and more refreshed the next day through supporting liver and gut function.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Does it prevent intoxication?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>No. day–guard will not prevent intoxication or enhance sobriety. It simply supports your body's natural detox and recovery process.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       11. FOOTER
   ════════════════════════════ -->
   <footer class="footer" id="footer">
 
@@ -1601,16 +1896,10 @@
       });
     });
 
-    /* ── Sticky nav + logo swap ── */
-    const nav        = document.getElementById('site-nav');
-    const navLogoImg = document.getElementById('nav-logo-img');
-    const LOGO_WHITE = 'https://www.figma.com/api/mcp/asset/937b4ef5-969f-4feb-a1fc-ed0bec4e1ea4';
-    const LOGO_BLACK = 'https://www.figma.com/api/mcp/asset/bf338aff-a962-423b-8ebb-6042ee6ff20b';
-
+    /* ── Sticky nav ── */
+    const nav = document.getElementById('site-nav');
     window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY > 60;
-      nav.classList.toggle('scrolled', scrolled);
-      if (navLogoImg) navLogoImg.src = scrolled ? LOGO_BLACK : LOGO_WHITE;
+      nav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
 
     /* ── Scroll fade-in ── */
@@ -1822,7 +2111,12 @@
 
       prevBtn && prevBtn.addEventListener('click', () => { navigate(-1); startAuto(); });
       nextBtn && nextBtn.addEventListener('click', () => { navigate(1);  startAuto(); });
-
+      window._revNav = function(el) {
+        const idx = allSlides.indexOf(el);
+        if (idx < 0) return;
+        navigate(idx - activeIdx);
+        startAuto();
+      };
       requestAnimationFrame(() => requestAnimationFrame(() => render(false)));
       startAuto();
     })();
@@ -1928,6 +2222,48 @@
       card.addEventListener('mouseenter', function() { video.play(); });
       card.addEventListener('mouseleave', function() { video.pause(); video.currentTime = 0; });
     });
+
+    /* ── Review carousel: click any slide to navigate to it ── */
+    document.addEventListener('click', function(e) {
+      const slide = e.target.closest('.rev-slide');
+      if (slide && !slide.classList.contains('rev-active') && window._revNav) {
+        window._revNav(slide);
+      }
+    });
+
+    /* ── FAQ accordion ── */
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    /* ── Mobile hamburger menu ── */
+    (function() {
+      const hamburger = document.getElementById('nav-hamburger');
+      const overlay   = document.getElementById('mobile-menu-overlay');
+      const menu      = document.getElementById('mobile-menu');
+      const closeBtn  = document.getElementById('mobile-menu-close');
+      if (!hamburger || !menu) return;
+
+      function openMenu() {
+        menu.classList.add('open');
+        overlay.classList.add('open');
+        menu.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        menu.classList.remove('open');
+        overlay.classList.remove('open');
+        menu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', closeMenu);
+    })();
 
   </script>
 

@@ -311,75 +311,65 @@
     }
     .lifestyle-dot.active { background: var(--white); }
 
-    /* ── Gallery press ticker — large-scale tile approach ── */
+    /* ── Gallery press ticker ── */
     .gallery-main-wrap {
       position: relative; margin-bottom: 24px; border-radius: 3px; overflow: hidden;
     }
     .gallery-main-wrap .gallery-main-img {
-      display: block; width: 676px; height: 496px;
-      object-fit: cover; border-radius: 0; margin-bottom: 0;
+      display: block; width: 676px; height: auto;
+      border-radius: 0; margin-bottom: 0;
     }
     .gallery-press-overlay {
       position: absolute; bottom: 0; left: 0; right: 0;
-      height: 86px;
-      background: #e4e1d8;
+      height: 44px;
+      background: #ede9e1;
       overflow: hidden;
       display: flex; align-items: center;
     }
-    /* soft fade edges */
-    .gallery-press-overlay::before, .gallery-press-overlay::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2;
-      pointer-events: none;
-    }
-    .gallery-press-overlay::before {
-      left: 0; background: linear-gradient(to right, #e4e1d8, transparent);
-    }
-    .gallery-press-overlay::after {
-      right: 0; background: linear-gradient(to left, #e4e1d8, transparent);
-    }
     .gallery-press-track {
       display: flex; align-items: center; height: 100%;
-      animation: gallery-press-scroll 28s linear infinite;
-      width: max-content;
+      /* 4 units × 437px = 1748px. translateX(-50%) = -874px = 2 units.
+         Container (≤676px) < 874px, so content is always visible. */
+      animation: gallery-press-scroll 18s linear infinite;
+      will-change: transform;
     }
     @keyframes gallery-press-scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
     }
-    /* Tile: press-bar.svg at 40px height → width = 625 × (40/23.035) = 1085px
-       Text centered in the gap (SVG x=82–445): center = 263.5/625 = 42.16% */
-    .gp-tile {
-      position: relative; display: flex; align-items: center;
-      height: 100%; flex-shrink: 0; width: 1085px;
+    /* press-bar.png: 625×30px native. At h=20px: w = 625×(20/30) = 416.67 ≈ 417px.
+       Unit = img(417) + sep(20) = 437px. Track = 2×437 = 874px.
+       translateX(-50%) = -437px = exactly one unit → seamless loop. */
+    .gp-bar-img {
+      height: 20px; width: 417px; display: block; flex-shrink: 0; max-width: none;
     }
-    .gp-bar-svg {
-      display: block; width: 1085px; height: 40px; flex-shrink: 0;
-    }
-    .gp-bar-text {
-      position: absolute; left: 42.16%; transform: translateX(-50%);
-      font-family: var(--sofia); font-size: 18px; font-weight: 400;
-      color: #9aaca0; white-space: nowrap; letter-spacing: -0.5px; line-height: 1;
+    .gp-bar-sep {
+      flex: 0 0 16px; width: 16px;
+      display: flex; align-items: center; justify-content: center;
+      height: 20px;
+      font-size: 7px; color: #9aaca0; letter-spacing: 0;
+      user-select: none; line-height: 1;
     }
 
     /* ── FrontrowMD Clinicians' Choice badge ── */
     /* Uses filter:drop-shadow so the ribbon ::after inherits shadow */
     .fmd-badge {
-      position: absolute; top: 16px; right: 16px; z-index: 10;
-      width: 162px;
-      filter: drop-shadow(0 3px 14px rgba(0,0,0,0.14));
+      position: absolute; top: 12px; right: 12px; z-index: 10;
+      width: 90px;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.12));
     }
     .fmd-badge-inner {
       background: #fff;
-      border-radius: 10px 10px 0 0;
-      padding: 10px 12px 14px;
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      border-radius: 8px 8px 0 0;
+      padding: 7px 8px 10px;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
     }
     /* Ribbon bottom — two triangles meeting at center */
     .fmd-badge::after {
       content: '';
       display: block;
       width: 100%;
-      height: 14px;
+      height: 10px;
       background:
         linear-gradient(to bottom right, #fff 49.5%, transparent 50%) left,
         linear-gradient(to bottom left,  #fff 49.5%, transparent 50%) right;
@@ -387,46 +377,44 @@
       background-repeat: no-repeat;
     }
     .fmd-logo-row {
-      display: flex; align-items: center; gap: 5px; width: 100%;
+      display: flex; align-items: center; gap: 3px; width: 100%;
     }
-    /* Explicit dims — SVGs have width="100%" so width:auto is unreliable.
-       logo-mark vB=9.875×7.222 → at h12: w≈16 | text-mark vB=35.443×5.26 → at h9: w≈61
-       wreath    vB=10.974×21.823 → at h38: w≈19 */
-    .fmd-logo-mark { height: 12px; width: 16px; flex-shrink: 0; object-fit: contain; }
-    .fmd-text-mark { height: 9px; width: 61px; flex-shrink: 0; object-fit: contain; }
+    /* Explicit dims — SVGs have width="100%" so width:auto is unreliable. */
+    .fmd-logo-mark { height: 8px; width: 11px; flex-shrink: 0; object-fit: contain; }
+    .fmd-text-mark { height: 6px; width: 42px; flex-shrink: 0; object-fit: contain; }
     .fmd-close-btn {
       margin-left: auto; flex-shrink: 0;
       background: none; border: none; padding: 0; cursor: pointer;
-      font-size: 12px; line-height: 1; color: rgba(28,43,67,0.4);
+      font-size: 9px; line-height: 1; color: rgba(28,43,67,0.4);
     }
     .fmd-divider {
       width: 100%; height: 1px; background: rgba(28,43,67,0.10);
     }
     .fmd-choice-row {
-      display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%;
+      display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%;
     }
-    .fmd-choice-wreath { height: 38px; width: 19px; flex-shrink: 0; object-fit: contain; }
+    .fmd-choice-wreath { height: 26px; width: 13px; flex-shrink: 0; object-fit: contain; }
     .fmd-choice-label {
-      font-family: var(--sofia); font-size: 13px; font-weight: 700;
+      font-family: var(--sofia); font-size: 9px; font-weight: 700;
       color: #1C2B43; text-align: center; letter-spacing: 0; line-height: 1.15;
     }
     .fmd-count {
-      font-family: var(--sofia); font-size: 13px; font-weight: 600;
+      font-family: var(--sofia); font-size: 9px; font-weight: 600;
       color: #1C2B43; text-align: center; line-height: 1;
     }
     .fmd-share-text {
-      font-family: var(--sofia); font-size: 10px; color: rgba(28,43,67,0.65);
+      font-family: var(--sofia); font-size: 7px; color: rgba(28,43,67,0.65);
       text-align: center; line-height: 1.4; width: 100%;
     }
     .fmd-learn-link {
-      font-family: var(--sofia); font-size: 10px; color: #1C2B43;
+      font-family: var(--sofia); font-size: 7px; color: #1C2B43;
       text-decoration: underline; text-align: center;
     }
     .fmd-view-btn {
       display: block; width: 100%; text-align: center;
-      font-family: var(--sofia); font-size: 10px; font-weight: 500; color: #1C2B43;
-      border: 1px solid rgba(28,43,67,0.3); border-radius: 5px;
-      padding: 6px 4px; text-decoration: none; line-height: 1;
+      font-family: var(--sofia); font-size: 7px; font-weight: 500; color: #1C2B43;
+      border: 1px solid rgba(28,43,67,0.3); border-radius: 4px;
+      padding: 4px 3px; text-decoration: none; line-height: 1;
     }
 
     /* ── Gallery — exact Figma measurements ── */
@@ -461,10 +449,11 @@
     .mgc-track::-webkit-scrollbar { display: none; }
     .mgc-slide { flex: 0 0 100%; scroll-snap-align: start; position: relative; overflow: hidden; }
     .mgc-slide img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
-    .mgc-slide-product img { object-fit: contain; background: #f0ede6; }
-    .mgc-slide-steps { position: relative; }
-    .mgc-step { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease; object-fit: cover; aspect-ratio: 1; }
-    .mgc-step.active { opacity: 1; position: relative; }
+    .mgc-slide-product img { object-fit: cover; background: #f0ede6; transform: scale(1.25); transform-origin: center center; }
+    .mobile-gallery { position: relative; }
+    .mgc-slide-steps { position: relative; width: 100%; aspect-ratio: 1; }
+    .mgc-step { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease; }
+    .mgc-step.active { opacity: 1; }
     .mgc-step-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; }
     .mgc-step-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: background 0.3s; }
     .mgc-step-dot.active { background: var(--white); }
@@ -647,13 +636,13 @@
     .price-block { margin-bottom: 14px; }
     .price-row { display: flex; align-items: baseline; gap: 10px; }
     .price-main {
-      font-family: var(--sans); font-size: 52px; font-weight: 500;
-      letter-spacing: -3px; line-height: 1;
+      font-family: var(--sans); font-size: 26px; font-weight: 500;
+      letter-spacing: -1.4px; line-height: 1;
       color: var(--black); display: block;
     }
     .price-original {
-      font-family: var(--sans); font-size: 28px; font-weight: 400;
-      letter-spacing: -1.5px; line-height: 1;
+      font-family: var(--sans); font-size: 18px; font-weight: 400;
+      letter-spacing: -0.8px; line-height: 1;
       color: rgba(2,7,6,0.35); text-decoration: line-through;
       display: none;
     }
@@ -663,6 +652,7 @@
       color: rgba(2,7,6,0.35); letter-spacing: 0px;
       margin-top: 4px;
     }
+    .price-mo { font-size: 18px; font-weight: 400; letter-spacing: -0.5px; opacity: 0.5; margin-left: 2px; }
 
     /* Flavor selector */
     .pdp-section-label {
@@ -724,9 +714,9 @@
     }
     .toggle-btn:not(.active) { opacity: 0.38; }
     .toggle-save {
-      font-family: var(--sofia); font-size: 12px; font-weight: 700;
+      font-family: var(--sofia); font-size: 10px; font-weight: 700;
       color: var(--white); background: var(--green);
-      padding: 3px 9px; border-radius: 6px;
+      padding: 2px 7px; border-radius: 5px;
       letter-spacing: 0.2px;
     }
 
@@ -948,7 +938,7 @@
     }
 
     /* ═══════════════════════════════════════════════════════
-       OUR DIFFERENCE — COMPARISON TABLE
+       OUR DIFFERENCE — COMPARISON TABLE (BEIGE V2)
     ═══════════════════════════════════════════════════════ */
     .comparison-section { background: #f1f1ea; padding: 0 45px 60px; }
     .comparison-inner {
@@ -961,81 +951,97 @@
     }
     .comparison-left img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .comparison-right {
-      background: var(--green); border-radius: 10px;
-      padding: clamp(28px, 3vw, 44px) clamp(24px, 2.8vw, 40px);
+      background: #f4f1ec; border-radius: 10px;
+      border: 1px solid rgba(32,76,62,0.14);
+      padding: clamp(28px, 3vw, 44px) clamp(28px, 3vw, 44px);
       display: flex; flex-direction: column;
     }
     .comparison-heading {
-      font-family: var(--serif); font-size: clamp(26px, 2.4vw, 38px);
-      font-weight: 400; letter-spacing: -1.6px; line-height: 1.1;
-      color: var(--white); margin-bottom: 24px;
+      font-family: var(--serif); font-size: clamp(28px, 3vw, 47px);
+      font-weight: 400; letter-spacing: -1.9px; line-height: 0.87;
+      color: var(--green); margin-bottom: 28px; text-transform: lowercase;
     }
     .comparison-table { width: 100%; border-collapse: collapse; flex: 1; table-layout: fixed; }
-    .comparison-table col.label-col { width: 28%; }
-    .comparison-table col.dg-col-col { width: 20%; }
-    .comparison-table col.comp-col { width: 17.33%; }
+    .comparison-table col.label-col { width: 26%; }
+    .comparison-table col.dg-col-col { width: 18.5%; }
+    .comparison-table col.comp-col { width: 13.875%; }
+    .comparison-table thead tr { border-bottom: 1px solid #9aaca0; }
     .comparison-table th {
-      font-family: var(--label); font-size: clamp(8px, 0.75vw, 11px); font-weight: 600;
-      letter-spacing: 0.2px; text-transform: lowercase;
-      color: rgba(255,255,255,0.45); padding: 0 6px 10px;
-      text-align: center; border-bottom: 1px solid rgba(154,172,160,0.5);
-      vertical-align: bottom; line-height: 1.3;
+      font-family: var(--sofia); font-size: clamp(8px, 0.7vw, 10px); font-weight: 400;
+      letter-spacing: -0.1px; text-transform: lowercase;
+      color: var(--green); padding: 0 4px 12px;
+      text-align: center; vertical-align: bottom; line-height: 1.3;
     }
     .comparison-table th:first-child { text-align: left; padding-left: 0; }
     .comparison-table th.dg-col {
-      background: var(--white);
-      border-radius: 4px 4px 0 0;
-      padding-bottom: 10px; padding-top: 8px;
+      background: #fff; border-radius: 5px 5px 0 0;
+      padding-bottom: 12px; padding-top: 10px;
+      border: 1px solid #b9b9b9; border-bottom: none;
     }
     .comparison-table th.dg-col .dg-wordmark {
-      font-family: var(--serif); font-size: clamp(10px, 1vw, 14px);
+      font-family: var(--serif); font-size: clamp(9px, 0.9vw, 13px);
       font-weight: 400; letter-spacing: -0.5px;
       color: var(--green); text-transform: lowercase; display: block;
     }
     .comparison-table td {
-      padding: 10px 6px; text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      font-size: 13px; color: rgba(255,255,255,0.5);
+      padding: 12px 4px; text-align: center;
+      border-bottom: 1px solid rgba(32,76,62,0.1);
+      font-size: 13px; color: var(--green);
     }
     .comparison-table td:first-child {
-      text-align: left; font-family: var(--sofia); font-size: clamp(10px, 0.9vw, 13px);
-      letter-spacing: -0.2px; color: rgba(255,255,255,0.8); padding-left: 0; text-transform: lowercase;
+      text-align: left; font-family: var(--sofia); font-size: clamp(9px, 0.82vw, 12px);
+      letter-spacing: -0.2px; color: var(--green); padding-left: 0; text-transform: lowercase;
     }
     .comparison-table td.dg-cell {
-      background: var(--white);
+      background: #fff;
+      border-left: 1px solid #b9b9b9;
+      border-right: 1px solid #b9b9b9;
     }
-    .comparison-table tbody tr:last-child td.dg-cell { border-radius: 0 0 4px 4px; }
-    .comparison-table .check-circle {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 22px; height: 22px; border-radius: 50%;
-      background: var(--green); color: var(--white);
-      font-size: 11px; font-weight: 700; line-height: 1;
+    .comparison-table td.dg-liver {
+      background: var(--green);
     }
-    .comparison-table td.dg-cell .check-circle {
-      background: var(--green); color: var(--white);
+    .comparison-table tbody tr:last-child td.dg-cell {
+      border-bottom: 1px solid #b9b9b9;
     }
-    .comparison-table .cross-circle {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 22px; height: 22px; border-radius: 50%;
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
-      color: rgba(255,255,255,0.3); font-size: 10px; line-height: 1;
-    }
+    .cmp-check { width: 20px; height: 20px; display: inline-block; vertical-align: middle; }
+    .cmp-cross { width: 20px; height: 20px; display: inline-block; vertical-align: middle; }
     .comparison-table .dg-mg {
-      font-family: var(--sans); font-size: clamp(10px, 0.9vw, 13px);
-      font-weight: 500; color: var(--green); letter-spacing: -0.3px;
+      font-family: var(--sans); font-size: clamp(9px, 0.9vw, 12px);
+      font-weight: 500; color: #fff; letter-spacing: -0.3px;
     }
     .comparison-table .comp-mg {
-      font-family: var(--sans); font-size: clamp(9px, 0.8vw, 12px);
-      color: rgba(255,255,255,0.45); letter-spacing: -0.2px;
+      font-family: var(--sans); font-size: clamp(8px, 0.78vw, 11px);
+      color: var(--green); letter-spacing: -0.2px; opacity: 0.65;
     }
     .comparison-cta {
-      margin-top: 20px; display: block; text-align: center;
-      padding: 13px; border-radius: 8px;
-      background: var(--white); color: var(--green);
-      font-family: var(--label); font-size: 14px; font-weight: 700;
-      letter-spacing: -0.2px; transition: opacity 0.2s;
+      margin-top: 20px; display: inline-block; text-align: center;
+      padding: 11px 44px; border-radius: 4px;
+      background: #fb9918; color: #fff;
+      font-family: var(--sans); font-size: clamp(14px, 1.2vw, 18px); font-weight: 500;
+      letter-spacing: -0.4px; text-transform: lowercase; transition: opacity 0.2s;
+      align-self: flex-start; cursor: pointer;
     }
-    .comparison-cta:hover { opacity: 0.9; }
+    .comparison-cta:hover { opacity: 0.88; }
+    @media (max-width: 1024px) {
+      .comparison-inner { grid-template-columns: 1fr; }
+      .comparison-left { min-height: 280px; }
+    }
+    @media (max-width: 768px) {
+      .comparison-section { padding: 0 16px 40px; }
+      .comparison-inner { grid-template-columns: 1fr; }
+      .comparison-left { min-height: 220px; }
+      .comparison-right { padding: 22px 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .comparison-heading { font-size: 28px; margin-bottom: 18px; }
+      .comparison-table { width: 100%; min-width: 420px; }
+      .comparison-table th,
+      .comparison-table td { padding: 10px 4px; font-size: 9px; }
+      .comparison-table td:first-child { font-size: 9px; }
+      .comparison-table th.dg-col .dg-wordmark { font-size: 9px; }
+      .comparison-table .dg-mg { font-size: 9px; }
+      .comparison-table .comp-mg { font-size: 8px; }
+      .cmp-check, .cmp-cross { width: 16px; height: 16px; }
+      .comparison-cta { padding: 10px 32px; font-size: 15px; }
+    }
 
     /* ═══════════════════════════════════════════════════════
        TIMELINE — "BENEFITS THAT BUILD"
@@ -1424,18 +1430,18 @@
     /* ═══════════════════════════════════════════════════════
        SCIENCE / PILLARS (shared with homepage)
     ═══════════════════════════════════════════════════════ */
-    .science-section { background: var(--beige); padding: 80px 0; }
+    .science-section { background: var(--beige); padding: 80px 0 160px; }
     .science-inner { max-width: 1410px; margin: 0 auto; padding: 0 45px; box-sizing: border-box; }
     .science-header { margin-bottom: 40px; }
-    .science-tag { font-family: var(--sans); font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(0,0,0,0.45); display: block; margin-bottom: 20px; }
-    .science-heading { font-family: var(--sans); font-size: clamp(28px, 2.8vw, 48px); font-weight: 400; line-height: 1.1; letter-spacing: -2px; color: var(--green); margin-bottom: 16px; }
-    .science-sub { font-family: var(--sans); font-size: clamp(13px, 1.05vw, 18px); letter-spacing: -0.4px; color: var(--black); max-width: 900px; line-height: 1.5; margin-bottom: 40px; }
-    .pillar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; height: clamp(320px, 38vw, 640px); }
+    .science-tag { font-family: var(--sans); font-size: 15px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(0,0,0,0.45); display: block; margin-bottom: 20px; margin-left: 0; }
+    .science-heading { font-family: var(--sans); font-size: clamp(32px, 3.2vw, 54px); font-weight: 400; line-height: 1.1; letter-spacing: -2px; color: var(--green); margin-bottom: 16px; margin-left: 0; }
+    .science-sub { font-family: var(--sans); font-size: clamp(15px, 1.2vw, 21px); letter-spacing: -0.4px; color: var(--black); max-width: 900px; line-height: 1.5; margin-bottom: 40px; margin-left: 0; }
+    .pillar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; height: clamp(300px, 34vw, 560px); }
     .pillar-card { position: relative; border-radius: 20px; overflow: hidden; cursor: pointer; transition: transform 0.35s cubic-bezier(.4,0,.2,1), box-shadow 0.35s ease; }
     .pillar-card:hover { transform: scale(1.04); z-index: 2; box-shadow: 0 24px 56px rgba(0,0,0,0.2); }
     .pillar-bg { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
     .pillar-gradient { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-    .pillar-label { position: absolute; bottom: 24px; left: 24px; font-family: var(--serif); font-size: clamp(18px, 1.8vw, 30px); font-weight: 400; color: var(--white); letter-spacing: -0.8px; line-height: 1.1; pointer-events: none; }
+    .pillar-label { position: absolute; top: 22px; left: 24px; font-family: var(--serif); font-size: clamp(18px, 1.8vw, 30px); font-weight: 400; color: var(--white); letter-spacing: -0.8px; line-height: 1.1; pointer-events: none; }
     .pillar-modal-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 24px; }
     .pillar-modal-overlay.active { opacity: 1; pointer-events: all; }
     .pillar-modal { display: grid; grid-template-columns: 1fr 1fr; width: 100%; max-width: 1100px; height: min(88vh, 740px); border-radius: 24px; overflow: hidden; transform: scale(0.96) translateY(14px); transition: transform 0.35s cubic-bezier(.4,0,.2,1); box-shadow: 0 40px 100px rgba(0,0,0,0.3); }
@@ -1444,27 +1450,28 @@
     .pillar-modal-bg { width: 100%; height: 100%; object-fit: cover; display: block; }
     .pillar-modal-left-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 55%); }
     .pillar-modal-left-label { position: absolute; bottom: 44px; left: 44px; font-family: var(--serif); font-size: clamp(28px, 4.5vw, 72px); font-weight: 400; color: var(--white); letter-spacing: -2.5px; line-height: 1.1; }
-    .pillar-modal-right { background: var(--beige); padding: 32px 44px; overflow-y: hidden; position: relative; }
+    .pillar-modal-right { background: var(--beige); padding: 56px 44px 32px; overflow-y: hidden; position: relative; }
     .pillar-modal-close { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; background: var(--green); color: var(--white); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.22s ease, transform 0.22s ease; }
     .pillar-modal-close:hover { background: #163527; transform: rotate(90deg); }
     .pillar-modal-close svg { display: block; flex-shrink: 0; }
-    .pillar-modal-title { font-family: var(--sans); font-size: clamp(11px, 1.1vw, 16px); font-weight: 500; letter-spacing: -0.6px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; padding-right: 52px; line-height: 1.3; }
-    .pillar-modal-desc { font-family: var(--sans); font-size: clamp(11px, 0.95vw, 14px); font-weight: 400; line-height: 1.4; letter-spacing: -0.3px; color: rgba(0,0,0,0.7); margin-bottom: 10px; }
+    .pillar-modal-title { font-family: var(--sans); font-size: clamp(15px, 1.5vw, 22px); font-weight: 600; letter-spacing: -0.5px; text-transform: uppercase; color: var(--green); margin-bottom: 12px; padding-right: 52px; line-height: 1.3; }
+    .pillar-modal-desc { font-family: var(--sans); font-size: clamp(13px, 1.1vw, 16px); font-weight: 400; line-height: 1.5; letter-spacing: -0.3px; color: rgba(0,0,0,0.7); margin-bottom: 10px; margin-top: 16px; }
     .pillar-modal-ing-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
     .pillar-modal-ing-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1.5px solid rgba(33,76,62,0.18); }
     .pillar-modal-ing-item:last-child { border-bottom: none; }
     .pillar-modal-ing-img { width: clamp(36px, 3vw, 48px); height: clamp(36px, 3vw, 48px); border-radius: clamp(7px, 0.7vw, 10px); object-fit: cover; flex-shrink: 0; background: rgba(32,76,62,0.08); }
-    .pillar-modal-ing-name { font-family: var(--sans); font-size: clamp(11px, 0.95vw, 14px); font-weight: 600; letter-spacing: -0.3px; color: var(--green); line-height: 1.3; }
+    .pillar-modal-ing-name { font-family: var(--sans); font-size: clamp(13px, 1.1vw, 16px); font-weight: 600; letter-spacing: -0.3px; color: var(--green); line-height: 1.3; }
 
     /* ═══════════════════════════════════════════════════════
        TRUSTED BY EXPERTS (shared with homepage)
     ═══════════════════════════════════════════════════════ */
-    .trusted-section { background: var(--white); padding: clamp(60px, 7vw, 120px) clamp(60px, 10vw, 180px); border-radius: 0 0 50px 50px; display: grid; grid-template-columns: 55fr 45fr; gap: clamp(40px, 5vw, 90px); align-items: center; }
+    .trusted-section { background: var(--white); padding: clamp(40px, 4.5vw, 72px) 0; border-radius: 0; }
+    .trusted-inner { max-width: 1410px; margin: 0 auto; padding: 0 45px; box-sizing: border-box; display: grid; grid-template-columns: 65fr 30fr; gap: clamp(32px, 4vw, 64px); align-items: center; }
     .trusted-left { display: flex; flex-direction: column; }
-    .trusted-heading { font-family: var(--sans); font-size: clamp(24px, 3vw, 48px); font-weight: 400; line-height: 1.05; letter-spacing: -2px; color: var(--green); margin-bottom: clamp(20px, 2.5vw, 44px); }
-    .trusted-quote { font-family: var(--serif); font-size: clamp(14px, 1.35vw, 22px); font-weight: 400; line-height: 1.35; letter-spacing: -0.7px; color: var(--green); margin-bottom: clamp(16px, 2vw, 32px); }
-    .trusted-doctor-name { font-family: var(--sans); font-size: clamp(11px, 0.8vw, 14px); font-weight: 700; color: var(--black); letter-spacing: -0.3px; margin-bottom: 3px; }
-    .trusted-doctor-title { font-family: var(--sans); font-size: clamp(11px, 0.8vw, 14px); font-weight: 400; color: #757575; letter-spacing: -0.3px; margin-bottom: clamp(28px, 4vw, 64px); }
+    .trusted-heading { font-family: var(--sans); font-size: clamp(32px, 3.2vw, 54px); font-weight: 400; line-height: 1.1; letter-spacing: -2px; color: var(--green); margin-bottom: clamp(18px, 2vw, 32px); }
+    .trusted-quote { font-family: var(--serif); font-size: clamp(16px, 1.6vw, 26px); font-weight: 400; line-height: 1.35; letter-spacing: -0.7px; color: var(--green); margin-bottom: clamp(16px, 1.8vw, 28px); }
+    .trusted-doctor-name { font-family: var(--sans); font-size: clamp(12px, 0.95vw, 15px); font-weight: 700; color: var(--black); letter-spacing: -0.3px; margin-bottom: 3px; }
+    .trusted-doctor-title { font-family: var(--sans); font-size: clamp(12px, 0.95vw, 15px); font-weight: 400; color: #757575; letter-spacing: -0.3px; margin-bottom: clamp(24px, 3vw, 48px); }
     .trusted-learn-more { font-family: var(--sofia); font-size: clamp(13px, 1vw, 18px); font-weight: 400; color: var(--green); letter-spacing: -0.5px; text-decoration: underline; text-underline-offset: 3px; transition: opacity 0.2s ease; display: inline-block; }
     .trusted-learn-more:hover { opacity: 0.65; }
     .trusted-photo { width: 100%; aspect-ratio: 1/1; border-radius: 22px; object-fit: cover; display: block; box-shadow: 2px 4px 24px rgba(0,0,0,0.13); }
@@ -1482,9 +1489,36 @@
     .rev-arrow-next { right: clamp(8px, 2vw, 40px); }
     .reviews-viewport { overflow: hidden; padding: 52px 0; margin: -52px 0; }
     .reviews-track { display: flex; gap: 12px; transition: transform 0.55s cubic-bezier(.4,0,.2,1); will-change: transform; }
-    .rev-slide { flex-shrink: 0; width: clamp(160px, calc(100vw / 6 - 12px), 310px); height: clamp(220px, 26vw, 400px); border-radius: 30px; overflow: hidden; background: #f1f1ea; transition: transform 0.55s cubic-bezier(.4,0,.2,1), opacity 0.55s ease; transform: scale(0.85); opacity: 0.55; cursor: default; }
+    .rev-slide { flex-shrink: 0; width: clamp(160px, calc(100vw / 6 - 12px), 310px); height: clamp(220px, 26vw, 400px); border-radius: 12px; overflow: hidden; background: #f1f1ea; transition: transform 0.55s cubic-bezier(.4,0,.2,1), opacity 0.55s ease; transform: scale(0.85); opacity: 0.55; cursor: default; }
     .rev-slide.rev-active { transform: scale(1.0); opacity: 1; z-index: 2; }
     .rev-slide.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .rev-slide:not(.rev-active) { cursor: pointer; }
+    /* ── Review photo lightbox ── */
+    .rev-lightbox {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(2,7,6,0.88);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .rev-lightbox.active { opacity: 1; pointer-events: all; }
+    .rev-lightbox-img {
+      max-width: min(88vw, 640px); max-height: 88vh;
+      object-fit: contain; border-radius: 16px;
+      transform: scale(0.94) translateY(10px);
+      transition: transform 0.32s cubic-bezier(.4,0,.2,1);
+    }
+    .rev-lightbox.active .rev-lightbox-img { transform: scale(1) translateY(0); }
+    .rev-lightbox-close {
+      position: absolute; top: 20px; right: 20px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+      color: #fff; font-size: 20px; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .rev-lightbox-close:hover { background: rgba(255,255,255,0.22); }
     .rev-slide-inner { padding: clamp(14px, 1.6vw, 26px) clamp(12px, 1.4vw, 22px); height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
     .rev-slide-stars { font-family: var(--sofia); font-size: clamp(14px, 1.2vw, 22px); color: #204c3e; letter-spacing: 2px; margin-bottom: clamp(16px, 2vw, 28px); }
     .rev-slide-quote { font-family: var(--serif); font-size: clamp(18px, 2.2vw, 36px); font-weight: 400; line-height: 1.2; letter-spacing: -1.5px; color: #204c3e; flex: 1; margin-bottom: clamp(18px, 2vw, 28px); display: flex; align-items: center; }
@@ -1496,8 +1530,10 @@
     .rev-product-info { text-align: left; }
     .rev-product-title { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: -0.3px; margin-bottom: 2px; }
     .rev-product-price { font-family: var(--sans); font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: -0.1px; }
-    .rev-product-btn { font-family: var(--label); font-size: 13px; font-weight: 600; color: var(--white); background: var(--mango); padding: 10px 18px; border-radius: 8px; letter-spacing: -0.2px; text-transform: lowercase; white-space: nowrap; flex-shrink: 0; transition: background 0.2s ease; }
+    .rev-product-btn { font-family: var(--label); font-size: 13px; font-weight: 600; color: var(--white); background: var(--mango); padding: 10px 18px; border-radius: 8px; letter-spacing: -0.2px; text-transform: lowercase; white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; transition: background 0.22s ease; }
     .rev-product-btn:hover { background: #e07800; }
+    .rev-btn-arrow { display: inline-block; max-width: 0; overflow: hidden; opacity: 0; margin-left: 0; white-space: nowrap; transition: max-width 0.25s ease, opacity 0.2s ease, margin-left 0.25s ease; }
+    .rev-product-btn:hover .rev-btn-arrow { max-width: 1.5em; opacity: 1; margin-left: 5px; }
 
     /* ═══════════════════════════════════════════════════════
        FAQ
@@ -1668,7 +1704,7 @@
       background: rgba(244,241,236,0.96);
       backdrop-filter: blur(16px);
       border-top: 1px solid rgba(2,7,6,0.08);
-      padding: 14px 56px;
+      padding: 9px 56px;
       transform: translateY(100%);
       transition: transform 0.36s cubic-bezier(.4,0,.2,1);
       box-shadow: 0 -4px 32px rgba(0,0,0,0.08);
@@ -1676,23 +1712,23 @@
     .sticky-atc.visible { transform: translateY(0); }
     .sticky-atc-inner {
       max-width: 1320px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
     }
-    .sticky-product { display: flex; align-items: center; gap: 14px; }
+    .sticky-product { display: flex; align-items: center; gap: 11px; }
     .sticky-thumb {
-      width: 72px; height: 72px; border-radius: 12px;
+      width: 48px; height: 48px; border-radius: 8px;
       background: var(--white); border: 1px solid rgba(2,7,6,0.08);
       display: flex; align-items: center; justify-content: center; overflow: hidden;
       flex-shrink: 0;
     }
     .sticky-thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .sticky-product-name { font-size: 14px; font-weight: 500; letter-spacing: -0.2px; }
-    .sticky-product-price { font-size: 13px; opacity: 0.45; letter-spacing: -0.1px; }
+    .sticky-product-name { font-size: 13px; font-weight: 500; letter-spacing: -0.2px; }
+    .sticky-product-price { font-size: 12px; opacity: 0.45; letter-spacing: -0.1px; }
     .sticky-cta {
-      font-family: var(--label); font-size: 15px; font-weight: 600;
+      font-family: var(--label); font-size: 13px; font-weight: 600;
       text-transform: lowercase; letter-spacing: -0.2px;
       background: var(--mango); color: var(--white);
-      padding: 12px 36px; border-radius: 6px;
+      padding: 9px 28px; border-radius: 6px;
       transition: opacity var(--ease), transform var(--ease);
       white-space: nowrap;
     }
@@ -1731,15 +1767,44 @@
       .timeline-steps::before { display: none; }
       .reviews-grid { grid-template-columns: 1fr; }
     }
+    /* ── Trusted photo — mobile-only duplicate inside left column ── */
+    .trusted-photo-mobile { display: none; }
+
+    /* ── Mobile slide-in menu ── */
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 399; opacity: 0; pointer-events: none; transition: opacity 0.32s ease; }
+    .mobile-menu-overlay.open { opacity: 1; pointer-events: all; }
+    .mobile-menu { position: fixed; top: 0; right: -100%; width: 78%; max-width: 320px; height: 100dvh; background: var(--beige); z-index: 400; display: flex; flex-direction: column; padding: 28px 28px 40px; box-shadow: -6px 0 40px rgba(0,0,0,0.14); transition: right 0.35s cubic-bezier(.4,0,.2,1); }
+    .mobile-menu.open { right: 0; }
+    .mobile-menu-top { display: flex; justify-content: flex-end; margin-bottom: 36px; }
+    .mobile-menu-close { font-size: 30px; line-height: 1; background: none; border: none; cursor: pointer; color: var(--black); padding: 0; }
+    .mobile-menu-nav { display: flex; flex-direction: column; gap: 0; }
+    .mobile-menu-nav a { font-family: var(--sans); font-size: 30px; font-weight: 400; letter-spacing: -1.2px; color: var(--black); padding: 14px 0; border-bottom: 1px solid rgba(2,7,6,0.07); display: block; transition: color 0.2s ease; }
+    .mobile-menu-nav a:hover { color: var(--green); }
+
     @media (max-width: 768px) {
       /* Nav — logo left, cart+hamburger right */
       .nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .nav-cart { margin-left: auto; }
+      .nav-cart { margin-left: auto; margin-right: 14px; }
       .nav-hamburger { display: flex; }
       /* Gallery — hide desktop grid, show mobile carousel */
       .gallery-main-wrap, .gallery-grid { display: none; }
       .mobile-gallery { display: block; width: 100%; }
+      /* Press bar — larger on mobile */
+      .gp-bar-img { height: 30px; }
+      .gallery-press-overlay { height: 58px; }
+      /* FrontrowMD badge — mobile sizing (badge is now a gallery overlay, not inside the slide) */
+      #mobile-fmd-badge { width: 108px; }
+      #mobile-fmd-badge .fmd-badge-inner { padding: 8px 9px 11px; gap: 4px; }
+      #mobile-fmd-badge .fmd-logo-mark { height: 9px; width: 13px; }
+      #mobile-fmd-badge .fmd-text-mark { height: 6px; width: 46px; }
+      #mobile-fmd-badge .fmd-choice-wreath { height: 26px; width: 13px; }
+      #mobile-fmd-badge .fmd-choice-label { font-size: 9px; }
+      #mobile-fmd-badge .fmd-count { font-size: 9px; }
+      #mobile-fmd-badge .fmd-share-text { font-size: 7.5px; }
+      #mobile-fmd-badge .fmd-learn-link { font-size: 7.5px; }
+      #mobile-fmd-badge .fmd-view-btn { font-size: 7.5px; padding: 4px 3px; }
+      #mobile-fmd-badge::after { height: 10px; }
       /* Insurance / comparison — full-width, stacked */
       .insurance-section { padding: 0 16px; }
       .insurance-inner { max-width: none; }
@@ -1747,9 +1812,13 @@
       .comparison-section { padding: 12px 16px 16px; }
       .comparison-inner { grid-template-columns: 1fr; gap: 12px; }
       .comparison-left { min-height: 220px; }
-      /* Pillar grid — 2×2 */
+      /* Comparison: show all columns, horizontal scroll */
+      .comparison-right { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .comparison-table { min-width: 420px; }
+      /* Pillar grid — 2×2, taller cards */
       .pillar-grid { grid-template-columns: 1fr 1fr; height: auto; }
-      .pillar-card { aspect-ratio: 1; }
+      .pillar-card { aspect-ratio: 3/4; }
+      .pillar-label { font-size: 16px; }
       /* Bundles — stacked, full-width */
       .bundles-section { padding: 48px 16px; }
       .bundles-header { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -1766,9 +1835,27 @@
       .pillar-modal-title { font-size: 13px; }
       .pillar-modal-desc { font-size: 13px; }
       .pillar-modal-ing-name { font-size: 13px; }
+      /* Trusted section — show photo inline on mobile */
+      .trusted-inner { grid-template-columns: 1fr; padding: 0 24px; }
+      .trusted-right { display: none; }
+      .trusted-photo-mobile { display: block; width: 100%; aspect-ratio: 1/1; border-radius: 16px; object-fit: cover; margin-bottom: 24px; box-shadow: 2px 4px 24px rgba(0,0,0,0.13); }
       /* Science — minimal side padding */
       .science-section { padding: 48px 0; }
       .science-inner { padding: 0 16px; }
+      /* Review cards — much larger on mobile */
+      .rev-slide { width: clamp(260px, 74vw, 340px); height: clamp(340px, 88vw, 440px); }
+      /* Review quotes — fill the card */
+      .rev-slide-inner { padding: 20px 18px; }
+      .rev-slide-stars { font-size: 16px; margin-bottom: 14px; }
+      .rev-slide-quote { font-size: clamp(24px, 7vw, 30px); line-height: 1.15; letter-spacing: -1.2px; margin-bottom: 16px; }
+      .rev-slide-name { font-size: 13px; }
+      .rev-slide-verified { font-size: 12px; }
+      /* CTA strip — smaller on mobile */
+      .rev-product-cta { padding: 8px 14px 8px 10px; gap: 10px; border-radius: 12px; }
+      .rev-product-thumb { width: 40px; height: 40px; border-radius: 8px; }
+      .rev-product-title { font-size: 11px; }
+      .rev-product-price { font-size: 10px; }
+      .rev-product-btn { font-size: 11px; padding: 7px 12px; }
       /* General */
       .benefits-section, .doctor-section, .certs-section, .reviews-section { padding: 64px 24px; }
       .timeline-section, .howto-section, .faq-section, .ingredients-section { padding: 64px 24px; }
@@ -1776,20 +1863,8 @@
       .footer-right { height: 320px; }
       .footer-left { padding: 40px 24px 36px 24px; }
       .footer-nav-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-      .sticky-atc { padding: 14px 24px; }
+      .sticky-atc { padding: 9px 24px; }
       .reviews-community-strip { grid-template-columns: repeat(2, 1fr); }
-      /* FrontrowMD badge — mobile sizing */
-      .fmd-badge { width: 120px; top: 10px; right: 10px; }
-      .fmd-badge-inner { padding: 8px 10px 10px; gap: 4px; }
-      .fmd-logo-mark { height: 10px; width: 14px; }
-      .fmd-text-mark { height: 7px; width: 48px; }
-      .fmd-choice-wreath { height: 28px; width: 14px; }
-      .fmd-choice-label { font-size: 10px; }
-      .fmd-count { font-size: 10px; }
-      .fmd-share-text { font-size: 8px; }
-      .fmd-learn-link { font-size: 8px; }
-      .fmd-view-btn { font-size: 8px; padding: 5px 4px; }
-      .fmd-badge::after { height: 10px; }
     }
   </style>
 </head>
@@ -1856,10 +1931,10 @@
           <a href="/shop.html">pre-alcohol vitamin jelly</a>
           <a href="#">every day-guard</a>
           <a href="#">bulk order</a>
-          <a href="#">merch</a>
+          <a href="/merch.html">merch</a>
         </div>
       </li>
-      <li><a href="/#ingredients">science</a></li>
+      <li><a href="/science.html">science</a></li>
       <li class="nav-item has-dropdown">
         <a href="#" class="has-arrow">learn</a>
         <div class="nav-dropdown">
@@ -1884,10 +1959,24 @@
       </svg>
       <span class="nav-cart-count" id="cart-count">0</span>
     </div>
-    <button class="nav-hamburger" aria-label="Open menu">
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
+
+  <!-- Mobile slide-in menu -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-top">
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">×</button>
+    </div>
+    <nav class="mobile-menu-nav">
+      <a href="/shop.html">shop</a>
+      <a href="/science.html">science</a>
+      <a href="#">learn</a>
+      <a href="/help.html">help</a>
+    </nav>
+  </div>
 
   <!-- PDP HERO -->
   <section class="pdp-hero">
@@ -1902,31 +1991,17 @@
         <div class="mgc-track" id="mgc-track">
           <div class="mgc-slide mgc-slide-product">
             <img src="/images/product image with jelly.png" alt="day–guard mango pre-alcohol jelly sticks 10-pack">
-            <!-- FrontrowMD Clinicians' Choice badge -->
-            <div class="fmd-badge">
-              <div class="fmd-badge-inner">
-                <div class="fmd-logo-row">
-                  <img src="/images/fmd/logo-mark.svg" class="fmd-logo-mark" alt="">
-                  <img src="/images/fmd/text-mark.svg" class="fmd-text-mark" alt="frontrowMD">
-                  <button class="fmd-close-btn" aria-label="Close">×</button>
-                </div>
-                <div class="fmd-divider"></div>
-                <div class="fmd-choice-row">
-                  <img src="/images/fmd/wreath-left.svg" class="fmd-choice-wreath" alt="">
-                  <span class="fmd-choice-label">Clinicians'<br>Choice</span>
-                  <img src="/images/fmd/wreath-right.svg" class="fmd-choice-wreath" alt="">
-                </div>
-                <div class="fmd-count">184 clinicians</div>
-                <div class="fmd-share-text">share this product<br>on FrontrowMD.</div>
-                <a href="#" class="fmd-learn-link">Learn more</a>
-                <a href="#" class="fmd-view-btn">View clinicians</a>
-              </div>
-            </div>
             <!-- Animated press bar -->
             <div class="gallery-press-overlay">
               <div class="gallery-press-track">
-                <div class="gp-tile"><img src="/images/press-bar.svg" class="gp-bar-svg" alt="Forbes · #1 doctor recommended · The Boston Globe"><span class="gp-bar-text">#1 doctor recommended</span></div>
-                <div class="gp-tile"><img src="/images/press-bar.svg" class="gp-bar-svg" alt=""><span class="gp-bar-text">#1 doctor recommended</span></div>
+                <img src="/images/press%20bar.png" class="gp-bar-img" alt="Forbes · #1 doctor recommended · The Boston Globe">
+                <span class="gp-bar-sep" aria-hidden="true">·</span>
+                <img src="/images/press%20bar.png" class="gp-bar-img" alt="">
+                <span class="gp-bar-sep" aria-hidden="true">·</span>
+                <img src="/images/press%20bar.png" class="gp-bar-img" alt="">
+                <span class="gp-bar-sep" aria-hidden="true">·</span>
+                <img src="/images/press%20bar.png" class="gp-bar-img" alt="">
+                <span class="gp-bar-sep" aria-hidden="true">·</span>
               </div>
             </div>
           </div>
@@ -1956,6 +2031,26 @@
           <div class="mgc-dot"></div>
           <div class="mgc-dot"></div>
           <div class="mgc-dot"></div>
+        </div>
+        <!-- FrontrowMD badge — overlay on gallery (outside slide so overflow:hidden doesn't clip it) -->
+        <div class="fmd-badge" id="mobile-fmd-badge" style="position:absolute;top:10px;right:10px;z-index:20;">
+          <div class="fmd-badge-inner">
+            <div class="fmd-logo-row">
+              <img src="/images/fmd/logo-mark.svg" class="fmd-logo-mark" alt="">
+              <img src="/images/fmd/text-mark.svg" class="fmd-text-mark" alt="frontrowMD">
+              <button class="fmd-close-btn" aria-label="Close">×</button>
+            </div>
+            <div class="fmd-divider"></div>
+            <div class="fmd-choice-row">
+              <img src="/images/fmd/wreath-left.svg" class="fmd-choice-wreath" alt="">
+              <span class="fmd-choice-label">Clinicians'<br>Choice</span>
+              <img src="/images/fmd/wreath-right.svg" class="fmd-choice-wreath" alt="">
+            </div>
+            <div class="fmd-count">184 clinicians</div>
+            <div class="fmd-share-text">share this product<br>on FrontrowMD.</div>
+            <a href="#" class="fmd-learn-link">Learn more</a>
+            <a href="#" class="fmd-view-btn">View clinicians</a>
+          </div>
         </div>
       </div>
 
@@ -1987,8 +2082,14 @@
         <!-- Animated press bar -->
         <div class="gallery-press-overlay">
           <div class="gallery-press-track">
-            <div class="gp-tile"><img src="/images/press-bar.svg" class="gp-bar-svg" alt="Forbes · #1 doctor recommended · The Boston Globe"><span class="gp-bar-text">#1 doctor recommended</span></div>
-            <div class="gp-tile"><img src="/images/press-bar.svg" class="gp-bar-svg" alt=""><span class="gp-bar-text">#1 doctor recommended</span></div>
+            <img src="/images/press%20bar.png" class="gp-bar-img" alt="Forbes · #1 doctor recommended · The Boston Globe">
+            <span class="gp-bar-sep" aria-hidden="true">·</span>
+            <img src="/images/press%20bar.png" class="gp-bar-img" aria-hidden="true">
+            <span class="gp-bar-sep" aria-hidden="true">·</span>
+            <img src="/images/press%20bar.png" class="gp-bar-img" aria-hidden="true">
+            <span class="gp-bar-sep" aria-hidden="true">·</span>
+            <img src="/images/press%20bar.png" class="gp-bar-img" aria-hidden="true">
+            <span class="gp-bar-sep" aria-hidden="true">·</span>
           </div>
         </div>
       </div>
@@ -2067,7 +2168,7 @@
       <div class="purchase-toggle" id="purchase-toggle">
         <div class="toggle-track-pill" id="toggle-pill"></div>
         <button class="toggle-btn active" id="tog-sub" onclick="setToggle('sub')">
-          subscribe &amp; <span class="toggle-save">save 19%</span>
+          subscribe &amp; <span class="toggle-save" id="toggle-save-badge">save 19%</span>
         </button>
         <button class="toggle-btn" id="tog-once" onclick="setToggle('once')">
           buy once
@@ -2154,7 +2255,7 @@
           <div class="panel-accord-body">
             <div class="panel-accord-inner">
               <ul>
-                <li>Free US shipping on all orders</li>
+                <li>Free US shipping on all subscription orders</li>
                 <li>Ships within 1–2 business days</li>
                 <li>90-day money-back guarantee</li>
                 <li>Cancel subscription anytime, no fees</li>
@@ -2183,13 +2284,24 @@
        OUR DIFFERENCE
   ════════════════════════════ -->
   <section class="comparison-section">
+    <!-- SVG icon defs for reuse -->
+    <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="icon-check" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="10" fill="#204c3e"/>
+        <path d="M6.5 10.5l2.5 2.5 4.5-4.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="icon-cross" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="9" stroke="rgba(32,76,62,0.28)" stroke-width="0.8"/>
+        <path d="M7 7l6 6M13 7l-6 6" stroke="rgba(32,76,62,0.38)" stroke-width="1.2" stroke-linecap="round"/>
+      </symbol>
+    </svg>
     <div class="comparison-inner">
       <!-- Left: lifestyle photo -->
       <div class="comparison-left">
         <img src="https://www.figma.com/api/mcp/asset/5fecc569-3c2e-4217-bd30-66ed6981c0ae"
              alt="day–guard lifestyle">
       </div>
-      <!-- Right: comparison table on dark green -->
+      <!-- Right: comparison table on beige -->
       <div class="comparison-right">
         <h2 class="comparison-heading">our difference.</h2>
         <table class="comparison-table">
@@ -2199,55 +2311,62 @@
             <col class="comp-col">
             <col class="comp-col">
             <col class="comp-col">
+            <col class="comp-col">
           </colgroup>
           <thead>
             <tr>
               <th></th>
               <th class="dg-col"><span class="dg-wordmark">day—guard</span></th>
-              <th>recovery<br>capsules</th>
-              <th>recovery<br>shot</th>
-              <th>hydration<br>powder</th>
+              <th>cheers<br>health</th>
+              <th>z-biotics</th>
+              <th>liquid iv</th>
+              <th>waterboy</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>liver support complex</td>
-              <td class="dg-cell"><span class="dg-mg">1255mg</span></td>
-              <td><span class="comp-mg">300mg</span></td>
+              <td class="dg-cell dg-liver"><span class="dg-mg">1255mg</span></td>
+              <td><span class="comp-mg">1200mg</span></td>
               <td><span class="comp-mg">&lt;1000mg</span></td>
+              <td><span class="comp-mg">0mg</span></td>
               <td><span class="comp-mg">0mg</span></td>
             </tr>
             <tr>
               <td>prebiotics</td>
-              <td class="dg-cell"><span class="check-circle">✓</span></td>
-              <td><span class="cross-circle">✕</span></td>
-              <td><span class="cross-circle">✕</span></td>
-              <td><span class="cross-circle">✕</span></td>
+              <td class="dg-cell"><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+              <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+              <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+              <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+              <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
             </tr>
             <tr>
               <td>b-vitamin complex</td>
-              <td class="dg-cell"><span class="check-circle">✓</span></td>
-              <td><span class="cross-circle">✕</span></td>
-              <td><span class="cross-circle">✕</span></td>
-              <td><span class="cross-circle">✕</span></td>
+              <td class="dg-cell"><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+              <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+              <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+              <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+              <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
             </tr>
             <tr>
               <td>electrolytes</td>
-              <td class="dg-cell"><span class="check-circle">✓</span></td>
-              <td><span class="cross-circle">✕</span></td>
-              <td><span class="cross-circle">✕</span></td>
-              <td><span class="check-circle" style="background:rgba(255,255,255,0.18);color:rgba(255,255,255,0.6)">✓</span></td>
+              <td class="dg-cell"><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+              <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+              <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+              <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+              <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
             </tr>
             <tr>
               <td>portable single servings</td>
-              <td class="dg-cell"><span class="check-circle">✓</span></td>
-              <td><span class="cross-circle">✕</span></td>
-              <td><span class="cross-circle">✕</span></td>
-              <td><span class="cross-circle">✕</span></td>
+              <td class="dg-cell"><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+              <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+              <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+              <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+              <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
             </tr>
           </tbody>
         </table>
-        <a href="#bundles" class="comparison-cta">buy now</a>
+        <a href="javascript:document.getElementById('cta-btn').click()" class="comparison-cta">buy now</a>
       </div>
     </div>
   </section>
@@ -2310,17 +2429,22 @@
        EXPERT TESTIMONIALS
   ════════════════════════════ -->
   <section class="trusted-section" id="credibility">
-    <div class="trusted-left fade-up">
-      <h2 class="trusted-heading">trusted by experts</h2>
-      <blockquote class="trusted-quote">"What makes day–guard different is the comprehensiveness. The formulation targets the full cascade of what alcohol does to your body."</blockquote>
-      <p class="trusted-doctor-name">Dr. Steven Oh</p>
-      <p class="trusted-doctor-title">MD, Medical Advisor</p>
-      <a href="/science" class="trusted-learn-more">learn more</a>
-    </div>
-    <div class="trusted-right fade-up" style="transition-delay:.12s">
-      <img class="trusted-photo"
-           src="https://www.figma.com/api/mcp/asset/cae94d42-d11a-4abf-bb26-f6e9b5ff9199"
-           alt="Dr. Steven Oh, Medical Advisor">
+    <div class="trusted-inner">
+      <div class="trusted-left fade-up">
+        <h2 class="trusted-heading">trusted by experts</h2>
+        <img class="trusted-photo-mobile"
+             src="https://www.figma.com/api/mcp/asset/cae94d42-d11a-4abf-bb26-f6e9b5ff9199"
+             alt="Dr. Steven Oh, Medical Advisor">
+        <blockquote class="trusted-quote">"What makes day–guard different is the comprehensiveness. The formulation targets the full cascade of what alcohol does to your body."</blockquote>
+        <p class="trusted-doctor-name">Dr. Steven Oh</p>
+        <p class="trusted-doctor-title">MD, Medical Advisor</p>
+        <a href="/science.html" class="trusted-learn-more">learn more</a>
+      </div>
+      <div class="trusted-right fade-up" style="transition-delay:.12s">
+        <img class="trusted-photo"
+             src="https://www.figma.com/api/mcp/asset/cae94d42-d11a-4abf-bb26-f6e9b5ff9199"
+             alt="Dr. Steven Oh, Medical Advisor">
+      </div>
     </div>
   </section>
 
@@ -2343,7 +2467,7 @@
               <p class="rev-slide-verified">Verified Buyer ✓</p>
             </div>
           </div>
-          <div class="rev-slide photo">
+          <div class="rev-slide photo" onclick="openRevLightbox(this)">
             <img src="/images/reviews/DSCF9265.jpg" alt="day-guard lifestyle">
           </div>
           <div class="rev-slide">
@@ -2401,150 +2525,108 @@
           <p class="rev-product-title">pre-alcohol vitamin jelly sticks</p>
           <p class="rev-product-price">from $29.00 · subscribe &amp; save</p>
         </div>
-        <a href="#" class="rev-product-btn">shop now →</a>
+        <a href="javascript:document.getElementById('cta-btn').click()" class="rev-product-btn">shop now <span class="rev-btn-arrow">→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ════════════════════════════
-       BUNDLES / OPTIONS
-  ════════════════════════════ -->
-  <section class="bundles-section" id="bundles">
-    <div class="bundles-header fade-up">
-      <h2 class="bundles-heading">stock up &amp; save.</h2>
-      <p class="bundles-sub">The more you protect, the less you pay. Subscribe for an additional 15% off every order.</p>
-    </div>
-    <div class="bundles-grid">
-
-      <!-- Card 1: Starter -->
-      <div class="bundle-card fade-up">
-        <p class="bundle-count">1</p>
-        <p class="bundle-sticks">box · 10 sticks</p>
-        <div class="bundle-divider"></div>
-        <div class="bundle-price-row">
-          <span class="bundle-price-label">one-time</span>
-          <span class="bundle-price">$34.99</span>
-        </div>
-        <div class="bundle-price-row">
-          <span class="bundle-price-label">subscribe &amp; save</span>
-          <span class="bundle-price-sub">$29.74</span>
-        </div>
-        <span class="bundle-save">save 15% on subscription</span>
-        <p class="bundle-per-stick">$2.97 per stick (subscribe)</p>
-        <a href="#" class="bundle-cta">add to cart</a>
-      </div>
-
-      <!-- Card 2: Most Popular (featured) -->
-      <div class="bundle-card featured fade-up" style="transition-delay:.08s">
-        <span class="bundle-badge">most popular</span>
-        <p class="bundle-count">3</p>
-        <p class="bundle-sticks">boxes · 30 sticks</p>
-        <div class="bundle-divider"></div>
-        <div class="bundle-price-row">
-          <span class="bundle-price-label">one-time</span>
-          <span class="bundle-price">$89.99</span>
-        </div>
-        <div class="bundle-price-row">
-          <span class="bundle-price-label">subscribe &amp; save</span>
-          <span class="bundle-price-sub">$76.49</span>
-        </div>
-        <span class="bundle-save">save 15% on subscription · $10 off bundle</span>
-        <p class="bundle-per-stick">$2.55 per stick (subscribe)</p>
-        <a href="#" class="bundle-cta">add to cart</a>
-      </div>
-
-      <!-- Card 3: Best Value -->
-      <div class="bundle-card fade-up" style="transition-delay:.16s">
-        <span class="bundle-badge">best value</span>
-        <p class="bundle-count">6</p>
-        <p class="bundle-sticks">boxes · 60 sticks</p>
-        <div class="bundle-divider"></div>
-        <div class="bundle-price-row">
-          <span class="bundle-price-label">one-time</span>
-          <span class="bundle-price">$159.99</span>
-        </div>
-        <div class="bundle-price-row">
-          <span class="bundle-price-label">subscribe &amp; save</span>
-          <span class="bundle-price-sub">$135.99</span>
-        </div>
-        <span class="bundle-save">save 15% on subscription · $30 off bundle</span>
-        <p class="bundle-per-stick">$2.27 per stick (subscribe)</p>
-        <a href="#" class="bundle-cta">add to cart</a>
-      </div>
-
-    </div>
-  </section>
+  <!-- Review photo lightbox -->
+  <div id="rev-lightbox" class="rev-lightbox" onclick="closeRevLightbox(event)">
+    <img id="rev-lightbox-img" class="rev-lightbox-img" src="" alt="">
+    <button class="rev-lightbox-close" onclick="closeRevLightbox(event)" aria-label="Close">&#x2715;</button>
+  </div>
 
   <!-- FAQ -->
   <section class="faq-section" id="faq">
     <div class="faq-inner">
       <div class="faq-left fade-up">
-        <h2>Questions?<br>We're here<br>to help.</h2>
-        <p>Can't find your answer? Email us at hello@dayguard.com — we reply within one business day.</p>
+        <h2>We're here<br>to help.</h2>
+        <p>Can't find your answer? Email us at info@dayguard.com. We'll reply shortly.</p>
       </div>
       <div class="faq-right">
-        <p class="faq-category">Product</p>
+        <p class="faq-category">How It Works</p>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            When should I take day–guard?
+            How does day–guard work?
             <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-answer"><p>Take one stick before your first drink. For longer nights, take another every 3–5 drinks. The jelly format means no water needed — just tear, squeeze, and you're set.</p></div>
+          <div class="faq-answer"><p>day–guard combines clinically backed ingredients that help your body break down acetaldehyde (a toxic alcohol byproduct), replenish key nutrients, and reduce inflammation.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            How many sticks should I take?
+            What are the key ingredients?
             <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-answer"><p>One stick covers a typical night out. For heavier nights, take one before drinking and one more midway through. Each pack contains 10 sticks — enough for 10 nights.</p></div>
+          <div class="faq-answer"><p>day–guard features four functional areas: liver support (DHM, milk thistle, turmeric, L-cysteine), electrolytes (magnesium, sodium), vitamins (B1, B2, B3, B6), and gut health (pear, ginger, xylitol, prebiotics).</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            Is day–guard safe with other supplements?
+            How is it different from electrolytes?
             <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-answer"><p>Yes. day–guard contains all-natural ingredients that are safe for most people. If you have a specific medical condition or take prescription medications, consult your doctor first.</p></div>
-        </div>
-
-        <p class="faq-category">Subscription</p>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            How does the subscription work?
-            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="faq-answer"><p>Subscribe and save 20% on every order. Your pack ships monthly — skip, pause, or cancel anytime from your account dashboard with no fees or penalties.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Can I cancel anytime?
-            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="faq-answer"><p>Absolutely. Cancel anytime before your next billing date with no questions asked. Log in to your account or email us and we'll handle it immediately.</p></div>
+          <div class="faq-answer"><p>While electrolytes address hydration, day–guard goes beyond simple rehydration. It also supports your body's natural detox process, replenishes lost nutrients, and protects your liver and gut health.</p></div>
         </div>
 
-        <p class="faq-category">Shipping</p>
+        <p class="faq-category">Usage</p>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            How fast will I receive my order?
+            When do I take it?
             <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-answer"><p>Orders ship within 1–2 business days. US shipping is always free. You'll receive a tracking confirmation email as soon as your order leaves our warehouse.</p></div>
+          <div class="faq-answer"><p>Take one stick right before or during drinking and another for every 3–5 drinks.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I have multiple in one night?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Yes. Most people take one before drinking and, optionally, another for every 3–5 drinks. All ingredients are within safe daily limits.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do I need to mix it with anything?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>No. Each stick is a ready–to–eat jelly — no water or mixing required.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I take it without alcohol?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Yes. Many people use day–guard for general liver, gut, and nutrient support — even on days they don't drink.</p></div>
         </div>
 
-        <p class="faq-category">Science</p>
+        <p class="faq-category">Safety & Manufacturing</p>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            What is DHM and how does it work?
+            Is it FDA approved / safe?
             <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-answer"><p>DHM (Dihydromyricetin) is a flavonoid extracted from the Oriental Raisin Tree, used in traditional Korean medicine for centuries. It's backed by 167+ clinical studies showing it accelerates alcohol metabolism, reduces acetaldehyde buildup, and supports liver enzyme function.</p></div>
+          <div class="faq-answer"><p>Like all dietary supplements, day–guard is not FDA–approved to treat or prevent disease, but is manufactured in FDA–registered, GMP–certified facilities.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            Who formulated day–guard?
+            Where is it made?
             <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-answer"><p>day–guard was formulated by Dr. Steven Oh, MD at Brown University, in partnership with a leading Korean pharmaceutical company with 60+ years of expertise. Every ingredient was selected for clinically supported efficacy.</p></div>
+          <div class="faq-answer"><p>day–guard is made in Korea by a pharmaceutical partner founded in 1963, bringing over 60 years of clinical expertise.</p></div>
+        </div>
+
+        <p class="faq-category">Effectiveness</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Does it help with hangovers?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>day–guard provides complete support for your body when you drink, helping you feel clearer and more refreshed the next day through supporting liver and gut function.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Does it prevent intoxication?
+            <span class="faq-chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>No. day–guard will not prevent intoxication or enhance sobriety. It simply supports your body's natural detox and recovery process.</p></div>
         </div>
       </div>
     </div>
@@ -2662,7 +2744,7 @@
           <div class="sticky-product-price" id="sticky-price-label">$36.00 · subscribe &amp; save</div>
         </div>
       </div>
-      <a href="#" class="sticky-cta">start now</a>
+      <a href="javascript:document.getElementById('cta-btn').click()" class="sticky-cta">start now</a>
     </div>
   </div>
 
@@ -2812,13 +2894,15 @@
     const priceOriginalEl = document.getElementById('price-original');
     const cadenceSelect = document.getElementById('cadence-select');
 
+    const SAVE_PCT = { 1: 19, 2: 20, 3: 24 };
     function updatePrice() {
       const boxes = parseInt(document.querySelector('.qty-box.active')?.dataset.qty || 3);
       const isSub = currentMode === 'sub';
       const subPrice = PRICES[boxes]?.[0] || 75;
       const oncePrice = PRICES[boxes]?.[1] || 99;
       const total = isSub ? subPrice : oncePrice;
-      if (priceMain) priceMain.textContent = '$' + total.toFixed(2);
+      const moSuffix = isSub ? '<span class="price-mo">/mo</span>' : '';
+      if (priceMain) priceMain.innerHTML = '$' + total.toFixed(2) + moSuffix;
       // Strikethrough: show one-time price crossed out when subscribe is active
       if (priceOriginalEl) {
         if (isSub) {
@@ -2828,10 +2912,13 @@
           priceOriginalEl.classList.remove('visible');
         }
       }
+      // Update save badge %
+      const saveBadge = document.getElementById('toggle-save-badge');
+      if (saveBadge) saveBadge.textContent = 'save ' + (SAVE_PCT[boxes] || 19) + '%';
       // Show/hide cadence dropdown
       if (cadenceSelect) cadenceSelect.classList.toggle('hidden', !isSub);
       const stickyLabel = document.getElementById('sticky-price-label');
-      if (stickyLabel) stickyLabel.textContent = '$' + total.toFixed(2) + (isSub ? ' · subscribe & save' : ' · one-time');
+      if (stickyLabel) stickyLabel.textContent = '$' + total.toFixed(2) + (isSub ? '/mo · subscribe & save' : ' · one-time');
     }
     updatePrice();
 
@@ -2871,6 +2958,14 @@
       document.querySelectorAll('.ingr-row').forEach(r => r.classList.remove('expanded'));
       if (!wasOpen) row.classList.add('expanded');
     }
+
+    /* ── Review carousel: click any slide to navigate to it ── */
+    document.addEventListener('click', function(e) {
+      const slide = e.target.closest('.rev-slide');
+      if (slide && !slide.classList.contains('rev-active') && window._revNav) {
+        window._revNav(slide);
+      }
+    });
 
     /* ── FAQ ── */
     function toggleFaq(btn) {
@@ -2989,7 +3084,7 @@
         vitamins: {
           label: 'Vitamin Replenishment', title: 'VITAMIN REPLENISHMENT',
           bg: 'https://www.figma.com/api/mcp/asset/92a90509-0988-45d1-8e92-3e59dee17aae',
-          desc: 'Your body needs vitamins for energy and recovery, and alcohol robs your body of these essential vitamins.\n\nday–guard® replenishes them with Thiamine (B1), Riboflavin (B2), Niacin (B3), and Vitamin B6, supporting metabolism, energy production, and overall cellular repair.',
+          desc: 'Your body needs vitamins for energy and recovery, and alcohol robs your body of these essential vitamins.\n\nday–guard replenishes them with Thiamine (B1), Riboflavin (B2), Niacin (B3), and Vitamin B6, supporting metabolism, energy production, and overall cellular repair.',
           ingredients: [
             { name: 'Thiamine (Vitamin B1)', img: 'https://www.figma.com/api/mcp/asset/c0d0f886-393c-4d0d-869f-824ac24940ef' },
             { name: 'Riboflavin (Vitamin B2)', img: 'https://www.figma.com/api/mcp/asset/6f2e5c93-c754-42b2-9508-696014b74d16' },
@@ -3092,57 +3187,94 @@
 
       prevBtn && prevBtn.addEventListener('click', () => { navigate(-1); startAuto(); });
       nextBtn && nextBtn.addEventListener('click', () => { navigate(1);  startAuto(); });
+      window._revNav = function(el) {
+        const idx = allSlides.indexOf(el);
+        if (idx < 0) return;
+        navigate(idx - activeIdx);
+        startAuto();
+      };
       requestAnimationFrame(() => requestAnimationFrame(() => render(false)));
       startAuto();
     })();
 
   /* ── Mobile gallery carousel ── */
   (function() {
-    if (window.innerWidth > 768) return;
-    const track    = document.getElementById('mgc-track');
-    const dotEls   = document.querySelectorAll('#mgc-dots .mgc-dot');
-    const stepsSlide = document.getElementById('mgc-steps-slide');
-    if (!track) return;
+    document.addEventListener('DOMContentLoaded', function() {
+      const track = document.getElementById('mgc-track');
+      if (!track) return;
+      const dotEls = document.querySelectorAll('#mgc-dots .mgc-dot');
+      const stepsSlide = document.getElementById('mgc-steps-slide');
+      let stepsTimer = null, stepIdx = 0;
 
-    let currentSlide = 0, stepsTimer = null, stepIdx = 0;
-
-    function updateDots(idx) {
-      dotEls.forEach((d, i) => d.classList.toggle('active', i === idx));
-    }
-
-    function startSteps() {
-      if (stepsTimer) return;
-      const steps = stepsSlide.querySelectorAll('.mgc-step');
-      const sDots = stepsSlide.querySelectorAll('.mgc-step-dot');
-      stepsTimer = setInterval(() => {
-        steps[stepIdx].classList.remove('active');
-        sDots[stepIdx].classList.remove('active');
-        stepIdx = (stepIdx + 1) % steps.length;
-        steps[stepIdx].classList.add('active');
-        sDots[stepIdx].classList.add('active');
-      }, 1600);
-    }
-
-    function stopSteps() {
-      if (stepsTimer) { clearInterval(stepsTimer); stepsTimer = null; }
-      const steps = stepsSlide.querySelectorAll('.mgc-step');
-      const sDots = stepsSlide.querySelectorAll('.mgc-step-dot');
-      stepIdx = 0;
-      steps.forEach((s, i) => s.classList.toggle('active', i === 0));
-      sDots.forEach((d, i) => d.classList.toggle('active', i === 0));
-    }
-
-    track.addEventListener('scroll', () => {
-      const w = track.clientWidth;
-      if (!w) return;
-      const newSlide = Math.round(track.scrollLeft / w);
-      if (newSlide !== currentSlide) {
-        currentSlide = newSlide;
-        updateDots(currentSlide);
-        if (currentSlide === 2) startSteps();
-        else stopSteps();
+      function updateDots(idx) {
+        dotEls.forEach((d, i) => d.classList.toggle('active', i === idx));
       }
-    }, { passive: true });
+
+      function startSteps() {
+        if (stepsTimer) return;
+        const steps = stepsSlide.querySelectorAll('.mgc-step');
+        const sDots = stepsSlide.querySelectorAll('.mgc-step-dot');
+        stepsTimer = setInterval(() => {
+          steps[stepIdx].classList.remove('active');
+          sDots[stepIdx].classList.remove('active');
+          stepIdx = (stepIdx + 1) % steps.length;
+          steps[stepIdx].classList.add('active');
+          sDots[stepIdx].classList.add('active');
+        }, 1600);
+      }
+
+      function stopSteps() {
+        if (stepsTimer) { clearInterval(stepsTimer); stepsTimer = null; }
+        const steps = stepsSlide.querySelectorAll('.mgc-step');
+        const sDots = stepsSlide.querySelectorAll('.mgc-step-dot');
+        stepIdx = 0;
+        steps.forEach((s, i) => s.classList.toggle('active', i === 0));
+        sDots.forEach((d, i) => d.classList.toggle('active', i === 0));
+      }
+
+      // Use IntersectionObserver for reliable mobile scroll detection
+      const slides = Array.from(track.querySelectorAll('.mgc-slide'));
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            const idx = slides.indexOf(entry.target);
+            if (idx >= 0) {
+              updateDots(idx);
+              if (stepsSlide && entry.target === stepsSlide) startSteps();
+              else stopSteps();
+            }
+          }
+        });
+      }, { root: track, threshold: 0.5 });
+
+      slides.forEach(s => observer.observe(s));
+    });
+  })();
+
+  /* ── Mobile hamburger menu ── */
+  (function() {
+    const hamburger = document.getElementById('nav-hamburger');
+    const overlay   = document.getElementById('mobile-menu-overlay');
+    const menu      = document.getElementById('mobile-menu');
+    const closeBtn  = document.getElementById('mobile-menu-close');
+    if (!hamburger || !menu) return;
+
+    function openMenu() {
+      menu.classList.add('open');
+      overlay.classList.add('open');
+      menu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      menu.classList.remove('open');
+      overlay.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
   })();
 
   </script>
