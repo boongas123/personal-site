@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "dg-merch-essentials": {
+      "type": "dg-merch-essentials",
+      "settings": {}
+    }
+  },
+  "order": ["dg-merch-essentials"]
+}

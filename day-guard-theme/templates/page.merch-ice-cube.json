@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "dg-merch-ice-cube": {
+      "type": "dg-merch-ice-cube",
+      "settings": {}
+    }
+  },
+  "order": ["dg-merch-ice-cube"]
+}

@@ -1,0 +1,496 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<section class="pdp-hero">
+
+  <!-- Gallery — desktop grid + mobile carousel -->
+  <div class="gallery">
+
+    <!-- Mobile-only snap-scroll carousel -->
+    <div class="mobile-gallery" id="mobile-gallery">
+      <div class="mgc-track" id="mgc-track">
+        <div class="mgc-slide mgc-slide-product">
+          <img src="{{ 'lander-hero.png' | asset_url }}" alt="day–guard welcome starter pack">
+          <!-- Animated press bar -->
+          <div class="gallery-press-overlay">
+            <div class="gallery-press-track">
+              <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" alt="Forbes · #1 doctor recommended · The Boston Globe">
+              <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+              <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+              <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+            </div>
+          </div>
+        </div>
+        <div class="mgc-slide mgc-slide-steps" id="mgc-steps-slide">
+          <img src="{{ '1.png' | asset_url }}" class="mgc-step active" alt="take one before drinking">
+          <img src="{{ '2.png' | asset_url }}" class="mgc-step" alt="cheers with day–guard">
+          <img src="{{ '3.png' | asset_url }}" class="mgc-step" alt="enjoy your night">
+          <div class="mgc-step-dots">
+            <div class="mgc-step-dot active"></div>
+            <div class="mgc-step-dot"></div>
+            <div class="mgc-step-dot"></div>
+          </div>
+        </div>
+        <div class="mgc-slide">
+          <img src="{{ 'FDA-approved.png' | asset_url }}" alt="manufactured in top Korean FDA-registered facility">
+        </div>
+        <div class="mgc-slide">
+          <img src="{{ 'lander-forbes.png' | asset_url }}" alt="as seen in Forbes">
+        </div>
+        <div class="mgc-slide">
+          <img src="{{ 'DG_Carousel_Artwork8.jpg' | asset_url }}" alt="supplement facts">
+        </div>
+      </div>
+      <div class="mgc-dots" id="mgc-dots">
+        <div class="mgc-dot active"></div>
+        <div class="mgc-dot"></div>
+        <div class="mgc-dot"></div>
+        <div class="mgc-dot"></div>
+        <div class="mgc-dot"></div>
+      </div>
+    </div>
+
+    <!-- Main product image with press bar (desktop) -->
+    <div class="gallery-main-wrap">
+      <img class="gallery-main-img"
+           src="{{ 'lander-hero.png' | asset_url }}"
+           alt="day–guard welcome starter pack">
+      <!-- Animated press bar -->
+      <div class="gallery-press-overlay">
+        <div class="gallery-press-track">
+          <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" alt="Forbes · #1 doctor recommended · The Boston Globe">
+          <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+          <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+          <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <!-- 2×2 thumbnail grid (desktop) -->
+    <div class="gallery-grid">
+      <!-- Row 1 left: lifestyle step slideshow -->
+      <div class="lifestyle-slide-wrap" id="lifestyle-wrap">
+        <img src="{{ '1.png' | asset_url }}" alt="take one before drinking" class="active" data-slide="0">
+        <img src="{{ '2.png' | asset_url }}" alt="cheers with day–guard" data-slide="1">
+        <img src="{{ '3.png' | asset_url }}" alt="enjoy your night" data-slide="2">
+        <div class="lifestyle-dots">
+          <div class="lifestyle-dot active"></div>
+          <div class="lifestyle-dot"></div>
+          <div class="lifestyle-dot"></div>
+        </div>
+      </div>
+      <!-- Row 1 right: FDA-registered facility -->
+      <img src="{{ 'FDA-approved.png' | asset_url }}" alt="manufactured in top Korean FDA-registered facility">
+      <!-- Row 2 left: Forbes feature -->
+      <img src="{{ 'lander-forbes.png' | asset_url }}" alt="as seen in Forbes">
+      <!-- Row 2 right: supplement facts -->
+      <img src="{{ 'DG_Carousel_Artwork8.jpg' | asset_url }}" alt="supplement facts">
+    </div>
+
+  </div>
+
+  <!-- Purchase panel -->
+  <div class="purchase-col">
+  <div class="purchase-panel">
+
+    <!-- Stars + bestseller -->
+    <div class="pdp-rating">
+      <span class="pdp-bestseller">best seller</span>
+      <span class="pdp-stars">★★★★★</span>
+      <span class="pdp-rating-count">450+</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="pdp-title">welcome<br>starter pack</h1>
+
+    <!-- most popular pill -->
+    <div class="ll-popular-pill">most popular</div>
+
+    <!-- 3 option cards -->
+    <div class="ll-options" id="ll-options">
+
+      <!-- 3-boxes (open by default) -->
+      <div class="ll-option ll-option--active" id="ll-opt-3">
+        <button class="ll-opt-header" onclick="llSelect('ll-opt-3', event)">
+          <div class="ll-opt-left">
+            <span class="ll-opt-title">3-boxes</span>
+            <span class="ll-opt-billing">billed $29/mo after 8 weeks</span>
+          </div>
+          <div class="ll-opt-right">
+            <span class="ll-save-badge">save 53%</span>
+            <div class="ll-opt-pricing">
+              <span class="ll-opt-orig">$147</span>
+              <span class="ll-opt-price">$69</span>
+            </div>
+          </div>
+        </button>
+        <div class="ll-opt-body">
+          <div class="ll-item-row">
+            <img class="ll-item-img" src="{{ 'lander-hero.png' | asset_url }}" alt="3 boxes day–guard">
+            <div class="ll-item-desc">
+              <span class="ll-item-name">3 boxes <span class="ll-info-icon">ⓘ</span></span>
+              <span class="ll-item-sub">30 sticks to start...<br>10 sticks/mo after 8 weeks</span>
+            </div>
+            <div class="ll-item-pricing">
+              <span class="ll-item-price">$69</span>
+              <span class="ll-item-orig">$108</span>
+            </div>
+          </div>
+          <div class="ll-item-row">
+            <img class="ll-item-img" src="{{ 'lander-wine-opener.png' | asset_url }}" alt="Free Wine Bottle Opener">
+            <div class="ll-item-desc">
+              <span class="ll-item-name ll-item-free">✓ Free Wine Bottle Opener <span class="ll-info-icon">ⓘ</span></span>
+            </div>
+            <div class="ll-item-pricing">
+              <span class="ll-item-price ll-free-label">FREE</span>
+              <span class="ll-item-orig">$13</span>
+            </div>
+          </div>
+          <div class="ll-item-row">
+            <img class="ll-item-img" src="{{ 'lander-ice-cubes.png' | asset_url }}" alt="Free Stainless Steel Ice Cubes">
+            <div class="ll-item-desc">
+              <span class="ll-item-name ll-item-free">✓ Free Stainless Steel Ice Cubes <span class="ll-info-icon">ⓘ</span></span>
+            </div>
+            <div class="ll-item-pricing">
+              <span class="ll-item-price ll-free-label">FREE</span>
+              <span class="ll-item-orig">$19</span>
+            </div>
+          </div>
+          <div class="ll-item-row">
+            <div class="ll-item-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div class="ll-item-desc">
+              <span class="ll-item-name ll-item-free">✓ Free Shipping <span class="ll-info-icon">ⓘ</span></span>
+            </div>
+            <div class="ll-item-pricing">
+              <span class="ll-item-price ll-free-label">FREE</span>
+              <span class="ll-item-orig">$7</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2-boxes -->
+      <div class="ll-option" id="ll-opt-2">
+        <button class="ll-opt-header" onclick="llSelect('ll-opt-2', event)">
+          <div class="ll-opt-left">
+            <span class="ll-opt-title">2-boxes</span>
+            <span class="ll-opt-billing">billed $29/mo after 6 weeks</span>
+          </div>
+          <div class="ll-opt-right">
+            <span class="ll-save-badge">save 44%</span>
+            <div class="ll-opt-pricing">
+              <span class="ll-opt-orig">$98</span>
+              <span class="ll-opt-price">$55</span>
+            </div>
+          </div>
+        </button>
+        <div class="ll-opt-body">
+          <div class="ll-perk-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <span>Free Ice Cubes</span>
+          </div>
+          <div class="ll-perk-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span>Free shipping, everytime</span>
+          </div>
+          <div class="ll-perk-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Pause, skip, or cancel anytime</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1-box -->
+      <div class="ll-option" id="ll-opt-1">
+        <button class="ll-opt-header" onclick="llSelect('ll-opt-1', event)">
+          <div class="ll-opt-left">
+            <span class="ll-opt-title">1-box</span>
+            <span class="ll-opt-billing">billed $29 every 4 weeks</span>
+          </div>
+          <div class="ll-opt-right">
+            <span class="ll-save-badge">save 33%</span>
+            <div class="ll-opt-pricing">
+              <span class="ll-opt-orig">$43</span>
+              <span class="ll-opt-price">$29</span>
+            </div>
+          </div>
+        </button>
+        <div class="ll-opt-body">
+          <div class="ll-perk-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span>Free shipping, everytime</span>
+          </div>
+          <div class="ll-perk-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Pause, skip, or cancel anytime</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.ll-options -->
+
+    <!-- Hidden inputs -->
+    <input type="hidden" id="selling-plan-input" name="selling_plan" value="" disabled>
+    <input type="hidden" id="variant-id" name="id" value="{{ current_variant.id }}">
+
+    <!-- Subscribe CTA -->
+    <button class="ll-subscribe-btn" id="cta-btn">start now</button>
+    <p class="cta-note">tax included · shipping calculated at checkout</p>
+
+  </div>
+  </div><!-- /.purchase-col -->
+</section>
+
+{% render 'frontrow-testimonials' %}
+
+<!-- Sticky ATC bar -->
+<div class="sticky-atc" id="sticky-atc">
+  <div class="sticky-atc-inner">
+    <div class="sticky-product">
+      <div class="sticky-thumb">
+        <img src="{{ 'lander-hero.png' | asset_url }}" alt="day–guard">
+      </div>
+      <div>
+        <div class="sticky-product-name">welcome starter pack</div>
+        <div class="sticky-product-price" id="sticky-price-label">$29.00 &middot; subscribe &amp; save</div>
+      </div>
+    </div>
+    <button class="sticky-cta-pdp">start now</button>
+  </div>
+</div>
+
+<script>
+  window.DG_PRODUCT = {{ product | json }};
+  window.DG_VARIANT = {{ current_variant | json }};
+  window.DG_SELLING_PLANS = {{ product.selling_plan_groups | json }};
+</script>
+
+{% stylesheet %}
+/* ── Locked Lander Panel ── */
+.ll-popular-pill {
+  display: inline-block;
+  background: #fb9918;
+  color: #fff;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  border-radius: 999px;
+  padding: 4px 14px;
+  margin-bottom: 10px;
+  text-transform: lowercase;
+}
+.ll-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.ll-option {
+  border: 1.5px solid #e0ddd8;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #faf9f7;
+  transition: border-color 0.2s;
+}
+.ll-option--active {
+  border-color: #1d1d1b;
+  background: #fff;
+}
+.ll-opt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 14px 16px;
+  cursor: pointer;
+  text-align: left;
+  gap: 8px;
+}
+.ll-opt-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ll-opt-title {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1d1d1b;
+  letter-spacing: -0.5px;
+}
+.ll-opt-billing {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  color: #888;
+  letter-spacing: -0.1px;
+}
+.ll-opt-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.ll-save-badge {
+  background: #8b3a2a;
+  color: #fff;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.ll-opt-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.ll-opt-orig {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  color: #aaa;
+  text-decoration: line-through;
+}
+.ll-opt-price {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1d1d1b;
+  letter-spacing: -0.8px;
+}
+.ll-opt-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 14px;
+  gap: 0;
+  border-top: 1px solid #e8e5e0;
+}
+.ll-option--active .ll-opt-body {
+  display: flex;
+}
+.ll-item-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0ede8;
+}
+.ll-item-row:last-child { border-bottom: none; }
+.ll-item-img {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: #e8e5e0;
+}
+.ll-item-icon {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ll-item-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ll-item-name {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d1d1b;
+  line-height: 1.3;
+}
+.ll-item-free {
+  color: #204c3e;
+  font-weight: 500;
+}
+.ll-item-sub {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  color: #888;
+  line-height: 1.4;
+}
+.ll-info-icon {
+  font-size: 11px;
+  color: #aaa;
+}
+.ll-item-pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  flex-shrink: 0;
+}
+.ll-item-price {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1d1d1b;
+}
+.ll-free-label {
+  color: #204c3e;
+}
+.ll-item-orig {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  color: #aaa;
+  text-decoration: line-through;
+}
+.ll-perk-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  color: #999;
+  letter-spacing: -0.1px;
+}
+.ll-subscribe-btn {
+  width: 100%;
+  height: 56px;
+  background: #fb9918;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 8px;
+}
+.ll-subscribe-btn:hover { background: #e8860f; }
+{% endstylesheet %}
+
+{% javascript %}
+function llSelect(id, e) {
+  if (e) e.preventDefault();
+  document.querySelectorAll('.ll-option').forEach(function(o) {
+    o.classList.remove('ll-option--active');
+  });
+  document.getElementById(id).classList.add('ll-option--active');
+  // Update sticky price
+  var prices = { 'll-opt-3': '$69', 'll-opt-2': '$55', 'll-opt-1': '$29' };
+  var el = document.getElementById('sticky-price-label');
+  if (el) el.textContent = (prices[id] || '$29') + ' · subscribe & save';
+}
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Locked Lander Hero",
+  "settings": [],
+  "presets": [{ "name": "Locked Lander Hero" }]
+}
+{% endschema %}

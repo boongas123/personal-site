@@ -1,0 +1,257 @@
+{%- assign dg_url = '/products/day-guard-pack-of-10' -%}
+
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }}{% if page_title != shop.name %} — {{ shop.name }}{% endif %}</title>
+
+  {%- comment -%} Google Fonts {%- endcomment -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,700&display=swap" rel="stylesheet">
+
+  {%- comment -%} Sofia Pro via Adobe Fonts / Typekit {%- endcomment -%}
+  <link rel="stylesheet" href="https://use.typekit.net/placeholder.css" onerror="void(0)">
+
+  {%- comment -%} Day-Guard combined stylesheet {%- endcomment -%}
+  {{ 'dayguard.css' | asset_url | stylesheet_tag }}
+
+  {%- comment -%} Shopify required hook {%- endcomment -%}
+  {{ content_for_header }}
+</head>
+<body>
+
+  {%- comment -%} Cart overlay + full drawer (PDP has items; homepage has empty state) {%- endcomment -%}
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <span class="cart-drawer-title">your cart</span>
+      <button class="cart-drawer-close" id="cart-close" aria-label="Close cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="cart-drawer-body" id="cart-drawer-body">
+      {%- comment -%} Empty state {%- endcomment -%}
+      <div class="cart-empty" id="cart-empty">
+        <div class="cart-empty-icon">🛍</div>
+        <p>your cart is empty</p>
+        <a href="/products/day-guard-pack-of-10" class="cart-shop-link">shop now →</a>
+      </div>
+      <div id="cart-items-wrap" style="display:none"></div>
+    </div>
+    {%- comment -%} Cart footer — hidden until items present {%- endcomment -%}
+    <div class="cart-footer-section" id="cart-footer" style="display:none">
+      <div class="cart-subtotal">
+        <span>subtotal</span>
+        <span class="cart-subtotal-price" id="cart-subtotal">$75.00</span>
+      </div>
+      <p class="cart-note">tax included · shipping calculated at checkout</p>
+      <a href="{{ routes.checkout_url }}" class="cart-checkout-btn">checkout →</a>
+    </div>
+  </div>
+
+  {%- comment -%} Pillar modal overlay (shared across homepage + PDP) {%- endcomment -%}
+  <div class="pillar-modal-overlay" id="pillarModal">
+    <div class="pillar-modal">
+      <div class="pillar-modal-left">
+        <img class="pillar-modal-bg" id="pillarModalBg" src="" alt="">
+        <div class="pillar-modal-left-gradient"></div>
+        <span class="pillar-modal-left-label" id="pillarModalLabel"></span>
+      </div>
+      <div class="pillar-modal-right">
+        <button class="pillar-modal-close" id="pillarModalClose" aria-label="Close">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L12 12M12 1L1 12" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <p class="pillar-modal-title" id="pillarModalTitle"></p>
+        <p class="pillar-modal-desc" id="pillarModalDesc"></p>
+        <ul class="pillar-modal-ing-list" id="pillarModalIngList"></ul>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ════════════════════════════════
+       NAV
+       Homepage: transparent → beige on scroll (id="site-nav")
+       PDP: always solid — class "nav--solid" set by section
+  ════════════════════════════════ {%- endcomment -%}
+  {%- if template.name == 'product' -%}
+    {%- assign nav_id = 'nav' -%}
+    {%- assign nav_extra_class = 'nav--solid' -%}
+  {%- elsif template.name == 'page' and page.handle == 'essentials1' or template.name == 'page' and page.handle == 'merch-wine-opener' or template.name == 'page' and page.handle == 'merch-ice-cube' or template.name == 'page' and page.handle == 'merch-mosaic' or template.name == 'page' and page.handle == 'merch-future-proof' or template.name == 'page' and page.handle == 'science1' or template.name == 'page' and page.handle == 'lockedlander' -%}
+    {%- assign nav_id = 'nav' -%}
+    {%- assign nav_extra_class = 'nav--solid' -%}
+  {%- else -%}
+    {%- assign nav_id = 'site-nav' -%}
+    {%- assign nav_extra_class = '' -%}
+  {%- endif -%}
+  <nav class="nav {{ nav_extra_class }}" id="{{ nav_id }}">
+    <a href="{{ routes.root_url }}" class="nav-logo" aria-label="day–guard home">
+      <img class="nav-logo-light" src="{{ 'DG_Horizontal_White.png' | asset_url }}" alt="day–guard">
+      <img class="nav-logo-dark"  src="{{ 'DG_Horizontal_Black.png' | asset_url }}" alt="day–guard">
+      <span class="nav-logo-fallback" style="display:none">day–guard</span>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item has-dropdown">
+        <a href="/products/day-guard-pack-of-10" class="has-arrow">shop</a>
+        <div class="nav-dropdown">
+          <a href="/products/day-guard-pack-of-10">pre-alcohol vitamin jelly</a>
+          <a href="#">every day-guard</a>
+          <a href="#">bulk order</a>
+          <a href="/pages/essentials1">merch</a>
+          <a href="/pages/lockedlander">locked lander</a>
+        </div>
+      </li>
+      <li><a href="/pages/science1">science</a></li>
+      <li class="nav-item has-dropdown">
+        <a href="#" class="has-arrow">learn</a>
+        <div class="nav-dropdown">
+          <a href="#">about us</a>
+          <a href="#">blog</a>
+        </div>
+      </li>
+      <li class="nav-item has-dropdown">
+        <a href="/pages/help" class="has-arrow">help</a>
+        <div class="nav-dropdown">
+          <a href="/pages/help">Help Center</a>
+          <a href="/pages/faq">FAQs</a>
+          <a href="/pages/contact">Contact Us</a>
+        </div>
+      </li>
+    </ul>
+    <button class="nav-cart" id="cart-trigger" aria-label="Open cart">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="nav-cart-count" id="cart-count" style="display:none">0</span>
+    </button>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  {%- comment -%} Mobile slide-in menu {%- endcomment -%}
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-top">
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&times;</button>
+    </div>
+    <nav class="mobile-menu-nav">
+      <a href="/products/day-guard-pack-of-10">shop</a>
+      <a href="/pages/science">science</a>
+      <a href="#">learn</a>
+      <a href="/pages/help">help</a>
+    </nav>
+  </div>
+
+  {%- comment -%} ════ PAGE CONTENT ════ {%- endcomment -%}
+  {{ content_for_layout }}
+
+  {%- comment -%} ════════════════════════════════
+       FOOTER — shared across all pages
+  ════════════════════════════════ {%- endcomment -%}
+  <footer class="footer" id="footer">
+
+    <!-- LEFT PANEL: dark green -->
+    <div class="footer-left">
+      <div class="footer-left-top">
+        <p class="footer-signup-h">Join for 15% off your first order.</p>
+        <div class="footer-toggles">
+          <button class="ft-btn active" id="ft-email">email</button>
+          <button class="ft-btn" id="ft-sms">sms</button>
+        </div>
+        <div class="footer-form">
+          <input class="footer-input" id="ft-input" type="email" placeholder="enter your email.">
+          <button class="footer-submit" id="ft-submit" type="button" aria-label="Subscribe">→</button>
+        </div>
+        <p class="ft-msg" id="ft-msg"></p>
+        <p class="footer-disclaimer">*by completing this form you are signing up to receive our marketing and can unsubscribe at any time.</p>
+      </div>
+
+      <div class="footer-nav-grid">
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Shop</p>
+          <ul class="footer-nav-links">
+            <li><a href="/products/day-guard-pack-of-10">Pre-Alcohol Vitamin Jelly</a></li>
+            <li><a href="#">Every Day-Guard</a></li>
+            <li><a href="#">Bulk Order</a></li>
+            <li><a href="#">Merch</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Learn</p>
+          <ul class="footer-nav-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="/#ingredients">Science</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Legal</p>
+          <ul class="footer-nav-links">
+            <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/pages/terms-conditions">Terms &amp; Conditions</a></li>
+            <li><a href="/pages/accessibility">Accessibility</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-h">Support</p>
+          <ul class="footer-nav-links">
+            <li><a href="/pages/help">Help Center</a></li>
+            <li><a href="/pages/faq">FAQs</a></li>
+            <li><a href="/pages/contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-left-bottom">
+        <p class="footer-fda">FDA DISCLAIMER: The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease. All information presented here is not meant as a substitute for or alternate to information from health care practitioners. Please consult your health care professional about potential interactions or other possible complications before using any product. The Federal Food, Drug, and Cosmetic Act requires this notice.</p>
+        <div class="footer-bottom-row">
+          <p class="footer-copyright">&copy; 2025 LioLabs, Inc. &nbsp;&middot;&nbsp; 8 THE GRN STE A Dover, DE 19901 &nbsp;&middot;&nbsp; info@dayguard.com</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=61563012729660" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/takedayguard/" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@takedayguard" class="social-icon" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.02-.07z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/dayguard" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://www.amazon.com/Day-Guard-Refreshed-Science-Backed-Doctor-Formulated-Prevention/dp/B0G3CWYHDM" class="social-icon" aria-label="Amazon" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M15.93 17.09c-.15.12-.37.13-.54.05-.76-.63-.9-.92-1.31-1.52-1.25 1.28-2.14 1.66-3.76 1.66-1.92 0-3.41-1.18-3.41-3.56 0-1.85 1-3.11 2.43-3.73 1.24-.54 2.96-.64 4.28-.79v-.3c0-.55.04-1.19-.28-1.66-.28-.42-.81-.59-1.28-.59-.87 0-1.65.45-1.84 1.38-.04.21-.19.41-.4.42l-2.22-.24c-.19-.04-.4-.19-.34-.48.52-2.74 2.99-3.56 5.21-3.56 1.13 0 2.61.3 3.5 1.16 1.13 1.06 1.02 2.47 1.02 4.01v3.63c0 1.09.45 1.57.88 2.16.15.21.18.46-.01.62l-1.93 1.67zm-1.55-5.49v-.51c-1.65.1-3.39.37-3.39 2.3 0 .99.51 1.66 1.38 1.66.64 0 1.21-.39 1.57-.99.44-.74.44-1.44.44-2.46zm6.43 7.27C18.5 20.5 16.08 21 13.76 21c-3.69 0-7.01-1.37-9.52-3.62-.2-.18-.02-.42.21-.28 2.71 1.57 6.06 2.52 9.52 2.52 2.33 0 4.89-.48 7.26-1.49.36-.15.66.24.58.64zm.92-1.06c-.27-.35-1.78-.17-2.46-.08-.21.03-.24-.16-.06-.29 1.2-.85 3.18-.6 3.4-.32.22.29-.06 2.27-1.18 3.21-.17.15-.34.07-.26-.12.25-.64.83-2.07.56-2.4z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: lifestyle photo -->
+    <div class="footer-right">
+      <img class="footer-girl-img"
+           src="{{ 'footer-lifestyle.png' | asset_url }}"
+           alt="day–guard lifestyle">
+      <div class="footer-right-overlay">
+        <img class="footer-dg-logo" src="{{ 'DG_Horizontal_White.png' | asset_url }}" alt="day–guard">
+        <span class="footer-tagline">social tonight. healthy tomorrow.</span>
+      </div>
+    </div>
+
+  </footer>
+
+  {%- comment -%} Day-Guard combined JS {%- endcomment -%}
+  <script src="{{ 'dayguard.js' | asset_url }}" defer></script>
+
+</body>
+</html>

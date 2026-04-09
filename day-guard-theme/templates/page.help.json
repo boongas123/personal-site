@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "dg-page-help": {
+      "type": "dg-page-help",
+      "settings": {}
+    }
+  },
+  "order": ["dg-page-help"]
+}

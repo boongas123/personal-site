@@ -1,0 +1,179 @@
+  <!-- ════════════════════════════
+       CONTACT HERO
+  ════════════════════════════ -->
+  <section class="contact-hero" id="contact">
+    <div class="contact-hero-left">
+      <h1>we're here to help.</h1>
+      <p>
+        Have a question about your order, subscription, or the science behind day–guard?
+        Fill out the form or email us at <a href="mailto:hello@dayguard.com">hello@dayguard.com</a> — we reply within one business day.
+      </p>
+      <div class="contact-quick-links">
+        <a href="mailto:hello@dayguard.com" class="contact-quick-link">
+          <div class="contact-quick-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-quick-text-title">email us</div>
+            <div class="contact-quick-text-sub">hello@dayguard.com · reply within 1 business day</div>
+          </div>
+        </a>
+        <a href="#faq" class="contact-quick-link">
+          <div class="contact-quick-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div>
+            <div class="contact-quick-text-title">browse FAQs</div>
+            <div class="contact-quick-text-sub">answers to our most common questions</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <h2>send us a message</h2>
+      <form class="contact-form" onsubmit="handleContactSubmit(event)">
+        <div>
+          <label for="contact-name">name</label>
+          <input type="text" id="contact-name" placeholder="your name" required>
+        </div>
+        <div>
+          <label for="contact-email">email</label>
+          <input type="email" id="contact-email" placeholder="your@email.com" required>
+        </div>
+        <div>
+          <label for="contact-topic">topic</label>
+          <select id="contact-topic">
+            <option value="">select a topic</option>
+            <option value="order">order &amp; shipping</option>
+            <option value="subscription">subscription</option>
+            <option value="returns">returns &amp; refunds</option>
+            <option value="product">product question</option>
+            <option value="science">science &amp; ingredients</option>
+            <option value="other">other</option>
+          </select>
+        </div>
+        <div>
+          <label for="contact-message">message</label>
+          <textarea id="contact-message" placeholder="how can we help?" required></textarea>
+        </div>
+        <button type="submit" class="contact-submit">send message</button>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       FAQ
+  ════════════════════════════ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-inner">
+      <div class="faq-left-sticky">
+        <div class="faq-left">
+          <h2>Questions?<br>We're here<br>to help.</h2>
+          <p>Can't find your answer? Email us at <a href="mailto:hello@dayguard.com">hello@dayguard.com</a> — we reply within one business day.</p>
+        </div>
+      </div>
+      <div class="faq-right">
+        <p class="faq-category">Product</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            When should I take day–guard?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Take one stick before your first drink. For longer nights, take another every 3–5 drinks. The jelly format means no water needed — just tear, squeeze, and you're set.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How many sticks should I take?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>One stick covers a typical night out. For heavier nights, take one before drinking and one more midway through. Each pack contains 10 sticks — enough for 10 nights.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is day–guard safe with other supplements?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Yes. day–guard contains all-natural ingredients that are safe for most people. If you have a specific medical condition or take prescription medications, consult your doctor first.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What flavors are available?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>day–guard currently comes in Mango, Peach, and Apple flavors. All three deliver the same clinical formula — choose your favorite or try all three.</p></div>
+        </div>
+
+        <p class="faq-category">Subscription</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How does the subscription work?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Subscribe and save 19% on every order. Your pack ships on your chosen cadence (every 4 or 8 weeks) — skip, pause, or cancel anytime from your account dashboard with no fees or penalties.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I cancel anytime?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Absolutely. Cancel anytime before your next billing date with no questions asked. Log in to your account or email us and we'll handle it immediately.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I change my delivery frequency?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Yes — you can switch between 4-week and 8-week delivery intervals anytime from your account dashboard, or by emailing us at hello@dayguard.com.</p></div>
+        </div>
+
+        <p class="faq-category">Shipping &amp; Orders</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How fast will I receive my order?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Orders ship within 1–2 business days. US shipping is always free on subscriptions. You'll receive a tracking confirmation email as soon as your order leaves our warehouse.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What is your return policy?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>We offer a 90-day money back guarantee. If you're not satisfied for any reason, email us at hello@dayguard.com and we'll issue a full refund — no questions asked.</p></div>
+        </div>
+
+        <p class="faq-category">Science</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What is DHM and how does it work?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>DHM (Dihydromyricetin) is a flavonoid extracted from the Oriental Raisin Tree, used in traditional Korean medicine for centuries. It's backed by 167+ clinical studies showing it accelerates alcohol metabolism, reduces acetaldehyde buildup, and supports liver enzyme function.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Who formulated day–guard?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>day–guard was formulated by Dr. Steven Oh, MD at Brown University, in partnership with a leading Korean pharmaceutical company with 60+ years of expertise. Every ingredient was selected for clinically supported efficacy.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Are the ingredients vegan and allergen-free?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer"><p>Yes. day–guard is vegan, gluten-free, and free from common allergens. The full ingredient list is printed on every pack and available on our product page.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% schema %}
+{
+  "name": "Help Page",
+  "settings": [],
+  "presets": [{"name": "Help Page"}]
+}
+{% endschema %}

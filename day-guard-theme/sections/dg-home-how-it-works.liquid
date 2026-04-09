@@ -1,0 +1,48 @@
+<section class="howto-section" id="how-to">
+  <div class="howto-inner">
+  <div class="howto-intro fade-up">
+    <h2 class="howto-heading">how—to.</h2>
+    <p class="howto-sub">protected in just three steps</p>
+  </div>
+  <div class="howto-grid">
+    <div class="howto-card fade-up" data-video="{{ 'howto-1.mp4' | asset_url }}">
+      <div class="howto-card-img-wrap">
+        <img class="howto-card-img howto-card-still" src="{{ 'Still 1.jpg' | asset_url }}" alt="take before you drink">
+        <video class="howto-card-video" muted loop playsinline preload="none">
+          <source src="{{ 'howto-1.mp4' | asset_url }}" type="video/mp4">
+        </video>
+        <span class="howto-step-badge">1</span>
+      </div>
+      <p class="howto-card-label">take before you drink</p>
+    </div>
+    <div class="howto-card fade-up" data-video="{{ 'howto-2.mp4' | asset_url }}">
+      <div class="howto-card-img-wrap">
+        <img class="howto-card-img howto-card-still" src="{{ 'Still 2.jpg' | asset_url }}" alt="take another every 3-5 drinks">
+        <video class="howto-card-video" muted loop playsinline preload="none">
+          <source src="{{ 'howto-2.mp4' | asset_url }}" type="video/mp4">
+        </video>
+        <span class="howto-step-badge">2</span>
+      </div>
+      <p class="howto-card-label">take another every 3–5 drinks</p>
+    </div>
+    <div class="howto-card fade-up" data-video="{{ 'howto-3.mp4' | asset_url }}">
+      <div class="howto-card-img-wrap">
+        <img class="howto-card-img howto-card-still" src="{{ 'Still 3.png' | asset_url }}" alt="enjoy your night">
+        <video class="howto-card-video" muted loop playsinline preload="none">
+          <source src="{{ 'howto-3.mp4' | asset_url }}" type="video/mp4">
+        </video>
+        <span class="howto-step-badge">3</span>
+      </div>
+      <p class="howto-card-label">enjoy your night</p>
+    </div>
+  </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home How It Works",
+  "settings": [],
+  "presets": [{ "name": "Home How It Works" }]
+}
+{% endschema %}

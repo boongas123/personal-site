@@ -1,0 +1,1 @@
+/Users/johnoh/Desktop/Claude Code/Test/day-guard-theme/AGENTS.md

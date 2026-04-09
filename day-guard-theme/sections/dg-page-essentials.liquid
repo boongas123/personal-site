@@ -1,0 +1,88 @@
+  <!-- ════════════════════════════
+       HERO / HEADER
+  ════════════════════════════ -->
+  <section class="merch-hero">
+    <span class="merch-hero-tag fade-up">Essentials</span>
+    <h1 class="merch-hero-h1 fade-up">wear the brand.</h1>
+    <p class="merch-hero-sub fade-up">limited drops. no restocks. wear what you believe in.</p>
+  </section>
+
+
+  <!-- ════════════════════════════
+       PRODUCTS GRID
+  ════════════════════════════ -->
+  <section class="merch-section">
+    <div class="merch-grid">
+
+      <!-- Tee — full width, 4 color options -->
+      <!-- NOTE: Merch images below need to be uploaded to Shopify Files.
+           Replace each /images/merch/FILENAME.jpg with {{ 'FILENAME.jpg' | asset_url }} once uploaded. -->
+      <a href="/pages/merch-tee-mosaic" class="merch-card merch-card-tee fade-up" id="tee-card">
+        <div class="merch-card-img-wrap">
+          <img class="merch-card-img merch-img-front" id="tee-img-front" src="{{ '1Y0A9888.jpg' | asset_url }}" alt="day–guard tee — front">
+          <img class="merch-card-img merch-img-back"  id="tee-img-back"  src="{{ '1Y0A9896.jpg' | asset_url }}" alt="day–guard tee — back">
+        </div>
+        <div class="merch-card-info">
+          <div class="merch-card-info-left">
+            <span class="merch-card-tag">Apparel</span>
+            <p class="merch-card-name">day–guard tee</p>
+            <p class="merch-card-desc">Heavyweight cotton. Drop-shoulder or classic fit depending on colorway. Four options.</p>
+            <div class="tee-swatches">
+              <button class="tee-swatch active" data-color="Black" data-href="/pages/merch-tee-mosaic" data-front="{{ '1Y0A9888.jpg' | asset_url }}" data-back="{{ '1Y0A9896.jpg' | asset_url }}" style="background:#111;" aria-label="Black" onclick="return false;"></button>
+              <button class="tee-swatch" data-color="Creme" data-href="/pages/merch-tee-mosaic" data-front="{{ '1Y0A0263.jpg' | asset_url }}" data-back="{{ '1Y0A0311.jpg' | asset_url }}" style="background:#f5ede0; border-color:rgba(0,0,0,0.1);" aria-label="Creme" onclick="return false;"></button>
+              <button class="tee-swatch" data-color="Green" data-href="/pages/merch-tee-future-proof" data-front="{{ '1Y0A0080.jpg' | asset_url }}" data-back="{{ '1Y0A9997.jpg' | asset_url }}" style="background:#204c3e;" aria-label="Green" onclick="return false;"></button>
+              <button class="tee-swatch" data-color="Beige" data-href="/pages/merch-tee-future-proof" data-front="{{ '1Y0A0119.jpg' | asset_url }}" data-back="{{ '1Y0A0136.jpg' | asset_url }}" style="background:#f4ede0; border-color:rgba(0,0,0,0.1);" aria-label="Beige" onclick="return false;"></button>
+            </div>
+            <p class="tee-swatch-label" id="tee-color-label">Black · Mosaic</p>
+          </div>
+          <div class="merch-card-info-right">
+            <div class="merch-card-footer" style="flex-direction:column; align-items:flex-end; gap:6px;">
+              <span class="merch-card-price">$34.99</span>
+              <span class="merch-card-status" id="tee-stock-label" style="color:rgba(2,7,6,0.3); font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase;">Sold Out</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- C: Wine Opener -->
+      <a href="/pages/merch-wine-opener" class="merch-card fade-up">
+        <div class="merch-card-img-wrap">
+          <img class="merch-card-img" src="{{ '1Y0A0820.jpg' | asset_url }}" alt="day–guard wine opener">
+        </div>
+        <div class="merch-card-info">
+          <span class="merch-card-tag">Accessories</span>
+          <p class="merch-card-name">wine opener</p>
+          <p class="merch-card-desc">Stainless steel, minimalist design. Because nights out aren't always at the bar.</p>
+          <div class="merch-card-footer">
+            <span class="merch-card-price">$13</span>
+            <span class="merch-card-status sold-out">Sold Out</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- D: Ice Cube — Day-Guard -->
+      <a href="/pages/merch-ice-cube" class="merch-card fade-up">
+        <div class="merch-card-img-wrap">
+          <img class="merch-card-img" src="{{ '1Y0A0798.jpg' | asset_url }}" alt="day–guard ice cubes">
+        </div>
+        <div class="merch-card-info">
+          <span class="merch-card-tag">Accessories</span>
+          <p class="merch-card-name">ice cube — day–guard</p>
+          <p class="merch-card-desc">Set of 4 stainless steel reusable ice cubes. Keep your drink cold, not watered down.</p>
+          <div class="merch-card-footer">
+            <span class="merch-card-price">$19</span>
+            <span class="merch-card-status sold-out">Sold Out</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+{% schema %}
+{
+  "name": "Essentials Page",
+  "settings": [],
+  "presets": [{"name": "Essentials Page"}]
+}
+{% endschema %}

@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "dg-home-hero": {
+      "type": "dg-home-hero",
+      "settings": {}
+    },
+    "dg-home-social-proof": {
+      "type": "dg-home-social-proof",
+      "settings": {}
+    },
+    "dg-home-benefits": {
+      "type": "dg-home-benefits",
+      "settings": {}
+    },
+    "dg-home-doctor": {
+      "type": "dg-home-doctor",
+      "settings": {}
+    },
+    "dg-home-how-it-works": {
+      "type": "dg-home-how-it-works",
+      "settings": {}
+    },
+    "dg-home-faq": {
+      "type": "dg-home-faq",
+      "settings": {}
+    },
+    "dg-home-cta": {
+      "type": "dg-home-cta",
+      "settings": {}
+    }
+  },
+  "order": [
+    "dg-home-hero",
+    "dg-home-social-proof",
+    "dg-home-benefits",
+    "dg-home-doctor",
+    "dg-home-how-it-works",
+    "dg-home-cta",
+    "dg-home-faq"
+  ]
+}

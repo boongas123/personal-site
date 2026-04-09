@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "dg-page-science": {
+      "type": "dg-page-science",
+      "settings": {}
+    }
+  },
+  "order": ["dg-page-science"]
+}

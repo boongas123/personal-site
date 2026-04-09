@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "dg-page-essentials": {
+      "type": "dg-page-essentials",
+      "settings": {}
+    }
+  },
+  "order": ["dg-page-essentials"]
+}

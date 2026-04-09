@@ -1,0 +1,49 @@
+{%- comment -%} Product showcase + stats strip {%- endcomment -%}
+<section class="features-section" id="features">
+  <div class="product-showcase fade-up">
+    <!-- Left: large product photo -->
+    <div class="pshow-photo-wrap">
+      <img class="pshow-photo"
+           src="{{ 'product image with jelly.png' | asset_url }}"
+           alt="day–guard mango jelly sticks 10-pack">
+
+    </div>
+
+    <!-- Right: product info -->
+    <div class="pshow-info">
+      <h2 class="pshow-title">pre-alcohol vitamin jelly (10-pack)</h2>
+      <p class="pshow-desc">doctor formulated ingredients that prepare your liver and gut before the first sip.</p>
+      <a href="/products/day-guard-pack-of-10" class="pshow-btn">buy now<span class="pshow-btn-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- Stats row -->
+  <div class="features-stats" id="features-stats">
+    <div class="fstat">
+      <p class="fstat-num"><span class="fstat-count" data-target="20000" data-suffix=",000+">0</span></p>
+      <hr class="fstat-divider">
+      <p class="fstat-label">happy customers</p>
+      <p class="fstat-desc">Trusted by thousands to protect their liver, gut, and mornings after a night out.</p>
+    </div>
+    <div class="fstat">
+      <p class="fstat-num"><span class="fstat-count" data-target="167" data-suffix="+">0</span></p>
+      <hr class="fstat-divider">
+      <p class="fstat-label">clinical human studies backing core ingredients</p>
+      <p class="fstat-desc">Each ingredient in day–guard was carefully selected by physicians for its demonstrated clinical benefits.</p>
+    </div>
+    <div class="fstat">
+      <p class="fstat-num"><span class="fstat-count" data-target="60" data-suffix="+">0</span></p>
+      <hr class="fstat-divider">
+      <p class="fstat-label">years of pharmaceutical expertise</p>
+      <p class="fstat-desc">Crafted in partnership with a leading Korean pharmaceutical company founded in 1963.</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home Benefits + Stats",
+  "settings": [],
+  "presets": [{ "name": "Home Benefits + Stats" }]
+}
+{% endschema %}

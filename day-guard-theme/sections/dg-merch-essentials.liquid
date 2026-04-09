@@ -1,0 +1,243 @@
+<section class="merch-essentials">
+
+  <!-- Full-width hero banner image -->
+  <div class="merch-hero-img-wrap">
+    <img src="{{ 'merch-1Y0A0960.jpg' | asset_url }}" alt="day–guard merch collection" class="merch-hero-img">
+  </div>
+
+  <!-- Section header -->
+  <div class="merch-header">
+    <h1 class="merch-header-title">essentials</h1>
+    <span class="merch-header-count">4 products</span>
+  </div>
+
+  <!-- Product grid -->
+  <div class="merch-grid">
+
+    <!-- Mosaic Tee -->
+    <a class="merch-card" href="/pages/merch-mosaic">
+      <div class="merch-card-img-wrap">
+        <img src="{{ 'merch-1Y0A0311.jpg' | asset_url }}" alt="day–guard tee mosaic" loading="lazy">
+      </div>
+      <div class="merch-card-info">
+        <div class="merch-card-title">day–guard tee mosaic</div>
+        <div class="merch-card-price">$34.99</div>
+        <div class="merch-card-swatches">
+          <span class="merch-swatch merch-swatch--black" title="Black"></span>
+          <span class="merch-swatch merch-swatch--sand" title="Sand"></span>
+        </div>
+        <button class="merch-card-atc" onclick="event.preventDefault(); event.stopPropagation(); window.location='/pages/merch-mosaic'">add to cart</button>
+      </div>
+    </a>
+
+    <!-- Future Proof Tee -->
+    <a class="merch-card" href="/pages/merch-future-proof">
+      <div class="merch-card-img-wrap">
+        <img src="{{ 'merch-1Y0A0361.jpg' | asset_url }}" alt="day–guard tee future proof" loading="lazy">
+      </div>
+      <div class="merch-card-info">
+        <div class="merch-card-title">day–guard tee future proof</div>
+        <div class="merch-card-price">$34.99</div>
+        <div class="merch-card-swatches">
+          <span class="merch-swatch merch-swatch--green" title="Green"></span>
+          <span class="merch-swatch merch-swatch--sand" title="Sand"></span>
+        </div>
+        <button class="merch-card-atc" onclick="event.preventDefault(); event.stopPropagation(); window.location='/pages/merch-future-proof'">add to cart</button>
+      </div>
+    </a>
+
+    <!-- Wine Bottle Opener -->
+    <a class="merch-card" href="/pages/merch-wine-opener">
+      <div class="merch-card-img-wrap">
+        <img src="{{ 'merch-1Y0A0820.jpg' | asset_url }}" alt="day–guard wine bottle opener" loading="lazy">
+      </div>
+      <div class="merch-card-info">
+        <div class="merch-card-title">day–guard wine bottle opener</div>
+        <div class="merch-card-price">$13.00</div>
+        <button class="merch-card-atc" onclick="event.preventDefault(); event.stopPropagation(); window.location='/pages/merch-wine-opener'">add to cart</button>
+      </div>
+    </a>
+
+    <!-- Wine Ice Cube -->
+    <a class="merch-card" href="/pages/merch-ice-cube">
+      <div class="merch-card-img-wrap">
+        <img src="{{ 'merch-1Y0A0798.jpg' | asset_url }}" alt="day–guard wine ice cube" loading="lazy">
+      </div>
+      <div class="merch-card-info">
+        <div class="merch-card-title">day–guard wine ice cube</div>
+        <div class="merch-card-price">$19.00</div>
+        <button class="merch-card-atc" onclick="event.preventDefault(); event.stopPropagation(); window.location='/pages/merch-ice-cube'">add to cart</button>
+      </div>
+    </a>
+
+  </div>
+
+</section>
+
+{% stylesheet %}
+.merch-essentials {
+  background: #f4f1ec;
+  min-height: 100vh;
+  padding: 0 0 80px;
+}
+
+/* ── Hero banner image ── */
+.merch-hero-img-wrap {
+  width: 100%;
+  overflow: hidden;
+  max-height: 380px;
+}
+.merch-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ── Section header ── */
+.merch-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 40px 60px 32px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  margin-bottom: 40px;
+}
+.merch-header-title {
+  font-family: 'Hedvig Letters Serif', Georgia, serif;
+  font-size: 52px;
+  font-weight: 400;
+  letter-spacing: -1.5px;
+  color: #204c3e;
+  line-height: 1;
+  margin: 0;
+}
+.merch-header-count {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  color: #888;
+  letter-spacing: -0.3px;
+}
+
+/* ── Product grid ── */
+.merch-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 36px;
+  max-width: 1302px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+.merch-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.merch-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 298 / 343;
+  overflow: hidden;
+  border-radius: 13px;
+  background: #e8e5e0;
+  margin-bottom: 16px;
+}
+.merch-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.merch-card:hover .merch-card-img-wrap img {
+  transform: scale(1.03);
+}
+.merch-card-info {
+  padding: 0 4px;
+}
+.merch-card-title {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  color: #1d1d1b;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.merch-card-price {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 17px;
+  color: #444;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+
+/* ── Color swatches ── */
+.merch-card-swatches {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.merch-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,0,0,0.15);
+  display: inline-block;
+}
+.merch-swatch--black { background: #1d1d1b; }
+.merch-swatch--sand  { background: #d4b896; }
+.merch-swatch--green { background: #204c3e; }
+
+/* ── ATC button ── */
+.merch-card-atc {
+  width: 100%;
+  max-width: 203px;
+  height: 35px;
+  background: #fb9918;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.merch-card-atc:hover { background: #e8860f; }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .merch-grid {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 40px;
+  }
+}
+@media (max-width: 768px) {
+  .merch-hero-img-wrap { max-height: 240px; }
+  .merch-header { padding: 32px 20px 20px; }
+  .merch-header-title { font-size: 36px; }
+  .merch-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 0 20px;
+  }
+  .merch-card-title { font-size: 16px; }
+  .merch-card-atc { max-width: 100%; font-size: 13px; }
+}
+@media (max-width: 480px) {
+  .merch-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Merch Essentials Grid",
+  "settings": [],
+  "presets": [{ "name": "Merch Essentials Grid" }]
+}
+{% endschema %}

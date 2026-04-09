@@ -1,0 +1,89 @@
+{%- comment -%} Reviews carousel + bundles section {%- endcomment -%}
+
+<!-- Reviews carousel -->
+<section class="reviews" id="reviews">
+  <div class="reviews-head fade-up">
+    <p class="rev-community-heading">★★★★★ loved by our community</p>
+  </div>
+  <div class="reviews-nav">
+    <button class="rev-arrow rev-arrow-prev" id="rev-prev" aria-label="Previous review">&#8592;</button>
+    <div class="reviews-viewport">
+      <div class="reviews-track" id="reviews-track">
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"I don't drink without them now."</p>
+            <p class="rev-slide-name">Ali</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="{{ 'DSCF9265.jpg' | asset_url }}" alt="day-guard lifestyle">
+        </div>
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"Easy to keep in my pocket."</p>
+            <p class="rev-slide-name">Jeffrey T.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="{{ 'DSC01864.jpg' | asset_url }}" alt="day-guard lifestyle">
+        </div>
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"Mornings much more manageable."</p>
+            <p class="rev-slide-name">Scarlett M.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="{{ 'C599192_C599192-R1-024-10A.jpg' | asset_url }}" alt="day-guard lifestyle">
+        </div>
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"Tastes like a fruity snack."</p>
+            <p class="rev-slide-name">Isaac C.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="{{ '1Y0A0569.jpg' | asset_url }}" alt="day-guard lifestyle">
+        </div>
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"Woke up way more functional."</p>
+            <p class="rev-slide-name">Isaiah W.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="{{ 'DSC09693.jpg' | asset_url }}" alt="day-guard lifestyle">
+        </div>
+      </div>
+    </div>
+    <button class="rev-arrow rev-arrow-next" id="rev-next" aria-label="Next review">&#8594;</button>
+  </div>
+  <div class="reviews-cta fade-up">
+    <div class="rev-product-cta">
+      <img class="rev-product-thumb" src="{{ 'product(slanted).png' | asset_url }}" alt="day–guard">
+      <div class="rev-product-info">
+        <p class="rev-product-title">pre-alcohol vitamin jelly sticks</p>
+        <p class="rev-product-price">from $29.00 · subscribe &amp; save</p>
+      </div>
+      <a href="javascript:document.getElementById('cta-btn').click()" class="rev-product-btn">shop now <span class="rev-btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PDP Reviews",
+  "settings": [],
+  "presets": [{ "name": "PDP Reviews + Bundles" }]
+}
+{% endschema %}

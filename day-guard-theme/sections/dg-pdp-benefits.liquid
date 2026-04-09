@@ -1,0 +1,105 @@
+{%- comment -%} Insurance image + comparison table {%- endcomment -%}
+
+<!-- Insurance / orange section -->
+<section class="insurance-section">
+  <div class="insurance-inner fade-up">
+    <img class="insurance-img insurance-img-desktop"
+         src="{{ 'orange section.png' | asset_url }}"
+         alt="Insurance for when you drink">
+    <img class="insurance-img insurance-img-mobile"
+         src="{{ 'orange-section-mobile.png' | asset_url }}"
+         alt="Insurance for when you drink">
+  </div>
+</section>
+
+<!-- Our Difference comparison table -->
+<section class="comparison-section">
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-check" viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="10" fill="#204c3e"/>
+      <path d="M6.5 10.5l2.5 2.5 4.5-4.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-cross" viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="9" stroke="rgba(32,76,62,0.28)" stroke-width="0.8"/>
+      <path d="M7 7l6 6M13 7l-6 6" stroke="rgba(32,76,62,0.38)" stroke-width="1.2" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+  <div class="comparison-inner">
+    <div class="comparison-right">
+      <h2 class="comparison-heading">our difference.</h2>
+      <div class="comparison-table-frame">
+      <table class="comparison-table">
+        <colgroup>
+          <col class="label-col">
+          <col class="dg-col-col">
+          <col class="comp-col">
+          <col class="comp-col">
+          <col class="comp-col">
+          <col class="comp-col">
+        </colgroup>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="dg-col"><span class="dg-wordmark">day—guard</span></th>
+            <th>cheers<br>health</th>
+            <th>z-biotics</th>
+            <th>liquid iv</th>
+            <th>waterboy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>liver support complex</td>
+            <td class="dg-cell dg-liver"><span class="dg-mg">1255mg</span></td>
+            <td><span class="comp-mg">1200mg</span></td>
+            <td><span class="comp-mg">&lt;1000mg</span></td>
+            <td><span class="comp-mg">0mg</span></td>
+            <td><span class="comp-mg">0mg</span></td>
+          </tr>
+          <tr>
+            <td>prebiotics</td>
+            <td class="dg-cell"><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+            <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+            <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+            <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+            <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+          </tr>
+          <tr>
+            <td>b-vitamin complex</td>
+            <td class="dg-cell"><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+            <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+            <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+            <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+            <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+          </tr>
+          <tr>
+            <td>electrolytes</td>
+            <td class="dg-cell"><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+            <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+            <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+            <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+            <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+          </tr>
+          <tr>
+            <td>portable single servings</td>
+            <td class="dg-cell"><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+            <td><svg class="cmp-cross"><use href="#icon-cross"/></svg></td>
+            <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+            <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+            <td><svg class="cmp-check"><use href="#icon-check"/></svg></td>
+          </tr>
+        </tbody>
+      </table>
+      </div><!-- /.comparison-table-frame -->
+      <a href="javascript:document.getElementById('cta-btn').click()" class="comparison-cta">buy now</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PDP Benefits + Comparison",
+  "settings": [],
+  "presets": [{ "name": "PDP Benefits + Comparison" }]
+}
+{% endschema %}

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "dg-merch-wine-opener": {
+      "type": "dg-merch-wine-opener",
+      "settings": {}
+    }
+  },
+  "order": ["dg-merch-wine-opener"]
+}

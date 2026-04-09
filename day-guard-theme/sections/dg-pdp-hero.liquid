@@ -1,0 +1,277 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<section class="pdp-hero">
+
+  <!-- Gallery — desktop grid + mobile carousel -->
+  <div class="gallery">
+
+    <!-- Mobile-only snap-scroll carousel -->
+    <div class="mobile-gallery" id="mobile-gallery">
+      <div class="mgc-track" id="mgc-track">
+        <div class="mgc-slide mgc-slide-product">
+          <img src="{{ 'product image with jelly.png' | asset_url }}" alt="day–guard mango pre-alcohol jelly sticks 10-pack">
+          <!-- Animated press bar -->
+          <div class="gallery-press-overlay">
+            <div class="gallery-press-track">
+              <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" alt="Forbes · #1 doctor recommended · The Boston Globe">
+              <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+              <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+              <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+            </div>
+          </div>
+        </div>
+        <div class="mgc-slide">
+          <img src="{{ 'Rectangle 1739331476.png' | asset_url }}" alt="mango flavor">
+        </div>
+        <div class="mgc-slide mgc-slide-steps" id="mgc-steps-slide">
+          <img src="{{ '1.png' | asset_url }}" class="mgc-step active" alt="take one before drinking">
+          <img src="{{ '2.png' | asset_url }}" class="mgc-step" alt="cheers with day–guard">
+          <img src="{{ '3.png' | asset_url }}" class="mgc-step" alt="enjoy your night">
+          <div class="mgc-step-dots">
+            <div class="mgc-step-dot active"></div>
+            <div class="mgc-step-dot"></div>
+            <div class="mgc-step-dot"></div>
+          </div>
+        </div>
+        <div class="mgc-slide">
+          <img src="{{ 'FDA-approved.png' | asset_url }}" alt="clinician approved">
+        </div>
+        <div class="mgc-slide">
+          <img src="{{ 'DG_Carousel_Artwork8.jpg' | asset_url }}" alt="supplement facts">
+        </div>
+      </div>
+      <div class="mgc-dots" id="mgc-dots">
+        <div class="mgc-dot active"></div>
+        <div class="mgc-dot"></div>
+        <div class="mgc-dot"></div>
+        <div class="mgc-dot"></div>
+        <div class="mgc-dot"></div>
+      </div>
+    </div>
+
+    <!-- Main product image with FrontrowMD badge + press bar (desktop) -->
+    <div class="gallery-main-wrap">
+      <img class="gallery-main-img"
+           src="{{ 'product image with jelly.png' | asset_url }}"
+           alt="day–guard mango pre-alcohol jelly sticks 10-pack">
+      <!-- Animated press bar -->
+      <div class="gallery-press-overlay">
+        <div class="gallery-press-track">
+          <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" alt="Forbes · #1 doctor recommended · The Boston Globe">
+          <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+          <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+          <img src="{{ 'pressbarv2.png' | asset_url }}" class="gp-bar-img" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <!-- 2×2 thumbnail grid (desktop) -->
+    <div class="gallery-grid">
+      <!-- Row 1 left: mango fruit texture -->
+      <img src="{{ 'Rectangle 1739331476.png' | asset_url }}" alt="mango flavor">
+      <!-- Row 1 right: lifestyle slideshow -->
+      <div class="lifestyle-slide-wrap" id="lifestyle-wrap">
+        <img src="{{ '1.png' | asset_url }}" alt="take one before drinking" class="active" data-slide="0">
+        <img src="{{ '2.png' | asset_url }}" alt="cheers with day–guard" data-slide="1">
+        <img src="{{ '3.png' | asset_url }}" alt="friends enjoying day–guard" data-slide="2">
+        <div class="lifestyle-dots">
+          <div class="lifestyle-dot active"></div>
+          <div class="lifestyle-dot"></div>
+          <div class="lifestyle-dot"></div>
+        </div>
+      </div>
+      <!-- Row 2 left: FDA facility -->
+      <img src="{{ 'FDA-approved.png' | asset_url }}" alt="manufactured in FDA-registered facility">
+      <!-- Row 2 right: supplement facts -->
+      <img src="{{ 'DG_Carousel_Artwork8.jpg' | asset_url }}" alt="supplement facts">
+    </div>
+
+  </div>
+
+  <!-- Purchase panel -->
+  <div class="purchase-col">
+  <div class="purchase-panel">
+
+    <!-- Stars + bestseller -->
+    <div class="pdp-rating">
+      <span class="pdp-bestseller">best seller</span>
+      <span class="pdp-stars">★★★★★</span>
+      <span class="pdp-rating-count">450+</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="pdp-title">pre-alcohol<br>vitamin jelly</h1>
+
+    <!-- Description -->
+    <p class="pdp-description">
+      A single jelly stick before you drink. Clinically backed ingredients that support your liver, gut, and hydration – so you wake up sharp, balanced, and ready to go.
+    </p>
+
+    <!-- Price -->
+    <div class="price-block">
+      <div class="price-row">
+        <div class="price-main" id="price-main">$75.00</div>
+        <div class="price-original" id="price-original"></div>
+      </div>
+      <div class="price-per-box">10 sticks per box</div>
+    </div>
+
+    <!-- Quantity box selector -->
+    <div class="qty-boxes" id="qty-boxes">
+      <div class="qty-box" data-qty="1" data-price="2.90" onclick="selectQty(this)">
+        <div class="qty-box-units">1 box</div>
+        <div class="qty-box-price">$2.90 / stick</div>
+      </div>
+      <div class="qty-box" data-qty="2" data-price="2.75" onclick="selectQty(this)">
+        <span class="qty-box-badge popular">most popular</span>
+        <div class="qty-box-units">2 box</div>
+        <div class="qty-box-price">$2.75 / stick</div>
+      </div>
+      <div class="qty-box active" data-qty="3" data-price="2.50" onclick="selectQty(this)">
+        <span class="qty-box-badge deal">best deal</span>
+        <div class="qty-box-units">3 box</div>
+        <div class="qty-box-price">$2.50 / stick</div>
+      </div>
+    </div>
+
+    <!-- Subscribe / Buy Once toggle -->
+    <div class="purchase-toggle" id="purchase-toggle">
+      <div class="toggle-track-pill" id="toggle-pill"></div>
+      <button class="toggle-btn active" id="tog-sub" onclick="setToggle('sub')">
+        subscribe &amp; <span class="toggle-save" id="toggle-save-badge">save 19%</span>
+      </button>
+      <button class="toggle-btn" id="tog-once" onclick="setToggle('once')">
+        buy once
+      </button>
+    </div>
+
+    <!-- Delivery cadence (subscription only) -->
+    <div class="cadence-select" id="cadence-select">
+      <div class="cadence-custom" id="cadence-custom">
+        <div class="cadence-selected" id="cadence-selected" onclick="toggleCadence()">
+          <span id="cadence-label">delivery every 4 weeks</span>
+          <svg class="cadence-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cadence-options" id="cadence-options">
+          <div class="cadence-option active" onclick="selectCadence(this, 4)">delivery every 4 weeks</div>
+          <div class="cadence-option" onclick="selectCadence(this, 8)">delivery every 8 weeks</div>
+        </div>
+      </div>
+      <input type="hidden" id="cadence-dropdown" value="4">
+    </div>
+
+    <!-- Recharge hidden selling_plan input -->
+    <input type="hidden" id="selling-plan-input" name="selling_plan" value="" disabled>
+    <!-- Shopify variant ID for cart submission -->
+    <input type="hidden" id="variant-id" name="id" value="{{ current_variant.id }}">
+
+    <!-- Subscription perks -->
+    <div class="panel-perks">
+      <div class="panel-perk">free US shipping on all subscription orders</div>
+      <div class="panel-perk">90-day money back guarantee</div>
+      <div class="panel-perk">modify &amp; cancel anytime</div>
+    </div>
+
+    <!-- Start now CTA row -->
+    <div class="start-now-row">
+      <div class="qty-counter">
+        <button class="qty-counter-btn" onclick="changeCount(-1)">−</button>
+        <span class="qty-counter-val" id="stick-count">1</span>
+        <button class="qty-counter-btn" onclick="changeCount(1)">+</button>
+      </div>
+      <button class="start-now-btn" id="cta-btn">start now</button>
+    </div>
+    <p class="cta-note">tax included · shipping calculated at checkout</p>
+
+    <!-- Panel accordions -->
+    <div class="panel-accord">
+      <div class="panel-accord-item" id="pa-benefits">
+        <button class="panel-accord-trigger" onclick="toggleAccord('pa-benefits')">
+          <span>benefits</span>
+          <span class="accord-icon"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1v9M1 5.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="panel-accord-body">
+          <div class="panel-accord-inner">
+            <ul>
+              <li>Supports liver detox and alcohol metabolism</li>
+              <li>Reduces bloating and supports gut microbiome</li>
+              <li>Replenishes B-vitamins alcohol depletes</li>
+              <li>Restores electrolytes lost when drinking</li>
+              <li>Reduces next-morning inflammation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="panel-accord-item" id="pa-ingredients">
+        <button class="panel-accord-trigger" onclick="toggleAccord('pa-ingredients')">
+          <span>ingredients</span>
+          <span class="accord-icon"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1v9M1 5.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="panel-accord-body">
+          <div class="panel-accord-inner">
+            <ul>
+              <li>DHM (Dihydromyricetin) 300mg</li>
+              <li>Prebiotics (FOS) — gut microbiome defense</li>
+              <li>Electrolyte Blend — Na, K, Mg</li>
+              <li>B-Vitamin Complex — B1, B6, B12</li>
+              <li>Vitamin C 90mg — antioxidant defense</li>
+            </ul>
+            <a href="#" class="accord-link">No fillers · Vegan · Gluten-free</a>
+          </div>
+        </div>
+      </div>
+      <div class="panel-accord-item" id="pa-shipping">
+        <button class="panel-accord-trigger" onclick="toggleAccord('pa-shipping')">
+          <span>shipping &amp; returns</span>
+          <span class="accord-icon"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1v9M1 5.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="panel-accord-body">
+          <div class="panel-accord-inner">
+            <ul>
+              <li>Free US shipping on all subscription orders</li>
+              <li>Ships within 1–2 business days</li>
+              <li>90-day money-back guarantee</li>
+              <li>Cancel subscription anytime, no fees</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /.purchase-col -->
+</section>
+
+{% render 'frontrow-testimonials' %}
+
+<!-- Sticky ATC bar -->
+<div class="sticky-atc" id="sticky-atc">
+  <div class="sticky-atc-inner">
+    <div class="sticky-product">
+      <div class="sticky-thumb">
+        <img src="{{ 'product(slanted).png' | asset_url }}" alt="day–guard">
+      </div>
+      <div>
+        <div class="sticky-product-name">pre&mdash;alcohol vitamin jelly</div>
+        <div class="sticky-product-price" id="sticky-price-label">$75.00 &middot; subscribe &amp; save</div>
+      </div>
+    </div>
+    <button class="sticky-cta-pdp">start now</button>
+  </div>
+</div>
+
+<script>
+  window.DG_PRODUCT = {{ product | json }};
+  window.DG_VARIANT = {{ current_variant | json }};
+  window.DG_SELLING_PLANS = {{ product.selling_plan_groups | json }};
+</script>
+
+{% schema %}
+{
+  "name": "PDP Hero",
+  "settings": [],
+  "presets": [{ "name": "PDP Hero" }]
+}
+{% endschema %}

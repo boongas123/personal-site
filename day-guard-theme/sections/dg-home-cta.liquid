@@ -1,0 +1,123 @@
+{%- comment -%} Press section + Reviews carousel + Homepage sticky CTA {%- endcomment -%}
+
+<!-- Press section -->
+<section class="press-section" id="press">
+  <img class="press-bg"
+       src="https://www.figma.com/api/mcp/asset/6623c733-4e3c-4dd3-ae01-cc4200402162"
+       alt="" aria-hidden="true">
+  <div class="press-inner">
+    <p class="press-label fade-up">day–guard in the press</p>
+    <blockquote class="press-quote fade-up" id="press-quote">&ldquo;day–guard brings Korean wellness culture to American consumers through a reimagined approach to social drinking.&rdquo;</blockquote>
+    <div class="press-logos fade-up">
+      <button class="press-logo-btn active" data-publication="Forbes"
+              data-quote="&ldquo;day&ndash;guard brings Korean wellness culture to American consumers through a reimagined approach to social drinking.&rdquo;">
+        <img class="press-logo" src="{{ 'Forbes_logo.svg' | asset_url }}" alt="Forbes">
+      </button>
+      <button class="press-logo-btn" data-publication="SFGate"
+              data-quote="&ldquo;day&ndash;guard turns pre-drinking support into an easy, on-the-go ritual instead of another pill or powder.&rdquo;">
+        <img class="press-logo" src="{{ 'Logo_of_SFGate.svg' | asset_url }}" alt="SF Gate">
+      </button>
+      <button class="press-logo-btn" data-publication="The Korea Herald"
+              data-quote="&ldquo;day&ndash;guard brings Korea&rsquo;s preventive drinking ritual to the U.S. in a format that feels modern, effective, and easy to use.&rdquo;">
+        <img class="press-logo" src="{{ 'The_Korea_Herald__idup90auts_1_1.svg' | asset_url }}" alt="The Korea Herald">
+      </button>
+      <button class="press-logo-btn" data-publication="The Boston Globe"
+              data-quote="&ldquo;day&ndash;guard offers more than a hydration fix, pairing convenience with targeted liver support in a portable jelly stick.&rdquo;">
+        <img class="press-logo" src="{{ 'The_Boston_Globe (1).svg' | asset_url }}" alt="The Boston Globe">
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews carousel -->
+<section class="reviews" id="reviews">
+  <div class="reviews-head fade-up">
+    <p class="rev-community-heading">★★★★★ loved by our community</p>
+  </div>
+  <div class="reviews-nav">
+    <button class="rev-arrow rev-arrow-prev" id="rev-prev" aria-label="Previous review">&#8592;</button>
+    <div class="reviews-viewport">
+      <div class="reviews-track" id="reviews-track">
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"I don't drink without them now."</p>
+            <p class="rev-slide-name">Ali</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="{{ 'DSCF9265.jpg' | asset_url }}" alt="day-guard lifestyle">
+        </div>
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"Easy to keep in my pocket."</p>
+            <p class="rev-slide-name">Jeffrey T.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="{{ 'DSC01864.jpg' | asset_url }}" alt="day-guard lifestyle">
+        </div>
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"Mornings much more manageable."</p>
+            <p class="rev-slide-name">Scarlett M.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="{{ 'C599192_C599192-R1-024-10A.jpg' | asset_url }}" alt="day-guard lifestyle">
+        </div>
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"Tastes like a fruity snack."</p>
+            <p class="rev-slide-name">Isaac C.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="{{ '1Y0A0569.jpg' | asset_url }}" alt="day-guard lifestyle">
+        </div>
+        <div class="rev-slide">
+          <div class="rev-slide-inner">
+            <p class="rev-slide-stars">★★★★★</p>
+            <p class="rev-slide-quote">"Woke up way more functional."</p>
+            <p class="rev-slide-name">Isaiah W.</p>
+            <p class="rev-slide-verified">Verified Buyer ✓</p>
+          </div>
+        </div>
+        <div class="rev-slide photo">
+          <img src="{{ 'DSC09693.jpg' | asset_url }}" alt="day-guard lifestyle">
+        </div>
+      </div>
+    </div>
+    <button class="rev-arrow rev-arrow-next" id="rev-next" aria-label="Next review">&#8594;</button>
+  </div>
+  <div class="reviews-cta fade-up">
+    <div class="rev-product-cta">
+      <img class="rev-product-thumb" src="{{ 'product(slanted).png' | asset_url }}" alt="day–guard">
+      <div class="rev-product-info">
+        <p class="rev-product-title">pre-alcohol vitamin jelly sticks</p>
+        <p class="rev-product-price">from $29.00 · subscribe &amp; save</p>
+      </div>
+      <a href="/products/day-guard-pack-of-10" class="rev-product-btn">shop now <span class="rev-btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Homepage sticky CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <a href="/products/day-guard-pack-of-10" class="sticky-cta-btn">get better mornings<span class="sticky-cta-arrow"> →</span></a>
+</div>
+
+{% schema %}
+{
+  "name": "Home CTA & Reviews",
+  "settings": [],
+  "presets": [{ "name": "Home CTA & Reviews" }]
+}
+{% endschema %}

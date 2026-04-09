@@ -1,0 +1,63 @@
+{%- comment -%} Science / ingredients pillars + trusted experts {%- endcomment -%}
+
+<!-- Science pillars -->
+<section class="science-section science-section--pdp" id="ingredients">
+  <div class="science-inner">
+    <div class="science-header fade-up">
+      <span class="science-tag">WHAT'S INSIDE</span>
+      <h2 class="science-heading">the science</h2>
+      <p class="science-sub">Every ingredient in day—guard is clinically backed, transparently dosed, and formulated to protect your body the morning after.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card fade-up" data-pillar="liver">
+        <img class="pillar-bg" src="{{ 'Liver Support.png' | asset_url }}" alt="Liver Support">
+        <div class="pillar-gradient" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 60%);"></div>
+        <span class="pillar-label">Liver Support</span>
+      </div>
+      <div class="pillar-card fade-up" data-pillar="gut" style="transition-delay:.08s">
+        <img class="pillar-bg" src="{{ 'Gut Support.png' | asset_url }}" alt="Gut Support">
+        <div class="pillar-gradient" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 60%);"></div>
+        <span class="pillar-label">Gut Support</span>
+      </div>
+      <div class="pillar-card fade-up" data-pillar="vitamins" style="transition-delay:.16s">
+        <img class="pillar-bg" src="{{ 'Vitamin Replenishment.png' | asset_url }}" alt="Vitamin Replenishment">
+        <div class="pillar-gradient" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 60%);"></div>
+        <span class="pillar-label">Vitamin Replenishment</span>
+      </div>
+      <div class="pillar-card fade-up" data-pillar="hydration" style="transition-delay:.24s">
+        <img class="pillar-bg" src="{{ 'Hydration.png' | asset_url }}" alt="Hydration">
+        <div class="pillar-gradient" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 60%);"></div>
+        <span class="pillar-label">Hydration</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trusted by experts -->
+<section class="trusted-section" id="credibility">
+  <div class="trusted-inner">
+    <div class="trusted-left fade-up">
+      <h2 class="trusted-heading">trusted by experts</h2>
+      <img class="trusted-photo-mobile"
+           src="{{ 'doctor-steven-oh.png' | asset_url }}"
+           alt="Dr. Steven Oh, Medical Advisor">
+      <blockquote class="trusted-quote">"What makes day–guard different is the comprehensiveness. The formulation targets the full cascade of what alcohol does to your body."</blockquote>
+      <p class="trusted-doctor-name">Dr. Steven Oh</p>
+      <p class="trusted-doctor-title">MD, Medical Advisor</p>
+      <a href="/pages/science" class="trusted-learn-more">learn more</a>
+    </div>
+    <div class="trusted-right fade-up" style="transition-delay:.12s">
+      <img class="trusted-photo"
+           src="{{ 'doctor-steven-oh.png' | asset_url }}"
+           alt="Dr. Steven Oh, Medical Advisor">
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PDP Science + Doctor",
+  "settings": [],
+  "presets": [{ "name": "PDP Science + Doctor" }]
+}
+{% endschema %}

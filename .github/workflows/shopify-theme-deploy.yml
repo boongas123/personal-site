@@ -1,0 +1,28 @@
+name: Deploy to Shopify Preview Theme
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'day-guard-theme/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli @shopify/theme
+
+      - name: Push to Shopify Preview Theme
+        working-directory: day-guard-theme
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+        run: |
+          shopify theme push \
+            --store ${{ secrets.SHOPIFY_STORE }} \
+            --theme ${{ secrets.SHOPIFY_THEME_ID }} \
+            --no-color

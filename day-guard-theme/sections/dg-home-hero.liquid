@@ -1,0 +1,34 @@
+<section class="hero" id="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="{{ 'hero.mov' | asset_url }}" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-rating">
+      <span class="hero-stars">★★★★★</span>
+      <span class="hero-rating-txt">20,000+ happy customers</span>
+    </div>
+    <h1 class="hero-h1">
+      don't let your tonight<br>ruin your tomorrow.
+    </h1>
+    <p class="hero-sub">
+      doctor formulated jelly sticks that protect<br>your liver and gut when you drink
+    </p>
+    <a href="/products/day-guard-pack-of-10" class="hero-btn">
+      shop now<span class="hero-btn-arrow">→</span>
+    </a>
+  </div>
+  <div class="hero-badge">
+    <span class="hero-badge-num">#1</span>
+    <div class="hero-badge-divider"></div>
+    <span class="hero-badge-text">Doctor recommended<br><span>Alcohol-aid brand</span></span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home Hero",
+  "settings": [],
+  "presets": [{ "name": "Home Hero" }]
+}
+{% endschema %}

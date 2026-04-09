@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "dg-merch-future-proof": {
+      "type": "dg-merch-future-proof",
+      "settings": {}
+    }
+  },
+  "order": ["dg-merch-future-proof"]
+}

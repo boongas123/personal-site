@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "dg-merch-mosaic": {
+      "type": "dg-merch-mosaic",
+      "settings": {}
+    }
+  },
+  "order": ["dg-merch-mosaic"]
+}

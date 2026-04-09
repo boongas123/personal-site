@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "dg-locked-lander-hero": { "type": "dg-locked-lander-hero", "settings": {} },
+    "dg-pdp-benefits": { "type": "dg-pdp-benefits", "settings": {} },
+    "dg-pdp-science": { "type": "dg-pdp-science", "settings": {} },
+    "dg-pdp-reviews": { "type": "dg-pdp-reviews", "settings": {} },
+    "dg-pdp-faq": { "type": "dg-pdp-faq", "settings": {} }
+  },
+  "order": [
+    "dg-locked-lander-hero",
+    "dg-pdp-benefits",
+    "dg-pdp-science",
+    "dg-pdp-reviews",
+    "dg-pdp-faq"
+  ]
+}

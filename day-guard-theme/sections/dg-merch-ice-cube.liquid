@@ -1,0 +1,210 @@
+<section class="merch-pdp">
+
+  <!-- Gallery -->
+  <div class="mpdp-gallery">
+    <div class="mpdp-gallery-main">
+      <img src="{{ 'merch-1Y0A0682.jpg' | asset_url }}" alt="day–guard wine ice cube" id="ic-main-img" class="mpdp-main-img">
+    </div>
+    <div class="mpdp-thumbs">
+      <div class="mpdp-thumb active" onclick="mpdpSwap('ic-main-img', this, '{{ 'merch-1Y0A0682.jpg' | asset_url }}')">
+        <img src="{{ 'merch-1Y0A0682.jpg' | asset_url }}" alt="">
+      </div>
+      <div class="mpdp-thumb" onclick="mpdpSwap('ic-main-img', this, '{{ 'merch-1Y0A0798.jpg' | asset_url }}')">
+        <img src="{{ 'merch-1Y0A0798.jpg' | asset_url }}" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- Purchase panel -->
+  <div class="mpdp-panel">
+    <div class="mpdp-breadcrumb"><a href="/pages/essentials1">essentials</a> / wine ice cube</div>
+
+    <h1 class="mpdp-title">day–guard wine ice cube</h1>
+    <div class="mpdp-price">$19.00</div>
+
+    <p class="mpdp-desc">
+      Keep your wine at the perfect temperature without diluting it. A set of four reusable stainless steel cubes — elegant, effective, and built to last.
+    </p>
+    <ul class="mpdp-bullets">
+      <li>Set of 4 stainless steel cubes</li>
+      <li>Chill without diluting your wine</li>
+      <li>Freeze and reuse, endlessly</li>
+      <li>Dishwasher-safe</li>
+    </ul>
+
+    <!-- Qty + ATC -->
+    <div class="mpdp-atc-row">
+      <div class="mpdp-qty">
+        <button class="mpdp-qty-btn" onclick="mpdpQtyChange('ic-qty-val', -1)">−</button>
+        <span class="mpdp-qty-val" id="ic-qty-val">1</span>
+        <button class="mpdp-qty-btn" onclick="mpdpQtyChange('ic-qty-val', 1)">+</button>
+      </div>
+      <button class="mpdp-atc-btn">add to cart</button>
+    </div>
+    <p class="mpdp-checkout-note">Tax included. Shipping calculated at checkout.</p>
+
+    <!-- Accordions -->
+    <div class="mpdp-accord">
+      <div class="mpdp-accord-item" id="mpdp-ic-materials">
+        <button class="mpdp-accord-trigger" onclick="mpdpToggleAccord('mpdp-ic-materials')">
+          <span>materials</span>
+          <span class="mpdp-accord-icon">+</span>
+        </button>
+        <div class="mpdp-accord-body">
+          <div class="mpdp-accord-inner">
+            <p>304 stainless steel. Freezer-safe, dishwasher-safe, and food-grade certified. No plastic, no BPA.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mpdp-accord-item" id="mpdp-ic-use">
+        <button class="mpdp-accord-trigger" onclick="mpdpToggleAccord('mpdp-ic-use')">
+          <span>how to use</span>
+          <span class="mpdp-accord-icon">+</span>
+        </button>
+        <div class="mpdp-accord-body">
+          <div class="mpdp-accord-inner">
+            <ul>
+              <li>Place cubes in the freezer for at least 2 hours</li>
+              <li>Drop into your wine glass right before serving</li>
+              <li>Rinse and return to the freezer for next time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="mpdp-accord-item" id="mpdp-ic-shipping">
+        <button class="mpdp-accord-trigger" onclick="mpdpToggleAccord('mpdp-ic-shipping')">
+          <span>shipping &amp; returns</span>
+          <span class="mpdp-accord-icon">+</span>
+        </button>
+        <div class="mpdp-accord-body">
+          <div class="mpdp-accord-inner">
+            <p>Ships within 2–4 business days. Free returns within 30 days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Recommendations -->
+<section class="merch-recs">
+  <div class="merch-recs-header">
+    <span class="merch-recs-title">recommendations</span>
+    <a class="merch-recs-link" href="/pages/essentials1">discover more →</a>
+  </div>
+  <div class="merch-recs-grid">
+    <a class="merch-rec-card" href="/pages/merch-wine-opener">
+      <div class="merch-rec-img"><img src="{{ 'merch-1Y0A0361.jpg' | asset_url }}" alt="wine bottle opener"></div>
+      <div class="merch-rec-name">day–guard wine bottle opener</div>
+      <div class="merch-rec-price">$13.00</div>
+    </a>
+    <a class="merch-rec-card" href="/pages/merch-mosaic">
+      <div class="merch-rec-img"><img src="{{ 'merch-1Y0A9888.jpg' | asset_url }}" alt="mosaic tee"></div>
+      <div class="merch-rec-name">day–guard tee mosaic</div>
+      <div class="merch-rec-price">$34.99</div>
+    </a>
+    <a class="merch-rec-card" href="/pages/merch-future-proof">
+      <div class="merch-rec-img"><img src="{{ 'merch-1Y0A0842.jpg' | asset_url }}" alt="future proof tee"></div>
+      <div class="merch-rec-name">day–guard tee future proof</div>
+      <div class="merch-rec-price">$34.99</div>
+    </a>
+  </div>
+</section>
+
+{% stylesheet %}
+/* ── Merch PDP shared layout ── */
+.merch-pdp {
+  display: grid;
+  grid-template-columns: 1fr 447px;
+  gap: 60px;
+  max-width: 1302px;
+  margin: 0 auto;
+  padding: 60px 60px 80px;
+  background: #f4f1ec;
+  min-height: 80vh;
+  align-items: start;
+}
+.mpdp-gallery { display: flex; flex-direction: column; gap: 12px; }
+.mpdp-gallery-main { width: 100%; aspect-ratio: 1/1; border-radius: 16px; overflow: hidden; background: #e8e5e0; }
+.mpdp-main-img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.25s; }
+.mpdp-thumbs { display: flex; gap: 10px; flex-wrap: wrap; }
+.mpdp-thumb { width: 72px; height: 72px; border-radius: 8px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; background: #e8e5e0; }
+.mpdp-thumb.active { border-color: #204c3e; }
+.mpdp-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.mpdp-panel { padding-top: 8px; }
+.mpdp-breadcrumb { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: #888; margin-bottom: 20px; }
+.mpdp-breadcrumb a { color: #888; text-decoration: none; }
+.mpdp-breadcrumb a:hover { color: #204c3e; }
+.mpdp-title { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 45px; font-weight: 700; letter-spacing: -1.8px; color: #1d1d1b; line-height: 1.05; margin: 0 0 16px; }
+.mpdp-price { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 22px; font-weight: 500; color: #1d1d1b; letter-spacing: -0.5px; margin-bottom: 20px; }
+.mpdp-desc { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 15px; color: #555; line-height: 1.6; letter-spacing: -0.2px; margin-bottom: 16px; }
+.mpdp-bullets { list-style: none; padding: 0; margin: 0 0 28px; }
+.mpdp-bullets li { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 15px; color: #444; letter-spacing: -0.2px; padding: 5px 0 5px 20px; position: relative; }
+.mpdp-bullets li::before { content: '—'; position: absolute; left: 0; color: #9aaca0; }
+.mpdp-atc-row { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+.mpdp-qty { display: flex; align-items: center; border: 1.5px solid #ccc; border-radius: 4px; overflow: hidden; height: 37px; min-width: 117px; }
+.mpdp-qty-btn { width: 36px; height: 37px; background: none; border: none; font-size: 20px; color: #1d1d1b; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+.mpdp-qty-btn:hover { background: #f0ede8; }
+.mpdp-qty-val { flex: 1; text-align: center; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 16px; font-weight: 500; color: #1d1d1b; user-select: none; }
+.mpdp-atc-btn { flex: 1; height: 37px; max-width: 215px; background: #fb9918; color: #fff; border: none; border-radius: 3px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: background 0.2s; }
+.mpdp-atc-btn:hover { background: #e8860f; }
+.mpdp-checkout-note { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; color: #888; margin: 6px 0 24px; }
+.mpdp-accord { border-top: 1px solid rgba(0,0,0,0.1); }
+.mpdp-accord-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.mpdp-accord-trigger { display: flex; justify-content: space-between; align-items: center; width: 100%; background: none; border: none; padding: 16px 0; cursor: pointer; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 15px; font-weight: 500; color: #1d1d1b; text-align: left; }
+.mpdp-accord-icon { font-size: 20px; font-weight: 300; color: #888; transition: transform 0.25s; line-height: 1; }
+.mpdp-accord-item.open .mpdp-accord-icon { transform: rotate(45deg); }
+.mpdp-accord-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.mpdp-accord-item.open .mpdp-accord-body { max-height: 300px; }
+.mpdp-accord-inner { padding-bottom: 16px; }
+.mpdp-accord-inner p, .mpdp-accord-inner li { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; color: #555; line-height: 1.6; }
+.mpdp-accord-inner ul { padding-left: 20px; margin: 0; }
+.merch-recs { background: #f4f1ec; padding: 60px 60px 80px; max-width: 1302px; margin: 0 auto; }
+.merch-recs-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 28px; }
+.merch-recs-title { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -1px; color: #1d1d1b; }
+.merch-recs-link { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; color: #204c3e; text-decoration: none; }
+.merch-recs-link:hover { text-decoration: underline; }
+.merch-recs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.merch-rec-card { display: block; text-decoration: none; color: inherit; }
+.merch-rec-img { aspect-ratio: 1/1; border-radius: 13px; overflow: hidden; background: #e8e5e0; margin-bottom: 12px; }
+.merch-rec-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s ease; }
+.merch-rec-card:hover .merch-rec-img img { transform: scale(1.03); }
+.merch-rec-name { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 16px; font-weight: 500; color: #1d1d1b; margin-bottom: 4px; }
+.merch-rec-price { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; color: #555; }
+@media (max-width: 900px) {
+  .merch-pdp { grid-template-columns: 1fr; padding: 30px 20px 60px; gap: 32px; }
+  .merch-recs { padding: 40px 20px 60px; }
+  .merch-recs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .mpdp-title { font-size: 30px; letter-spacing: -1px; }
+  .merch-recs-grid { grid-template-columns: 1fr; }
+}
+{% endstylesheet %}
+
+{% javascript %}
+function mpdpSwap(imgId, thumb, src) {
+  document.getElementById(imgId).src = src;
+  thumb.closest('.mpdp-thumbs').querySelectorAll('.mpdp-thumb').forEach(function(t) { t.classList.remove('active'); });
+  thumb.classList.add('active');
+}
+function mpdpQtyChange(valId, delta) {
+  var el = document.getElementById(valId);
+  var v = parseInt(el.textContent) + delta;
+  if (v < 1) v = 1;
+  el.textContent = v;
+}
+function mpdpToggleAccord(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Merch Ice Cube PDP",
+  "settings": [],
+  "presets": [{ "name": "Merch Ice Cube PDP" }]
+}
+{% endschema %}
